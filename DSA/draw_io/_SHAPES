@@ -1,0 +1,93 @@
+<mxlibrary>[
+  {
+    "xml": "&lt;mxGraphModel&gt;&lt;root&gt;&lt;mxCell id=\"0\"/&gt;&lt;mxCell id=\"1\" parent=\"0\"/&gt;&lt;mxCell id=\"2\" style=\"edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;\" edge=\"1\" source=\"3\" target=\"4\" parent=\"1\"&gt;&lt;mxGeometry relative=\"1\" as=\"geometry\"/&gt;&lt;/mxCell&gt;&lt;UserObject label=\"&amp;lt;p style=&amp;quot;line-height: 260%;&amp;quot;&amp;gt;&amp;lt;b&amp;gt;&amp;lt;font data-font-src=&amp;quot;https://fonts.googleapis.com/css?family=Roboto&amp;quot; face=&amp;quot;Roboto&amp;quot; style=&amp;quot;font-size: 18px;&amp;quot;&amp;gt;DATA STRUCTURE AND ALGORITHM&amp;lt;/font&amp;gt;&amp;lt;/b&amp;gt;&amp;lt;/p&amp;gt;\" link=\"https://github.com/SanjeetDutt/NOTES/blob/master/draw_io/DataStructureAndAlgo.drawio\" linkTarget=\"_blank\" id=\"3\"&gt;&lt;mxCell style=\"rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=none;shadow=1;treeFolding=1;editable=1;movable=1;resizable=1;rotatable=1;deletable=1;locked=0;connectable=1;\" vertex=\"1\" parent=\"1\"&gt;&lt;mxGeometry width=\"197\" height=\"94\" as=\"geometry\"/&gt;&lt;/mxCell&gt;&lt;/UserObject&gt;&lt;mxCell id=\"4\" value=\"&amp;lt;p style=&amp;quot;line-height: 142%;&amp;quot;&amp;gt;&amp;lt;b&amp;gt;&amp;lt;font data-font-src=&amp;quot;https://fonts.googleapis.com/css?family=Roboto&amp;quot; face=&amp;quot;Roboto&amp;quot; style=&amp;quot;font-size: 15px;&amp;quot;&amp;gt;Time and Space Complexity&amp;lt;/font&amp;gt;&amp;lt;/b&amp;gt;&amp;lt;/p&amp;gt;\" style=\"rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=none;shadow=1;treeFolding=0;movable=1;resizable=1;rotatable=1;deletable=1;editable=1;locked=0;connectable=1;expand=1;recursiveResize=1;\" vertex=\"1\" parent=\"1\"&gt;&lt;mxGeometry x=\"248\" width=\"129\" height=\"94\" as=\"geometry\"/&gt;&lt;/mxCell&gt;&lt;/root&gt;&lt;/mxGraphModel&gt;",
+    "w": 376.9999999999998,
+    "h": 93.99999999999993,
+    "aspect": "fixed",
+    "title": "Basic Navigator"
+  },
+  {
+    "xml": "&lt;mxGraphModel&gt;&lt;root&gt;&lt;mxCell id=\"0\"/&gt;&lt;mxCell id=\"1\" parent=\"0\"/&gt;&lt;mxCell id=\"2\" value=\"CONTAINER 1\" style=\"swimlane;whiteSpace=wrap;html=1;fillColor=#b1ddf0;strokeColor=#10739e;\" vertex=\"1\" parent=\"1\"&gt;&lt;mxGeometry width=\"254\" height=\"289\" as=\"geometry\"/&gt;&lt;/mxCell&gt;&lt;/root&gt;&lt;/mxGraphModel&gt;",
+    "w": 254,
+    "h": 289,
+    "aspect": "fixed",
+    "title": "Container 1"
+  },
+  {
+    "xml": "&lt;mxGraphModel&gt;&lt;root&gt;&lt;mxCell id=\"0\"/&gt;&lt;mxCell id=\"1\" parent=\"0\"/&gt;&lt;mxCell id=\"2\" value=\"CONTAINER 2\" style=\"swimlane;whiteSpace=wrap;html=1;fillColor=#fad9d5;strokeColor=#ae4132;\" vertex=\"1\" parent=\"1\"&gt;&lt;mxGeometry width=\"200\" height=\"123\" as=\"geometry\"/&gt;&lt;/mxCell&gt;&lt;/root&gt;&lt;/mxGraphModel&gt;",
+    "w": 200,
+    "h": 123,
+    "aspect": "fixed",
+    "title": "Container 2"
+  },
+  {
+    "xml": "&lt;mxGraphModel&gt;&lt;root&gt;&lt;mxCell id=\"0\"/&gt;&lt;mxCell id=\"1\" parent=\"0\"/&gt;&lt;mxCell id=\"2\" value=\"CONTAINER 3\" style=\"swimlane;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;swimlaneFillColor=#ffffff;\" vertex=\"1\" parent=\"1\"&gt;&lt;mxGeometry width=\"381\" height=\"99\" as=\"geometry\"/&gt;&lt;/mxCell&gt;&lt;/root&gt;&lt;/mxGraphModel&gt;",
+    "w": 381,
+    "h": 99,
+    "aspect": "fixed",
+    "title": "Container 3"
+  },
+  {
+    "xml": "&lt;mxGraphModel&gt;&lt;root&gt;&lt;mxCell id=\"0\"/&gt;&lt;mxCell id=\"1\" parent=\"0\"/&gt;&lt;mxCell id=\"2\" value=\"Vertical Container\" style=\"swimlane;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=none;swimlaneFillColor=#faf0ff;shadow=1;glass=0;rounded=1;\" vertex=\"1\" parent=\"1\"&gt;&lt;mxGeometry y=\"2.2737367544323206e-13\" width=\"1000\" height=\"641\" as=\"geometry\"/&gt;&lt;/mxCell&gt;&lt;/root&gt;&lt;/mxGraphModel&gt;",
+    "w": 1000,
+    "h": 641,
+    "aspect": "fixed",
+    "title": "Vertical Container"
+  },
+  {
+    "xml": "&lt;mxGraphModel&gt;&lt;root&gt;&lt;mxCell id=\"0\"/&gt;&lt;mxCell id=\"1\" parent=\"0\"/&gt;&lt;mxCell id=\"2\" value=\"&amp;lt;p style=&amp;quot;line-height: 142%;&amp;quot;&amp;gt;&amp;lt;font data-font-src=&amp;quot;https://fonts.googleapis.com/css?family=Roboto&amp;quot; face=&amp;quot;Roboto&amp;quot; style=&amp;quot;font-size: 15px;&amp;quot;&amp;gt;Tile 1&amp;lt;/font&amp;gt;&amp;lt;/p&amp;gt;\" style=\"rounded=1;whiteSpace=wrap;html=1;shadow=1;treeFolding=1;movable=1;resizable=1;rotatable=1;deletable=1;editable=1;locked=0;connectable=1;strokeColor=none;fillColor=#CCFFFF;\" vertex=\"1\" parent=\"1\"&gt;&lt;mxGeometry width=\"129\" height=\"39\" as=\"geometry\"/&gt;&lt;/mxCell&gt;&lt;/root&gt;&lt;/mxGraphModel&gt;",
+    "w": 129,
+    "h": 39,
+    "aspect": "fixed",
+    "title": "Tile 1"
+  },
+  {
+    "xml": "&lt;mxGraphModel&gt;&lt;root&gt;&lt;mxCell id=\"0\"/&gt;&lt;mxCell id=\"1\" parent=\"0\"/&gt;&lt;mxCell id=\"2\" value=\"&amp;lt;p style=&amp;quot;line-height: 142%;&amp;quot;&amp;gt;&amp;lt;b&amp;gt;&amp;lt;font data-font-src=&amp;quot;https://fonts.googleapis.com/css?family=Roboto&amp;quot; face=&amp;quot;Roboto&amp;quot; style=&amp;quot;font-size: 15px;&amp;quot;&amp;gt;Tile 2&amp;lt;/font&amp;gt;&amp;lt;/b&amp;gt;&amp;lt;/p&amp;gt;\" style=\"rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=none;shadow=1;treeFolding=0;movable=1;resizable=1;rotatable=1;deletable=1;editable=1;locked=0;connectable=1;\" vertex=\"1\" parent=\"1\"&gt;&lt;mxGeometry width=\"129\" height=\"94\" as=\"geometry\"/&gt;&lt;/mxCell&gt;&lt;/root&gt;&lt;/mxGraphModel&gt;",
+    "w": 129,
+    "h": 94,
+    "aspect": "fixed",
+    "title": "Tile 2"
+  },
+  {
+    "xml": "&lt;mxGraphModel&gt;&lt;root&gt;&lt;mxCell id=\"0\"/&gt;&lt;mxCell id=\"1\" parent=\"0\"/&gt;&lt;UserObject label=\"&amp;lt;p style=&amp;quot;line-height: 260%;&amp;quot;&amp;gt;&amp;lt;b&amp;gt;&amp;lt;font data-font-src=&amp;quot;https://fonts.googleapis.com/css?family=Roboto&amp;quot; face=&amp;quot;Roboto&amp;quot; style=&amp;quot;font-size: 18px;&amp;quot;&amp;gt;Link Tile&amp;lt;/font&amp;gt;&amp;lt;/b&amp;gt;&amp;lt;/p&amp;gt;\" link=\"data:page/id,KQ3RXT452Op9s6PRzBAU\" id=\"2\"&gt;&lt;mxCell style=\"rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=none;shadow=1;treeFolding=1;editable=1;movable=1;resizable=1;rotatable=1;deletable=1;locked=0;connectable=1;\" vertex=\"1\" parent=\"1\"&gt;&lt;mxGeometry width=\"197\" height=\"94\" as=\"geometry\"/&gt;&lt;/mxCell&gt;&lt;/UserObject&gt;&lt;/root&gt;&lt;/mxGraphModel&gt;",
+    "w": 197.00000000000003,
+    "h": 94,
+    "aspect": "fixed",
+    "title": "Link Tile"
+  },
+  {
+    "xml": "&lt;mxGraphModel&gt;&lt;root&gt;&lt;mxCell id=\"0\"/&gt;&lt;mxCell id=\"1\" parent=\"0\"/&gt;&lt;mxCell id=\"2\" value=\"TEXT BOX\" style=\"text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=#666666;fillColor=none;fontColor=#333333;\" vertex=\"1\" parent=\"1\"&gt;&lt;mxGeometry width=\"77\" height=\"26\" as=\"geometry\"/&gt;&lt;/mxCell&gt;&lt;/root&gt;&lt;/mxGraphModel&gt;",
+    "w": 77,
+    "h": 26.000000000000004,
+    "aspect": "fixed",
+    "title": "Text box"
+  },
+  {
+    "xml": "&lt;mxGraphModel&gt;&lt;root&gt;&lt;mxCell id=\"0\"/&gt;&lt;mxCell id=\"1\" parent=\"0\"/&gt;&lt;UserObject label=\"Linked Text Box\" link=\"https://github.com/SanjeetDutt/NOTES/blob/master/code/JAVA/src/main/java/in/sanjeetdutt/array/SwapArray.java\" linkTarget=\"_blank\" id=\"2\"&gt;&lt;mxCell style=\"text;html=1;strokeColor=default;fillColor=#e1d5e7;whiteSpace=wrap;align=center;verticalAlign=middle;fontStyle=4;shadow=1;\" vertex=\"1\" parent=\"1\"&gt;&lt;mxGeometry width=\"120\" height=\"40\" as=\"geometry\"/&gt;&lt;/mxCell&gt;&lt;/UserObject&gt;&lt;/root&gt;&lt;/mxGraphModel&gt;",
+    "w": 120,
+    "h": 40,
+    "aspect": "fixed",
+    "title": "Linked Text box"
+  },
+  {
+    "xml": "&lt;mxGraphModel&gt;&lt;root&gt;&lt;mxCell id=\"0\"/&gt;&lt;mxCell id=\"1\" parent=\"0\"/&gt;&lt;UserObject label=\"Importan t Link Textbox\" link=\"https://github.com/SanjeetDutt/NOTES/blob/master/code/JAVA/src/main/java/in/sanjeetdutt/array/SwapArray.java\" linkTarget=\"_blank\" id=\"2\"&gt;&lt;mxCell style=\"text;html=1;strokeColor=#b85450;fillColor=#FF3333;whiteSpace=wrap;align=center;verticalAlign=middle;fontStyle=5;shadow=1;fontColor=#FFFFFF;fontSize=21;\" vertex=\"1\" parent=\"1\"&gt;&lt;mxGeometry width=\"173\" height=\"40\" as=\"geometry\"/&gt;&lt;/mxCell&gt;&lt;/UserObject&gt;&lt;/root&gt;&lt;/mxGraphModel&gt;",
+    "w": 173.00000000000003,
+    "h": 40,
+    "aspect": "fixed",
+    "title": "Important Link Textbox"
+  },
+  {
+    "xml": "&lt;mxGraphModel&gt;&lt;root&gt;&lt;mxCell id=\"0\"/&gt;&lt;mxCell id=\"1\" parent=\"0\"/&gt;&lt;mxCell id=\"2\" value=\"Important Text\" style=\"text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=#b85450;fillColor=#f8cecc;\" vertex=\"1\" parent=\"1\"&gt;&lt;mxGeometry width=\"94\" height=\"26\" as=\"geometry\"/&gt;&lt;/mxCell&gt;&lt;/root&gt;&lt;/mxGraphModel&gt;",
+    "w": 94.00000000000001,
+    "h": 26.000000000000004,
+    "aspect": "fixed",
+    "title": "Important text box"
+  },
+  {
+    "xml": "&lt;mxGraphModel&gt;&lt;root&gt;&lt;mxCell id=\"0\"/&gt;&lt;mxCell id=\"1\" parent=\"0\"/&gt;&lt;mxCell id=\"2\" value=\"&amp;lt;b&amp;gt;IMPORTANT&amp;lt;/b&amp;gt;\" style=\"ellipse;shape=cloud;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;\" vertex=\"1\" parent=\"1\"&gt;&lt;mxGeometry x=\"-4.547473508864641e-13\" width=\"120\" height=\"80\" as=\"geometry\"/&gt;&lt;/mxCell&gt;&lt;/root&gt;&lt;/mxGraphModel&gt;",
+    "w": 120,
+    "h": 80,
+    "aspect": "fixed",
+    "title": "Important"
+  }
+]</mxlibrary>

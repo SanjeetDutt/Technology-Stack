@@ -1,0 +1,60 @@
+<mxfile host="app.diagrams.net" modified="2023-09-04T17:16:19.511Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/116.0.0.0 Safari/537.36" etag="qdM3dNjo32tD7v70PmsJ" version="21.7.2" type="device">
+  <diagram name="Page-1" id="eto0bK_gLitBq-6sUxol">
+    <mxGraphModel dx="2059" dy="1495" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="kmSPDl_Co-8IY6W73YOz-1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" source="kmSPDl_Co-8IY6W73YOz-2" target="kmSPDl_Co-8IY6W73YOz-3" parent="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <UserObject label="&lt;p style=&quot;line-height: 260%;&quot;&gt;&lt;b&gt;&lt;font data-font-src=&quot;https://fonts.googleapis.com/css?family=Roboto&quot; face=&quot;Roboto&quot; style=&quot;font-size: 18px;&quot;&gt;DATA STRUCTURE AND ALGORITHM&lt;/font&gt;&lt;/b&gt;&lt;/p&gt;" link="https://github.com/SanjeetDutt/NOTES/blob/master/draw_io/DataStructureAndAlgo.drawio" linkTarget="_blank" id="kmSPDl_Co-8IY6W73YOz-2">
+          <mxCell style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=none;shadow=1;treeFolding=1;editable=1;movable=1;resizable=1;rotatable=1;deletable=1;locked=0;connectable=1;" vertex="1" parent="1">
+            <mxGeometry x="-375" y="-25" width="197" height="94" as="geometry" />
+          </mxCell>
+        </UserObject>
+        <mxCell id="kmSPDl_Co-8IY6W73YOz-6" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="kmSPDl_Co-8IY6W73YOz-3" target="kmSPDl_Co-8IY6W73YOz-4">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="kmSPDl_Co-8IY6W73YOz-13" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="kmSPDl_Co-8IY6W73YOz-3" target="kmSPDl_Co-8IY6W73YOz-11">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="kmSPDl_Co-8IY6W73YOz-3" value="&lt;p style=&quot;line-height: 142%;&quot;&gt;&lt;b&gt;&lt;font data-font-src=&quot;https://fonts.googleapis.com/css?family=Roboto&quot; face=&quot;Roboto&quot; style=&quot;font-size: 15px;&quot;&gt;Binary Search&lt;/font&gt;&lt;/b&gt;&lt;/p&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=none;shadow=1;treeFolding=0;movable=1;resizable=1;rotatable=1;deletable=1;editable=1;locked=0;connectable=1;expand=1;recursiveResize=1;" vertex="1" parent="1">
+          <mxGeometry x="-127" y="-25" width="129" height="94" as="geometry" />
+        </mxCell>
+        <mxCell id="kmSPDl_Co-8IY6W73YOz-10" value="" style="group" vertex="1" connectable="0" parent="1">
+          <mxGeometry x="-8.000000000000455" y="-504" width="325" height="187" as="geometry" />
+        </mxCell>
+        <mxCell id="kmSPDl_Co-8IY6W73YOz-4" value="Where we can apply Binary Search" style="swimlane;whiteSpace=wrap;html=1;fillColor=#b1ddf0;strokeColor=#10739e;" vertex="1" parent="kmSPDl_Co-8IY6W73YOz-10">
+          <mxGeometry x="66" y="42" width="259" height="145" as="geometry" />
+        </mxCell>
+        <mxCell id="kmSPDl_Co-8IY6W73YOz-5" value="After dividing the search space into 2 halves, &lt;br&gt;if we can discard one half of the space using &lt;br&gt;some condition, then we can apply &lt;br&gt;&lt;b&gt;Binary Search&lt;/b&gt;" style="text;html=1;align=left;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="kmSPDl_Co-8IY6W73YOz-4">
+          <mxGeometry x="9" y="36" width="256" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="kmSPDl_Co-8IY6W73YOz-9" value="If we can&#39;t discard any search space, then &lt;br&gt;Binary search can&#39;t applied" style="text;html=1;align=left;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="kmSPDl_Co-8IY6W73YOz-4">
+          <mxGeometry x="9" y="100" width="241" height="41" as="geometry" />
+        </mxCell>
+        <mxCell id="kmSPDl_Co-8IY6W73YOz-7" value="&lt;b&gt;IMPORTANT&lt;/b&gt;" style="ellipse;shape=cloud;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;" vertex="1" parent="kmSPDl_Co-8IY6W73YOz-10">
+          <mxGeometry width="120" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="kmSPDl_Co-8IY6W73YOz-11" value="Problems" style="swimlane;whiteSpace=wrap;html=1;fillColor=#b1ddf0;strokeColor=#10739e;" vertex="1" parent="1">
+          <mxGeometry x="-708" y="145" width="698" height="289" as="geometry" />
+        </mxCell>
+        <UserObject label="Find in sorted Array" link="https://github.com/SanjeetDutt/NOTES/blob/master/code/JAVA/src/main/java/in/sanjeetdutt/searching/SearchInSortedArray.java" linkTarget="_blank" id="kmSPDl_Co-8IY6W73YOz-12">
+          <mxCell style="text;html=1;strokeColor=default;fillColor=#e1d5e7;whiteSpace=wrap;align=center;verticalAlign=middle;fontStyle=4;shadow=1;" vertex="1" parent="kmSPDl_Co-8IY6W73YOz-11">
+            <mxGeometry x="12" y="35" width="120" height="40" as="geometry" />
+          </mxCell>
+        </UserObject>
+        <UserObject label="Find first index" link="https://github.com/SanjeetDutt/NOTES/blob/master/code/JAVA/src/main/java/in/sanjeetdutt/searching/FindFirstIndex.java" linkTarget="_blank" id="kmSPDl_Co-8IY6W73YOz-14">
+          <mxCell style="text;html=1;strokeColor=default;fillColor=#e1d5e7;whiteSpace=wrap;align=center;verticalAlign=middle;fontStyle=4;shadow=1;" vertex="1" parent="kmSPDl_Co-8IY6W73YOz-11">
+            <mxGeometry x="142" y="35" width="120" height="40" as="geometry" />
+          </mxCell>
+        </UserObject>
+        <UserObject label="Find peak element" link="https://github.com/SanjeetDutt/NOTES/blob/master/code/JAVA/src/main/java/in/sanjeetdutt/searching/FindPeakElement.java" linkTarget="_blank" id="kmSPDl_Co-8IY6W73YOz-15">
+          <mxCell style="text;html=1;strokeColor=default;fillColor=#e1d5e7;whiteSpace=wrap;align=center;verticalAlign=middle;fontStyle=4;shadow=1;" vertex="1" parent="kmSPDl_Co-8IY6W73YOz-11">
+            <mxGeometry x="272" y="35" width="120" height="40" as="geometry" />
+          </mxCell>
+        </UserObject>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

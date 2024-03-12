@@ -1,0 +1,84 @@
+<mxfile host="app.diagrams.net" modified="2023-08-30T11:11:29.818Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/116.0.0.0 Safari/537.36" etag="e5XWSwsYUsRLg0hkwcsn" version="21.7.0" type="github">
+  <diagram name="Page-1" id="gbp8BnoYTopGR79soo97">
+    <mxGraphModel dx="2459" dy="1102" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="Q2ssws0bNtDQe1Dr32Ti-1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="Q2ssws0bNtDQe1Dr32Ti-3" target="Q2ssws0bNtDQe1Dr32Ti-7">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="Q2ssws0bNtDQe1Dr32Ti-2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="Q2ssws0bNtDQe1Dr32Ti-3" target="Q2ssws0bNtDQe1Dr32Ti-18">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="-363" y="108" />
+              <mxPoint x="-814" y="108" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="Q2ssws0bNtDQe1Dr32Ti-3" value="&lt;p style=&quot;line-height: 142%;&quot;&gt;&lt;b&gt;&lt;font data-font-src=&quot;https://fonts.googleapis.com/css?family=Roboto&quot; face=&quot;Roboto&quot; style=&quot;font-size: 15px;&quot;&gt;Recursion&lt;/font&gt;&lt;/b&gt;&lt;/p&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=none;shadow=1;treeFolding=1;movable=1;resizable=1;rotatable=1;deletable=1;editable=1;locked=0;connectable=1;" vertex="1" parent="1">
+          <mxGeometry x="-428" y="-39" width="129" height="94" as="geometry" />
+        </mxCell>
+        <mxCell id="Q2ssws0bNtDQe1Dr32Ti-4" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="Q2ssws0bNtDQe1Dr32Ti-5" target="Q2ssws0bNtDQe1Dr32Ti-3">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <UserObject label="&lt;p style=&quot;line-height: 260%;&quot;&gt;&lt;b&gt;&lt;font data-font-src=&quot;https://fonts.googleapis.com/css?family=Roboto&quot; face=&quot;Roboto&quot; style=&quot;font-size: 18px;&quot;&gt;DATA STRUCTURE AND ALGORITHM&lt;/font&gt;&lt;/b&gt;&lt;/p&gt;" id="Q2ssws0bNtDQe1Dr32Ti-5">
+          <mxCell style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=none;shadow=1;treeFolding=1;editable=1;movable=1;resizable=1;rotatable=1;deletable=1;locked=0;connectable=1;" vertex="1" parent="1">
+            <mxGeometry x="-651" y="-39" width="197" height="94" as="geometry" />
+          </mxCell>
+        </UserObject>
+        <mxCell id="Q2ssws0bNtDQe1Dr32Ti-6" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="Q2ssws0bNtDQe1Dr32Ti-7" target="Q2ssws0bNtDQe1Dr32Ti-21">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="Q2ssws0bNtDQe1Dr32Ti-7" value="Definition" style="swimlane;whiteSpace=wrap;html=1;fillColor=#b1ddf0;strokeColor=default;swimlaneFillColor=#FFFFFF;gradientColor=none;" vertex="1" parent="1">
+          <mxGeometry x="-247" y="-78.5" width="398" height="173" as="geometry" />
+        </mxCell>
+        <mxCell id="Q2ssws0bNtDQe1Dr32Ti-8" value="Function calling itself&lt;br&gt;&lt;br&gt;Solved by smaller instance of the problem known as &lt;b&gt;SUB-PROBLEM&lt;/b&gt;&lt;br&gt;&lt;br&gt;Example :&lt;br&gt;&lt;br&gt;SUM(N) &lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;= 1 + 2 + 3 +4 + ... + N-1 + N&lt;br&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;= SUM(N-1) + N" style="text;html=1;align=left;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="Q2ssws0bNtDQe1Dr32Ti-7">
+          <mxGeometry x="8" y="30" width="387" height="127" as="geometry" />
+        </mxCell>
+        <mxCell id="Q2ssws0bNtDQe1Dr32Ti-9" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="Q2ssws0bNtDQe1Dr32Ti-10" target="Q2ssws0bNtDQe1Dr32Ti-13">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="Q2ssws0bNtDQe1Dr32Ti-10" value="How to write Recursive code" style="swimlane;whiteSpace=wrap;html=1;fillColor=#fad9d5;strokeColor=#ae4132;swimlaneFillColor=#ffffff;" vertex="1" parent="1">
+          <mxGeometry x="189" y="-96.5" width="269" height="223" as="geometry" />
+        </mxCell>
+        <mxCell id="Q2ssws0bNtDQe1Dr32Ti-11" value="Code should have 3 main part:&lt;br&gt;&lt;br&gt;1. Assumption&lt;br&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;Decide what you function does&lt;br&gt;&lt;br&gt;2. Main Logic&lt;br&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;Solve the assumption using sub-problem&lt;br&gt;&lt;br&gt;3. Base condition&lt;br&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;The endpoint of the recursion&lt;br&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;Condition at which we need to stop&lt;br&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;" style="text;html=1;align=left;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="Q2ssws0bNtDQe1Dr32Ti-10">
+          <mxGeometry x="15" y="38" width="261" height="185" as="geometry" />
+        </mxCell>
+        <mxCell id="Q2ssws0bNtDQe1Dr32Ti-12" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="Q2ssws0bNtDQe1Dr32Ti-8" target="Q2ssws0bNtDQe1Dr32Ti-10">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="Q2ssws0bNtDQe1Dr32Ti-13" value="Example" style="swimlane;whiteSpace=wrap;html=1;fillColor=#fad9d5;strokeColor=#ae4132;swimlaneFillColor=#ffffff;" vertex="1" parent="1">
+          <mxGeometry x="509" y="-189" width="394" height="559.5" as="geometry" />
+        </mxCell>
+        <mxCell id="Q2ssws0bNtDQe1Dr32Ti-14" value="" style="shape=image;verticalLabelPosition=bottom;labelBackgroundColor=default;verticalAlign=top;aspect=fixed;imageAspect=0;image=https://www.edureka.co/blog/wp-content/uploads/2019/08/2019-08-06-12_31_29-Window.png;" vertex="1" parent="Q2ssws0bNtDQe1Dr32Ti-13">
+          <mxGeometry x="15" y="38" width="348.28" height="177" as="geometry" />
+        </mxCell>
+        <mxCell id="Q2ssws0bNtDQe1Dr32Ti-15" value="" style="shape=image;verticalLabelPosition=bottom;labelBackgroundColor=default;verticalAlign=top;aspect=fixed;imageAspect=0;image=https://res.cloudinary.com/practicaldev/image/fetch/s--n6TlRQ6X--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_880/https://dev-to-uploads.s3.amazonaws.com/uploads/articles/e57umaz2t4xeax57v2ao.png;" vertex="1" parent="Q2ssws0bNtDQe1Dr32Ti-13">
+          <mxGeometry x="15" y="225.5" width="368.44" height="320.5" as="geometry" />
+        </mxCell>
+        <mxCell id="Q2ssws0bNtDQe1Dr32Ti-16" value="Whenever a recursive function &lt;br&gt;called, a new stack memory &lt;br&gt;will be created" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=#666666;fillColor=none;fontColor=#333333;" vertex="1" parent="1">
+          <mxGeometry x="244.5" y="158" width="180" height="55" as="geometry" />
+        </mxCell>
+        <mxCell id="Q2ssws0bNtDQe1Dr32Ti-17" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="Q2ssws0bNtDQe1Dr32Ti-11" target="Q2ssws0bNtDQe1Dr32Ti-16">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="Q2ssws0bNtDQe1Dr32Ti-18" value="PROBLEMS" style="swimlane;whiteSpace=wrap;html=1;fillColor=#b1ddf0;strokeColor=default;swimlaneFillColor=#FFFFFF;gradientColor=none;" vertex="1" parent="1">
+          <mxGeometry x="-1181" y="252" width="734" height="200" as="geometry" />
+        </mxCell>
+        <UserObject label="Nth Fibonacci No." link="https://github.com/SanjeetDutt/NOTES/blob/master/code/JAVA/src/main/java/in/sanjeetdutt/recursion/NthFibonacci.java" linkTarget="_blank" id="Q2ssws0bNtDQe1Dr32Ti-19">
+          <mxCell style="text;html=1;strokeColor=default;fillColor=#e1d5e7;whiteSpace=wrap;align=center;verticalAlign=middle;fontStyle=4;shadow=1;" vertex="1" parent="Q2ssws0bNtDQe1Dr32Ti-18">
+            <mxGeometry x="25" y="39" width="120" height="40" as="geometry" />
+          </mxCell>
+        </UserObject>
+        <UserObject label="Nth Fibonacci No." link="https://github.com/SanjeetDutt/NOTES/blob/master/code/JAVA/src/main/java/in/sanjeetdutt/recursion/APowerN.java" linkTarget="_blank" id="Q2ssws0bNtDQe1Dr32Ti-20">
+          <mxCell style="text;html=1;strokeColor=default;fillColor=#e1d5e7;whiteSpace=wrap;align=center;verticalAlign=middle;fontStyle=4;shadow=1;" vertex="1" parent="Q2ssws0bNtDQe1Dr32Ti-18">
+            <mxGeometry x="166" y="39" width="120" height="40" as="geometry" />
+          </mxCell>
+        </UserObject>
+        <mxCell id="Q2ssws0bNtDQe1Dr32Ti-21" value="If a question can be solved by looping and as well recursion.&lt;br&gt;SOLVE IT BY LOOPING.&lt;br&gt;&lt;br&gt;Because Looping takes less space that recursion" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=#b85450;fillColor=#f8cecc;" vertex="1" parent="1">
+          <mxGeometry x="-217" y="133" width="338" height="70" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

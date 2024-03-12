@@ -1,0 +1,37 @@
+Executors (Thread Pool) & Callables
+
+	Issues with the creating threads
+		while creating a tread we are not reusing it later
+			causes overusage of resources
+			things will take time (Alot)
+	To overcome the issue, we have thread pool
+		It will manage the creation of new threads 
+		Better resource handeling
+		how it work
+			We will say we need 5 threads to the pool and let suppose 7 task are assigned to perform
+				then thread pool will allocate the T1 to T5 to all threads
+				Once any thread is available, T6 will will alloacted and same with T7
+				
+
+Executors
+	Thread pool
+		Example 
+			ExecutorService executorService = Executors.newFixedThreadPool(10); // we can use newCachedThreadPool which is more fast
+			for( i = 0 to 100000000000){
+				PrintNumber task = new PrintNumber(i)
+				ex.execute(task)
+			}
+		Task is completing very fast
+			Beacuse we are not creating over head
+				Overhead : Creation of excess thread. Threads which is donot work
+	Callable 
+		Help to run the app in multithread and have provision to get the value from task
+		earlier runable donot provide any provision to return anyhring
+		example
+			class ____ implements CALLABLE {
+				String call (){ // String is the return type
+					
+				}
+			}
+			
+		

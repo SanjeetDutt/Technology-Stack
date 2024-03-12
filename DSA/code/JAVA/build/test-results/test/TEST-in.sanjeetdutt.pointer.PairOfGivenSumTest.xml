@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="in.sanjeetdutt.pointer.PairOfGivenSumTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2023-11-25T06:15:41" hostname="SANJEET" time="6.852">
+  <properties/>
+  <testcase name="solve()" classname="in.sanjeetdutt.pointer.PairOfGivenSumTest" time="6.852"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

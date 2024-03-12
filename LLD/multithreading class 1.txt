@@ -1,0 +1,116 @@
+introduction
+	.dmg, .exe, .apk
+	these are executable file
+	code --compiled to--> executable files [downloadable and installable]
+	after instal, it lie in hard drive
+	after run the application, code come from hard disk to RAM
+	process == program in execution
+	2.2GHz = 2.2 X 10^9 instrustions per second
+	
+process and threads
+	Process
+		programme in execution
+		PCB ( Process Control Board) stores information about process, created by OS
+			class PCB{
+				pid
+				List<Variable>
+				register <= address of register where calculation happen
+				priority <= priority of programe over other programe
+				memoryDetails
+				programCounter <= current line of execution
+				callStack
+			}
+		Process while running MS Word
+			>Display the output 	<= process 1
+			>Grammer Checker 		<= process 2
+			>Auto saving 			<= process 3
+			>Auto Suggestion 		<= process 4
+		process can run independently but inter communication is not viable
+			communication will code in IPC Inter process communication, out of scope
+	
+	Threads
+		Threads are not subprocess but related to a process
+		Unit of CPU execution
+		A thread is what a CPU actally executes
+		A process can have 1 thread or multiple thread
+			Every process will have atleast 1 thread
+			class PCB{
+				pid
+				priority
+				memoryDetails
+				List<Threads> <= independent calculation 
+			}
+			class Threads{
+				programCounter <= each tread will have independent programme counter.
+				functionStack <= here we have fucntion stac instead of callStack
+									which means methods of a class can in uniquelly allocated in different threads
+			}
+		why multiple thread not multiple process
+			Data sharing in thread is much easier
+				we have same memory address in PCB which is used by threads
+			Creation of thread doesnot take extra memory as memory is already allocated in programe
+				memory creation are called as overhead
+				
+		every OS have CPU scheduler
+			decide what thread to be executed on the basis of
+				Rosources
+				Priority
+				Time
+			CPU execute 1 thread at a time, but it do so fast it look like all thread are running parallely
+				it is know as context switching
+	single core vs multi core
+		1 core execute 1 thread at a moment
+		1 core = 1 chip = 1 thread at a moment
+		quard core = 4 chip = 4 thread at a moment
+		hyperthreading = 2 threads in same chip
+		i7 12650H
+			10 core and 16 threads
+				6 core(HyperThreaading) X 2.3GH = handel 2 thread at a time = 12 threads
+				4 core 					X 1.7GH = handel 1 thread at a time = 4 threads
+				sum ofthreads = 12 + 4 = 16 threads
+concurrency vs parallelism
+	case 1 : Single core system and switching between threads is not allowed [thread 2 will start exe only after thread 1 complete]
+				at a given instance 
+					partially completed thead = 1
+					ongoing thread = 1
+					
+	case 2 : Single core system and switching between threads is allowed
+				at a given instance 
+					partially completed thead = N
+					ongoing thread = 1
+					
+	case 3 : Multi core system and switching between threads is allowed
+				at a given instance 
+					partially completed thead = N
+					ongoing thread = No. of core (or) N
+					
+	Here, 
+		partially completed thread 	= Concurrency
+		Ongoing threads 			= Parallism 
+	
+	for parallism we need multi core.
+	for concurrancy we core where context switching is allowed. 
+	
+	Overall:
+				context switching			not allowed				allowed			
+				-----------------------------------------------------------------------------------
+				single core					Sequntial process		Concurrency
+				-----------------------------------------------------------------------------------
+				multi core					parallelism				Concurrency & parallelism
+				-----------------------------------------------------------------------------------
+
+sample example on multi threaded program - Hello world
+	while writing code dont think what threads to be created, always think what task that has to be done
+	
+	1. defile the task
+		create a class for that task
+			class HelloWorldPrinter{....}
+	
+	2. Implement runnable interface
+		runnable interface have method run()
+		
+	3. In your task class, implement run method
+	
+	4. Within the run method write code that perform task
+	
+	

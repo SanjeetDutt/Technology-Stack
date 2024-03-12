@@ -1,0 +1,162 @@
+<mxfile host="app.diagrams.net" modified="2023-09-13T06:35:20.689Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/116.0.0.0 Safari/537.36" etag="if-QBhyYKDHzB2wTvrCW" version="21.7.4" type="device">
+  <diagram name="Page-1" id="gbp8BnoYTopGR79soo97">
+    <mxGraphModel dx="3089" dy="1264" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="ehRXJjYy89tjwpbmLJuj-1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" parent="1" source="ehRXJjYy89tjwpbmLJuj-3" target="ehRXJjYy89tjwpbmLJuj-6" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ehRXJjYy89tjwpbmLJuj-2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="ehRXJjYy89tjwpbmLJuj-3" target="ehRXJjYy89tjwpbmLJuj-11" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="SconD5pCCTN5OF1qKG1k-39" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="ehRXJjYy89tjwpbmLJuj-3" target="SconD5pCCTN5OF1qKG1k-3">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="192" y="453" />
+              <mxPoint x="1052" y="453" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="ehRXJjYy89tjwpbmLJuj-3" value="&lt;p style=&quot;line-height: 142%;&quot;&gt;&lt;b&gt;&lt;font data-font-src=&quot;https://fonts.googleapis.com/css?family=Roboto&quot; face=&quot;Roboto&quot; style=&quot;font-size: 15px;&quot;&gt;String&lt;/font&gt;&lt;/b&gt;&lt;/p&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=none;shadow=1;treeFolding=1;movable=1;resizable=1;rotatable=1;deletable=1;editable=1;locked=0;connectable=1;" parent="1" vertex="1">
+          <mxGeometry x="127" y="273" width="129" height="94" as="geometry" />
+        </mxCell>
+        <mxCell id="ehRXJjYy89tjwpbmLJuj-4" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" parent="1" source="ehRXJjYy89tjwpbmLJuj-5" target="ehRXJjYy89tjwpbmLJuj-3" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <UserObject label="&lt;p style=&quot;line-height: 260%;&quot;&gt;&lt;b&gt;&lt;font data-font-src=&quot;https://fonts.googleapis.com/css?family=Roboto&quot; face=&quot;Roboto&quot; style=&quot;font-size: 18px;&quot;&gt;DATA STRUCTURE AND ALGORITHM&lt;/font&gt;&lt;/b&gt;&lt;/p&gt;" id="ehRXJjYy89tjwpbmLJuj-5">
+          <mxCell style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=none;shadow=1;treeFolding=1;editable=1;movable=1;resizable=1;rotatable=1;deletable=1;locked=0;connectable=1;" parent="1" vertex="1">
+            <mxGeometry x="-96" y="273" width="197" height="94" as="geometry" />
+          </mxCell>
+        </UserObject>
+        <mxCell id="ehRXJjYy89tjwpbmLJuj-6" value="Problems" style="swimlane;whiteSpace=wrap;html=1;fillColor=#b1ddf0;strokeColor=default;swimlaneFillColor=#FFFFFF;gradientColor=none;" parent="1" vertex="1">
+          <mxGeometry x="-434" y="540" width="675" height="240" as="geometry" />
+        </mxCell>
+        <UserObject label="Toggle Char in String" link="https://github.com/SanjeetDutt/NOTES/blob/master/code/JAVA/src/main/java/in/sanjeetdutt/string/ToggleChar.java" linkTarget="_blank" id="ehRXJjYy89tjwpbmLJuj-7">
+          <mxCell style="text;html=1;strokeColor=default;fillColor=#e1d5e7;whiteSpace=wrap;align=center;verticalAlign=middle;fontStyle=4;shadow=1;" parent="ehRXJjYy89tjwpbmLJuj-6" vertex="1">
+            <mxGeometry x="26" y="39" width="120" height="40" as="geometry" />
+          </mxCell>
+        </UserObject>
+        <UserObject label="Toggle Char in String" link="https://github.com/SanjeetDutt/NOTES/blob/master/code/JAVA/src/main/java/in/sanjeetdutt/string/SortChar.java" linkTarget="_blank" id="ehRXJjYy89tjwpbmLJuj-8">
+          <mxCell style="text;html=1;strokeColor=default;fillColor=#e1d5e7;whiteSpace=wrap;align=center;verticalAlign=middle;fontStyle=4;shadow=1;" parent="ehRXJjYy89tjwpbmLJuj-6" vertex="1">
+            <mxGeometry x="171" y="39" width="120" height="40" as="geometry" />
+          </mxCell>
+        </UserObject>
+        <UserObject label="Check Palindrome" link="https://github.com/SanjeetDutt/NOTES/blob/master/code/JAVA/src/main/java/in/sanjeetdutt/string/CheckPalindrome.java" linkTarget="_blank" id="ehRXJjYy89tjwpbmLJuj-9">
+          <mxCell style="text;html=1;strokeColor=default;fillColor=#e1d5e7;whiteSpace=wrap;align=center;verticalAlign=middle;fontStyle=4;shadow=1;" parent="ehRXJjYy89tjwpbmLJuj-6" vertex="1">
+            <mxGeometry x="316" y="39" width="120" height="40" as="geometry" />
+          </mxCell>
+        </UserObject>
+        <UserObject label="Longest Palindrome" link="https://github.com/SanjeetDutt/NOTES/blob/master/code/JAVA/src/main/java/in/sanjeetdutt/string/LongestPalindrome.java" linkTarget="_blank" id="ehRXJjYy89tjwpbmLJuj-10">
+          <mxCell style="text;html=1;strokeColor=default;fillColor=#e1d5e7;whiteSpace=wrap;align=center;verticalAlign=middle;fontStyle=4;shadow=1;" parent="ehRXJjYy89tjwpbmLJuj-6" vertex="1">
+            <mxGeometry x="461" y="39" width="120" height="40" as="geometry" />
+          </mxCell>
+        </UserObject>
+        <UserObject label="Permutation Count" link="https://github.com/SanjeetDutt/NOTES/blob/master/code/JAVA/src/main/java/in/sanjeetdutt/string/PermutationCount.java" linkTarget="_blank" id="QsRg8OEjEJLXRllnDF5n-1">
+          <mxCell style="text;html=1;strokeColor=default;fillColor=#e1d5e7;whiteSpace=wrap;align=center;verticalAlign=middle;fontStyle=4;shadow=1;" parent="ehRXJjYy89tjwpbmLJuj-6" vertex="1">
+            <mxGeometry x="26" y="106" width="120" height="40" as="geometry" />
+          </mxCell>
+        </UserObject>
+        <mxCell id="ehRXJjYy89tjwpbmLJuj-11" value="Definition" style="swimlane;whiteSpace=wrap;html=1;fillColor=#b1ddf0;strokeColor=default;swimlaneFillColor=#FFFFFF;gradientColor=none;" parent="1" vertex="1">
+          <mxGeometry x="391" y="136" width="275" height="238" as="geometry" />
+        </mxCell>
+        <mxCell id="ehRXJjYy89tjwpbmLJuj-12" value="String is a&amp;nbsp;&lt;br&gt;&lt;ol&gt;&lt;li&gt;Array of char&lt;/li&gt;&lt;li&gt;Sequence of Char&lt;/li&gt;&lt;/ol&gt;&lt;div&gt;Char : A to Z, a to z, 0 to 9, and all symbols&lt;/div&gt;" style="text;html=1;align=left;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" parent="ehRXJjYy89tjwpbmLJuj-11" vertex="1">
+          <mxGeometry x="14" y="30" width="247" height="94" as="geometry" />
+        </mxCell>
+        <mxCell id="ehRXJjYy89tjwpbmLJuj-13" value="Sub string :&lt;br&gt;&lt;ul&gt;&lt;li&gt;Same as Sub-array&lt;/li&gt;&lt;li&gt;Continuous part of string&lt;/li&gt;&lt;li&gt;Full String can be sub-string&lt;/li&gt;&lt;li&gt;A single char is a sub string&lt;/li&gt;&lt;/ul&gt;" style="text;html=1;align=left;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" parent="ehRXJjYy89tjwpbmLJuj-11" vertex="1">
+          <mxGeometry x="14" y="130" width="207" height="108" as="geometry" />
+        </mxCell>
+        <mxCell id="SconD5pCCTN5OF1qKG1k-3" value="Rabin Karp Algorithm" style="swimlane;whiteSpace=wrap;html=1;fillColor=#b1ddf0;strokeColor=default;swimlaneFillColor=#FFFFFF;gradientColor=none;" vertex="1" parent="1">
+          <mxGeometry x="339" y="535" width="1425" height="927" as="geometry" />
+        </mxCell>
+        <mxCell id="SconD5pCCTN5OF1qKG1k-6" value="This also is used to search string in a running stream.&lt;br&gt;Time complexity = O(N) N = Number of char in String&lt;br&gt;Space complexity = O(1)" style="text;html=1;align=left;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="SconD5pCCTN5OF1qKG1k-3">
+          <mxGeometry x="4" y="28" width="302" height="55" as="geometry" />
+        </mxCell>
+        <mxCell id="SconD5pCCTN5OF1qKG1k-38" value="" style="group;strokeColor=none;" vertex="1" connectable="0" parent="SconD5pCCTN5OF1qKG1k-3">
+          <mxGeometry x="52" y="126" width="1325" height="740" as="geometry" />
+        </mxCell>
+        <mxCell id="SconD5pCCTN5OF1qKG1k-10" value="&lt;div style=&quot;border-color: var(--border-color); color: rgb(0, 0, 0); text-align: left;&quot;&gt;Let&lt;/div&gt;&lt;span style=&quot;border-color: var(--border-color); color: rgb(0, 0, 0);&quot;&gt;&lt;div style=&quot;border-color: var(--border-color); text-align: left;&quot;&gt;&lt;span style=&quot;border-color: var(--border-color); background-color: initial;&quot;&gt;&lt;span style=&quot;border-color: var(--border-color);&quot;&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;/span&gt;&lt;/span&gt;&lt;span style=&quot;border-color: var(--border-color); background-color: initial;&quot;&gt;text =&amp;nbsp;&lt;/span&gt;&lt;b style=&quot;border-color: var(--border-color); background-color: initial;&quot;&gt;ABC&lt;u style=&quot;border-color: var(--border-color);&quot;&gt;CDD&lt;/u&gt;AEFG&lt;/b&gt;&lt;/div&gt;&lt;/span&gt;&lt;span style=&quot;border-color: var(--border-color); color: rgb(0, 0, 0);&quot;&gt;&lt;div style=&quot;border-color: var(--border-color); text-align: left;&quot;&gt;&lt;span style=&quot;border-color: var(--border-color); background-color: initial;&quot;&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;/span&gt;&lt;/div&gt;&lt;/span&gt;&lt;span style=&quot;border-color: var(--border-color); color: rgb(0, 0, 0);&quot;&gt;&lt;div style=&quot;border-color: var(--border-color); text-align: left;&quot;&gt;&lt;span style=&quot;border-color: var(--border-color); background-color: initial;&quot;&gt;&lt;span style=&quot;border-color: var(--border-color);&quot;&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;/span&gt;&lt;/span&gt;&lt;span style=&quot;border-color: var(--border-color); background-color: initial;&quot;&gt;toFind =&amp;nbsp;&lt;/span&gt;&lt;b style=&quot;border-color: var(--border-color); background-color: initial;&quot;&gt;CDD&lt;/b&gt;&lt;/div&gt;&lt;/span&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=#666666;fillColor=none;fontColor=#333333;" vertex="1" parent="SconD5pCCTN5OF1qKG1k-38">
+          <mxGeometry x="303" width="150" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="SconD5pCCTN5OF1qKG1k-11" value="&lt;div style=&quot;border-color: var(--border-color); color: rgb(0, 0, 0); text-align: left;&quot;&gt;Let assign numerical value to each number.&lt;br&gt;&lt;/div&gt;&lt;div style=&quot;border-color: var(--border-color); color: rgb(0, 0, 0); text-align: left;&quot;&gt;&lt;br&gt;&lt;/div&gt;&lt;div style=&quot;border-color: var(--border-color); color: rgb(0, 0, 0); text-align: left;&quot;&gt;Like&lt;/div&gt;&lt;div style=&quot;border-color: var(--border-color); color: rgb(0, 0, 0); text-align: left;&quot;&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;A=1, B=2, .... , Z=26&lt;br&gt;&lt;/div&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=#666666;fillColor=none;fontColor=#333333;" vertex="1" parent="SconD5pCCTN5OF1qKG1k-38">
+          <mxGeometry x="253.5" y="112" width="249" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="SconD5pCCTN5OF1qKG1k-15" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="SconD5pCCTN5OF1qKG1k-38" source="SconD5pCCTN5OF1qKG1k-10" target="SconD5pCCTN5OF1qKG1k-11">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="SconD5pCCTN5OF1qKG1k-12" value="&lt;div style=&quot;border-color: var(--border-color); color: rgb(0, 0, 0);&quot;&gt;&lt;div style=&quot;text-align: left;&quot;&gt;&lt;b style=&quot;background-color: initial; border-color: var(--border-color);&quot;&gt;STRING COMPARISION TAKE O(N) TC&lt;/b&gt;&lt;/div&gt;&lt;span style=&quot;border-color: var(--border-color); font-weight: bold;&quot;&gt;&lt;div style=&quot;text-align: left;&quot;&gt;&lt;b style=&quot;background-color: initial; border-color: var(--border-color);&quot;&gt;NUMBER COMPARISION TAKE O(1) TC&lt;/b&gt;&lt;/div&gt;&lt;/span&gt;&lt;/div&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=#d6b656;fillColor=#fff2cc;" vertex="1" parent="SconD5pCCTN5OF1qKG1k-38">
+          <mxGeometry x="647" y="126.5" width="241" height="41" as="geometry" />
+        </mxCell>
+        <mxCell id="SconD5pCCTN5OF1qKG1k-13" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="SconD5pCCTN5OF1qKG1k-38" source="SconD5pCCTN5OF1qKG1k-11" target="SconD5pCCTN5OF1qKG1k-12">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="SconD5pCCTN5OF1qKG1k-14" value="BECAUSE" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="SconD5pCCTN5OF1qKG1k-13">
+          <mxGeometry x="-0.1679" y="-2" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="SconD5pCCTN5OF1qKG1k-19" value="❌ Hashing by face value" style="swimlane;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;swimlaneFillColor=#ffffff;" vertex="1" parent="SconD5pCCTN5OF1qKG1k-38">
+          <mxGeometry y="304" width="409" height="128" as="geometry" />
+        </mxCell>
+        <mxCell id="SconD5pCCTN5OF1qKG1k-20" value="&lt;b style=&quot;border-color: var(--border-color); color: rgb(51, 51, 51);&quot;&gt;Hash(&lt;/b&gt;CCD&lt;b style=&quot;border-color: var(--border-color); color: rgb(51, 51, 51);&quot;&gt;)&amp;nbsp;&lt;span style=&quot;border-color: var(--border-color);&quot;&gt;&lt;span style=&quot;&quot;&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;/span&gt;&lt;/span&gt;&lt;/b&gt;&lt;span style=&quot;color: rgb(51, 51, 51);&quot;&gt;= [&amp;nbsp;&lt;/span&gt;&lt;b style=&quot;border-color: var(--border-color); color: rgb(51, 51, 51);&quot;&gt;(3)&lt;/b&gt;&lt;span style=&quot;color: rgb(51, 51, 51);&quot;&gt;&amp;nbsp;+&amp;nbsp;&lt;/span&gt;&lt;b style=&quot;border-color: var(--border-color); color: rgb(51, 51, 51);&quot;&gt;(4)&lt;/b&gt;&lt;span style=&quot;color: rgb(51, 51, 51);&quot;&gt;&amp;nbsp;+&amp;nbsp;&lt;/span&gt;&lt;b style=&quot;border-color: var(--border-color); color: rgb(51, 51, 51);&quot;&gt;(4)&amp;nbsp;&lt;/b&gt;&lt;font color=&quot;#333333&quot;&gt;]&lt;/font&gt;&lt;br&gt;&lt;span style=&quot;color: rgb(51, 51, 51);&quot;&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;/span&gt;&lt;/span&gt;&lt;span style=&quot;color: rgb(51, 51, 51);&quot;&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;/span&gt;&lt;/span&gt;&lt;span style=&quot;color: rgb(51, 51, 51);&quot;&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;/span&gt;&lt;/span&gt;&lt;font color=&quot;#333333&quot;&gt;= &lt;/font&gt;&lt;b style=&quot;color: rgb(51, 51, 51);&quot;&gt;11&lt;br&gt;&lt;/b&gt;&lt;br&gt;&lt;b style=&quot;color: rgb(51, 51, 51);&quot;&gt;Hash(&lt;/b&gt;&lt;font color=&quot;#333333&quot;&gt;J&lt;/font&gt;&lt;b style=&quot;color: rgb(51, 51, 51);&quot;&gt;)&lt;/b&gt;&lt;span style=&quot;color: rgb(51, 51, 51); font-weight: bold;&quot;&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;/span&gt;&lt;/span&gt;&lt;span style=&quot;color: rgb(51, 51, 51); font-weight: bold;&quot;&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;/span&gt;&lt;/span&gt;&lt;font color=&quot;#333333&quot;&gt;= &lt;/font&gt;&lt;b style=&quot;color: rgb(51, 51, 51);&quot;&gt;11&lt;br&gt;&lt;/b&gt;&lt;br&gt;&lt;font color=&quot;#333333&quot;&gt;Collision&amp;nbsp;of 2 value. Therefore Hashing by face value is not preferred&lt;/font&gt;" style="text;html=1;align=left;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="SconD5pCCTN5OF1qKG1k-19">
+          <mxGeometry x="7" y="30" width="383" height="98" as="geometry" />
+        </mxCell>
+        <mxCell id="SconD5pCCTN5OF1qKG1k-23" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="SconD5pCCTN5OF1qKG1k-38" source="SconD5pCCTN5OF1qKG1k-11" target="SconD5pCCTN5OF1qKG1k-19">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="SconD5pCCTN5OF1qKG1k-21" value="✅ Hashing by place value" style="swimlane;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;swimlaneFillColor=#ffffff;" vertex="1" parent="SconD5pCCTN5OF1qKG1k-38">
+          <mxGeometry x="455" y="310" width="390" height="130" as="geometry" />
+        </mxCell>
+        <mxCell id="SconD5pCCTN5OF1qKG1k-22" value="&lt;b style=&quot;border-color: var(--border-color); color: rgb(51, 51, 51);&quot;&gt;Hash(&lt;/b&gt;CCD&lt;b style=&quot;border-color: var(--border-color); color: rgb(51, 51, 51);&quot;&gt;)&amp;nbsp;&lt;span style=&quot;border-color: var(--border-color);&quot;&gt;&lt;span style=&quot;&quot;&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;/span&gt;&lt;/span&gt;&lt;/b&gt;&lt;span style=&quot;color: rgb(51, 51, 51);&quot;&gt;=&amp;nbsp;&lt;/span&gt;[&amp;nbsp;&lt;b style=&quot;border-color: var(--border-color); color: rgb(51, 51, 51);&quot;&gt;(3*10&lt;sup&gt;2&lt;/sup&gt;)&lt;/b&gt;&lt;span style=&quot;color: rgb(51, 51, 51);&quot;&gt;&amp;nbsp;+&amp;nbsp;&lt;/span&gt;&lt;b style=&quot;border-color: var(--border-color); color: rgb(51, 51, 51);&quot;&gt;(4 * 10&lt;sup&gt;1&lt;/sup&gt;)&lt;/b&gt;&lt;span style=&quot;color: rgb(51, 51, 51);&quot;&gt;&amp;nbsp;+&amp;nbsp;&lt;/span&gt;&lt;b style=&quot;border-color: var(--border-color); color: rgb(51, 51, 51);&quot;&gt;(4*10&lt;sup&gt;0&lt;/sup&gt;)&amp;nbsp;&lt;/b&gt;&lt;span style=&quot;color: rgb(51, 51, 51);&quot;&gt;]&lt;/span&gt;&lt;br&gt;&lt;span style=&quot;color: rgb(51, 51, 51);&quot;&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;/span&gt;&lt;/span&gt;&lt;span style=&quot;color: rgb(51, 51, 51);&quot;&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;/span&gt;&lt;/span&gt;&lt;span style=&quot;color: rgb(51, 51, 51);&quot;&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;font color=&quot;#333333&quot;&gt;= 344&lt;/font&gt;&lt;b style=&quot;color: rgb(51, 51, 51);&quot;&gt;&lt;br&gt;&lt;/b&gt;&lt;br&gt;&lt;b style=&quot;color: rgb(51, 51, 51);&quot;&gt;Hash(&lt;/b&gt;&lt;font color=&quot;#333333&quot;&gt;J&lt;/font&gt;&lt;b style=&quot;color: rgb(51, 51, 51);&quot;&gt;)&lt;/b&gt;&lt;span style=&quot;color: rgb(51, 51, 51); font-weight: bold;&quot;&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;/span&gt;&lt;/span&gt;&lt;span style=&quot;color: rgb(51, 51, 51); font-weight: bold;&quot;&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;/span&gt;&lt;/span&gt;&lt;font color=&quot;#333333&quot;&gt;= &lt;/font&gt;&lt;b style=&quot;color: rgb(51, 51, 51);&quot;&gt;11&lt;br&gt;&lt;/b&gt;&lt;br&gt;&lt;font color=&quot;#333333&quot;&gt;Collision can be prevented&lt;/font&gt;" style="text;html=1;align=left;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="SconD5pCCTN5OF1qKG1k-21">
+          <mxGeometry x="7" y="28" width="271" height="102" as="geometry" />
+        </mxCell>
+        <mxCell id="SconD5pCCTN5OF1qKG1k-24" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="SconD5pCCTN5OF1qKG1k-38" source="SconD5pCCTN5OF1qKG1k-11" target="SconD5pCCTN5OF1qKG1k-21">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="378" y="242" />
+              <mxPoint x="650" y="242" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="SconD5pCCTN5OF1qKG1k-25" value="&lt;div style=&quot;border-color: var(--border-color); color: rgb(0, 0, 0);&quot;&gt;&lt;div style=&quot;text-align: left;&quot;&gt;&lt;b&gt;It is impossible to store hash value of (SANJEETDUTT)&amp;nbsp;&lt;/b&gt;&lt;/div&gt;&lt;div style=&quot;text-align: left;&quot;&gt;&lt;b&gt;because it will overflow int as well as long&lt;/b&gt;&lt;/div&gt;&lt;/div&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=#d6b656;fillColor=#fff2cc;" vertex="1" parent="SconD5pCCTN5OF1qKG1k-38">
+          <mxGeometry x="991" y="353.5" width="334" height="41" as="geometry" />
+        </mxCell>
+        <mxCell id="SconD5pCCTN5OF1qKG1k-26" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="SconD5pCCTN5OF1qKG1k-38" source="SconD5pCCTN5OF1qKG1k-21" target="SconD5pCCTN5OF1qKG1k-25">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="SconD5pCCTN5OF1qKG1k-27" value="Limitation" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="SconD5pCCTN5OF1qKG1k-26">
+          <mxGeometry x="-0.2526" y="-2" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="SconD5pCCTN5OF1qKG1k-28" value="&lt;div style=&quot;border-color: var(--border-color); color: rgb(0, 0, 0);&quot;&gt;&lt;div style=&quot;text-align: left;&quot;&gt;&lt;b&gt;To overcome we can mod the have with 10^9 + 7&lt;/b&gt;&lt;/div&gt;&lt;/div&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=#82b366;fillColor=#d5e8d4;" vertex="1" parent="SconD5pCCTN5OF1qKG1k-38">
+          <mxGeometry x="1011" y="450" width="294" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="SconD5pCCTN5OF1qKG1k-29" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="SconD5pCCTN5OF1qKG1k-38" source="SconD5pCCTN5OF1qKG1k-25" target="SconD5pCCTN5OF1qKG1k-28">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="SconD5pCCTN5OF1qKG1k-32" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=1;entryY=0.75;entryDx=0;entryDy=0;" edge="1" parent="SconD5pCCTN5OF1qKG1k-38" source="SconD5pCCTN5OF1qKG1k-30" target="SconD5pCCTN5OF1qKG1k-21">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="SconD5pCCTN5OF1qKG1k-30" value="&lt;div style=&quot;border-color: var(--border-color);&quot;&gt;&lt;div style=&quot;text-align: left;&quot;&gt;&lt;span style=&quot;background-color: initial; text-align: center;&quot;&gt;&lt;b&gt;Probability&lt;/b&gt;&lt;/span&gt;&lt;b style=&quot;color: rgb(0, 0, 0);&quot;&gt;&amp;nbsp;of &lt;/b&gt;&lt;b&gt;collision&lt;/b&gt;&lt;b style=&quot;color: rgb(0, 0, 0);&quot;&gt;&amp;nbsp;after mod is 0.00001 ~ 0%&lt;/b&gt;&lt;/div&gt;&lt;/div&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=default;" vertex="1" parent="SconD5pCCTN5OF1qKG1k-38">
+          <mxGeometry x="1010" y="556" width="296" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="SconD5pCCTN5OF1qKG1k-31" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="SconD5pCCTN5OF1qKG1k-38" source="SconD5pCCTN5OF1qKG1k-28" target="SconD5pCCTN5OF1qKG1k-30">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="SconD5pCCTN5OF1qKG1k-34" value="Now using this sliding window we can know as &lt;b&gt;ROLLING HASH FUNCTION&lt;/b&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=#666666;fillColor=none;fontColor=#333333;" vertex="1" parent="SconD5pCCTN5OF1qKG1k-38">
+          <mxGeometry x="211" y="518" width="425" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="SconD5pCCTN5OF1qKG1k-35" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="SconD5pCCTN5OF1qKG1k-38" source="SconD5pCCTN5OF1qKG1k-21" target="SconD5pCCTN5OF1qKG1k-34">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="SconD5pCCTN5OF1qKG1k-36" value="HASH (CCD)&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;= [ (3*100) + (3*10) + (4*1) ]&lt;br&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;= 334&lt;br&gt;&lt;br&gt;Hash (CDD) &lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;= &lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;[&lt;br&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&lt;/span&gt;&lt;b&gt;HASH(CCD) &lt;/b&gt;&lt;br&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&lt;/span&gt;- (3*100) =&amp;gt;&lt;i&gt; LEAVING ELEMENT FROM WINDOW&lt;/i&gt;&lt;br&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&lt;/span&gt;&lt;span style=&quot;white-space-collapse: preserve;&quot;&gt;] * 100 =&amp;gt; &lt;i&gt;SLIDING WINDOW&lt;/i&gt;&lt;br&gt;&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&lt;/span&gt;+ 4 =&amp;gt; &lt;i&gt;INCOMMING ELEMENT&lt;/i&gt;&amp;nbsp;&lt;br&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;=&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;3&lt;/span&gt;44" style="text;html=1;align=left;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=#666666;fillColor=none;fontColor=#333333;" vertex="1" parent="SconD5pCCTN5OF1qKG1k-38">
+          <mxGeometry x="211" y="598" width="425" height="142" as="geometry" />
+        </mxCell>
+        <mxCell id="SconD5pCCTN5OF1qKG1k-37" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="SconD5pCCTN5OF1qKG1k-38" source="SconD5pCCTN5OF1qKG1k-34" target="SconD5pCCTN5OF1qKG1k-36">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

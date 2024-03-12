@@ -1,0 +1,64 @@
+<mxfile host="Electron" modified="2023-09-15T06:29:41.905Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/21.7.5 Chrome/114.0.5735.289 Electron/25.8.1 Safari/537.36" etag="lX1eoBuO_IWlSJzC-SoZ" version="21.7.5" type="device" pages="2">
+  <diagram name="Data Structure and Algo" id="cmYec623V-D8ZxnN9g_8">
+    <mxGraphModel dx="2989" dy="1377" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="850" pageHeight="1100" background="none" math="0" shadow="1">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="hPEgjXKIdbcl75uE92qY-1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" source="hPEgjXKIdbcl75uE92qY-2" target="hPEgjXKIdbcl75uE92qY-3" parent="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <UserObject label="&lt;p style=&quot;line-height: 260%;&quot;&gt;&lt;b&gt;&lt;font data-font-src=&quot;https://fonts.googleapis.com/css?family=Roboto&quot; face=&quot;Roboto&quot; style=&quot;font-size: 18px;&quot;&gt;DATA STRUCTURE AND ALGORITHM&lt;/font&gt;&lt;/b&gt;&lt;/p&gt;" link="https://github.com/SanjeetDutt/NOTES/blob/master/draw_io/DataStructureAndAlgo.drawio" linkTarget="_blank" id="hPEgjXKIdbcl75uE92qY-2">
+          <mxCell style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=none;shadow=1;treeFolding=1;editable=1;movable=1;resizable=1;rotatable=1;deletable=1;locked=0;connectable=1;" vertex="1" parent="1">
+            <mxGeometry x="-1855" y="-168" width="197" height="94" as="geometry" />
+          </mxCell>
+        </UserObject>
+        <mxCell id="hPEgjXKIdbcl75uE92qY-7" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="hPEgjXKIdbcl75uE92qY-3" target="hPEgjXKIdbcl75uE92qY-4">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="hPEgjXKIdbcl75uE92qY-3" value="&lt;p style=&quot;line-height: 142%;&quot;&gt;&lt;b&gt;&lt;font data-font-src=&quot;https://fonts.googleapis.com/css?family=Roboto&quot; face=&quot;Roboto&quot; style=&quot;font-size: 15px;&quot;&gt;Queue&lt;/font&gt;&lt;/b&gt;&lt;/p&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=none;shadow=1;treeFolding=0;movable=1;resizable=1;rotatable=1;deletable=1;editable=1;locked=0;connectable=1;expand=1;recursiveResize=1;" vertex="1" parent="1">
+          <mxGeometry x="-1607" y="-168" width="129" height="94" as="geometry" />
+        </mxCell>
+        <mxCell id="hPEgjXKIdbcl75uE92qY-4" value="Basic operation" style="swimlane;whiteSpace=wrap;html=1;fillColor=#b1ddf0;strokeColor=#10739e;" vertex="1" parent="1">
+          <mxGeometry x="-1350" y="-278" width="263" height="114" as="geometry" />
+        </mxCell>
+        <mxCell id="hPEgjXKIdbcl75uE92qY-6" value="&lt;b&gt;Enqueue&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&lt;/b&gt;Insert the data at end&lt;br&gt;&lt;b&gt;Deque&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&lt;/b&gt;Remove data from start&lt;br&gt;&lt;b&gt;Front&lt;/b&gt;/&lt;b&gt;Peek&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&lt;/b&gt;Data at start&lt;br&gt;&lt;b&gt;Size&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&lt;/b&gt;Length of data in the queue&lt;br&gt;" style="text;html=1;align=left;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;shadow=0;" vertex="1" parent="hPEgjXKIdbcl75uE92qY-4">
+          <mxGeometry x="10" y="33" width="244" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="hPEgjXKIdbcl75uE92qY-8" value="Implementation by Array" style="swimlane;whiteSpace=wrap;html=1;fillColor=#b1ddf0;strokeColor=#10739e;" vertex="1" parent="1">
+          <mxGeometry x="-995" y="-545" width="254" height="289" as="geometry" />
+        </mxCell>
+        <mxCell id="hPEgjXKIdbcl75uE92qY-10" value="Implementation by Link list" style="swimlane;whiteSpace=wrap;html=1;fillColor=#b1ddf0;strokeColor=#10739e;" vertex="1" parent="1">
+          <mxGeometry x="-986" y="-201" width="254" height="289" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram name="Interview tricks" id="hgRFMdat1AQEbLYRxgLS">
+    <mxGraphModel dx="1834" dy="782" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="F4ZC5nXCLhVT-I1Y7pf9-1" value="&lt;p style=&quot;line-height: 142%;&quot;&gt;&lt;b&gt;&lt;font data-font-src=&quot;https://fonts.googleapis.com/css?family=Roboto&quot; face=&quot;Roboto&quot; style=&quot;font-size: 15px;&quot;&gt;Interview Tricks&lt;/font&gt;&lt;/b&gt;&lt;/p&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=none;shadow=1;treeFolding=1;movable=1;resizable=1;rotatable=1;deletable=1;editable=1;locked=0;connectable=1;" parent="1" vertex="1">
+          <mxGeometry x="234" y="62" width="129" height="94" as="geometry" />
+        </mxCell>
+        <mxCell id="F4ZC5nXCLhVT-I1Y7pf9-2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" parent="1" source="F4ZC5nXCLhVT-I1Y7pf9-3" target="F4ZC5nXCLhVT-I1Y7pf9-1" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <UserObject label="&lt;p style=&quot;line-height: 260%;&quot;&gt;&lt;b&gt;&lt;font data-font-src=&quot;https://fonts.googleapis.com/css?family=Roboto&quot; face=&quot;Roboto&quot; style=&quot;font-size: 18px;&quot;&gt;DATA STRUCTURE AND ALGORITHM&lt;/font&gt;&lt;/b&gt;&lt;/p&gt;" link="data:page/id,KQ3RXT452Op9s6PRzBAU" id="F4ZC5nXCLhVT-I1Y7pf9-3">
+          <mxCell style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=none;shadow=1;treeFolding=1;editable=1;movable=1;resizable=1;rotatable=1;deletable=1;locked=0;connectable=1;" parent="1" vertex="1">
+            <mxGeometry x="11" y="62" width="197" height="94" as="geometry" />
+          </mxCell>
+        </UserObject>
+        <mxCell id="OqBqEW8hXMeWEtkxkb-W-1" value="Pattern" style="swimlane;whiteSpace=wrap;html=1;fillColor=#b1ddf0;strokeColor=default;swimlaneFillColor=#FFFFFF;gradientColor=none;" parent="1" vertex="1">
+          <mxGeometry x="-140" y="362" width="421" height="226" as="geometry" />
+        </mxCell>
+        <mxCell id="OqBqEW8hXMeWEtkxkb-W-2" value="1. Intro for 5 min at max&lt;br&gt;&lt;br&gt;2. They will give you question&lt;br&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&lt;br&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;a. Take 2 to 3 minutes to understand the question (Don&#39;t be in hurry)&lt;br&gt;&lt;br&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;b. Ask clarifying question and edge cases &lt;b&gt;**IMPORTANT**&lt;br&gt;&lt;/b&gt;&lt;br&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;c. Tell them brute force &lt;b&gt;Quickly ( in 5 minutes ), tell TC / SC&lt;br&gt;&lt;/b&gt;&lt;br&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;d. Think of optimized solution and tell TC and SC" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="OqBqEW8hXMeWEtkxkb-W-1" vertex="1">
+          <mxGeometry x="17" y="40" width="405" height="186" as="geometry" />
+        </mxCell>
+        <mxCell id="OqBqEW8hXMeWEtkxkb-W-4" value="&lt;p style=&quot;line-height: 142%;&quot;&gt;&lt;font data-font-src=&quot;https://fonts.googleapis.com/css?family=Roboto&quot; face=&quot;Roboto&quot; style=&quot;font-size: 15px;&quot;&gt;Prefer iterative method over resursive&lt;/font&gt;&lt;/p&gt;" style="rounded=1;whiteSpace=wrap;html=1;shadow=1;treeFolding=1;movable=1;resizable=1;rotatable=1;deletable=1;editable=1;locked=0;connectable=1;strokeColor=none;fillColor=#f8cecc;" parent="1" vertex="1">
+          <mxGeometry x="369" y="359" width="233" height="117" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

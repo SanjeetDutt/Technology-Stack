@@ -1,0 +1,357 @@
+Types of Databases
+	Relational Databases
+		Relational Databases allow you to represent a database as a collection of multiple related tables. 
+		Each table has a set of columns and rows. 
+			Every row is unique
+			All of the values present in a column hold the same data type
+			Values are atomic
+				atomic means indivisible
+			The name of every column is unique
+		Each row represents a record and each column represents a field
+		
+	Non-Relational Databases
+		Non-relational databases are those databases that don't follow the relational model. 
+		They don't store data in form of tables. 
+		They store data in form of documents, key-value pairs, graphs, etc
+
+Keys in Relational Databases
+	Keys are used to uniquely identify a row in a table
+	2 important types of keys: 
+		Primary Key 
+		Foreign Key
+	other types of keys like 
+		Super Key
+		Candidate Key 
+		
+	Super Keys
+		A super key is a combination of columns whose values can uniquely identify a row in a table.
+		example (name, email) or (name, phone)
+	
+	Candidate Key
+		A candidate key is a super key from which no column can be removed and still have the property of uniquely identifying a row. 
+		If any more column is removed from a candidate key, it will no longer be able to uniquely identify a row.
+		
+	Primary Key
+		is a candidate key that is chosen to be the key for the table.
+		
+	Foreign Keys
+		link data in one table to the data in another table.
+
+CRUD
+	Create (or inserting a new entry)
+	Read (fetching some entries)
+	Update (updating information about an entry already stored)
+	Delete (deleting an entry)
+	
+	Create
+		CREATE TABLE students (
+			id INT AUTO_INCREMENT,
+			firstName VARCHAR(50) NOT NULL,
+			lastName VARCHAR(50) NOT NULL,
+			email VARCHAR(100) UNIQUE NOT NULL,
+			dateOfBirth DATE NOT NULL,
+			enrollmentDate TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+			psp DECIMAL(3, 2) CHECK (psp BETWEEN 0.00 AND 100.00),
+			batchId INT,
+			isActive BOOLEAN DEFAULT TRUE,
+			PRIMARY KEY (id),
+		);
+		
+	insert
+		INSERT INTO film (title, description, release_year, language_id, rental_duration, rental_rate, length, replacement_cost, rating, special_features) 
+		VALUES ('The Dark Knight', 'Batman fights the Joker', 2008, 1, 3, 4.99, 152, 19.99, 'PG-13', 'Trailers'),
+			   ('The Dark Knight Rises', 'Batman fights Bane', 2012, 1, 3, 4.99, 165, 19.99, 'PG-13', 'Trailers'),
+			   ('The Dark Knight Returns', 'Batman fights Superman', 2016, 1, 3, 4.99, 152, 19.99, 'PG-13', 'Trailers');
+	
+		inserting with default value
+			INSERT INTO film
+			VALUES (default, 'The Dark Knight', 'Batman fights the Joker', 2008, 1, NULL, 3, 4.99, 152, 19.99, 'PG-13', 'Trailers', default);
+			
+	read
+		SELECT * FROM film;
+		SELECT * FROM film WHERE rating = 'PG-13';
+		SELECT title, ROUND(length/60) FROM film; <= column operation
+		SELECT DISTINCT rating, release_year FROM film; <= distinct values
+		SELECT * FROM film WHERE rating = 'PG-13' OR release_year = 2006 AND rental_rate = 0.99; <= logical condition
+		SELECT * FROM film WHERE rating NOT IN ('PG-13', 'R');
+		SELECT * FROM film WHERE description IS NULL;
+		
+	update
+		UPDATE table_name SET column_name = value WHERE conditions;
+		
+	Delete
+		DELETE FROM table_name WHERE conditions;
+		
+	Delete vs Truncate vs Drop
+		delete
+			Removes specified rows one-by-one from table (may delete all rows if no condition is present in query but keeps table structure intact).
+			It is slower than TRUNCATE.
+			Doesn't reset the key.
+			It can be rolled back.
+			
+		TRUNCATE:
+			Removes the complete table and then recreats it.
+			Faster than DELETE.
+			Resets the key.
+			It can not be rolled back because the complete table is deleted as an intermediate step.
+		
+		DROP:
+			Removes complete table and the table structre as well.
+			It can not be rolled back.
+		
+LIKE Operator		
+	LIKE 'cat%' will match "cat", "caterpillar", "category", etc. but not "wildcat" or "dog".
+	LIKE '%cat' will match "cat", "wildcat", "domesticcat", etc. but not "cattle" or "dog".
+	LIKE '%cat%' will match "cat", "wildcat", "cattle", "domesticcat", "caterpillar", "category", etc. but not "dog" or "bat".
+	LIKE '_at' will match "cat", "bat", "hat", etc. but not "wildcat" or "domesticcat".
+	LIKE 'c_t' will match "cat", "cot", "cut", etc. but not "chat" or "domesticcat".
+	LIKE 'c%t' will match "cat", "chart", "connect", "cult", etc. but not "wildcat", "domesticcat", "caterpillar", "category".
+			
+LIMIT AND OFFSET
+	SELECT * FROM film LIMIT 10 OFFSET 10;
+		will return 10 rows starting from the 11th row
+		you cannot use the OFFSET keyword without the LIMIT keyword
+	
+	if your query contains ORDER BY clause, then LIMIT clause will be applied after the ORDER BY clause.
+		SELECT * FROM film ORDER BY title LIMIT 10;		
+
+Order by
+	SELECT * FROM film ORDER BY title, release_year;
+		Will return all the rows in ascending order of the title column and then in ascending order of the release_year column.
+	
+JOINS
+	self join
+		SELECT 
+			s1.name, s2.name
+		FROM students s1
+			JOIN students s2 ON s1.buddy_id = s2.id;
+			
+	Joining multiple tables
+		SELECT 
+			f.title, l1.name, l2.name
+		FROM film f
+			JOIN language l1 ON f.language_id = l1.language_id
+			JOIN language l2 ON f.original_language_id = l2.language_id;
+	
+	INNER JOIN
+		if buddy_id is null then the row will never match with anything and not get printed.
+		called inner join
+		The keyword INNER is optional. By default a join is INNER join.
+		
+	OUTER JOIN
+		Opposite of INNER JOIN is OUTER JOIN. 
+		Outer Join will include all rows, even if they don't match the condition.
+		3 type 
+			Left Join
+				 left join will include all rows from the left table
+			Right Join
+				right join will include all rows from the right table
+			Full Join
+				full join will include all rows from both the tables
+	
+	Cross Join
+		A cross join is a type of join that returns the Cartesian product of rows from the tables in the join. 
+		In other words, it combines each row from the first table with each row from the second table.
+		
+	
+	
+UNION and UNION ALL
+	print the combination of results of multiple queries. 
+	UNION allows you to combine the output of multiple queries one after the other
+		SELECT name FROM students
+		UNION
+		SELECT name FROM employees
+		UNION
+		SELECT name FROM investors;
+	can't use ORDER BY for the combined result because each of these queries are executed independently
+	It stores the output of individual queries in a set and then outputs those values in final result. 
+	Hence, we get distinct values. 
+	But if we want to keep all the values, we can use UNION ALL. 
+		It stores the output of individual queries in a list and gives the output, so we get all the duplicate values.
+	
+GROUP BY Clause
+	final values in multiple sets
+	GROUP BY batch_id will bring all rows with same batch_id together in one group
+	
+HAVING Clause
+	HAVING clause is used to filter groups.
+	There are 2 tables: 
+		Students(id, name, age, batch_id) 
+		Batches(id, name)
+	Print the batch names that have more than 100 students along with count of the students in each batch.
+		SELECT 
+			COUNT(S.id), B.name
+		FROM 
+			Students S
+			JOIN Batches B ON S.batch_id = B.id
+		GROUP BY 
+			B.name;
+		HAVING 
+			COUNT(S.id) > 100;
+	The sequence in which query executes is:
+		Firstly, join of the two tables is done.
+		Then is is divided into groups based on B.name.
+		In the third step, result is filtered using the condition in HAVING clause.
+		Lastly, it is printed through SELECT.
+	FROM -> WHERE -> GROUP BY -> HAVING -> SELECT
+	
+SUBQUERIES
+	Ex- Report employees who earn more than company average
+		SELECT * FROM employees WHERE salary > AVG(salary) <= won't work
+	Because 
+		where clause filters row by row. 
+		Aggregation only happens at the time of printing (unless for group_by and having clause). 
+		WHERE clause does not know about AVG(salary).
+	SELECT * 
+	FROM employees 
+	WHERE salary > (
+		SELECT AVG(salary) FROM employees <= should return 1 row only
+	)
+	
+Indexing
+	CREATE INDEX idx_film_title_release ON film(title, release_year);
+	Good practices for creating index:
+		Prefix the index name by 'idx'
+		Format for index name - idx<underscore><table name><underscore><attribute name1><underscore><attribute name2>...
+	
+Transactions
+	Example
+		BEGIN TRANSACTION
+
+		UPDATE film SET title = "TempTitle1" WHERE id = 10;
+		UPDATE film SET title = "TempTitle2" WHERE id = 100;
+
+		COMMIT
+	ROLLBACK = which undoes all operations till the last commit.
+
+ACID principle
+	ATOMICITY: 
+		All or none. 
+		Either all operations in the transactions will succeed or none will.
+		
+	CONSISTENCY: 
+		Correctness / Validity. 
+		All operations will be executed correctly and will leave the database in a consistent state before and after the transaction. 
+	
+	ISOLATION: 
+		Multiple transactions can be executed concurrently without interfering with each other. 
+		Isolation is one of the factors helping with consistency.
+		
+	DURABILITY: 
+		Updates/Writes to the database are permanent and will not be lost. 
+		They are persisted.
+	
+Isolation Levels	
+	Locks
+		When you take a lock on a table row for example, 
+		any other transaction which also might be trying to access the same row would wait for you to complete. 
+		Which means with a lot of locks, overall transactions become 
+		slower, as they may be spending a lot of time waiting for locks to be released.
+		
+		2-types
+			Shared Locks: 
+				Which means multiple transactions could be reading the same entity at the same time. 
+				However, a transaction that intends to write, will have to wait for ongoing reads to finish, and then would have to block all other reads and writes when it is writing/updating the entity.
+			
+			Exclusive Locks: 
+				Exclusive lock when taken blocks all reads and writes from other transaction. 
+				They have to wait till this transaction is complete. 
+				There are other kind of locks as well, but not relevant to this discussion for now.
+	
+	Types of Isolations
+		Read uncommitted
+			No locks
+			lowest level of isolation, and does almost nothing
+			performance is going to be really fast
+			Read uncommitted has the problem of dirty reads when concurrent transactions are happening
+				Dirty read
+					Let suppose 2 transaction T1 and T2
+					T1 changes valA from 100 to 500
+					T2 read valA = 500
+					T1 reverted/Rollback
+					but T2 still reads valA as 500
+					
+		Read committed
+			little locking into the equation to avoid dirty reads
+			transactions can only read data once writes have been committed
+				Time	Transaction 1					Transaction 2
+				1		Selects row #1	
+				2		Updates row #1, acquires lock	
+				3										Tries to select row #1, but blocked by T1’s lock
+				4		Rolls back transaction	
+				5										Selects row #1
+			This is the default isolation levels in some DBMS like Postgres.
+			this isolation level has a problem of Non-repeatable reads
+				Non-repeatable reads
+					Let suppose 2 transaction T1 and T2
+					T1 read valA = 100
+					T2 update valA = 500 and commit the changes
+					T1 still read the valA as 100
+			
+		Repeatable reads
+			This is the default isolation levels in many DBMS including MySQL.
+			Every transaction reads all the committed rows required for executing reads and writes before the start of the transaction 
+			and stores it locally in memory as a snapshot. 
+			if you read the same information multiple times in the same transaction, you will get the same entries.
+			*** While executing the select, locks the row
+			Locking mechanism
+				Writes acquire exclusive locks (same as read committed)
+				Reads with write intent (SELECT OR UPDATE) acquire exclusive locks
+			Have issue of deadlock and phantom reads [occurs when one user is repeating a read operation on the same records, but has new records in the results set]
+		Serializable
+			This is the strictest isolation level in a DB
+			All reads acquire a shared lock
+			No snapshots required anymore
+
+Schema Design
+	schema gives information about the following:
+		Structure of a database
+		Tables in a database
+		Columns in a table
+		Primary Key
+		Foreign Key
+		Index
+		Pictorial representation of how the DB is structured.
+	
+	Normalisation
+		Normalization is the process to eliminate data redundancy and enhance data integrity in the table.
+		1-NF
+			atomicity states that a single cell cannot hold multiple values
+			It must hold only a single-valued attribute.
+		2-NF
+			A table should not have partial dependencies.
+				Means a table has instructor_id and instructor_name, which is a case of partial dependencies
+				No partial dependencies
+	
+	Approach Schema Design
+		Create the tables
+			Find all the nouns that are present in requirements.
+				Foreach noun ask if you need to store data about that entity in your DB.
+				If yes, create the table; otherwise, move ahead.
+		Add primary key (id) and all the attributes about that entity in all the tables created above.
+		Representing relations
+	
+	Cardinality
+		1:1 cardinality means 
+			1 student belongs to only 1 batch 
+			1 batch has only 1 students.
+		1:m cardinality means 
+			1 student can belong to multiple batches
+			1 batch has only 1 student.
+		m:1 cardinality means 
+			1 student belongs to only 1 batch 
+			1 batch can have multiple students.
+		m:m cardinality means 
+			multiple students can belong to multiple batches, and vice versa.
+			
+		Steps to calculate cardinality
+			If you want to calculate relationship between noun1 and noun2, then you can do the following:
+			Step 1: 
+				If you take one example of noun2, how many noun1 are related to this example object. 
+				Output : Either 1 or many
+			Step 2: 
+				If you take one example of noun1, how many noun2 are related to this example object. 
+				Output : Either 1 or many
+			Take output from step1 (o1) and output from step2 (o2). 
+				o1:o2 is your relationship.
+	
