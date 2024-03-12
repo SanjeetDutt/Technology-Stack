@@ -18,5 +18,6 @@ Tools needed
 		IAM with MFA
 		Billing Alarm
 		Certificates
+		
 All the prerequisite can be found in the [pdf](obsidian://open?vault=Technology-Stack&file=Devops%2F001%20SETUP%2FPrereqs_doc.pdf)
 
