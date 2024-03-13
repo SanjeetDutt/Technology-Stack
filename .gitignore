@@ -1,2 +1,8 @@
 
 .obsidian/
+
+AWS Serverless/node_modules/
+
+AWS Serverless/.DS_Store
+
+.DS_Store
