@@ -20,7 +20,7 @@ export const handler = async (event) => {
         body: {
             message,
             info,
-            timestamp: moment.unix()
+            timestamp: moment().unix()
         }
 
     }
