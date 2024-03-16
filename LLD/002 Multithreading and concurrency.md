@@ -294,3 +294,33 @@ Calculator B = new Calculator();
 	- Task1 A.add() Task2 B.add()
 		- both task run concurrently
 
+# Semaphores
+##  Producer and consumer problem
+problem statement
+- let's suppose we have a buffer of N fields, in which producers can add a value and consumer can remove a value. we have C consumers and P producers.
+- the number of value cannot exceed N and neither smaller than 0
+![[Pasted image 20240314152045.png]]
+
+Using an concurrency process we can add a remover product at the same time.
+Issue while using concurrency
+- overflow issue
+	- let's suppose there are 8 buffer Fields out of which 4 fill
+	- the system trigger 5 producer threads which will add a  value at the same time
+	- while entering a field all the 5 reducer thread will see 4 fields are filled out of 8 
+	- all the threads will contribute into the buffer field
+	- at the end, buffer size will become nine
+- similar issue can be found in consumer process as well due to which removal of item can go to negative number which will throw an error
+- to fix the issue, we can use any of the method that we learnt so far
+- But it issue with them is we will lost concurrency
+	- at a given time only one thread bill interact with buffer memory where there is a chance of more than one at a time
+	- to resolve this issue, we have concept of Semaphores
+## Semaphores
+Semaphores = ***MuteX + Counting for thread*** = More than one thread in the critical section
+	In the problem of producer and consumer, we can identify the buffer having 8 field and attain total eight threats (producers + consumers) at a time
+Semaphores do the following activities
+- maintain the count of thread inside a critical section
+- indicating other thread which are about to go into a critical section
+by doing in this way, the problem of overflow issue and negative indexing can be fixed.
+*NEED TO CONTINUE THE CLASS*
+
+
