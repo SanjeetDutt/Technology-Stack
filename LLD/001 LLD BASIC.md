@@ -1,0 +1,8 @@
+- constructor of a class should always be declared  with the public keyword
+- copy constructor means if they pass the same object to the constructor, it will copy from the already instantiated object
+- Static methods can be Overloaded but are not overridden
+- Calling of overloaded methods is decided at compile time
+- Calling of overridden methods is decided at runtime
+- Final keyword is used to make a non-inheritable class in Java
+- Interface data member are final and static
+- 

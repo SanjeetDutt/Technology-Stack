@@ -71,6 +71,10 @@ class Threads{
 		- Time
 	- CPU execute 1 thread at a time, but it do so fast it look like all thread are running parallel
 		- it is know as context switching
+```java
+Thread.currentThread().getName(); // Getting current thread name
+
+```
 
 ## Single core VS Multi Core
 - 1 core execute 1 thread at a moment
@@ -120,6 +124,9 @@ class Threads{
 
 # Executors and Callable
 Executor will only execute the task while will not only execute the task but also get return value from the task
+Executor manages the assignment of task to threads within the thread pool.
+Waiting Queue holds the tasks that couldn't be assigned to threads in the thread pool.
+
 
 Example of executor
 ```java
@@ -140,7 +147,23 @@ The task is completing very fast because we are not creating overhead
 
 Example of callable
 ```java
-class _____ implements Callable<RETURN_TYPE>{...}
+class ABC implements Callable<RETURN_TYPE>{...}
+
+// Implementation
+
+// Initiating the executor service
+ExecutorService executorService = Executors.newFixedThreadPool(100);
+
+// initiating the class
+ABC abc = new ABC();
+
+//Telling Java that class will return some value in future
+Future<Integer> treeSize = executorService.submit(abc);  
+
+// get function well wait till any value is coming back.
+// it can throw exception that's why we need to 
+// implement exceptions in our class
+System.out.println(abc.get());
 ```
 
 # Synchorization
@@ -242,6 +265,7 @@ class Substractor implements Callable<void>{
 #  Synchronised
 ## Synchronised variable
 Every object in Java comes with inbuilt locking mechanism that we can use to lock during concurrency
+Can be applied to but instance and static method
 ```java
 Value val = new Value
 functionA(val);
