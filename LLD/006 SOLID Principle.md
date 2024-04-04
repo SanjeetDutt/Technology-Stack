@@ -162,4 +162,107 @@ class Spraw extends Bird implements flyable{} // Will have fly()
 
 class penguin extends Bird {} // will not have fly{}
 ```
+
 # Liskov's Substitution
+- Strong behavioural sub-typing
+- Imposes some standard requirements on signatures
+- Child class **should have all behaviours from parent class** without making any code changes.
+- All child should behave as their parent
+- *No child class should give a different / special meaning to parent class*
+- If child class don't support parent definition then need to remove the definition from parent and put in another place
+	- Child should not change parent class
+
+# Interface Segregation Principle
+***Segregate = to separate or to set apart***
+all bird who can fly can also dance and vice versa 
+By hearing this we can do following
+```java
+interface FlyAndDance{
+	fly();
+	dance();
+}
+```
+That suppose in future, someone says fly and dance are two different entity and give following statement
+- some bird can dance
+- some bird can fly
+segregating fly and dance from one interface would be difficult. 
+So from the starting onwards, we will segregate all the different behaviours. But we will put all the common behaviour inside one interface, for example
+```java
+interface Authentication{
+	login();
+	signUp();
+}
+```
+- Here login and signup are 2 interdependent activities and cannot be separated.
+- But in case of fly and dance, they are not dependent on each other, so the behaviour can be segregated into two different interfaces.
+- Interface should be kept as light as possible
+- Ideally only one method
+
+# Dependency Inversion
+- No 2 concert class should be dependent on each other
+- They can be dependent on each other via interface
+	- Loosely coupling
+
+```java
+// Tightly coupled
+class FlyingBehaviourA{
+	makeFly(){...}
+}
+
+class Sparrow extends Birds implements Flyable{
+	FlyingBehaviourA flyA = new FlyingBehaviourA()
+	fly(){
+		this.flyA.makeFly();
+	}
+}
+```
+
+- The above code is sparrow class is highly dependent on FlyingBehaviourA because
+	- flying behaviour a is initiating inside of sparrow
+	- sparrow class is directly calling makeFly function, which is a property of FlyBehaviourA
+	- if in future, sparrow class do not follow FlyingBehaviourA then we need to change whole class definition to make the fix.
+- instead of this, we can loosely couple our dependency by using an interface
+
+```java
+// Lossly coupled (Partial)
+interface FlyingBehaviour{
+	makeFly();
+}
+
+class FlyingBehaviourA implements FlyingBehaviour{
+	makeFly(){...};
+}
+
+class Sparrow extends Birds implements Flyable{
+	FlyingBehaviour flyA = new FlyingBehaviourA();
+	fly(){
+		this.flyA.makeFly();
+	}
+}
+```
+
+Who has complete loosely coupled component, we can use dependency injection as follow
+
+```java
+interface FlyingBehaviour{
+	makeFly();
+}
+
+class FlyingBehaviourA implements FlyingBehaviour{
+	makeFly(){...};
+}
+
+class Sparrow extends Birds implements Flyable{
+	FlyingBehaviour flyA;
+	
+	Sparrow(FlyingBehaviour flyA){
+		this.flyA = flyA;
+	}
+	
+	fly(){
+		this.flyA.makeFly();
+	}
+}
+```
+
+There is no direct dependency of sparrow class and FlyingBehaviourA. Whenever sparrow class is initiating, we can say which flying behaviour Sparrow should follow.
