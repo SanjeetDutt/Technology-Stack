@@ -7,12 +7,12 @@
 
 # Type of design pattern
 1. Creational
-	- during creation of an object
+	- During creation of an object
 	- example
-		- singleton
-		- registry, and prototype
+		- [[008 Singleton Design Pattern]]
+		- [[009 Builder Design Pattern]]
+		- [[010 Prototype and Registry]]
 		- factory
-		- builder
 2. Structural.
 	- example
 		- adapter
@@ -24,4 +24,3 @@
 		- observer
 		- strategy
 		- command
-

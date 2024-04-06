@@ -1,4 +1,3 @@
-
 allow you to create a class for which only one object will be created.
 Class will be acting as shared resource
 For example, in an application, we want database connection should be initialised once and will be reused everywhere. In such case, single design pattern is very helpful.
@@ -89,3 +88,78 @@ Issue with synchronised approach
 
 # Using Locks
 By using locks, we can prevent the issue of synchronisation
+
+```java 
+// SOLOUTION #1 : putting lock inside of if condition
+class DbConnection{
+	private static dbConnectionInstance = null;
+
+	// privatising the constructor
+	private DbConnection(){...}
+
+	// creating starting function with return class instance
+	public static DbConnection getInstance(){
+		if(dbConnectionInstance == null){
+			lock();
+			dbConnectionInstance = new DbConnection();
+			unlock();
+		}
+		
+		return dbConnectionInstance
+	}
+}
+
+// this solution does not resolve the issue of synchronisation
+// because in multithreading, a reference to data connection is stored
+// and it is not get checked before initializing a new object
+```
+
+```java
+// SOLUTION #2 : putting lock  outside of if condition
+class DbConnection{
+	private static dbConnectionInstance = null;
+
+	// privatising the constructor
+	private DbConnection(){...}
+
+	// creating starting function with return class instance
+	public static DbConnection getInstance(){
+		lock();
+		if(dbConnectionInstance == null){
+			dbConnectionInstance = new DbConnection();
+		}
+		unlock();
+		
+		return dbConnectionInstance
+	}
+}
+
+// this solution resolve the issue of synchronisation,
+// but it is very similar to synchronised method
+// hence not so useful
+```
+
+```java
+// SOLUTION #3: putting double check
+class DbConnection{
+	private static dbConnectionInstance = null;
+
+	// privatising the constructor
+	private DbConnection(){...}
+
+	// creating starting function with return class instance
+	public static synchronized DbConnection getInstance(){
+		if(dbConnectionInstance == null){
+			lock();
+			// we are putting double check here
+			// taking advantage of above two solutions
+			if(dbConnectionInstance == null){
+				dbConnectionInstance = new DbConnection();
+			}
+			unlock();
+		}
+		
+		return dbConnectionInstance
+	}
+}
+```
