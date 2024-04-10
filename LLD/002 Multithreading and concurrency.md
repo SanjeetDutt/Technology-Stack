@@ -241,6 +241,7 @@ There are two type of shut down function
 1. Simple shut down : which will close the process once all the thread are processed and completed
 2. Shut down now : it will terminate the process instantly and will return the list of threats which are incomplete.
 
+Source Code : [[LLD/SCALAR_LLD/src/main/java/in/sanjeetdutt/M001_Concurency/P004_Thread_Pooling/Client.java|Client]]
 ```java
 // example with shut down function
 public class Client {  
@@ -267,7 +268,7 @@ callable class will also run the given class in a given thread
 - the value return will be wrapped up with a future data type. Which means data will be obtained somewhere in future.
 
 The executive service will execute both runnable and callable interfaced class.
-
+Source Code : [[LLD/SCALAR_LLD/src/main/java/in/sanjeetdutt/M001_Concurency/P005_Callable/Client.java|Client]]
 ```java
 // Example of callable class
 
@@ -312,7 +313,7 @@ public class Client {
 # Synchronisation
 - issues we are trying to resolve in synchronisation
 	- let's suppose a variable has been declared which is used by two concurrent processes.
-	- due to concurrency wrong value will be put inside of the variable
+	- due to concurrency different thread will pick different value of variable 
 
 ## Concept of critical section
 Part of the code which is shared by the concurrent process
@@ -345,79 +346,122 @@ void functionC(int i){
 ```
 
 ## Race condition
-- Race of completing the task
-- Task A does not care whether task is completed or not and vice versa
- - two or motors enter the  critical sections at the same time
- - if you remove the condition, we can fix the issue of synchronisation
+- Race of completing the task.
+	- Thread will try to complete the process as soon as possible.
+	- Task A does not care whether Task B is completed or not and vice versa.
+ - Two or more threads can enter the  critical sections at the same time
+ - If we introduce something which restrict the thread to enter a critical section will fix the issue of synchronisation
 
-## Pre-emptiveness
-We are moving from one task to another task before completing the previous task
-Happens because of Context switching
-Example
-- let's suppose the we are in functionA and in printing the world, system decide to switch the context and start executing function C and execute all function C. After coming back to functionA the value for val -= i will be definitely wrong.
-if we try to remove Pre-emptiveness concurrence will never happen
+## Pre-empt
+- Related to context switching
+- let's suppose we are on a function A and executed some of the line, which has i++, in between system decide to do con switch and start running function B which has i--. And again in between it, try to switch the context back to A. In this situation, the value of I is wrong.
+- this is an issue called, Pre-empt.
+- where context has been switching in between of the critical section, leading to wrong data in the calculation.
+- if we try to fix this, we will lose concurency.
 
 ## Solution to fix synchronisation
-To fix synchronisation, we can have a concept of MuteX
-MuteX = deviated from two terms
-- Mut = mutual
-- eX = execution
-means letting one thread to operate variable at a time in a given critical section.
-Suppose one task is accessing the variable, It can lock the variable until the whole process is completed. Once the process is completed, it can unlock the variable and variable is ready to use by another task.
-Meanwhile, when the variable is logged by other process/ task, other task need to wait till the variable is unlocked
+- To fix synchronisation, we can have a concept of MuteX
+- MuteX = deviated from two terms
+	- Mut = mutual
+	- eX = execution
+- Means letting only one thread to operate variable at a time in a given critical section.
+- Suppose one task is accessing the critical section, 
+	- It can lock the variable until the whole process is completed. 
+	- Once the process is completed, it can unlock the critical section and that section is ready to use by another task.
+- Meanwhile, when the variable is locked by other process/ task, other task need to wait till the section is unlocked
+- By doing this way, concurrency will be affected, but still, we have some advantages of concurrency and at the same time, we can remove the issue of synchronisation
 
+Source code : [[LLD/SCALAR_LLD/build/classes/java/main/in/sanjeetdutt/M001_Concurency/P006_MutEx/Client.class|Client]]
 ```java
-psvm(){
-	Lock lock = new ReentantLock();
-	Value val = new Value();
-	// NEED TO PASS THE SAME LOCK TO THE ALL CONCURENT FUNCTIONS
-	Adder adder = new Adder(val,lock);
-	Substractor sub = new Substractor(val,lock);
+public class Value {  
+    public Integer value = 0;  
 }
 
-class Adder implements Callable<void>{
-	Value val;
-	Lock lock;
-	
-	Adder(Value val, Lock lock){
-		this.val = val;
-		this.lock = lock;
-	}
-
-	void call() // Callable function impl with same return type 
-	{
-		lock.lock();
-		// Critical section
-		lock.unlocak();
-	} 
+public class Adder implements Runnable{  
+    Value value;  
+    Lock lock;  
+    int valInc;  
+  
+    public Adder(Value value, Lock lock, int valInc) {  
+        this.value = value;  
+        this.lock = lock;  
+        this.valInc = valInc;  
+    }  
+  
+    @Override  
+    public void run() {  
+        lock.lock();  
+        System.out.println("+++ADDING START");  
+        this.value.value += valInc;  
+        System.out.println("+++ADDING COMPLETE+++");  
+        lock.unlock();  
+    }  
 }
 
-class Substractor implements Callable<void>{
-	Value val;
-	Lock lock;
-	
-	Adder(Value val, Lock lock){
-		this.val = val;
-		this.lock = lock;
-	}
+public class Subtract implements Runnable{  
+    Value value;  
+    Lock lock;  
+    int valDec;  
+  
+    public Subtract(Value value, Lock lock, int valDec) {  
+        this.value = value;  
+        this.lock = lock;  
+        this.valDec = valDec;  
+    }  
+  
+    @Override  
+    public void run() {  
+        lock.lock();  
+        System.out.println("----------SUBTRACTING START");  
+        this.value.value -= valDec;  
+        System.out.println("----------SUBTRACTING COMPLETED----------");  
+        lock.unlock();  
+    }  
+}
 
-	void call(){...} // Callable function impl with same return type
+public class Client {  
+  
+    public static void main(String[] args) {  
+        ExecutorService executorService = Executors.newFixedThreadPool(2);  
+        Value value = new Value();  
+        Lock lock = new ReentrantLock();  
+  
+        for(int i = 0; i < 100; i++){  
+            Adder adder = new Adder(value, lock, i);  
+            Subtract subtract = new Subtract(value, lock, i);  
+            executorService.submit(adder);  
+            executorService.submit(subtract);  
+        }  
+  
+        executorService.shutdown();  
+    }  
 }
 
 ```
 
-#  Synchronised
+#  Synchronised Function
 ## Synchronised variable
 Every object in Java comes with inbuilt locking mechanism that we can use to lock during concurrency
 Can be applied to but instance and static method
 ```java
-Value val = new Value
-functionA(val);
-
-void functionA(Value v){
-	synchronised(v){
-		// operations in variable v
-	}
+public class Client {  
+    public static void main(String[] args) {  
+        //EXECUTOR SERVICES  
+    }  
+  
+    void functionA (Integer i){  
+        synchronized (i){  
+            System.out.println("VAL OF I IS : " + i);  
+        }  
+    }  
+  
+    void functionB (Integer i, Integer j){  
+        synchronized (i){  
+            synchronized (j){  
+                System.out.println("VAL OF I,J IS : " + i + ","+j);  
+            }  
+        }  
+    }  
 }
 ```
 ### Drawback
@@ -432,6 +476,7 @@ synchronised(A){
 }
 ```
 This particular way is difficult to read.
+and cannot be applied on the primitive data type.
 
 ## Synchronised method
 Every method in Java comes with synchronised keyword out of the box
@@ -440,6 +485,7 @@ public synchronized void synchronisedCalculate() {
 	setSum(getSum() + 1); 
 }
 ```
+
 Example
 ```java
 class Calculator{
