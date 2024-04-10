@@ -1,17 +1,22 @@
 # Introduction
 - .dmg, .exe, .apk
-- these are executable file
-- code --compiled to--> executable files (downloadable and installable)
-- after instal, it lie in hard drive
+	- these are executable file
+	- code --compiled to--> executable files (downloadable and installable)
+	- Known as program
+- after instal, it live in hard drive
 - after run the application, code come from hard disk to RAM
-- process == program in execution
+- process are nothing but program in execution
 - 2.2GHz = 2.2 X 10^9 instructions per second
+	- 10^9 is know as Giga
 
 # Process and Threads
 
 ## Process
-- programme in execution
-- PCB ( Process Control Board) stores information about process, created by OS
+- Programme in execution
+	- Top level execution container
+	- Separate memory space
+- PCB ( Process Control Board) stores information about process, created by operating system OS
+
 ```java
 class PCB{
 	pid
@@ -23,17 +28,20 @@ class PCB{
 	callStack
 }
 ```
+
 - Example of process while running MS Word
 	- Display the output 	         <= process 1
-	- Grammer Checker 		<= process 2
+	- Grammar Checker 		<= process 2
 	- Auto saving 			<= process 3
 	- Auto Suggestion 		<= process 4
 
-- process can run independently but inter communication is not viable in process
+- process can **run independently** but inter communication is not possible in process
 	- communication will code in IPC Inter process communication, out of scope
 
 ## Threads
 - Threads are not subprocess but related to a process
+	- Runs inside of a process
+	- having shared memory space
 - Unit of CPU execution
 - A thread is what a CPU actually executes
 - A process can have 1 thread or multiple thread
@@ -62,15 +70,16 @@ class Threads{
 	- Data sharing in thread is much easier
 		- we have same memory address in PCB which is used by threads
 	- Creation of thread does not take extra memory as memory is already allocated in programme
-		- memory creation are called as overhead
+		- memory creation are called as overhead 
 				
-- every OS have CPU scheduler
+- Every OS have CPU scheduler
 	- decide what thread to be executed on the basis of
 		- Resources
 		- Priority
 		- Time
 	- CPU execute 1 thread at a time, but it do so fast it look like all thread are running parallel
-		- it is know as context switching
+		- it is know as **context switching**
+
 ```java
 Thread.currentThread().getName(); // Getting current thread name
 
@@ -79,7 +88,7 @@ Thread.currentThread().getName(); // Getting current thread name
 ## Single core VS Multi Core
 - 1 core execute 1 thread at a moment
 - 1 core = 1 chip = 1 thread at a moment
-- quard core = 4 chip = 4 thread at a moment
+- Quad core = 4 chip = 4 thread at a moment
 - hyper threading = 2 threads in same chip
 - example = i7 12650H (My laptop)
 	 - having 10 core and 16 threads
@@ -87,9 +96,8 @@ Thread.currentThread().getName(); // Getting current thread name
 		- 4 core 				   X 1.7GH = handle 1 thread at a time = 4 threads
 		- sum of threads = 12 + 4 = 16 threads at a time
 
-
 # Concurrency VS Parallelism
-- case 1 : Single core system and switching between threads is not allowed ( thread 2 will start execution only after thread 1 complete )
+- Case 1 : Single core system and switching between threads is not allowed ( thread 2 will start execution only after thread 1 complete )
 	- at a given instance
 		- partially complete thread = 1
 		- ongoing thread = 1
@@ -102,38 +110,82 @@ Thread.currentThread().getName(); // Getting current thread name
 		- partially complete thread = N (number of threads)
 		- ongoing thread = number of core or N (number of threads)
 
-- for Parallelism we need multicore system
-- for concurrency switching between the threads should allow (context switching should allow)
+- For Parallelism 
+	- we need multicore system
+	- It means two process running parallel with one thread in each.
+	- Here context switching is not allowed
+- For concurrency 
+	- We do not need multi core system
+	- It means only one process running with multiple thread in it.
+	- Switching between the threads should allow (context switching should allow)
 
 | OVERVIEW           | context switching is not allowed | context switching is allowed |
 | ------------------ | -------------------------------- | ---------------------------- |
 | Single core system | Sequential process               | Concurrency                  |
 | Multi core system  | Parallelism                      | Concurrency and Parallelism  |
 
-## Creating a Thread VS Thread Pooling
-- issues in creating a thread by own is we cannot reuse it
-	- causing over usage of resources
-	- things will take time
+## Thread VS Thread Pooling
+- issues in creating a thread by own is 
+	- we cannot reuse the thread again (lost in space)
+	- causing over usage of resources (as we cannot reuse it)
+	- things will take time (we are creating thread every time)
 - to overcome the issues, we have threaded pool option
 	- it will manage the creation of new thread
-	- Will have better resource handling
+	- Will have better resource handling (it will reuse the thread)
 	- how it work
 		- let's suppose we need 5 thread to the pool and let's suppose 7 task are assigned to perform
 			- then threaded pool will allocate Task 1 to Task 5 who all existing thread
 			- and once thread are available new task will be assigned to the thread
+POINT TO NOTE: Thread pooling has nothing to do the context switching.
 
-# Executors and Callable
-Executor will only execute the task while will not only execute the task but also get return value from the task
-Executor manages the assignment of task to threads within the thread pool.
-Waiting Queue holds the tasks that couldn't be assigned to threads in the thread pool.
-
-
-Example of executor
 ```java
-class PrintNumber implements Runnable{...}
+/**
+*      Example for simple thread creation without pooling
+**/
+
+public class Client {  
+    public static void main(String[] args) {  
+        System.out.println("Application stating...");  
+        RandomClass randomClass = new RandomClass();  
+  
+        Thread thread = new Thread(randomClass);  
+        thread.start();  
+  
+        System.out.println("Application stopped...");  
+    }  
+}
+
+// To run the class in a thread, class should impl. Runnable or Callable
+public class RandomClass implements Runnable{  
+  
+    public RandomClass(){  
+        System.out.println("RANDOM CLASS CREATED...");  
+    }  
+    
+    @Override  
+    public void run() {  
+        System.out.println("RUNNING RANDOM CLASS");  
+    }  
+}
+
+//OUTPUT:
+// Application stating...
+// RANDOM CLASS CREATED...
+// Application stopped...
+// RUNNING RANDOM CLASS <- running in different thread
 ```
+### Executor
+- Executor will only execute the task 
+- it will not only execute the task but also get return value from the task
+- Executor manages the assignment of task to threads within the thread pool.
+- Waiting Queue holds the tasks that couldn't be assigned to threads in the thread pool.
 
 ```java
+// Example of executors
+
+class PrintNumber implements Runnable{...}
+
+// Creating a service of 10 thread pool
 ExecutorService executorService = Executors.newFixedThreadPool(10);
 
 for(i = 0 to 1000000000){
@@ -141,35 +193,127 @@ for(i = 0 to 1000000000){
 	executorService.execute(printingTask)
 }
 ```
+
 The task is completing very fast because we are not creating overhead
 - Overhead means creation of excess thread
 	- excess thread = threads, which do not work
 
-Example of callable
 ```java
-class ABC implements Callable<RETURN_TYPE>{...}
+/**
+*      Example for simple thread creation with pooling
+**/
 
-// Implementation
+public class Client {  
+    public static void main(String[] args) {  
+        System.out.println("STARTING APPLICATION...");  
+        RunnableClass randomClass = new RunnableClass();  
 
-// Initiating the executor service
-ExecutorService executorService = Executors.newFixedThreadPool(100);
+		//Creating a process which can have 5 thread in it.
+        ExecutorService executorService = Executors.newFixedThreadPool(5);  
+        executorService.submit(randomClass);// Adding a executable class
+  
+        System.out.println("STOPPING APPLICATION...");  
+    }  
+}
 
-// initiating the class
-ABC abc = new ABC();
+// To run the class in a thread, class should impl. Runnable or Callable
+public class RunnableClass implements Runnable{  
+  
+    RunnableClass(){  
+        System.out.println("RUNNABLE CLASS CREATED....");  
+    }  
+  
+    @Override  
+    public void run() {  
+        System.out.println("RUNNABLE CLASS RUNNING....");  
+    }  
+}
 
-//Telling Java that class will return some value in future
-Future<Integer> treeSize = executorService.submit(abc);  
-
-// get function well wait till any value is coming back.
-// it can throw exception that's why we need to 
-// implement exceptions in our class
-System.out.println(abc.get());
+//OUTPUT:
+// STARTING APPLICATION...
+// RUNNABLE CLASS CREATED....
+// STOPPING APPLICATION...
+// RUNNABLE CLASS RUNNING....
 ```
 
-# Synchorization
-- issues we are trying to resolve his synchronisation
+In the above example the process will still continue to run, because we didn't specify either the process is complete or not. To explicitly say either the process is complete or not, we need to add shut down function.
+There are two type of shut down function
+1. Simple shut down : which will close the process once all the thread are processed and completed
+2. Shut down now : it will terminate the process instantly and will return the list of threats which are incomplete.
+
+```java
+// example with shut down function
+public class Client {  
+    public static void main(String[] args) {  
+        System.out.println("STARTING APPLICATION...");  
+        RunnableClass randomClass = new RunnableClass();  
+  
+        ExecutorService executorService = Executors.newFixedThreadPool(5);  
+        executorService.submit(randomClass);  
+        executorService.shutdown();  
+  
+        System.out.println("STOPPING APPLICATION...");  
+    }  
+}
+```
+
+# Runnable vs Callable
+Runnable class will run the class in a given thread
+- it will just run the class on a thread
+- and never return a value
+callable class will also run the given class in a given thread
+- it will run the class on a thread
+- and will return a value
+- the value return will be wrapped up with a future data type. Which means data will be obtained somewhere in future.
+
+The executive service will execute both runnable and callable interfaced class.
+
+```java
+// Example of callable class
+
+public class AsyncClass implements Callable<Double> {  
+  
+    public AsyncClass() {  
+        System.out.println("ASYNC CLASS CREATED");  
+    }  
+  
+    @Override  
+    public Double call() throws Exception {  
+        System.out.println("RUNNING ASYNC CLASS");  
+        Thread.sleep(5000);  
+        Double number = Math.random();  
+        System.out.println("SYSTEM GENERATED RANDOM NUMBER = " + number);  
+        return number;  
+    }  
+}
+
+public class Client {  
+    public static void main(String[] args) throws ExecutionException, InterruptedException {  
+        System.out.println("APPLICATION STARTING....");  
+  
+        AsyncClass asyncClass = new AsyncClass();  
+  
+        ExecutorService executorService = Executors.newFixedThreadPool(1);  
+  
+        Future<Double> futureRandomNumber = executorService.submit(asyncClass);  
+        executorService.shutdown();  
+        
+        // Pointer will wait till we are getting the result.
+        // Here it will be 5000ms.
+        Double randomNumber = futureRandomNumber.get();  
+        System.out.println("FUTURE RANDOM NUMBER IS : " + randomNumber);  
+  
+        System.out.println("APPLICATION STOPPED....");  
+    }  
+}
+
+```
+
+# Synchronisation
+- issues we are trying to resolve in synchronisation
 	- let's suppose a variable has been declared which is used by two concurrent processes.
 	- due to concurrency wrong value will be put inside of the variable
+
 ## Concept of critical section
 Part of the code which is shared by the concurrent process
 ```java
