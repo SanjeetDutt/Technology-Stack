@@ -1,16 +1,16 @@
-# Introdunction
+# Introduction
 1. Guild-line / Fundamentals
 2. Better software design
 3. Advantage of SOLID Principle
-	1. #Extensible
-	2. #Maintainable
-	3. #Readable
-	4. #Reusable
-	5. #Testable
-	6. #Modular We make our code as small component and fit them to build the application. Similar to modular kitchen. Where pieces are build somewhere and installed later in kitchen
+	1. Extensible
+	2. Maintainable
+	3. Readable
+	4. Reusable
+	5. Testable
+	6. Modular We make our code as small component and fit them to build the application. Similar to modular kitchen. Where pieces are build somewhere and installed later in kitchen
 ## Abbreviation
 *S*          Single Responsibility
-*O*         Open closed
+*O*         Open and closed Principle
 *L*          Liskov's Substitution
 *I*           Interface Segregation
 *D*         Dependency Inversion
@@ -266,3 +266,24 @@ class Sparrow extends Birds implements Flyable{
 ```
 
 There is no direct dependency of sparrow class and FlyingBehaviourA. Whenever sparrow class is initiating, we can say which flying behaviour Sparrow should follow.
+
+# Summary
+- SOLID PRINIPLE
+	- S = Single responsibility
+		- Every class should have only 1 responsibility
+	- O = Open close Principle
+		- Open for extension
+			- adding new feature
+		- close for modification
+			- Should not required a good amount of changes
+	- L = Liskov's Substitution
+		- Behavioural sub typing
+		- some standards on signature
+		- Child should have all behaviours from the parent
+	- I = Interface Segregation
+		- Define the way how interface should design
+		- 1 interface should have one behaviour
+	- D = Dependency Inversion
+		- 2 class should not depend on each other
+		- Related to coupling
+		- Their should be some interface in between
