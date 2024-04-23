@@ -22,3 +22,6 @@
 		- observer
 		- strategy
 		- command
+
+Resources:
+- https://refactoring.guru/
