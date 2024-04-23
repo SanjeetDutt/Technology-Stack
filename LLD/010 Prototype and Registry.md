@@ -2,6 +2,10 @@
 Prototype coming into the picture when we need to **create a copy of the object**
 In standard, if you want to copy the object, there are two ways to copy it
 
+![[Pasted image 20240423214932.png]]
+
+![[Pasted image 20240423214950.png]]
+
 1. Referential copy / shallow copy.
 ```java
 // shallow copy

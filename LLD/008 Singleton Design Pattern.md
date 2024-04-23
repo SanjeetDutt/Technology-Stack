@@ -2,6 +2,8 @@ allow you to create a class for which only one object will be created.
 Class will be acting as shared resource
 For example, in an application, we want database connection should be initialised once and will be reused everywhere. In such case, single design pattern is very helpful.
 
+![[Pasted image 20240423214709.png]]
+
 - to make  singleton design following step should be followed
 	- we need to privatise the constructor of a class
 	- a static method, which will return the instance of the class

@@ -12,13 +12,11 @@
 		- [[008 Singleton Design Pattern]]
 		- [[009 Builder Design Pattern]]
 		- [[010 Prototype and Registry]]
-		- factory
+		- [[011 Factory Design Pattern]]
 2. Structural.
 	- example
-		- adapter
-		- Facade
-		- decorators
-		- fly weight
+		- adapter and Facade
+		- decorators and Flyweight
 3. Behavioural
 	- example
 		- observer

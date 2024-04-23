@@ -1,4 +1,8 @@
  builder design pattern come into the picture when we want to have different parameters in our constructor function.
+ 
+![[Pasted image 20240423214741.png]]
+
+![[Pasted image 20240423214809.png]]
 
 ```java
 class Student{
