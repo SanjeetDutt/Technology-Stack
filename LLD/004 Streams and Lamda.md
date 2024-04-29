@@ -1,6 +1,6 @@
 # Functional Interface
 Interface which only have one abstract method
-	Commonly known as SAM (single abstract method)
+	Commonly known as **SAM** (**Single Abstract Method**)
 Example
 - Runnable interface : run()
 - Callable interface : call()
@@ -66,7 +66,7 @@ Thread thread = new Thread(()->{
 Basically stream API execute a piece of food on the data which are in pipeline. It is similar to the for and other loops, but the basic difference is in those loops is all the data are stored in the RAM until the whole iterations completed, but stream API let's suppose we have 1 million of a data which is calling from the database, the function will be only execute to those data which are currently in the memory later while executing the function on other data may be this data can be destroyed by the garbage collector so it is a ongoing process every time.
 
 Streams have two sets of functions
-- intermediate function
+- **Intermediate function**
 	- intermediate function does not execute until a terminal function is invoke
 	- they are only executed until a result of processing is actually needed
 	- commonly used intermediate methods are
@@ -75,8 +75,8 @@ Streams have two sets of functions
 		- distant
 		- map
 		- limit
-	- intermediate function return another stream as a result, that's why they can chained together to form a pipeline operation
-- terminal function
+	- intermediate function **return another stream** as a result, that's why they can chained together to form a pipeline operation
+- **Terminal function**
 	- terminal operation typically return a single value
 	- commonly used terminal function are
 		- collect, forEach, reduce
