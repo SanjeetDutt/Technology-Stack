@@ -1,4 +1,3 @@
-
 # Adapter 
 - Intermediator layer, which convert one form of data into another
 - this type of design pattern will be used in integrating third-party API

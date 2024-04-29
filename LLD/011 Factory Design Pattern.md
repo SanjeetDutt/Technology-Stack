@@ -1,4 +1,4 @@
- Let suppose we are using a user service, which is using a database instance, and also create user method.
+Let suppose we are using a user service, which is using a database instance, and also create user method.
  ```java
  class UserService{
 	 Database db;
