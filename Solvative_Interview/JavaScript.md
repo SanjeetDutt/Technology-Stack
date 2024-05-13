@@ -281,3 +281,296 @@ ETA
 Brute force and solution discussion: 2 to 3 min
 Code writing : 5 min
 Discussion : 5 min
+
+```
+Given a sorted array of integers **A** of size **N** and an integer **B**,   
+where array **A** is rotated at **some pivot** unknown beforehand.  
+  
+For example, the array [0, 1, 2, 4, 5, 6, 7] might become [4, 5, 6, 7, 0, 1, 2].  
+  
+Your task is to search for the target value B in the array. If **found**, return its **index**; **otherwise**, return **-1**.  
+  
+You can assume that **no duplicates** exist in the array.  
+  
+**NOTE:** You are expected to solve this problem with a time complexity of **O(log(N))**.
+
+  
+  
+**Problem Constraints**  
+
+1 <= N <= 1000000  
+1 <= A[i] <= 109  
+All elements in A are **Distinct**.
+
+  
+  
+**Input Format**  
+
+The First argument given is the integer array **A**.  
+The Second argument given is the integer **B**.
+
+  
+  
+**Output Format**  
+
+Return index of B in array A, otherwise return **-1**
+
+  
+  
+**Example Input**  
+
+Input 1:
+
+A = [4, 5, 6, 7, 0, 1, 2, 3]
+B = 4 
+
+Input 2:
+
+A : [ 9, 10, 3, 5, 6, 8 ]
+B : 5
+
+  
+  
+**Example Output**  
+
+Output 1:
+
+ 0 
+
+Output 2:
+
+ 3
+
+  
+  
+**Example Explanation**  
+
+Explanation 1:
+
+Target 4 is found at index 0 in A. 
+
+Explanation 2:
+
+Target 5 is found at index 3 in A.
+```
+
+```
+Given a sorted array of integers A of size N and an integer B,   
+where array A is rotated at some pivot unknown beforehand.  
+  
+For example, the array [0, 1, 2, 4, 5, 6, 7] might become [4, 5, 6, 7, 0, 1, 2].  
+  
+Your task is to search for the target value B in the array. If found, return its **index**; otherwise, return -1.  
+  
+You can assume that no duplicates exist in the array.  
+
+  
+  
+Problem Constraints
+
+1 <= N <= 1000000  
+1 <= A[i] <= 109  
+All elements in A are **Distinct**.
+
+  
+  
+Input Format
+
+The First argument given is the integer array **A**.  
+The Second argument given is the integer **B**.
+
+  
+  
+Output Format
+
+Return index of B in array A, otherwise return **-1**
+
+  
+  
+Example Input
+
+Input 1:
+
+A = [4, 5, 6, 7, 0, 1, 2, 3]
+B = 4 
+
+Input 2:
+
+A : [ 9, 10, 3, 5, 6, 8 ]
+B : 5
+
+  
+  
+Example Output
+
+Output 1:
+
+ 0 
+
+Output 2:
+
+ 3
+
+  
+  
+Example Explanation
+
+Explanation 1:
+
+Target 4 is found at index 0 in A. 
+
+Explanation 2:
+
+Target 5 is found at index 3 in A.
+```
+
+```
+Given an integer array **A** containing **N** distinct integers, you have to find **all the leaders** in array **A**. An element is a leader if it is **strictly greater than** all the elements to its **right side.**  
+  
+**NOTE**: The rightmost element is always a leader.
+
+  
+  
+**Problem Constraints**  
+
+1 <= N <= 105  
+1 <= A[i] <= 108
+
+  
+  
+**Input Format**  
+
+There is a single input argument which a integer array **A**
+
+  
+  
+**Output Format**  
+
+Return an integer array denoting all the **leader elements** of the array.
+
+  
+  
+**Example Input**  
+
+Input 1:
+
+ A = [16, 17, 4, 3, 5, 2]
+
+Input 2:
+
+ A = [5, 4]
+
+  
+  
+**Example Output**  
+
+Output 1:
+
+[17, 2, 5]
+
+Output 2:
+
+[5, 4]
+
+  
+  
+**Example Explanation**  
+
+Explanation 1:
+
+ Element 17 is strictly greater than all the elements on the right side to it.  
+ Element 2 is strictly greater than all the elements on the right side to it.  
+ Element 5 is strictly greater than all the elements on the right side to it.  
+ So we will return these three elements i.e [17, 2, 5], we can also return [2, 5, 17] or [5, 2, 17] or any other ordering.
+
+Explanation 2:
+
+ Element 5 is strictly greater than all the elements on the right side to it.  
+ Element 4 is strictly greater than all the elements on the right side to it.  
+ So we will return these two elements i.e [5, 4], we can also any other ordering.
+```
+
+```
+You are given an array **A** of integers of size **N**.
+
+Your task is to find the equilibrium index of the given array
+
+The equilibrium index of an array is an index such that the sum of elements at lower indexes is equal to the sum of elements at higher indexes.
+
+If there are no elements that are at lower indexes or at higher indexes, then the corresponding sum of elements is considered as 0.
+
+**Note:**
+
+- Array indexing starts from 0.
+- If there is no equilibrium index then return -1.
+- If there are more than one equilibrium indexes then return the minimum index.
+
+  
+  
+**Problem Constraints**  
+
+1 <= N <= 105
+-105 <= A[i] <= 105
+
+  
+  
+**Input Format**  
+
+First arugment is an array A .
+
+  
+  
+**Output Format**  
+
+Return the equilibrium index of the given array. If no such index is found then return -1.
+
+  
+  
+**Example Input**  
+
+Input 1:
+
+A = [-7, 1, 5, 2, -4, 3, 0]
+
+Input 2:
+
+A = [1, 2, 3]
+
+  
+  
+**Example Output**  
+
+Output 1:
+
+3
+
+Output 2:
+
+-1
+
+  
+  
+**Example Explanation**  
+
+Explanation 1:
+
+i   Sum of elements at lower indexes    Sum of elements at higher indexes
+0                   0                                   7
+1                  -7                                   6
+2                  -6                                   1
+3                  -1                                  -1
+4                   1                                   3
+5                  -3                                   0
+6                   0                                   0
+
+3 is an equilibrium index, because: 
+A[0] + A[1] + A[2] = A[4] + A[5] + A[6]
+
+Explanation 1:
+
+i   Sum of elements at lower indexes    Sum of elements at higher indexes
+0                   0                                   5
+1                   1                                   3
+2                   3                                   0
+Thus, there is no such index.
+```
