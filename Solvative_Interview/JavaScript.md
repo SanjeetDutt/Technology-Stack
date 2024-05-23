@@ -574,3 +574,8 @@ i   Sum of elements at lower indexes    Sum of elements at higher indexes
 2                   3                                   0
 Thus, there is no such index.
 ```
+
+
+```
+You are given with an array in which all values are repeting twice except one. Find the non repeting number
+```
