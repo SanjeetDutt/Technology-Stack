@@ -64,10 +64,10 @@ var x = 35
 var y = "28"
 
 console.log("x + y = ", x + y);
-console.log("x ++ y = ", x + + y);
+console.log("x + + y = ", x + + y);
 console.log("x - y = ", x - y);
-console.log("x -+ y = ", x - + y);
-console.log("x +- y = ", x + - y);
+console.log("x - + y = ", x - + y);
+console.log("x + - y = ", x + - y);
 ```
 
 solution - ETA(10 min)
@@ -170,6 +170,62 @@ console.log("JAMES = ", james);
 console.log("SHERLOC = ", sherloc);
 ```
 
+```js
+setInterval(()=>{
+	console.log("HELLO WORLD");
+})
+```
+
+```js
+let interval = 100;
+
+setInterval(()=>{
+	console.log(interval);
+	interval++;
+}, interval)
+```
+
+```js
+const enrolments = {
+    _key: 1,
+    _id: "E-123-1125",
+    name: "people enrolment",
+    list: [{
+        _key:2,
+        id: 1,
+        first_name: "James",
+        last_name: "Doe",
+        occupation: "Doctor",
+        email: "james_doe@solvative.com"
+    }, {
+        _key:3,
+        id: 2,
+        first_name: "Robbet",
+        last_name: "Downey Jr.",
+        occupation: "Actor",
+        email: "ironman@marvel.com"
+    }]
+}
+
+
+// ------- QUESTION # 1 ------- //
+// enrolments.list.push(enrolments.list[0])
+// console.log(enrolments)
+
+// ------- QUESTION # 2 ------- //
+// enrolments.list[0].occupation = "Engineer"
+// console.log(enrolments)
+
+// ------- QUESTION # 3 ------- //
+
+
+// ------- QUESTION # 4 ------- //
+// enrolments.list = [...enrolments.list]
+// console.log(enrolments)
+
+// ------- QUESTION # 5 ------- //
+// Write a custom code to deep clone list array, with filtering all key value pair whose key starts with underscroll "_"
+```
 
 # Coding challenge Fibonacci series
 ## Challenge 1
@@ -466,7 +522,7 @@ Input 2:
 
 Output 1:
 
-[17, 2, 5]
+[17, 5, 2]
 
 Output 2:
 
@@ -479,8 +535,8 @@ Output 2:
 Explanation 1:
 
  Element 17 is strictly greater than all the elements on the right side to it.  
- Element 2 is strictly greater than all the elements on the right side to it.  
  Element 5 is strictly greater than all the elements on the right side to it.  
+ Element 2 is strictly greater than all the elements on the right side to it.
  So we will return these three elements i.e [17, 2, 5], we can also return [2, 5, 17] or [5, 2, 17] or any other ordering.
 
 Explanation 2:
@@ -578,4 +634,9 @@ Thus, there is no such index.
 
 ```
 You are given with an array in which all values are repeting twice except one. Find the non repeting number
+
+Example
+array = [7,2,4,2,8,7,8]
+ans = 4
 ```
+
