@@ -1,0 +1,66 @@
+- Storage are used, basically in all applications where we want to store our data
+- Storage has to be decoupled from business logic
+	- the reason to decouple business logic and storage are
+		- Constant code deployment  will cause unavailability and storage should be protected from unavailability
+		- Different specialised hardware or resources are required for database and compute
+- we can connect one or multiple database storage to a one or multiple servers
+	- but better way is to share the database storage among multiple server.
+- to do the sharing between multiple server, we will again use a load balancer between server and  storage
+	- ![[Pasted image 20240712211418.png]]
+	- Disadvantage :
+		- but by adding load balancer, we are increasing the network dependency which is unreliable nature. It can be down due to technical/physical problems
+		- that the reason why we have to trade of between scaling of our system by decoupling application server layer and storage layer, but because of this, we are introducing network risk
+		- this will increase the number of network calls / hops
+			- hop occurs when a packet is passed from one network segment to the next
+		- and whenever hops increases, will increase latency
+			- latency is amount of time. We have to wait for our request to be respond.
+			- let's suppose if Facebook's storage is set up in US and a user from India, try to add a post and which last for more than our the user experience will exponentially degraded
+	- to overcome all the disadvantage due to latency, we have a mechanism called caching
+
+# Caching
+- Caching is the process of storing copies of files in a cache, or **temporary storage location**, so that they can be accessed **more quickly**
+- the overall requirement of a caching is to reduce latency
+- there are several way of doing caching
+	- ## Client side /  in-browser caching
+		- in this cash value will be stored in the client side
+		- in this way, will be store those data which do not change over a long period of time
+	- ## Content Delivery Network CDN 
+		- this is another way to cache the data.
+		- the data are basically stored in nearby server to the user
+		- here we will store basically two type of data
+			- very small size text data
+			- are very big size meta data, such as image, video, audio blob, which are basically 
+				- **static in nature** 
+				- **shared with larger audience**
+		- most use content delivery networks are
+			- cloud flare
+			- akamai
+			- cloud point
+			- fbcdn
+	- ## Server side caching / Global Cache
+		- requirement of server side cashing are
+			- assuming the example of chat GPT to be designed using stateless mechanism, we realise that if latency will be very high because of
+				- database read time
+				- network time
+				- and computer time
+			- but introducing state full mechanism, the latency will not be decreases as the new server will not store all the data in its memory.
+			- to optimise this issue, we will introduce global cache memory in the application layer
+		- advantage of using global cache memory
+			- it will reduce the database, read and write time by using physical memory, which has very high read and write capability
+			- it is basically a set of servers which are integrate with application layer to provide cash memory on the flight, which reduces network timing
+		- drawback of using cache memory
+			- Cache can always go stale
+			- Limited in size
+			- not always actual point of truth. Because actual data need to be stored in database layer.
+		- to overcome the drawback we have cache invalidation strategy.
+			- it basically says for how much of time cash will be stored in the memory
+			- also known as TTL / time to live
+			- whenever the data gets stored in cache, their expiration date is also get stored with it.
+			- whenever we try to retrieve the cash memory, we will see the expiration date of the data.
+			- if it passed, then we will collect the data from the database storage layer
+				- in this, we will update the cash memory with the latest data and a new expiration date
+			- if not, we will get the cache memory.
+			- in the worst case scenario, the latency will remain safe, but end other scenarios, we have optimise the system to get request responded quickly
+		- strategy to follow while writing data in cache
+			- ### Write through cache
+				- no
