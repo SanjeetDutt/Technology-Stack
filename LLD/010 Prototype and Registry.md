@@ -22,7 +22,7 @@ s2.setName(s1.getName())
 ```
 
  the limitation of the above method are
- - whenever we want to create the copy of the object object, user need to know the complete class definition
+ - whenever we want to create the copy of the object, user need to know the complete class definition
 - code will repeat whenever want to create a copy
 
 The ideal solution for this should be, copying the object should be outsource to the object itself.

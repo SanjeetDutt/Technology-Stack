@@ -7,7 +7,8 @@
 	3. Readable
 	4. Reusable
 	5. Testable
-	6. Modular We make our code as small component and fit them to build the application. Similar to modular kitchen. Where pieces are build somewhere and installed later in kitchen
+	6. Modular 
+		- We make our code as small component and fit them to build the application. Similar to modular kitchen. Where pieces are build somewhere and installed later in kitchen
 ## Abbreviation
 *S*          Single Responsibility
 *O*         Open and closed Principle

@@ -1,5 +1,5 @@
 # Exception
-unwanted / Unexpected behaviour that happen during the execution of program 
+Unwanted / Unexpected behaviour that happen during the execution of program 
 Type of exceptions
 - checked exception
 	- it means exceptions are coming not because of bad code.
@@ -16,10 +16,10 @@ Type of exceptions
 - Throw
 	- Throwing an exception when a function is executing
 - Throws
-	- it means class can throw an exception veg needed to be handle in the place of use of the particular particular class
+	- it means class can throw an exception which needed to be handle in the place of use of the particular particular class
 	- further the class where the function is used, which says it can throw an exception. It can also handle it or further throws the same exception error
 ## Errors
-Error is the subclass of throwable that indicates serious problem that a reasonable application should not try to catch. Most such error are abnormal condition.
+Error is the subclass of throwable that indicates serious problem that a reason why application should not try to catch. Most such error are abnormal condition.
 Example: stack overflow error, out of Memory error
 ## Try and Catch
 

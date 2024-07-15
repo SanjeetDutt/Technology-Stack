@@ -21,6 +21,7 @@ Animal a = new Dog(); // Allowed in java
 
 List<Animal> aList = new List<Dog>(); // Not allowed in java
 // No one told how List<Animal> is related to List<Dog>
+// We only know relation between Animal and Dog
 
 Dog dog = new Dog();
 List<Animal> bList = new List<Animal>();
@@ -43,7 +44,7 @@ void doSomething (List<T implements Animal>){...}
 	- Array List is not thread safe
 	- Linked list is also not thread safe
 	- Linked list can be used as doubly link list
-- Deque implement linked list and it is a threat safe
+- Deque implement linked list and **it is a threat safe**
 	- popular implementation of Deque are
 		- Vector : similar to array list
 		- Stack : first in last out
