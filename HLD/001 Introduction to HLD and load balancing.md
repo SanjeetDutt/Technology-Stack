@@ -1,16 +1,15 @@
-HLD = high-level designs
-- use to design overall systems and communication between them.
-
+HLD = High Level Design
+- Use to design overall systems and communication between them.
 # How are user in internet reach to our system?
 - the basic phenomena to reach our system via internet is through DNS
-	- domain name server
-	- basically, DNS have a map between domain name and their **static IP address**
+	- Domain Name Server (DNS)
+	- Basically, DNS have a map between domain name and their **static IP address**
 		- there are basically two types of IP address
-			- static IP address, which do not change with time. It will be provided by internet service provider ISP at an extra cost.
-			- dynamic IP address, the IP address of the user will shift with time to time
-	- whenever user, write a domain name in the URL bar, modern web browser will call DNS and get the static IP address of the website. once browser, get the static IP address, it will call the IP address to get the files to show in the browser.
+			- ==Static IP address==, which do not change with time. It will be provided by internet service provider ISP at an extra cost.
+			- ==Dynamic IP address==, the IP address of the user will shift with time to time
+	- Whenever user, write a domain name in the URL bar, modern web browser will call DNS and get the static IP address of the website. once browser, get the static IP address, it will call the IP address to get the files to show in the browser.
 	- Domain names are managed by ICANN (Internet Corporation for Assigned Names and Numbers) which is a non-profit organisation to handle the domain names
-- DNS will get overwhelmed as every request on the internet will first need a domain name resolution.
+- DNS will get overloaded as every request on the internet will first need a domain name resolution.
 	- this will make DNS server  take more time to respond with IP address.
 	- following are the more issues which can occur due to this architecture
 		- latency / RTT (Round trip Time) will be proportional to the distance
@@ -31,7 +30,6 @@ HLD = high-level designs
 - the  architecture, in which, if a failure in one machine causes the failure of whole system known as single point of failure.
 - let's suppose there is a one machine that act as a server, and if it is failed or down due to any reason, the whole server will crash
 #  Horizontal vs Vertical scaling
-
 ## Vertical scaling
 - vertical scaling, we usually increase the capacity of the system that we are using.
 - it is done by either increasing the resource of the existing machine
@@ -73,8 +71,6 @@ HLD = high-level designs
 	- whenever a request, come to the load balancer, the load balancer will evaluate to which server this request to go.
 	- for an example in chat GPT, if a prompt history of a user stored in server, a and that user will prompt and another command, the request should go to the server, which already have the prompt history not to the server, which is new to the prompt
 	- this will reduce the RTT
-	- this is also called as **SHARDING**
-		- it means redirecting the request to the appropriate server based upon an identification
 	- the algorithms are used to redirect the request are
 		- mapping of the request
 			- in this, we will be making a hash map of an identification key with the server name map in a variable
@@ -103,7 +99,7 @@ HLD = high-level designs
 					- and Rohit will refer to node 3
 				- if suppose a new nod is added between Ram and Kamal, then only Kamal server address will be changed, and other data will be kept same
 				- if for an example, node 5 will down the server address for Sam and Raj will be changed
-			- cascading failure
+			- **Cascading failure**
 				- failure can happen in consisting hashing as well
 					- if a server is failing due to heavy load that heavy load will be transferred to the subsequent server as well
 					- there will be high probability chances, the second server will fail and consecutively. All the server will start failing
