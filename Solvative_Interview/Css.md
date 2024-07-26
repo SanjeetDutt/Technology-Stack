@@ -3,6 +3,7 @@
 In CSS, the term "box model" is used when talking about design and layout.
 
 The CSS box model is essentially a box that wraps around every HTML element. It consists of: content, padding, borders and margins. The image below illustrates the box model:
+![[Pasted image 20240718153119.png]]
 ![[Pasted image 20240709151342.png]]
 Explanation of the different parts:
 
@@ -18,7 +19,7 @@ The box model allows us to add a border around elements, and to define space bet
 
 
 
-## Gave an HTML structure and asked him to align child elements vertically in mobile and align side by side in resolutions above 768px using mobile first approach
+## GIven an HTML structure and  align child elements vertically in mobile and align side by side in resolutions above 768px using mobile first approach
 
 ```html
 <!DOCTYPE html>
