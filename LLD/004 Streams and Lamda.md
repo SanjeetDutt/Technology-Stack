@@ -63,7 +63,7 @@ Thread thread = new Thread(()->{
 - work on the sequence of data
 	- lazy evaluation
 ![[Pasted image 20240316164437.png]]
-Basically stream API execute a piece of food on the data which are in pipeline. It is similar to the for and other loops, but the basic difference is in those loops is all the data are stored in the RAM until the whole iterations completed, but stream API let's suppose we have 1 million of a data which is calling from the database, the function will be only execute to those data which are currently in the memory later while executing the function on other data may be this data can be destroyed by the garbage collector so it is a ongoing process every time.
+Basically stream API execute a piece of code on the data which are in pipeline. It is similar to the for and other loops, but the basic difference is in those loops is all the data are stored in the RAM until the whole iterations completed, but stream API let's suppose we have 1 million of a data which is calling from the database, the function will be only execute to those data which are currently in the memory later while executing the function on other data may be this data can be destroyed by the garbage collector so it is a ongoing process every time.
 
 Streams have two sets of functions
 - **Intermediate function**
@@ -77,7 +77,7 @@ Streams have two sets of functions
 		- limit
 	- intermediate function **return another stream** as a result, that's why they can chained together to form a pipeline operation
 - **Terminal function**
-	- terminal operation typically return a single value
+	- terminal operation typically **return a single value**
 	- commonly used terminal function are
 		- collect, forEach, reduce
 		- Count, min, max

@@ -5,7 +5,7 @@
 	- Known as program
 - after instal, it live in hard drive
 - after run the application, code come from hard disk to RAM
-- process are nothing but program in execution
+- **PROCESS** are nothing but **program in execution**
 - 2.2GHz = 2.2 X 10^9 instructions per second
 	- 10^9 is know as Giga
 
@@ -15,7 +15,8 @@
 - Programme in execution
 	- Top level execution container
 	- Separate memory space
-- PCB ( Process Control Board) stores information about process, created by operating system OS
+- PCB ( Process Control Board ) stores information about process, created by operating system OS
+	- PCB = ![[Pasted image 20240714091403.png]]
 
 ```java
 class PCB{
@@ -70,7 +71,7 @@ class Threads{
 	- Data sharing in thread is much easier
 		- we have same memory address in PCB which is used by threads
 	- Creation of thread does not take extra memory as memory is already allocated in programme
-		- memory creation are called as overhead 
+		- Excessive memory creation are called as **overhead** 
 				
 - Every OS have CPU scheduler
 	- decide what thread to be executed on the basis of
@@ -82,7 +83,6 @@ class Threads{
 
 ```java
 Thread.currentThread().getName(); // Getting current thread name
-
 ```
 
 ## Single core VS Multi Core
@@ -119,7 +119,7 @@ Thread.currentThread().getName(); // Getting current thread name
 	- It means only one process running with multiple thread in it.
 	- Switching between the threads should allow (context switching should allow)
 
-| OVERVIEW           | context switching is not allowed | context switching is allowed |
+| OVERVIEW           | Context switching is not allowed | Context switching is allowed |
 | ------------------ | -------------------------------- | ---------------------------- |
 | Single core system | Sequential process               | Concurrency                  |
 | Multi core system  | Parallelism                      | Concurrency and Parallelism  |
@@ -135,7 +135,7 @@ Thread.currentThread().getName(); // Getting current thread name
 	- how it work
 		- let's suppose we need 5 thread to the pool and let's suppose 7 task are assigned to perform
 			- then threaded pool will allocate Task 1 to Task 5 who all existing thread
-			- and once thread are available new task will be assigned to the thread
+			- and once any thread is available, a new task will be assigned to the thread
 POINT TO NOTE: Thread pooling has nothing to do the context switching.
 
 ```java
@@ -175,14 +175,14 @@ public class RandomClass implements Runnable{
 // RUNNING RANDOM CLASS <- running in different thread
 ```
 ### Executor
+- Executors makes our easier by do thread pooling for us.
 - Executor will only execute the task 
-- it will not only execute the task but also get return value from the task
+- It will not only execute the task but also get return value from the task
 - Executor manages the assignment of task to threads within the thread pool.
-- Waiting Queue holds the tasks that couldn't be assigned to threads in the thread pool.
+- It also provide the **Waiting Queue** which holds the tasks that couldn't be assigned to threads in the thread pool.
 
 ```java
 // Example of executors
-
 class PrintNumber implements Runnable{...}
 
 // Creating a service of 10 thread pool
@@ -261,7 +261,7 @@ public class Client {
 # Runnable vs Callable
 Runnable class will run the class in a given thread
 - it will just run the class on a thread
-- and never return a value
+- and **never return a value**
 callable class will also run the given class in a given thread
 - it will run the class on a thread
 - and will return a value
@@ -272,12 +272,14 @@ Source Code : [[LLD/SCALAR_LLD/src/main/java/in/sanjeetdutt/M001_Concurency/P005
 ```java
 // Example of callable class
 
-public class AsyncClass implements Callable<Double> {  
+//Callable<Double> means have return valuse as Double
+public class AsyncClass implements Callable<Double> { 
   
     public AsyncClass() {  
         System.out.println("ASYNC CLASS CREATED");  
     }  
-  
+
+	// call is implemented by Callable
     @Override  
     public Double call() throws Exception {  
         System.out.println("RUNNING ASYNC CLASS");  
@@ -350,15 +352,13 @@ void functionC(int i){
 	- Thread will try to complete the process as soon as possible.
 	- Task A does not care whether Task B is completed or not and vice versa.
  - Two or more threads can enter the  critical sections at the same time
- - If we introduce something which restrict the thread to enter a critical section will fix the issue of synchronisation
-
-## Pre-empt
-- Related to context switching
-- let's suppose we are on a function A and executed some of the line, which has i++, in between system decide to do con switch and start running function B which has i--. And again in between it, try to switch the context back to A. In this situation, the value of I is wrong.
-- this is an issue called, Pre-empt.
-- where context has been switching in between of the critical section, leading to wrong data in the calculation.
-- if we try to fix this, we will lose concurency.
-
+	  ## Pre-empt
+	- Related to context switching
+	- let's suppose we are on a function A and executed some of the line, which has i++, in between system decide to do context switch and start running function B which has i--. And again in between it, try to switch the context back to A. In this situation, the value of I is wrong.
+	- this is an issue called, Pre-empt.
+	- where context has been switching in between of the critical section, leading to wrong data in the calculation.
+	- if we try to fix this, we will lose concurrency.
+	 - If we introduce something which restrict the thread to enter a critical section will fix the issue of synchronisation
 ## Solution to fix synchronisation
 - To fix synchronisation, we can have a concept of MuteX
 - MuteX = deviated from two terms
@@ -424,7 +424,8 @@ public class Client {
     public static void main(String[] args) {  
         ExecutorService executorService = Executors.newFixedThreadPool(2);  
         Value value = new Value();  
-        Lock lock = new ReentrantLock();  
+        Lock lock = new ReentrantLock(); 
+        // Serving the same lock for all Synchronus code  
   
         for(int i = 0; i < 100; i++){  
             Adder adder = new Adder(value, lock, i);  
@@ -476,7 +477,7 @@ synchronised(A){
 }
 ```
 This particular way is difficult to read.
-and cannot be applied on the primitive data type.
+and **cannot be applied on the primitive data type.**
 
 ## Synchronised method
 Every method in Java comes with synchronised keyword out of the box
