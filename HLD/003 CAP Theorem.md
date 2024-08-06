@@ -1,0 +1,28 @@
+- basically, it is abbreviation of
+	- ## Consistency ##
+		- every time you want to do a read operation, you will get the value of **latest version** or **latest write**
+		- all replica or machine will have the same view of data
+	- ## Availability ##
+		- if you send a query, the system must be **available to give you the response**
+		- at least one machine should be running at any point of time
+	- ## Partition Tolerance##
+		- it is referred to **network**
+		- A network partition is a **division** of a computer network into **relatively independent subnets**, either by design, to optimize them separately, or due to the failure of network devices.
+		- the cluster must continue to work despite any number of communication breakdowns between nodes in the system.
+			- a cluster is a **group of servers** and other resources that **act like a single system** and enable high availability, load balancing and parallel processing
+		- system, which is able to handle the event of network partitioning called partition tolerance system
+- according to this theorem, any system can provide **only two out of above three guarantee**.
+	- means if we adopt partition tolerance, inability, then we cannot have consistency
+	- or if we adopt partition tolerance and consistency, we cannot ensure availability
+- in distributed system, 
+	- partition tolerance is already given due to architecture. 
+	- So we have to select either from consistency or availability.
+- but in single system
+	-  there is no partition tolerance
+	- hence we can have both consistency and availability as per CAP theorem
+- but in reality, for having a good
+	- immediate consistency and availability
+	- basically, we design a distributed system with availability and partition tolerance
+		- and we introduce latency in consistency, which make a system, non-immediate consistency
+		- which means system will return the updated value after few moment of time?
+		- 
