@@ -1,0 +1,24 @@
+# Requirements
+- Should show various blogs
+	- blogs can be classified on category and tags
+		- 1 blog can have only one category but 1 category can have multiple blog
+		- 1 blog can belong to multiple tag and 1 tag can have multiple blog
+	- blog will have following on the initial screen
+		- title <- common everywhere
+		- small description (abut 250 char) 
+		- thumbnail 2 to 3 types
+			- same thumbnail can be used for various blogs
+		- tags
+		- category
+	- blog inside will have multiple line with headers, text image, hyperlink etc
+	- blog can have comments sections
+		- comments needs approval before showing to the screen
+	- blog can have reaction button
+		- anyone can react
+		- no need to track record
+		- reaction can be of any type
+		- need to show reaction's count
+	- blog will have seo to apply
+		- TODO
+	- blog will have a start time, after which only blog will start showing on the screen
+	- blog will have a hide button to hide it from the main list

@@ -6,7 +6,7 @@ npx lerna init --dryRun (to show logs)
 
 # Add a new package
 ```cmd
-npm lerna create <package-name>
+npx lerna create <package-name>
 ```
 
 # Running the project
