@@ -1,0 +1,100 @@
+# OLAP  / Online Analytical Processing
+- An OLAP system is a database technology that helps businesses analyse and report on large amounts of data
+- It combine data from multiple sources into a multi dimensional format
+- Data are usually stored in **Data ware house**
+	- Used for storing a large size of data usually in TeraByte, PentaByte, etc.
+	- Data should be structured in form of tables
+	- Table should be in denormalized form
+		- Normalized data is organized into multiple tables 
+		- denormalized data is combined into a single table
+		- Joins are expensive process
+# Dimensional Modelling ##
+- Need to design 2 type of table
+	- ## Fact Table
+		- Where action going to happen
+		- it is a place where all core data is stored
+			- core data 
+				- Business Matrix that can be evaluate and measure
+				- They contain number
+				- They contain foreign key 
+			- Example :
+				- price 
+				- total sales
+				- quantity
+				- discount
+				- profit margin
+				- Revenue
+				- customer id => to connect another table to get more insight (Dimension table)
+	 - ## Dimension Table ##
+		 - It is the table with which we are connecting our fact table
+		 - They provide context to your data
+		 - Help to make more sense of the raw data in the fat table
+		 - Contains description attribute
+## Example on healthcare
+- Fact table
+	- Treat cost
+	- discount
+	- Registration
+	- insured covered amount
+	- diagnosis code
+	- medication cost
+- Dimension table
+	- Patient id
+	- name
+	- contact number
+## Example on E-Commerce
+- Fact Table
+	- Customer Id
+	- Product id
+	- date (Foreign key to date dimension)
+- Dimension table
+	- Product
+		- Product id
+		- name
+		- category
+		- Brand
+		- unit price
+	- Customer
+		- Customer Id
+		- name
+		- gender
+		- location
+	- Date Dimensions 
+		- Date 
+		- Year
+		- quarter
+		- month
+		- day of week
+		- is holiday
+
+# Schema Designing
+- It help to understand how we can arrange data so that data can fetch faster
+- ## Star Schema
+	- According to it, fact table should be in centre
+	- ![[Pasted image 20250217224945.png]]
+	- Example
+	- ![[Pasted image 20250217224258.png]]
+		- Total dimension table = 4
+		- Total fact table = 1
+			- Foreign key in fact table = 4 (Asin act as foreign of 2 table)
+	- Why to use star schema
+		- Easy to understand
+		- fast performance
+		- **Some redundancy**
+	- Used 80% in industry
+- # Snowflake Schema
+	- When you need more normalization
+	- It is used to remove redundancy records
+	- this schema design has
+		- 1 fact table
+		- Multi-level dimension table
+		- ![[Pasted image 20250217225615.png]]
+		- But this will have joining the table problem 
+	- Used in 50% in industry
+- # Galaxy schema
+	- Also know as Fact constellation
+	- Used 8% in industry
+	- a data modelling technique that uses multiple fact tables and dimension tables
+	- ![[Pasted image 20250217230741.png]]
+	- Fact and fact table are not connected
+	- 
