@@ -2,6 +2,7 @@ package com.sanjeetdutt.practice_001.services;
 
 import com.sanjeetdutt.practice_001.Repositories.CategoryRepository;
 import com.sanjeetdutt.practice_001.Repositories.ProductRepository;
+import com.sanjeetdutt.practice_001.exceptions.NotFoundError;
 import com.sanjeetdutt.practice_001.models.Category;
 import com.sanjeetdutt.practice_001.models.Product;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,11 +28,15 @@ public class ProductService {
         Optional<Category> optionalCategory = categoryRepository.findById(categoryId);
 
         if(optionalCategory.isEmpty()){
-            return null;
+            throw new NotFoundError("Category not found");
         }
 
         Optional<List<Product>> optionalProducts = productRepository.findAllByCategory(optionalCategory.get());
 
-        return optionalProducts.orElse(null);
+        if(optionalProducts.isEmpty()){
+            throw new NotFoundError("Product not found");
+        }
+
+        return optionalProducts.get();
     }
 }
