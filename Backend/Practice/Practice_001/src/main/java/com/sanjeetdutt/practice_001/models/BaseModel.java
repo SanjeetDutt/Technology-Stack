@@ -22,5 +22,5 @@ public abstract class BaseModel {
 
     private Date updatedAt;
 
-//    private Status status;
+    private Status status;
 }
