@@ -1,6 +1,7 @@
 package com.sanjeetdutt.practice_001.models;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.ManyToOne;
 
 @Entity
@@ -10,7 +11,7 @@ public class Product extends BaseModel{
     private Integer price;
     private String imageUrl;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
 //    @JoinColumn(name = "category_id")
     private Category category;
 
