@@ -22,7 +22,7 @@ public class ProductController {
 
     @GetMapping("/{id}")
     public ProductResponse GetProductById(@PathVariable Long id){
-        return this.GetProductResponse(productService.getProductById(id));
+        return ProductResponse.GetProductResponse(productService.getProductById(id));
     }
 
     @GetMapping("/category/{categoryId}")
@@ -40,19 +40,9 @@ public class ProductController {
         return productService.getProductsByCategory(categoryId)
                 .stream()
                 .filter(product -> product.getStatus() == Status.ACTIVE)
-                .map(this::GetProductResponse)
+                .map(ProductResponse::GetProductResponse)
                 .toList();
     }
 
-    private ProductResponse GetProductResponse(Product product){
-        ProductResponse productResponse = new ProductResponse();
 
-        productResponse.setDescription(product.getDescription());
-        productResponse.setName(product.getName());
-        productResponse.setImageUrl(product.getImageUrl());
-        productResponse.setPrice(product.getPrice());
-        productResponse.setStatus(product.getStatus());
-
-        return productResponse;
-    }
 }

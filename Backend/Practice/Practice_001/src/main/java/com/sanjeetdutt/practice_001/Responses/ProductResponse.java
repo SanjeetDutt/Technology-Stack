@@ -1,5 +1,6 @@
 package com.sanjeetdutt.practice_001.Responses;
 
+import com.sanjeetdutt.practice_001.models.Product;
 import com.sanjeetdutt.practice_001.models.Status;
 
 public class ProductResponse {
@@ -54,5 +55,17 @@ public class ProductResponse {
             default:
                 this.status = "DELETED";
         }
+    }
+
+    public static ProductResponse GetProductResponse(Product product){
+        ProductResponse productResponse = new ProductResponse();
+
+        productResponse.setDescription(product.getDescription());
+        productResponse.setName(product.getName());
+        productResponse.setImageUrl(product.getImageUrl());
+        productResponse.setPrice(product.getPrice());
+        productResponse.setStatus(product.getStatus());
+
+        return productResponse;
     }
 }
