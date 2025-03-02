@@ -78,3 +78,24 @@
 9. Get the generated view
 10. return view the response 
 - View Resolver and View are obsolete as we are mostly using client side frontend
+
+# Exception Handling
+- Whenever we want to throw any error follow following rule
+- Create an exception class which should extends RuntimeException
+	- RuntimeException is a throwable component
+- Then throw the Error where ever needed
+- Whenever any controller throws the error we need to handle it in one place. This is called Exception handling
+	- It is done via Controller Advise
+		- Annotates with @ControllerAdvice
+		- provides a way to centralize exception handling across the entire application, helping developers write cleaner and more maintainable code.
+```Java
+@ControllerAdvice
+public class ExceptionController {
+
+    @ExceptionHandler(NotFound.class)
+    public ResponseEntity<String> handleException(NotFound exception) {
+        return new ResponseEntity<>(exception.getMessage(), HttpStaus.NOT_FOUND);
+    }
+    
+}
+```
