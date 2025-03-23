@@ -1,4 +1,4 @@
-package in.sanjeetdutt.zohocloneapp;
+package in.sanjeetdutt.zohocloneapp.main;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
