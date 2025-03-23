@@ -1,6 +1,6 @@
-<mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36" version="26.0.14" pages="2">
+<mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36" version="26.0.14" pages="3">
   <diagram name="Main Page" id="LZW2SDJDJCBH01K5A5N_">
-    <mxGraphModel dx="1659" dy="728" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+    <mxGraphModel dx="1659" dy="730" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -145,6 +145,23 @@
         </mxCell>
         <mxCell id="lqGFWw8RbX0M1DdMM3vj-15" value="&lt;h1 style=&quot;margin-top: 0px;&quot;&gt;Searching&lt;/h1&gt;&lt;p&gt;Employee can search another person in the organization and able to see only public details. But if employee has right to see private details, can able to see all the private details as well.&lt;/p&gt;" style="text;html=1;whiteSpace=wrap;overflow=hidden;rounded=0;" vertex="1" parent="1">
           <mxGeometry x="407" y="550" width="180" height="155" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="9XrsFg7EtQXmC86cjjQk" name="Self Service">
+    <mxGraphModel dx="1659" dy="730" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="L4qehuGDOw-mlSQKJbg4-3" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="L4qehuGDOw-mlSQKJbg4-1" target="L4qehuGDOw-mlSQKJbg4-2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="L4qehuGDOw-mlSQKJbg4-1" value="Self Service" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="-189" y="182" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="L4qehuGDOw-mlSQKJbg4-2" value="Update personal info" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="11" y="182" width="120" height="60" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
