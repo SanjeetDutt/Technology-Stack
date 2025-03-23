@@ -1,0 +1,152 @@
+<mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36" version="26.0.14" pages="2">
+  <diagram name="Main Page" id="LZW2SDJDJCBH01K5A5N_">
+    <mxGraphModel dx="1659" dy="728" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="o6hqtD_xesB4MX72Iaba-4" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="o6hqtD_xesB4MX72Iaba-1" target="o6hqtD_xesB4MX72Iaba-3">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="232" y="282" />
+              <mxPoint x="-186" y="282" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="o6hqtD_xesB4MX72Iaba-7" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="o6hqtD_xesB4MX72Iaba-1" target="o6hqtD_xesB4MX72Iaba-5">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="232" y="284" />
+              <mxPoint x="16" y="284" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="o6hqtD_xesB4MX72Iaba-8" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="o6hqtD_xesB4MX72Iaba-1" target="o6hqtD_xesB4MX72Iaba-6">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="o6hqtD_xesB4MX72Iaba-1" value="Supe user" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="172" y="189" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="o6hqtD_xesB4MX72Iaba-2" value="&lt;h1 style=&quot;margin-top: 0px;&quot;&gt;Super User&lt;/h1&gt;&lt;p&gt;It is subset of user which belong to the main company which can create, manage organization&amp;nbsp;&lt;/p&gt;" style="text;html=1;whiteSpace=wrap;overflow=hidden;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="357" y="166" width="180" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="o6hqtD_xesB4MX72Iaba-10" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="o6hqtD_xesB4MX72Iaba-3" target="o6hqtD_xesB4MX72Iaba-9">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="o6hqtD_xesB4MX72Iaba-3" value="ORGANIZATION #1" style="shape=parallelogram;perimeter=parallelogramPerimeter;whiteSpace=wrap;html=1;fixedSize=1;rounded=1;" vertex="1" parent="1">
+          <mxGeometry x="-283" y="326" width="193" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="o6hqtD_xesB4MX72Iaba-12" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="o6hqtD_xesB4MX72Iaba-5" target="o6hqtD_xesB4MX72Iaba-11">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="o6hqtD_xesB4MX72Iaba-5" value="ORGANIZATION #2" style="shape=parallelogram;perimeter=parallelogramPerimeter;whiteSpace=wrap;html=1;fixedSize=1;rounded=1;" vertex="1" parent="1">
+          <mxGeometry x="-81" y="326" width="193" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="o6hqtD_xesB4MX72Iaba-14" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="o6hqtD_xesB4MX72Iaba-6" target="o6hqtD_xesB4MX72Iaba-13">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="o6hqtD_xesB4MX72Iaba-6" value="ORGANIZATION #3" style="shape=parallelogram;perimeter=parallelogramPerimeter;whiteSpace=wrap;html=1;fixedSize=1;rounded=1;" vertex="1" parent="1">
+          <mxGeometry x="126" y="326" width="193" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="o6hqtD_xesB4MX72Iaba-9" value="Admin" style="whiteSpace=wrap;html=1;rounded=1;" vertex="1" parent="1">
+          <mxGeometry x="-246.5" y="466" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="o6hqtD_xesB4MX72Iaba-11" value="Admin" style="whiteSpace=wrap;html=1;rounded=1;" vertex="1" parent="1">
+          <mxGeometry x="-44.5" y="466" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="o6hqtD_xesB4MX72Iaba-13" value="Admin" style="whiteSpace=wrap;html=1;rounded=1;" vertex="1" parent="1">
+          <mxGeometry x="162.5" y="466" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="o6hqtD_xesB4MX72Iaba-15" value="&lt;h1 style=&quot;margin-top: 0px;&quot;&gt;Organization&lt;/h1&gt;&lt;p&gt;It is a place where group of people works.&lt;/p&gt;" style="text;html=1;whiteSpace=wrap;overflow=hidden;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="357" y="300" width="180" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="o6hqtD_xesB4MX72Iaba-16" value="&lt;h1 style=&quot;margin-top: 0px;&quot;&gt;Admin&lt;/h1&gt;&lt;p&gt;Admin will be representative of the organization. It can be 1 or 2 but all admin will share same right and roles&lt;/p&gt;" style="text;html=1;whiteSpace=wrap;overflow=hidden;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="357" y="457" width="180" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="o6hqtD_xesB4MX72Iaba-19" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="o6hqtD_xesB4MX72Iaba-17" target="o6hqtD_xesB4MX72Iaba-18">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="o6hqtD_xesB4MX72Iaba-21" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="o6hqtD_xesB4MX72Iaba-17" target="o6hqtD_xesB4MX72Iaba-20">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="o6hqtD_xesB4MX72Iaba-23" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="o6hqtD_xesB4MX72Iaba-17" target="o6hqtD_xesB4MX72Iaba-22">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="o6hqtD_xesB4MX72Iaba-25" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="o6hqtD_xesB4MX72Iaba-17" target="o6hqtD_xesB4MX72Iaba-24">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="o6hqtD_xesB4MX72Iaba-17" value="Organization" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;" vertex="1" parent="1">
+          <mxGeometry x="6" y="831" width="80" height="80" as="geometry" />
+        </mxCell>
+        <UserObject label="Employee management" link="data:page/id,Yge6PcwY2KCQ7UVHV7kz" id="o6hqtD_xesB4MX72Iaba-18">
+          <mxCell style="whiteSpace=wrap;html=1;" vertex="1" parent="1">
+            <mxGeometry x="146" y="841" width="120" height="60" as="geometry" />
+          </mxCell>
+        </UserObject>
+        <mxCell id="o6hqtD_xesB4MX72Iaba-20" value="Leave Management" style="whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="-14" y="1001" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="o6hqtD_xesB4MX72Iaba-22" value="Attendance Management" style="whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="-174" y="841" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="o6hqtD_xesB4MX72Iaba-24" value="Self Service" style="whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="-14" y="681" width="120" height="60" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="Yge6PcwY2KCQ7UVHV7kz" name="Employee Management">
+    <mxGraphModel dx="1259" dy="728" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="lqGFWw8RbX0M1DdMM3vj-4" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="lqGFWw8RbX0M1DdMM3vj-1" target="lqGFWw8RbX0M1DdMM3vj-3">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="lqGFWw8RbX0M1DdMM3vj-6" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="lqGFWw8RbX0M1DdMM3vj-1" target="lqGFWw8RbX0M1DdMM3vj-5">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="499" y="374" />
+              <mxPoint x="499" y="296" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="lqGFWw8RbX0M1DdMM3vj-8" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="lqGFWw8RbX0M1DdMM3vj-1" target="lqGFWw8RbX0M1DdMM3vj-7">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="lqGFWw8RbX0M1DdMM3vj-14" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="lqGFWw8RbX0M1DdMM3vj-1" target="lqGFWw8RbX0M1DdMM3vj-13">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="lqGFWw8RbX0M1DdMM3vj-1" value="Employee" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="363" y="344" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="lqGFWw8RbX0M1DdMM3vj-2" value="&lt;h1 style=&quot;margin-top: 0px;&quot;&gt;Employee&lt;/h1&gt;&lt;p&gt;Employee in an organization belongs to a department and will have a post and designation. Will have various roles assigned&lt;/p&gt;" style="text;html=1;whiteSpace=wrap;overflow=hidden;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="149" y="314" width="180" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="lqGFWw8RbX0M1DdMM3vj-3" value="Can view and edit&lt;br&gt;Personal information&lt;br&gt;such as name, email, mobile" style="shape=parallelogram;perimeter=parallelogramPerimeter;whiteSpace=wrap;html=1;fixedSize=1;rounded=1;" vertex="1" parent="1">
+          <mxGeometry x="311.5" y="212" width="223" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="lqGFWw8RbX0M1DdMM3vj-5" value="Will have on boarding and &lt;br&gt;off boarding and other training process" style="shape=parallelogram;perimeter=parallelogramPerimeter;whiteSpace=wrap;html=1;fixedSize=1;rounded=1;" vertex="1" parent="1">
+          <mxGeometry x="530" y="266" width="202" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="lqGFWw8RbX0M1DdMM3vj-7" value="Can view Organizational Hierarcy" style="shape=parallelogram;perimeter=parallelogramPerimeter;whiteSpace=wrap;html=1;fixedSize=1;rounded=1;" vertex="1" parent="1">
+          <mxGeometry x="563" y="344" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="lqGFWw8RbX0M1DdMM3vj-9" value="&lt;h1 style=&quot;margin-top: 0px;&quot;&gt;Process&lt;/h1&gt;&lt;p&gt;Some group of employee can view, edit, create and delete process. This will has separate authorization process&lt;/p&gt;" style="text;html=1;whiteSpace=wrap;overflow=hidden;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="747" y="176" width="180" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="lqGFWw8RbX0M1DdMM3vj-10" value="&lt;h1 style=&quot;margin-top: 0px;&quot;&gt;Organization H.&lt;/h1&gt;&lt;p&gt;Some group of employee can view, edit, create and delete Organizational Hierarchy. This will has separate authorization process&lt;/p&gt;" style="text;html=1;whiteSpace=wrap;overflow=hidden;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="712" y="360" width="180" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="lqGFWw8RbX0M1DdMM3vj-12" value="Some of the feilds will need approval form some set of employee" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="291" y="170" width="202" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="lqGFWw8RbX0M1DdMM3vj-13" value="Searching" style="shape=parallelogram;perimeter=parallelogramPerimeter;whiteSpace=wrap;html=1;fixedSize=1;rounded=1;" vertex="1" parent="1">
+          <mxGeometry x="363" y="484" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="lqGFWw8RbX0M1DdMM3vj-15" value="&lt;h1 style=&quot;margin-top: 0px;&quot;&gt;Searching&lt;/h1&gt;&lt;p&gt;Employee can search another person in the organization and able to see only public details. But if employee has right to see private details, can able to see all the private details as well.&lt;/p&gt;" style="text;html=1;whiteSpace=wrap;overflow=hidden;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="407" y="550" width="180" height="155" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
