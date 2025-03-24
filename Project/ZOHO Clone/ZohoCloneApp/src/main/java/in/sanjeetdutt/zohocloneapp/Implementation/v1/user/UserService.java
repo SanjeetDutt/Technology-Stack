@@ -5,7 +5,7 @@ import in.sanjeetdutt.zohocloneapp.data.model.user.User;
 import in.sanjeetdutt.zohocloneapp.data.repository.user.PasswordRepository;
 import in.sanjeetdutt.zohocloneapp.data.repository.user.UserRepository;
 import in.sanjeetdutt.zohocloneapp.exception.InternalServerError;
-import in.sanjeetdutt.zohocloneapp.main.configuration.BasicConfig;
+import in.sanjeetdutt.zohocloneapp.main.configuration.ApplicationConfiguration;
 import in.sanjeetdutt.zohocloneapp.main.service.user.IUserService;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -68,7 +68,7 @@ public class UserService implements IUserService {
         String encryptedPassword = encryptPassword(password);
         Password newPassword = Password.builder()
                 .password(encryptedPassword)
-                .expireAt(LocalDateTime.now().plusDays(BasicConfig.PASSWORD_EXPIRY_DAYS))
+                .expireAt(LocalDateTime.now().plusDays(ApplicationConfiguration.PASSWORD_EXPIRY_DAYS))
                 .user(user)
                 .build();
 
