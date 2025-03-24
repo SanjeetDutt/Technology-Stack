@@ -1,5 +1,6 @@
 package in.sanjeetdutt.zohocloneapp.Implementation.v1.user;
 
+import in.sanjeetdutt.zohocloneapp.data.model.user.Authority;
 import in.sanjeetdutt.zohocloneapp.data.model.user.Password;
 import in.sanjeetdutt.zohocloneapp.data.model.user.User;
 import in.sanjeetdutt.zohocloneapp.data.repository.user.PasswordRepository;
@@ -12,6 +13,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -25,10 +28,16 @@ public class UserService implements IUserService {
     @Override
     @Transactional
     public Optional<User> createUser(String email, String password, String firstName, String lastName) {
+        List<Authority> authorities = List.of(
+                Authority.CREATE_EMPLOYEE,
+                Authority.UPDATING_ROLE,
+                Authority.ASSIGNING_ROLE
+        );
         User user = User.builder()
                 .email(email)
                 .firstName(firstName)
                 .lastName(lastName)
+                .authorities(authorities)
                 .build();
         Password newPassword = createNewPassword(user, password);
         userRepository.save(user);

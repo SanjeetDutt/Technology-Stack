@@ -1,9 +1,7 @@
 package in.sanjeetdutt.zohocloneapp.data.model.user;
 
 import in.sanjeetdutt.zohocloneapp.data.model._BaseModel;
-import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
-import jakarta.persistence.OneToMany;
+import jakarta.persistence.*;
 import lombok.*;
 
 import java.time.LocalDateTime;
@@ -29,6 +27,11 @@ public class User extends _BaseModel {
     @OneToMany(mappedBy = "user")
     private List<Password> password;
 
+    @ElementCollection(targetClass = Authority.class)
+    @Enumerated(EnumType.STRING)
+    private List<Authority> authorities;
+
+    //======================================
     public void addPassword(Password password) {
         if(this.password == null){
             this.password = new ArrayList<Password>();
