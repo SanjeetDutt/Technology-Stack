@@ -1,0 +1,15 @@
+package in.sanjeetdutt.zohocloneapp.exception;
+
+import org.springframework.http.HttpStatus;
+
+public class ValidationException extends _BaseException{
+
+    public ValidationException(String message) {
+        super(message);
+    }
+
+    @Override
+    public HttpStatus getHttpStatus() {
+        return HttpStatus.BAD_REQUEST;
+    }
+}
