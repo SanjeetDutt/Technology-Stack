@@ -1,5 +1,5 @@
 {
-  "name": "root",
+  "name": "zoho-clone",
   "private": true,
   "workspaces": [
     "packages/*"
