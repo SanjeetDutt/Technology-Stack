@@ -9,6 +9,6 @@
     "lerna": "^8.2.2"
   },
   "scripts": {
-    "dev": "lerna run dev --scope=zohocloneapplication"
+    "dev": "lerna run dev --scope=zoho-clone_application"
   }
 }
