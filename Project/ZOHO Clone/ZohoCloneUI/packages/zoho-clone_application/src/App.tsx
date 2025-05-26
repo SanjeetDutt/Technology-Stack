@@ -1,10 +1,19 @@
-import {Containers} from "sanjeet-ui"
-function App() {
+import {Container} from "sanjeet-ui"
+import type {StyledComponent} from "./configurations";
 
-
-  return (
-    <Containers></Containers>
-  )
+const ContainerStyling:StyledComponent = {
+    padding: "2rem",
+    height: "100px",
+    backgroundColor:"SECONDARY",
+    sm:{
+    }
 }
 
-export default App
+export const App = () => {
+
+  return (
+      <Container {...ContainerStyling}>
+          This is container
+      </Container>
+  )
+}
