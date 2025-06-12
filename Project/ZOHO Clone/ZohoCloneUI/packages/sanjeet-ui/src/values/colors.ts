@@ -28,15 +28,15 @@ export const DEFAULT_COLOR_PALLET:Styling.ColorPallet = {
 }
 
 export const UTILITY_PALLET:Styling.UtilityPallet = {
-	"PRIMARY" : '#a0c4ff',
-	"SECONDARY" : '#ffc6ff',
-	"SUCCESS" : '#caffbf',
-	"DANGER" : '#ffadad',
-	"WARNING" : '#fdffb6',
-	"INFO" : '#9bf6ff',
-	"LIGHT" : '#dedede',
-	"DARK" : '#292929',
+	"PRIMARY" : '#4285FF',
+	"SECONDARY" : '#F0F4F7',
+	"SUCCESS" : '#198754',
+	"DANGER" : '#DC3545',
+	"WARNING" : '#FFC107',
+	"INFO" : '#0DCAF0',
+	"LIGHT" : '#F8F9FA',
+	"DARK" : '#212529',
 	"MUTED" : '#525252',
-	"WHITE" : '#bfbfbf',
+	"WHITE" : '#FFFFFF',
 	"BLACK" : '#000000',
 }

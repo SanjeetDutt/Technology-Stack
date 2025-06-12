@@ -24,7 +24,9 @@ export const useThemeColor = () => {
 	}
 
 	const isColor = (color:string):boolean=>
-		isPrimitiveColor(color) || isColorShade(color) || isUtilityColor(color)
+		isPrimitiveColor(String(color)) ||
+		isColorShade(String(color)) ||
+		isUtilityColor(String(color))
 
 	const getColor = (color:string):string=>{
 		if (isPrimitiveColor(color)) {

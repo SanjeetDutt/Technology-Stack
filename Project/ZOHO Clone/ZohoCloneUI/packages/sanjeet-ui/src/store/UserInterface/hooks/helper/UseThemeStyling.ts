@@ -40,7 +40,7 @@ export const useThemeStyle = () =>{
 
 		const styles:string[] = []
 
-		const breakpoints = Object.keys(getBreakpoint())
+		const breakpoints = Object.keys(getBreakpoint)
 
 		for(const [key, value] of Object.entries(styling)){
 			styles.push(

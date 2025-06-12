@@ -6,18 +6,43 @@ export type BreakpointMap = {
 	[key: string]: Styling.DefaultMeasurement
 };
 
-const initialState: BreakpointMap = {
-	...DEFAULT_BREAKPOINT,
+export type ViewportState = {
+	currentBreakpoint : string
+	currentWidth:Styling.DefaultMeasurement
+	currentHeight:Styling.DefaultMeasurement
+}
+
+export type BreakpointState = {
+	breakpoint : BreakpointMap,
+	viewport : ViewportState
+}
+
+const initialState: BreakpointState = {
+	breakpoint : DEFAULT_BREAKPOINT,
+	viewport : {
+		currentBreakpoint : "",
+		currentHeight:"0px",
+		currentWidth:"0px",
+	}
 }
 
 export const BreakpointSlice = createSlice({
 	name: "BreakpointSlice",
 	initialState: initialState,
 	reducers:{
-		setBreakpoint:(_, {payload}:PayloadAction<BreakpointMap>)=>{
-			return payload
+		setBreakpoint:(state, {payload}:PayloadAction<BreakpointMap>)=>{
+			return {
+				...state,
+				breakpoint: payload
+			}
+		},
+		setViewPort:(state, {payload}:PayloadAction<ViewportState>)=>{
+			return{
+				...state,
+				viewport: payload
+			}
 		}
-	}
+	},
 })
 
 export const BreakpointReducer = BreakpointSlice.reducer

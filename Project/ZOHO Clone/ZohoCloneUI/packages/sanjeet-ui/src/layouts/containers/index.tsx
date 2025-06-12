@@ -3,10 +3,6 @@ import * as React from "react";
 import {useTheme} from "../../store";
 import styled from "styled-components";
 
-// export type ContainerProps<T extends Styling.BreakpointMap> extends Styling.Property<T> {
-//     children?: React.ReactNode;
-// }
-
 type ContainerProps = {
     children?: React.ReactNode;
 } & Styling.Property<any>
