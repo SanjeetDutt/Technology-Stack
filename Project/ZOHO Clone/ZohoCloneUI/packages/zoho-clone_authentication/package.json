@@ -1,0 +1,20 @@
+{
+  "name": "zoho-clone_authentication",
+  "version": "0.0.1",
+  "description": "> TODO: description",
+  "author": "Sanjeet Dutt <sanjeetdutt@gmail.com>",
+  "homepage": "https://github.com/SanjeetDutt/Technology-Stack#readme",
+  "license": "ISC",
+  "main": "src/main.ts",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SanjeetDutt/Technology-Stack.git"
+  },
+  "dependencies": {
+    "react-router-dom": "^7.6.2",
+    "sanjeet-ui": "^0.0.1"
+  },
+  "devDependencies": {
+    "@types/react-router-dom": "^5.3.3"
+  }
+}

@@ -15,7 +15,8 @@
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
     "react-redux": "^9.2.0",
-    "sanjeet-ui": "^0.0.1"
+    "sanjeet-ui": "^0.0.1",
+    "zoho-clone_authentication": "^0.0.1"
   },
   "devDependencies": {
     "@types/react": "^19.1.2",
