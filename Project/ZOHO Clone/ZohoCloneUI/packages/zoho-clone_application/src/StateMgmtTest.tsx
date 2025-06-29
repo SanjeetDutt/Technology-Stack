@@ -1,26 +1,19 @@
 
 import { createSlice, useSlice, Store } from "sanjeet-ui"
 
-// type slice1 = {
-//     title: string
-// }
-
-// const setTitle = (state,{payload})=>{
-//     console.log(state,payload);
-    
-// }
-
 const slice1 = createSlice({
-	state: {
-        title:"Hello world",
-        subTitle:"How are you?"
+    state: {
+        title: "Hello world",
+        subTitle: "How are you?"
     },
-    method:{
-        setTitle: ()=>{}
+    method: {
+        setTitle: (title) => (state)=>{
+            state.title = state.title + title
+        }
     },
-    computed:{
-        getUpperCaseTitle: (state) => {
-            
+     computed:{
+        uppercaseTitle: (state) => {
+            return String(state.title).toUpperCase()
         }
     }
 });
@@ -36,17 +29,18 @@ export const StateManagementTest = ()=>{
 
 const Content = ()=>{
     const s1 = useSlice(slice1)
-    console.log(s1.data.subTitle);
+    console.log(s1.method.setTitle);
     
 
     const btnHandler = ()=>{
-        // s1.methods.setTitle("BTN CLICKED")
+        s1.method.setTitle(" -")
     }
 
 
     return(
         <div>
-            <h1>{s1.data.title}</h1>
+            <h1>{s1.computed.uppercaseTitle}</h1>
+            <h2>{s1.data.title}</h2>
             <button onClick={btnHandler}>PRESS ME</button>
         </div>
         

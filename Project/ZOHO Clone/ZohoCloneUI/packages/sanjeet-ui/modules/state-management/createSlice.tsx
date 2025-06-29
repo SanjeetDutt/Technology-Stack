@@ -1,45 +1,54 @@
 import * as ReduxToolkit from "@reduxjs/toolkit"
 
-
-type SliceComputed<T> = <R,>(state:T)=>R
-
-type CreateSliceProps<T> = {
-    state:T,
-    method?:{
-        [key: string]: <P,>(state:T,p:{payload:P})=>void
-    },
-    computed?:{
-        [key: string]: SliceComputed<T>
-    }
-};
-
-export type Slice<T> = {
-    name: string,
-    reducers: ReduxToolkit.Reducer<T>
-
-    state: T
-    methods?:{
-        [key: string]: <P,>(state:T,p:{payload:P})=>void
-    },
-    computed?:{
-        [key: string]: <R,>(state:T)=>R
-    }
+export type Computed<S> = (state:S) => any
+export type ComputedObject<S> = {
+    [key:string] : Computed<S>
 }
 
-type createSlice = <T>(props:CreateSliceProps<T>)=>Slice<T>
+export type Method<S> = (payload:any) => (s:S) => void
+export type MethodObject<S> = {
+    [key:string] : Method<S>
+}
+
+export type CreateSliceProps<S,M extends MethodObject<S> , C extends ComputedObject<S>> = {
+    state : S,
+    method : M,
+    computed : C
+};
+
+export type Slice<S,M extends MethodObject<S>,C extends ComputedObject<S>> = {
+    name: string,
+    reducers: ReduxToolkit.Reducer<S>,
+    actions: ReduxToolkit.CaseReducerActions<{[key: string]:any},string>
+} & CreateSliceProps<S,M,C>
+
+
+export type createSlice = 
+    <   S,
+        M extends MethodObject<S>,
+        C extends ComputedObject<S>
+    > (props:CreateSliceProps<S,M,C>) => Slice<S,M,C>
 
 export const createSlice:createSlice = (props) => {
     
     //Create own name
     const name = ReduxToolkit.nanoid()
     
+    const reducerResult:{[key:string]:any} = {}
+    const reducers = Object.keys(props.method).reduce((result, key)=>{
+        result[key] = (state:any,{payload}:{payload:any})=>{
+            props.method[key](payload)(state)
+        }
+        return result
+    },reducerResult)
+
+
     // Create a redux toolkit slice
     const reduxSlice = ReduxToolkit.createSlice({
         name: name,
         initialState: props.state,
-
-         //TODO: ADD REDUCER AND EXTRA REDUCER BASED ON METHODS
-        reducers:{},
+        reducers,
+        //TODO: Will think about extra reducer later
         extraReducers: (builder)=>{
 
         }
@@ -48,10 +57,8 @@ export const createSlice:createSlice = (props) => {
     //Export all data points
     return {
         name: name,
+        actions: reduxSlice.actions,
         reducers: reduxSlice.reducer,
-        state: props.state,
-        methods:props.method,
-        computed:props.computed
+        ...props
     }
 }
-
