@@ -1,4 +1,4 @@
-<mxfile host="Electron" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/22.0.3 Chrome/114.0.5735.289 Electron/25.8.4 Safari/537.36" modified="2025-06-21T16:56:09.856Z" version="22.0.3" etag="9um-oE8GJCcOadL0vesh" type="device" pages="2">
+<mxfile host="Electron" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/22.0.3 Chrome/114.0.5735.289 Electron/25.8.4 Safari/537.36" modified="2025-06-21T19:22:47.712Z" version="22.0.3" etag="usSYWDss8v0MKbdsJnLg" type="device" pages="2">
   <diagram name="Page-1" id="cayjR6MaW2V7x4r9--JO">
     <mxGraphModel dx="1816" dy="818" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
       <root>
@@ -67,7 +67,7 @@
     </mxGraphModel>
   </diagram>
   <diagram id="FE4shpaL6f6sGpWAh4zJ" name="State Management">
-    <mxGraphModel dx="2066" dy="962" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+    <mxGraphModel dx="1635" dy="731" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -225,7 +225,7 @@
         <mxCell id="KatoFvrUdMm3xGvjVWZH-39" value="" style="html=1;verticalLabelPosition=bottom;align=center;labelBackgroundColor=#ffffff;verticalAlign=top;strokeWidth=2;strokeColor=#0080F0;shadow=0;dashed=0;shape=mxgraph.ios7.icons.settings;" vertex="1" parent="1">
           <mxGeometry x="892" y="743" width="30" height="30" as="geometry" />
         </mxCell>
-        <mxCell id="KatoFvrUdMm3xGvjVWZH-40" value="State" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+        <mxCell id="KatoFvrUdMm3xGvjVWZH-40" value="Data" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
           <mxGeometry x="651" y="802" width="120" height="60" as="geometry" />
         </mxCell>
         <mxCell id="KatoFvrUdMm3xGvjVWZH-41" value="Methods" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">

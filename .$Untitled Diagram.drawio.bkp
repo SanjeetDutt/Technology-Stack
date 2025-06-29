@@ -1,0 +1,66 @@
+<mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36 Edg/136.0.0.0" version="26.2.13">
+  <diagram name="Page-1" id="cayjR6MaW2V7x4r9--JO">
+    <mxGraphModel dx="1532" dy="682" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="bgi0uYq5dDVvoykxiP6q-14" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="bgi0uYq5dDVvoykxiP6q-3" target="bgi0uYq5dDVvoykxiP6q-8">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="-5" y="495" />
+              <mxPoint x="301" y="495" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="bgi0uYq5dDVvoykxiP6q-3" value="UI Styling" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="-65" y="398" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="bgi0uYq5dDVvoykxiP6q-13" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="bgi0uYq5dDVvoykxiP6q-4" target="bgi0uYq5dDVvoykxiP6q-8">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="148" y="495" />
+              <mxPoint x="301" y="495" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="bgi0uYq5dDVvoykxiP6q-4" value="Routing" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="88" y="398" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="bgi0uYq5dDVvoykxiP6q-12" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="bgi0uYq5dDVvoykxiP6q-5" target="bgi0uYq5dDVvoykxiP6q-8">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="bgi0uYq5dDVvoykxiP6q-5" value="Configuration" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="241" y="398" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="bgi0uYq5dDVvoykxiP6q-11" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="bgi0uYq5dDVvoykxiP6q-6" target="bgi0uYq5dDVvoykxiP6q-8">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="454" y="495" />
+              <mxPoint x="301" y="495" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="bgi0uYq5dDVvoykxiP6q-6" value="Authorization" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="394" y="398" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="bgi0uYq5dDVvoykxiP6q-10" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="bgi0uYq5dDVvoykxiP6q-7" target="bgi0uYq5dDVvoykxiP6q-8">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="607" y="495" />
+              <mxPoint x="301" y="495" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="bgi0uYq5dDVvoykxiP6q-7" value="REST API" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="547" y="398" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="bgi0uYq5dDVvoykxiP6q-8" value="Sanjeet UI" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="241" y="563" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="bgi0uYq5dDVvoykxiP6q-9" value="&lt;h1 style=&quot;margin-top: 0px;&quot;&gt;Sanjeet UI&lt;/h1&gt;&lt;p&gt;Common package which will be used by many ui packages which support under the hood lot of pre-build components&lt;/p&gt;" style="text;html=1;whiteSpace=wrap;overflow=hidden;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="389" y="522" width="180" height="120" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
