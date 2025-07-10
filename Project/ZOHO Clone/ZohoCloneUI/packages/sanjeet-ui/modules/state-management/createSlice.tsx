@@ -29,8 +29,6 @@ const createReducers = <S,>(methods?: Slice.MethodObject<S>)=>{
 
     for(let key of Object.keys(methods)){
         reducerMap.set(key, (state: S, {payload}:{payload:any[]})=>{
-            console.log({methods, key, payload, state});
-            
             methods[key](...payload)(state)
         })
     }

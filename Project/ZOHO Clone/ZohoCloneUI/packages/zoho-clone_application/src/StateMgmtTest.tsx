@@ -8,8 +8,6 @@ const slice1 = createSlice({
     },
     method: {
         setTitle: (partition:string, name:string) => (state)=>{
-            console.log({partition, name});
-            
             state.title = `${state.title} ${partition} ${name}`
         }
     },
@@ -31,8 +29,6 @@ export const StateManagementTest = ()=>{
 
 const Content = ()=>{
     const s1 = useSlice(slice1)
-    console.log(s1.method.setTitle);
-    
 
     const btnHandler = ()=>{
         s1.method.setTitle(",","Sanjeet")

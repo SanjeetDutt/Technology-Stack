@@ -30,6 +30,4 @@ Object.entries(ReactIcons).forEach(([key, value]) => {
 
 })
 
-console.log(ReactIcons)
-
 export const Icons = ReactIcons

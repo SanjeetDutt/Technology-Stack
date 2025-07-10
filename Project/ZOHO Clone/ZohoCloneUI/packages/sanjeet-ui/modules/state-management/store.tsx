@@ -13,9 +13,6 @@ export const Store = (props:{slices:Slice<any>[], children: React.ReactNode}):Re
         reducers[slice.name] = slice.reducers
     })
 
-    console.log({reducers});
-    
-
     const store = configureStore({
         reducer: reducers
     })

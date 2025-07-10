@@ -5,8 +5,6 @@ import { type RouteObject } from 'react-router-dom';
 export const getNamedRoutesMap = (routes: RouteObject[]) => {
 	const RouteMap: { [key: string]: string } = {};
 
-	console.log(routes, RouteMap);
-
 	return RouteMap;
 };
 
