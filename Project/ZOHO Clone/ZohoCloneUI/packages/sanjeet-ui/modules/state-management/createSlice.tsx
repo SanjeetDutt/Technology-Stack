@@ -1,5 +1,5 @@
 import * as ReduxToolkit from "@reduxjs/toolkit"
-import type {CreateSlice, Slice, StringObject} from "./types"
+import type {CreateSlice, Slice} from "./types"
 
 export const createSlice:CreateSlice.Function = (props) =>{
 
