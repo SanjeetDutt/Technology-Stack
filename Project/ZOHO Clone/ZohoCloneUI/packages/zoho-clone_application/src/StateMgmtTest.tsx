@@ -7,8 +7,10 @@ const slice1 = createSlice({
         subTitle: "How are you?"
     },
     method: {
-        setTitle: (title) => (state)=>{
-            state.title = state.title + title
+        setTitle: (partition:string, name:string) => (state)=>{
+            console.log({partition, name});
+            
+            state.title = `${state.title} ${partition} ${name}`
         }
     },
      computed:{
@@ -33,7 +35,7 @@ const Content = ()=>{
     
 
     const btnHandler = ()=>{
-        s1.method.setTitle(" -")
+        s1.method.setTitle(",","Sanjeet")
     }
 
 

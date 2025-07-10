@@ -1,38 +1,51 @@
 import { useMemo } from "react"
-import {type ComputedObject, type MethodObject, type Slice} from "."
 import * as ReactRedux from "react-redux"
+import {type CreateSlice, type Slice, type UseSlice} from "./types"
 
-export const useSlice = <S,M extends MethodObject<S>,C extends ComputedObject<S>>({name, computed, method,actions}:Slice<S,M,C>):{
-    data: S,
-    method:{
-        [i in keyof M]: (payload:Parameters<M[i]>[0])=>void
-    },
-    computed:{
-        [i in keyof C]:ReturnType<C[i]>
-    }
-} => {
+
+export const useSlice:UseSlice.Function = <S, M extends Slice.MethodObject<S>, C extends Slice.ComputedObject<S>>(props:CreateSlice.Returns<S,M,C>) => {
     const dispatch = ReactRedux.useDispatch()
-    const data = ReactRedux.useSelector<any,any>(state => state[name])
+    
+    const data = ReactRedux.useSelector<any,any>(state => state[props.name])
 
     const computedResult = useMemo(()=>{
-        const result:{[key:string]:any} = {}
-        return Object.keys(computed).reduce((map, key)=>{
-            
-            map[key] = computed[key](data)
-            return map
-        },result) as {[i in keyof C] : ReturnType<C[i]>}
+        
+        if(!props.computed){
+            return {} as UseSlice.Computed<S, C>
+        }
+
+        const result = new Map<string, UseSlice.Computed<S,C>>()
+
+        Object.entries(props.computed).forEach(([key, value])=>{
+            result.set(key, value(data))
+        })
+
+        return Object.fromEntries(result) as UseSlice.Computed<S, C>
+
     },[data])
     
     const methodResult = useMemo(()=>{
-        const result : {[key:string]:any} = {}
 
-        return Object.keys(method).reduce((map, key)=>{
-            map[key] = (payload:any)=>{
-                //@ts-ignore
-                dispatch(actions[key](payload))
+        if(!props.method){
+            return {} as UseSlice.Method<S,M>
+        }
+
+        const result = new Map()
+
+        for(let key of Object.keys(props.method)){
+            const action = props.actions[key]
+
+            if(action){
+                result.set(key, (...payload: any) => {
+                    //@ts-ignore
+                    dispatch(props.actions[key](payload))
+                })
             }
-            return map
-        },result) as {[i in keyof M] : (payload:any)=>void}
+            
+        }
+
+        return Object.fromEntries(result)
+        
     },[])
     
     return {

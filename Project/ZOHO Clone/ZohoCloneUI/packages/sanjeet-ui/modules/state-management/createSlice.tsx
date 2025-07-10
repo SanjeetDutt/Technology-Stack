@@ -1,64 +1,40 @@
 import * as ReduxToolkit from "@reduxjs/toolkit"
+import type {CreateSlice, Slice, StringObject} from "./types"
 
-export type Computed<S> = (state:S) => any
-export type ComputedObject<S> = {
-    [key:string] : Computed<S>
-}
+export const createSlice:CreateSlice.Function = (props) =>{
 
-export type Method<S> = (payload:any) => (s:S) => void
-export type MethodObject<S> = {
-    [key:string] : Method<S>
-}
-
-export type CreateSliceProps<S,M extends MethodObject<S> , C extends ComputedObject<S>> = {
-    state : S,
-    method : M,
-    computed : C
-};
-
-export type Slice<S,M extends MethodObject<S>,C extends ComputedObject<S>> = {
-    name: string,
-    reducers: ReduxToolkit.Reducer<S>,
-    actions: ReduxToolkit.CaseReducerActions<{[key: string]:any},string>
-} & CreateSliceProps<S,M,C>
-
-
-export type createSlice = 
-    <   S,
-        M extends MethodObject<S>,
-        C extends ComputedObject<S>
-    > (props:CreateSliceProps<S,M,C>) => Slice<S,M,C>
-
-export const createSlice:createSlice = (props) => {
-    
     //Create own name
     const name = ReduxToolkit.nanoid()
-    
-    const reducerResult:{[key:string]:any} = {}
-    const reducers = Object.keys(props.method).reduce((result, key)=>{
-        result[key] = (state:any,{payload}:{payload:any})=>{
-            props.method[key](payload)(state)
-        }
-        return result
-    },reducerResult)
 
-
-    // Create a redux toolkit slice
-    const reduxSlice = ReduxToolkit.createSlice({
-        name: name,
+    const slice = ReduxToolkit.createSlice({
+        name,
         initialState: props.state,
-        reducers,
-        //TODO: Will think about extra reducer later
-        extraReducers: (builder)=>{
-
-        }
+        reducers: createReducers(props.method)
     })
-    
-    //Export all data points
+
     return {
         name: name,
-        actions: reduxSlice.actions,
-        reducers: reduxSlice.reducer,
+        actions:slice.actions,
+        reducers:slice.reducer,
         ...props
     }
+}
+
+const createReducers = <S,>(methods?: Slice.MethodObject<S>)=>{
+    if(!methods){
+        return {}
+    }
+
+    const reducerMap = new Map()
+
+    for(let key of Object.keys(methods)){
+        reducerMap.set(key, (state: S, {payload}:{payload:any[]})=>{
+            console.log({methods, key, payload, state});
+            
+            methods[key](...payload)(state)
+        })
+    }
+
+    return Object.fromEntries(reducerMap)
+
 }
