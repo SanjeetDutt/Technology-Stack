@@ -1,6 +1,11 @@
 @use '../variables' as *;
+@use '../abstracts' as *;
 
 * {
 	padding: 0;
 	margin: 0;
+
+	@include mq('sm') {
+		background: green;
+	}
 }
