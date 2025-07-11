@@ -1,4 +1,7 @@
+@use '../utilities' as *;
+
 body {
 	padding: 0;
 	margin: 0;
+	background-color: $RED-100;
 }
