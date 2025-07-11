@@ -1,11 +1,10 @@
 @use 'sanjeet-ui';
 
-:root {
-	--RED-100: #000;
-}
+@forward './layouts';
+@forward './stores';
 
 .test {
 	height: 500px;
 	width: 500px;
-	background-color: var(--RED-100);
+	background-color: var(--COLOR-DARK);
 }

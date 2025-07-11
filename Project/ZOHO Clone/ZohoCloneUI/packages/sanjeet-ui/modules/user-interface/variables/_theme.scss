@@ -1,0 +1,22 @@
+:root,
+.light-theme {
+	--COLOR-PRIMARY: var(--INDIGO-400);
+	--COLOR-SECONDARY: var(--BLACK-200);
+	--COLOR-SUCCESS: var(--GREEN-500);
+	--COLOR-DANGER: var(--RED-500);
+	--COLOR-WARNING: var(--YELLOW-300);
+	--COLOR-INFO: var(--BLUE-600);
+	--COLOR-LIGHT: var(--WHITE-900);
+	--COLOR-DARK: var(--BLACK-100);
+}
+
+.dark-theme {
+	--COLOR-PRIMARY: var(--INDIGO-800);
+	--COLOR-SECONDARY: var(--BLACK-800);
+	--COLOR-SUCCESS: var(--GREEN-700);
+	--COLOR-DANGER: var(--RED-500);
+	--COLOR-WARNING: var(--YELLOW-700);
+	--COLOR-INFO: var(--BLUE-400);
+	--COLOR-LIGHT: var(--BLACK-900);
+	--COLOR-DARK: var(--WHITE-900);
+}
