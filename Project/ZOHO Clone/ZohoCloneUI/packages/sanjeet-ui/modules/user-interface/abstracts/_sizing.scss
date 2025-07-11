@@ -1,0 +1,46 @@
+$sizing: (
+	px: (
+		height: 101,
+		width: 101,
+		padding: 101,
+		padding-left: 101,
+		padding-right: 101,
+		padding-top: 101,
+		padding-bottom: 101,
+		margin: 101,
+		margin-top: 101,
+		margin-bottom: 101,
+		margin-left: 101,
+		margin-right: 101
+	),
+	rem: (
+		height: 101,
+		width: 101,
+		padding: 101,
+		padding-left: 101,
+		padding-right: 101,
+		padding-top: 101,
+		padding-bottom: 101,
+		margin: 101,
+		margin-top: 101,
+		margin-bottom: 101,
+		margin-left: 101,
+		margin-right: 101
+	),
+	vh: (
+		height: 101
+	),
+	vw: (
+		width: 101
+	)
+);
+
+@each $dim, $properties in $sizing {
+	@each $property, $max in $properties {
+		@for $i from 0 to $max {
+			.#{$property}-#{$dim}-#{$i} {
+				#{$property}: #{$i}#{$dim};
+			}
+		}
+	}
+}
