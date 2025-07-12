@@ -1,11 +1,11 @@
 @use 'sass:map';
 
 $breakpoints: (
-	sm: var(--BREAKPOINT-SM),
-	md: var(--BREAKPOINT-MD),
-	lg: var(--BREAKPOINT-LG),
-	xl: var(--BREAKPOINT-XL),
-	xxl: var(--BREAKPOINT-XXL)
+	sm: 576px,
+	md: 768px,
+	lg: 992px,
+	xl: 1200px,
+	xxl: 1400px
 );
 
 @function getBreakpoint($breakpoint) {

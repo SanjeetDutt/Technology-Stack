@@ -1,4 +1,4 @@
-@use 'sanjeet-ui';
+@use 'sanjeet-ui' as *;
 
 @forward './layouts';
 @forward './stores';
@@ -6,6 +6,9 @@
 .test {
 	& h1 {
 		color: var(--COLOR-DARK);
-		@extend .padding-bottom-px-50;
+
+		@include mq('lg') {
+			color: var(--COLOR-INFO);
+		}
 	}
 }
