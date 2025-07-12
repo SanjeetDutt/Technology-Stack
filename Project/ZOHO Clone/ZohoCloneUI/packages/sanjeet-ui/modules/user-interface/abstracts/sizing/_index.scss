@@ -1,3 +1,5 @@
+@use '../breakpoint' as *;
+
 $sizing: (
 	px: (
 		height: 101,
@@ -38,8 +40,18 @@ $sizing: (
 @each $dim, $properties in $sizing {
 	@each $property, $max in $properties {
 		@for $i from 0 to $max {
+			// Defining class with media query
 			.#{$property}-#{$dim}-#{$i} {
 				#{$property}: #{$i}#{$dim};
+			}
+
+			// Defining class with Media Query
+			@each $breakpoint, $val in $breakpoints {
+				.#{$property}-#{$breakpoint}-#{$dim}-#{$i} {
+					@include mq($breakpoint) {
+						#{$property}: #{$i}#{$dim};
+					}
+				}
 			}
 		}
 	}

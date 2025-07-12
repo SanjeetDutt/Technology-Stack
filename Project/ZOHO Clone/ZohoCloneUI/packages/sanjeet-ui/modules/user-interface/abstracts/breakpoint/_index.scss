@@ -1,0 +1,23 @@
+@use 'sass:map';
+
+$breakpoints: (
+	sm: var(--BREAKPOINT-SM),
+	md: var(--BREAKPOINT-MD),
+	lg: var(--BREAKPOINT-LG),
+	xl: var(--BREAKPOINT-XL),
+	xxl: var(--BREAKPOINT-XXL)
+);
+
+@function getBreakpoint($breakpoint) {
+	@if (map.has-key($breakpoints, $breakpoint)) {
+		@return map.get($map: $breakpoints, $key: $breakpoint);
+	} @else {
+		@return $breakpoint;
+	}
+}
+
+@mixin mq($breakpoint) {
+	@media only screen and (min-width: getBreakpoint($breakpoint)) {
+		@content;
+	}
+}

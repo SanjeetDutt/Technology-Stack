@@ -1,6 +1,6 @@
-@use 'abstracts';
-@use 'base';
-@use 'components';
-@use 'layouts';
-@use 'utilities';
-@use 'variables';
+@forward 'abstracts';
+@forward 'base';
+@forward 'components';
+@forward 'layouts';
+@forward 'utilities';
+@forward 'variables';
