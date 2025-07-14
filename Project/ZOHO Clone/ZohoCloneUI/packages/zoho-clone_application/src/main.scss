@@ -1,14 +1,17 @@
 @use 'sanjeet-ui' as *;
+// @use './configurations/styling' as *;
 
 @forward './layouts';
 @forward './stores';
 
+@use 'sass:map';
+
 .test {
 	& h1 {
-		color: var(--COLOR-DARK);
+		color: var(--COLOR-INFO);
 
-		@include mq('lg') {
-			color: var(--COLOR-INFO);
+		@media (min-width: map.get($breakpoints, 'md')) {
+			color: var(--COLOR-PRIMARY);
 		}
 	}
 }
