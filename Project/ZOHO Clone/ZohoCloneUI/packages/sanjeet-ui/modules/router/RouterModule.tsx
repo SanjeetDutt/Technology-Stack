@@ -29,7 +29,6 @@ export class RouterModule {
 
 	private getPathName(name: string, parentName?: string[]) {
 		const path = this.getPath(name, parentName);
-		//@ts-ignore
 		return '_' + path.toUpperCase().substring(1).replaceAll('/', '_');
 	}
 
