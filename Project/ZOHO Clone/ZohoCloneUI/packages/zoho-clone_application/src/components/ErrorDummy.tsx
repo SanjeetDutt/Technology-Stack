@@ -11,7 +11,7 @@ export const ErrorDummy:React.FC<DummyProps> = (p)=>{
 
         throw new Error("TESTING ERROR");
         
-    })
+    },[])
     
     return (
         <div>

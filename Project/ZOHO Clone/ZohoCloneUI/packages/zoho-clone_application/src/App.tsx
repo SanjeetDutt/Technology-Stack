@@ -1,13 +1,15 @@
 import { BrowserRouteProvider, RouterModule } from "sanjeet-ui"
-import { AnotherDummy, DummyLoader } from "./components"
+import { AnotherDummy, DummyBeforeMount, DummyLoader } from "./components"
 // import { ThemeSlice } from "./stores/Theme"
 
 const router = new RouterModule([
     {
         name:"index",
         component: import("./components/Dummy").then(d=>({default:d.Dummy})),
-        loader: <DummyLoader/>,
+        loadingScreen: <DummyLoader/>,
         errorBoundary: AnotherDummy,
+        guard:()=> true,
+        beforeMount: DummyBeforeMount,
         props:{
             text:"Hello world"
         }
@@ -15,7 +17,7 @@ const router = new RouterModule([
     {
         name:"zoho-clone",
         component: import("./components/Dummy").then(d=>({default:d.Dummy})),
-        loader: <DummyLoader/>,
+        loadingScreen: <DummyLoader/>,
         errorBoundary: AnotherDummy,
         props:{
             text:"Zoho CLONE"

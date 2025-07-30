@@ -1,12 +1,14 @@
-import React, { type ComponentType, Suspense } from 'react';
+import React, { type ComponentType } from 'react';
+import {Suspense, type LoaderFunction, type GuardFunction} from "./Suspense"
 import { type RouteObject } from 'react-router-dom';
 
 interface Router {
 	name: string | 'index';
 	component: Promise<{default: ComponentType<any>}>;
 	children?: Router[];
-	guard?: () => any; //TODO: think about it
-	loader?: React.ReactNode;
+	guard?: GuardFunction
+	beforeMount?: LoaderFunction;
+    loadingScreen?: React.ReactNode
 	errorBoundary?: (p:any)=>React.ReactNode;
     props?:{
         [key: string]: any
@@ -29,6 +31,7 @@ export class RouterModule {
 
 	private getPathName(name: string, parentName?: string[]) {
 		const path = this.getPath(name, parentName);
+        //@ts-ignore: IDK why error coming
 		return '_' + path.toUpperCase().substring(1).replaceAll('/', '_');
 	}
 
@@ -43,13 +46,14 @@ export class RouterModule {
 			index: router.name === 'index'
 		};
 
-        // Lazy loading component
-        const LazyComponent = React.lazy(()=>router.component)
-
         routerObject.element = (
-            <Suspense fallback={router.loader}>
-                <LazyComponent {...router.props}/>
-            </Suspense>
+            <Suspense 
+                fallback={router.loadingScreen}
+                children={router.component}
+                props={router.props}
+                guard={router.guard}
+                loader={router.beforeMount}
+            />                
         )
 
         // error handling
