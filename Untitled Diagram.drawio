@@ -1,9 +1,57 @@
-<mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36 Edg/143.0.0.0" version="28.1.2">
-  <diagram name="Page-1" id="WD8zmVCFioo8Xt3p4uIM">
-    <mxGraphModel>
+<mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36 Edg/143.0.0.0" version="29.5.0">
+  <diagram name="Architecture" id="WD8zmVCFioo8Xt3p4uIM">
+    <mxGraphModel dx="2019" dy="901" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
+        <mxCell id="vubS5jKALRxlWSm4Xjee-1" edge="1" parent="1" source="vubS5jKALRxlWSm4Xjee-3" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" target="vubS5jKALRxlWSm4Xjee-4" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="vubS5jKALRxlWSm4Xjee-2" edge="1" parent="1" source="vubS5jKALRxlWSm4Xjee-3" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" target="vubS5jKALRxlWSm4Xjee-7" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="vubS5jKALRxlWSm4Xjee-3" parent="1" style="rounded=1;whiteSpace=wrap;html=1;" value="Blogging n Portfolio Site" vertex="1">
+          <mxGeometry height="60" width="120" x="230" y="130" as="geometry" />
+        </mxCell>
+        <mxCell id="vubS5jKALRxlWSm4Xjee-4" parent="1" style="rounded=1;whiteSpace=wrap;html=1;" value="Portfolio Site" vertex="1">
+          <mxGeometry height="60" width="120" x="-170" y="290" as="geometry" />
+        </mxCell>
+        <mxCell id="vubS5jKALRxlWSm4Xjee-5" edge="1" parent="1" source="vubS5jKALRxlWSm4Xjee-7" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" target="vubS5jKALRxlWSm4Xjee-8" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="vubS5jKALRxlWSm4Xjee-6" edge="1" parent="1" source="vubS5jKALRxlWSm4Xjee-7" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" target="vubS5jKALRxlWSm4Xjee-9" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="vubS5jKALRxlWSm4Xjee-7" parent="1" style="rounded=1;whiteSpace=wrap;html=1;" value="Blogging Site" vertex="1">
+          <mxGeometry height="60" width="120" x="230" y="270" as="geometry" />
+        </mxCell>
+        <mxCell id="vubS5jKALRxlWSm4Xjee-8" parent="1" style="rounded=1;whiteSpace=wrap;html=1;" value="Server" vertex="1">
+          <mxGeometry height="60" width="120" x="430" y="270" as="geometry" />
+        </mxCell>
+        <mxCell id="vubS5jKALRxlWSm4Xjee-9" parent="1" style="rounded=1;whiteSpace=wrap;html=1;" value="UI" vertex="1">
+          <mxGeometry height="60" width="120" x="230" y="410" as="geometry" />
+        </mxCell>
+        <mxCell id="vubS5jKALRxlWSm4Xjee-10" parent="1" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=15;" value="On Site DB" vertex="1">
+          <mxGeometry height="80" width="60" x="410" y="370" as="geometry" />
+        </mxCell>
+        <mxCell id="vubS5jKALRxlWSm4Xjee-11" edge="1" parent="1" source="vubS5jKALRxlWSm4Xjee-8" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=1;entryY=0;entryDx=0;entryDy=52.5;entryPerimeter=0;" target="vubS5jKALRxlWSm4Xjee-10">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="vubS5jKALRxlWSm4Xjee-12" edge="1" parent="1" source="vubS5jKALRxlWSm4Xjee-9" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;entryPerimeter=0;" target="vubS5jKALRxlWSm4Xjee-10">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="vubS5jKALRxlWSm4Xjee-13" parent="1" style="shape=parallelogram;perimeter=parallelogramPerimeter;whiteSpace=wrap;html=1;fixedSize=1;" value="Electron js" vertex="1">
+          <mxGeometry height="60" width="120" x="550" y="300" as="geometry" />
+        </mxCell>
+        <mxCell id="vubS5jKALRxlWSm4Xjee-14" parent="1" style="shape=parallelogram;perimeter=parallelogramPerimeter;whiteSpace=wrap;html=1;fixedSize=1;" value="Vue JS" vertex="1">
+          <mxGeometry height="60" width="120" x="120" y="380" as="geometry" />
+        </mxCell>
+        <mxCell id="vubS5jKALRxlWSm4Xjee-15" parent="1" style="shape=parallelogram;perimeter=parallelogramPerimeter;whiteSpace=wrap;html=1;fixedSize=1;" value="Lerna" vertex="1">
+          <mxGeometry height="60" width="120" x="340" y="160" as="geometry" />
+        </mxCell>
+        <mxCell id="vubS5jKALRxlWSm4Xjee-16" parent="1" style="shape=parallelogram;perimeter=parallelogramPerimeter;whiteSpace=wrap;html=1;fixedSize=1;" value="Vue JS" vertex="1">
+          <mxGeometry height="60" width="120" x="-280" y="260" as="geometry" />
+        </mxCell>
       </root>
     </mxGraphModel>
   </diagram>
