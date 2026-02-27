@@ -1,0 +1,11 @@
+{
+  "name": "root",
+  "private": true,
+  "workspaces": [
+    "packages/*"
+  ],
+  "devDependencies": {
+    "electron-vite": "^5.0.0",
+    "lerna": "^9.0.4"
+  }
+}
