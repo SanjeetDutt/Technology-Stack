@@ -1,26 +1,13 @@
-import React, { type ComponentType } from 'react';
-import {Suspense, type LoaderFunction, type GuardFunction} from "./Suspense"
+import {Suspense} from "./Suspense"
 import { type RouteObject } from 'react-router-dom';
-
-interface Router {
-	name: string | 'index';
-	component: Promise<{default: ComponentType<any>}>;
-	children?: Router[];
-	guard?: GuardFunction
-	beforeMount?: LoaderFunction;
-    loadingScreen?: React.ReactNode
-	errorBoundary?: (p:any)=>React.ReactNode;
-    props?:{
-        [key: string]: any
-    }
-}
+import type { Router } from './Type';
 
 export class RouterModule {
-	private routes: Router[];
+	private routes: Router.Object[];
 	private routeObject: RouteObject[];
 	private routerNamePathMap: Map<string, string> = new Map();
 
-	constructor(routes: Router[]) {
+	constructor(routes: Router.Object[]) {
 		this.routes = routes;
 		this.routeObject = this.createRouteObject(routes);
 	}
@@ -41,7 +28,7 @@ export class RouterModule {
 		this.routerNamePathMap.set(pathName, path);
 	}
 
-	private renderRouter(router: Router, parentName?: string[]): RouteObject {
+	private renderRouter(router: Router.Object, parentName?: string[]): RouteObject {
 		const routerObject: RouteObject = {
 			index: router.name === 'index'
 		};
@@ -66,19 +53,19 @@ export class RouterModule {
 		return routerObject;
 	}
 
-	private renderParentRouter(router: Router, parentName?: string[]): RouteObject {
+	private renderParentRouter(router: Router.Object, parentName?: string[]): RouteObject {
 		const routerObject: RouteObject = this.renderRouter(router, parentName);
 		routerObject.children = this.createRouteObject(router.children!, [...(parentName || []), router.name]);
 		return routerObject;
 	}
 
-	private renderRootRouter(router: Router, parentName?: string[]): RouteObject {
+	private renderRootRouter(router: Router.Object, parentName?: string[]): RouteObject {
 		const routerObject: RouteObject = this.renderRouter(router, parentName);
 		(routerObject.id = this.getPathName(router.name, parentName)), this.addRouterNamePath(router.name, parentName);
 		return routerObject;
 	}
 
-	private createRouteObject(routes: Router[], parentName?: string[]): RouteObject[] {
+	private createRouteObject(routes: Router.Object[], parentName?: string[]): RouteObject[] {
 		return routes.map((route) => {
 			return !!route.children ? this.renderParentRouter(route, parentName) : this.renderRootRouter(route, parentName);
 		});
