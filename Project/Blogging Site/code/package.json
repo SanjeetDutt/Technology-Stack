@@ -5,7 +5,12 @@
     "packages/*"
   ],
   "devDependencies": {
-    "electron-vite": "^5.0.0",
     "lerna": "^9.0.4"
+  },
+  "scripts": {
+    "dev": "lerna run dev --scope=backend-server --scope=backend-ui"
+  },
+  "dependencies": {
+    "dotenv": "^17.3.1"
   }
 }
