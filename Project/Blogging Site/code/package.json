@@ -8,7 +8,7 @@
     "lerna": "^9.0.4"
   },
   "scripts": {
-    "dev": "lerna run dev --scope=backend-server --scope=backend-ui"
+    "dev": "lerna run dev --scope=back-end-application --scope=front-end-application"
   },
   "dependencies": {
     "dotenv": "^17.3.1"
