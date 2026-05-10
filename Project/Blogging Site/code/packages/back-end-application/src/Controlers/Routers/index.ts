@@ -1,12 +1,18 @@
 import {Router} from "express"
-import {userRouter} from "./UserRouter";
 import {ApplicationRouter} from "../Middlewares"
 
-export const AppRouter = Router();
+import {userRouter} from "./UserRouter";
 
+// Register you routes here
 const routers: ApplicationRouter[] = [
 	userRouter
 ]
+
+
+
+
+// -------------DO NOT TOUCH --------------------//
+export const AppRouter = Router();
 routers.forEach(router =>
 	AppRouter.use(router.getPath(), router.getRouter())
 )
