@@ -1,7 +1,13 @@
 import {Router} from "express"
 import {userRouter} from "./UserRouter";
-import {authenticate} from "../Middlewares";
+import {ApplicationRouter} from "../Middlewares"
 
 export const AppRouter = Router();
-AppRouter.use("/user",authenticate([]),userRouter)
+
+const routers: ApplicationRouter[] = [
+	userRouter
+]
+routers.forEach(router =>
+	AppRouter.use(router.getPath(), router.getRouter())
+)
 
