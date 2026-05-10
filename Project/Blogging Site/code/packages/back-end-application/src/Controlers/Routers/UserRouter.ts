@@ -1,14 +1,13 @@
-import {ApplicationRouter} from "./utility/ApplicationRouter";
+import {Router} from "express"
 import {SignupRequest} from "../DTO/Request";
 import {SignupResponse} from "../DTO/Response";
+import {authenticate} from "../Middlewares";
 
-const router = ApplicationRouter()
+export const userRouter = Router()
 
-router.post<SignupRequest,SignupResponse>("/signup", [],async (request) => {
-	console.log({request})
-	return {
-		status:"success"
-	}
+userRouter.post("/signup",authenticate([]),async (req,res)=>{
+	console.log({req, res})
+	res.status(200).json({
+		status:"success",
+	})
 })
-
-export const UserRouter = router

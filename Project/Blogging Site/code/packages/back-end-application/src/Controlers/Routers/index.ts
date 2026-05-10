@@ -1,8 +1,7 @@
 import {Router} from "express"
-import {UserRouter} from "./UserRouter";
+import {userRouter} from "./UserRouter";
+import {authenticate} from "../Middlewares";
 
 export const AppRouter = Router();
-
-AppRouter.use("/user",UserRouter)
-
+AppRouter.use("/user",authenticate([]),userRouter)
 
