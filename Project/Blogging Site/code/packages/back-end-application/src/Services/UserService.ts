@@ -1,14 +1,35 @@
-import {RequestProps, SignupRequest, SignupResponse} from "../Controlers";
+import {SignupRequest, SignupResponse, ValidationError} from "../Controlers";
 import {ServiceFunction} from "./type";
+import {notEmpty, notNull, validEmail, validPassword8Length} from "./Utility";
+import {getAllUserByEmail, signupNewUser} from "../Database";
 
 interface IUserService {
 	signup: ServiceFunction<SignupRequest, SignupResponse>;
 }
 
-class UserService implements IUserService {
-	async signup(request: RequestProps<SignupRequest, {}>): Promise<SignupResponse> {
-		return {status:"success"}
-	}
+function validateSignupRequest ({name, email, password}:SignupRequest) {
+	notNull({name, email, password});
+	notEmpty({name, email, password});
+	validEmail({email})
+	validPassword8Length({password})
 }
 
-export const userService:IUserService = new UserService();
+export const userService:IUserService = {
+	signup:async (request)=>{
+		const {email, password, name} = request.body
+		validateSignupRequest(request.body)
+		const user = await getAllUserByEmail(email)
+
+		console.log({user})
+
+		if(user.length > 0){
+			throw new ValidationError("User with same email already exists")
+		}
+
+		const securePassword = password // TODO: Secure password
+
+		await signupNewUser({email, password:securePassword, name})
+
+		return {status:"success"}
+	}
+};

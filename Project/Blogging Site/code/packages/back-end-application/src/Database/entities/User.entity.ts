@@ -22,6 +22,14 @@ export class User extends _BaseEntity{
 	// @JoinTable()
 	// roles: Role[] = []
 
+	addPassword(password:Password){
+		if(!this.passwords){
+			this.passwords = []
+		}
+		this.passwords.push(password)
+		password.user = this
+	}
+
 
 
 	constructor(name: string, email: string) {
