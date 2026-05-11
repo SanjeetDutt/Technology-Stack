@@ -1,6 +1,6 @@
 import {SignupRequest, SignupResponse, ValidationError} from "../Controlers";
 import {ServiceFunction} from "./type";
-import {notEmpty, notNull, validEmail, validPassword8Length} from "./Utility";
+import {notEmpty, notNull, validEmail, validPassword8Length, hash} from "./Utility";
 import {getAllUserByEmail, signupNewUser} from "../Database";
 
 interface IUserService {
@@ -20,13 +20,11 @@ export const userService:IUserService = {
 		validateSignupRequest(request.body)
 		const user = await getAllUserByEmail(email)
 
-		console.log({user})
-
 		if(user.length > 0){
 			throw new ValidationError("User with same email already exists")
 		}
 
-		const securePassword = password // TODO: Secure password
+		const securePassword =await hash(password)
 
 		await signupNewUser({email, password:securePassword, name})
 
