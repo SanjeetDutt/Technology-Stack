@@ -5,7 +5,7 @@ import {
 	SignupRequest,
 	SignupResponse,
 	ValidationError,
-	notEmpty, notNull, validEmail, validPassword8Length, hash,generateJWT
+	notEmpty, notNull, validEmail, validPassword8Length, hash,generateJWTToken
 } from "../Controlers";
 import {ServiceFunction} from "./type";
 import {getAllUserByEmail, signupNewUser} from "../Database";
@@ -13,11 +13,7 @@ import {getAllUserByEmail, signupNewUser} from "../Database";
 interface IUserService {
 	signup: ServiceFunction<SignupRequest, SignupResponse>;
 	login: ServiceFunction<LoginRequest, LoginResponse>;
-}
-
-interface userJWT {
-	email: string;
-	name: string;
+	validateToken: ServiceFunction<{}, {status:boolean}>;
 }
 
 function validateSignupRequest ({name, email, password}:SignupRequest) {
@@ -69,21 +65,24 @@ export const userService:IUserService = {
 
 		const currentPassword = currentUser.passwords[0]!
 
-		const securePassword =await hash(password)
+		const securePassword = await hash(password)
 
 		if(currentPassword.password !== securePassword){
 			throw new AuthenticationError("Invalid password")
 		}
 
-		const JWTPayload: userJWT = {
-			name: currentUser.name,
-			email: currentUser.email
-		}
+		const token = await generateJWTToken(currentUser)
 
 		return{
 			status:"success",
-			token :`${generateJWT(JWTPayload)}`,
+			token :token,
 			type:"Bearer"
+		}
+	},
+
+	validateToken: async (request)=>{
+		return {
+			status:true,
 		}
 	}
 };

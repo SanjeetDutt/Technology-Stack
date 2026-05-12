@@ -1,10 +1,9 @@
 import {datasource} from "../datasource";
-import {User} from "../entities/User.entity";
-import {Password} from "../entities/Password.entity";
+import {UserEntity,PasswordEntity} from "../entities";
 
 
 export const getAllUserByEmail = async (email: string) => {
-	return await datasource.getRepository(User).find({
+	return await datasource.getRepository(UserEntity).find({
 		where: { email },
 		relations:{
 			passwords:true
@@ -13,10 +12,10 @@ export const getAllUserByEmail = async (email: string) => {
 }
 
 export const signupNewUser = async ({email, password, name}:{email:string, password:string, name:string})=>{
-	const newUser = new User(name,email)
-	const newPassword = new Password(password)
+	const newUser = new UserEntity(name,email)
+	const newPassword = new PasswordEntity(password)
 	newUser.addPassword(newPassword)
 
-	await datasource.getRepository(User).save(newUser)
-	await datasource.getRepository(Password).save(newPassword)
+	await datasource.getRepository(UserEntity).save(newUser)
+	await datasource.getRepository(PasswordEntity).save(newPassword)
 }

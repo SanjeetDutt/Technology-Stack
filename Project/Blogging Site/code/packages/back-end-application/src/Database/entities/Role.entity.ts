@@ -1,24 +1,24 @@
 import {Column, Entity, JoinTable, ManyToMany, PrimaryGeneratedColumn} from "typeorm";
-import {User} from "./User.entity";
-import {Permission} from "./Permission.entity";
+import { UserEntity,PermissionEntity} from ".";
+import {_BaseEntity} from "./_Base.entity";
 
-@Entity()
-export class Role {
+@Entity("role")
+export class RoleEntity extends _BaseEntity {
 	@PrimaryGeneratedColumn("uuid")
 	id?: string
 
 	@Column()
 	name: string
 
-	// @ManyToMany(()=>User)
-	// @JoinTable()
-	// users: User[] = []
+	@ManyToMany(()=>UserEntity, user=>user.roles)
+	users?: UserEntity[]
 
-	// @ManyToMany(()=>Permission)
-	// @JoinTable()
-	// permissions: Permission[] = []
+	@ManyToMany(()=>PermissionEntity, permission=>permission.roles)
+	@JoinTable({name:"role_permission",joinColumn:{name:"role_id",referencedColumnName:"id"}, inverseJoinColumn:{name:"permission_name",referencedColumnName:"name"}})
+	permissions?: PermissionEntity[]
 
 	constructor(name:string){
+		super()
 		this.name = name;
 	}
 }

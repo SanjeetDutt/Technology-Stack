@@ -1,16 +1,16 @@
 import {Entity, ManyToOne, PrimaryColumn, JoinColumn} from "typeorm";
-import {User} from "./User.entity";
+import {UserEntity} from ".";
 import {_BaseEntity} from "./_Base.entity";
 
-@Entity()
-export class Password extends _BaseEntity{
+@Entity("password")
+export class PasswordEntity extends _BaseEntity{
 
 	@PrimaryColumn("varchar")
 	password: string
 
-	@ManyToOne(() => User)
+	@ManyToOne(() => UserEntity)
 	@JoinColumn({name:"user_id"})
-	user?:User
+	user?:UserEntity
 
 	constructor( password: string){
 		super()

@@ -1,10 +1,9 @@
 import {Column, Entity, JoinTable, ManyToMany, OneToMany, PrimaryGeneratedColumn} from "typeorm";
-import {Password} from "./Password.entity";
-import {Role} from "./Role.entity";
+import {PasswordEntity,RoleEntity} from ".";
 import {_BaseEntity} from "./_Base.entity";
 
 @Entity("user")
-export class User extends _BaseEntity{
+export class UserEntity extends _BaseEntity{
 
 	@PrimaryGeneratedColumn("uuid",{name:"id"})
 	id?: string
@@ -15,14 +14,14 @@ export class User extends _BaseEntity{
 	@Column("varchar", {nullable:false, name:"email"})
 	email: string
 
-	@OneToMany(()=>Password, password=>password.user)
-	passwords?: Password[]
+	@OneToMany(()=>PasswordEntity, password=>password.user)
+	passwords?: PasswordEntity[]
 
-	// @ManyToMany(()=>Role)
-	// @JoinTable()
-	// roles: Role[] = []
+	@ManyToMany(()=>RoleEntity, role=>role.users)
+	@JoinTable({name:"user_role",joinColumn:{name:"user_id",referencedColumnName:"id"},inverseJoinColumn:{name:"role_id", referencedColumnName:"id"}})
+	roles?: RoleEntity[]
 
-	addPassword(password:Password){
+	addPassword(password:PasswordEntity){
 		if(!this.passwords){
 			this.passwords = []
 		}

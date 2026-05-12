@@ -4,9 +4,12 @@ import {datasource} from "./Database";
 import {app} from "./app"
 dotenv.config();
 const PORT = process.env.BACKEND_SERVER_PORT || 3001;
+import {permissionService} from "./Services"
 datasource.initialize()
-	.then(()=>{
-		console.log("DATASOURCE has been initialized");
+	.then(async ()=>{
+		console.log("DATASOURCE has been initialized. Starting synchronizing permissions...");
+		await permissionService.syncDB()
+		console.log("Permission sync completed. Starting server...")
 		app.listen(PORT, () => {
 			console.log(`Server is running at http://localhost:${PORT}`);
 		});
