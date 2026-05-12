@@ -39,7 +39,10 @@ export class ApplicationRouter {
 
 	private authenticate(access:Access){
 		return (request:Request, response:Response, next:NextFunction)=>{
-			//todo: IMPL AUTH METHOD
+			if(access.length===0){
+				// No access check needed. User can access the endpoint without any JWT token
+				next()
+			}
 			next()
 		}
 	}

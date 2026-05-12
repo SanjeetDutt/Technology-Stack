@@ -1,4 +1,4 @@
-import {ValidationError} from "../../Controlers";
+import {ValidationError} from "../../index";
 
 const VALIDATE = <T=any>(condition:(p:T)=>boolean, message:string, description?:string)=>{
 	return (inputs:{[key:string]:T})=>{
@@ -17,6 +17,8 @@ const VALIDATE = <T=any>(condition:(p:T)=>boolean, message:string, description?:
 const emailRegex =
 	/^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
 
+
+//---------------VALIDATION RULES--------------------//
 export const notNull = VALIDATE(t=>t!==null, '$name cannot be null')
 export const notEmpty = VALIDATE<string>(t=>t.trim()!=="", '$name cannot be empty string')
 export const validEmail = VALIDATE<string>(t=>!!t.toLowerCase().match(emailRegex), 'Please enter valid email','Got $value')

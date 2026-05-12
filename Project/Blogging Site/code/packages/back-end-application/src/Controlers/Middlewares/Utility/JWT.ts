@@ -1,12 +1,18 @@
 import crypto from "crypto"
 
 const secreteKey = "SANJEET_ROCKS"
-const header = {
+const defaultHeader = {
 	alg: "HS256",
 	typ: "JWT",
 }
 
-export function generateJWT (payload: Object){
+/**
+ * Generate a JWT token from given payload and optional header object.
+ * This includes encryption of header and payload and signing the token
+ * @param payload
+ * @param header
+ */
+export function generateJWT (payload: Object, header: Object = defaultHeader) {
 	const encodedHeader = base64Encode(header)
 	const encodedBody = base64Encode(payload)
 	const partialToken = `${encodedHeader}.${encodedBody}`

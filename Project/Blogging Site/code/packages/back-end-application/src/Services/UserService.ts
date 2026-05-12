@@ -4,12 +4,11 @@ import {
 	LoginResponse,
 	SignupRequest,
 	SignupResponse,
-	ValidationError
+	ValidationError,
+	notEmpty, notNull, validEmail, validPassword8Length, hash,generateJWT
 } from "../Controlers";
 import {ServiceFunction} from "./type";
-import {notEmpty, notNull, validEmail, validPassword8Length, hash} from "./Utility";
 import {getAllUserByEmail, signupNewUser} from "../Database";
-import {generateJWT} from "./Utility/JWT";
 
 interface IUserService {
 	signup: ServiceFunction<SignupRequest, SignupResponse>;
