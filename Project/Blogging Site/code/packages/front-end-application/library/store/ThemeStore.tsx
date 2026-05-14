@@ -1,4 +1,4 @@
-import {createGlobalStore} from "@/app/_components/store/utility";
+import {createGlobalStore} from "./utility";
 
 type Theme = "LIGHT" | "DARK";
 

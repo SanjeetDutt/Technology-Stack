@@ -1,7 +1,7 @@
 "use client"
 
-import "./_components/global.scss"
-import {ThemeProvider, useTheme} from "@/app/_components/store/ThemeStore";
+import {ThemeProvider, useTheme} from "@store"
+import "../style/index.scss"
 
 export default function RootLayout(props: LayoutProps<"/">) {
   return (
@@ -18,6 +18,7 @@ export default function RootLayout(props: LayoutProps<"/">) {
 
 function AppBody({children}:{children:React.ReactNode}){
     const {currentTheme} = useTheme()
+
     return (
         <body className={`app-container ${currentTheme==="LIGHT"?'light-theme':'dark-theme'}`}>
             {children}

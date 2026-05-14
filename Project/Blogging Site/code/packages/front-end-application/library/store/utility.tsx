@@ -1,3 +1,5 @@
+"use client"
+
 import {StoreApi, useStore, createStore} from "zustand"
 import React, {useState} from "react";
 
