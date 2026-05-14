@@ -1,0 +1,10 @@
+$shades : ("VIOLET","INDIGO","BLUE","GREEN","YELLOW","ORANGE","RED","BLACK","WHITE");
+$codes : ("100","200","300","400","500","600","700","800","900");
+
+@each $shade in $shades {
+  @each $code in $codes {
+    .bg-#{$shade}-#{$code} {
+      background-color: var(--#{$shade}-#{$code});
+    }
+  }
+}

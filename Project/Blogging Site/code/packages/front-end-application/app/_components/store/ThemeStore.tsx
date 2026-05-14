@@ -8,11 +8,13 @@ interface ThemeState {
 
 interface ThemeFunction {
     setTheme: (newTheme: Theme) => void
+    toggleTheme: () => void
 }
 
 const store = createGlobalStore<ThemeState, ThemeFunction>((set)=>({
     currentTheme: "LIGHT",
     setTheme: (newTheme:Theme) => set((store)=>({...store, currentTheme: newTheme})),
+    toggleTheme:()=>set(store=>({...store, currentTheme: store.currentTheme === "LIGHT"?"DARK":"LIGHT"}))
 }))
 
 export const ThemeProvider = store.Provider

@@ -1,0 +1,58 @@
+.layout{
+  background-color: var(--BLUE-500);
+  display: flex;
+  height: 100vh;
+  width: 100vw;
+
+  .content{
+    z-index: 1;
+    position: relative;
+    display: flex;
+    height: 100vh;
+    width: 100vw;
+  }
+
+  .shape{
+    position: absolute;
+    background-image: url('/img/bg-oval.svg');
+    background-repeat: no-repeat;
+    background-size: cover;
+
+    &Shape1 {
+      width: 800px;
+      height: 700px;
+      transform: rotate(180deg);
+      background-position: 100px 200px;
+      top: 0;
+      left: 0;
+
+    }
+
+    &Shape2{
+      width: 500px;
+      height: 500px;
+      transform: rotate(270deg);
+      background-position: 100px 50px;
+      top: 0;
+      right: 0;
+    }
+
+    &Shape3{
+      width: 500px;
+      height: 500px;
+      transform: rotate(90deg);
+      background-position: 100px 200px;
+      bottom: 0;
+      left: 0;
+    }
+
+    &Shape4{
+      width: 600px;
+      height: 600px;
+      transform: rotate(0deg);
+      background-position: 100px 200px;
+      bottom: 0;
+      right: 0;
+    }
+  }
+}

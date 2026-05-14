@@ -17,19 +17,9 @@ export default function RootLayout(props: LayoutProps<"/">) {
 
 
 function AppBody({children}:{children:React.ReactNode}){
-    const {currentTheme, setTheme} = useTheme()
-
-    const toggle = ()=>{
-        if(currentTheme === "LIGHT"){
-            setTheme("DARK")
-        }else {
-            setTheme("LIGHT")
-        }
-    }
+    const {currentTheme} = useTheme()
     return (
         <body className={`app-container ${currentTheme==="LIGHT"?'light-theme':'dark-theme'}`}>
-
-            <button onClick={toggle}>Toggle theme</button>
             {children}
         </body>
     )

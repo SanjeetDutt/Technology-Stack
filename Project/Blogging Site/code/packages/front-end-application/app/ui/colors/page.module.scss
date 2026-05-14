@@ -1,0 +1,26 @@
+.color{
+  &Container{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin: 10px;
+  }
+
+  &Title{
+    width: 100%;
+  }
+
+  &Tile{
+    height: 70px;
+    width: 70px;
+    margin: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    span{
+      display: block;
+      font-weight: bold;
+    }
+  }
+}
