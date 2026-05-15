@@ -28,16 +28,18 @@ export interface DefaultInputProps{
     className?: string,
 
     //-------------------   OPTIONAL HANDLER    -------------------//
-    onChange?:(value:string) => void;
+    onValueChange?:(value:string) => void;
     validation?: (value:string)=>string|boolean
     onFocus?: () => void,
     onBlur?: () => void,
 
 }
 
+type OnChange = (e:React.ChangeEvent<HTMLInputElement>)=>void
+
 interface _InputChildProps extends Omit<DefaultInputProps, "onChange"|"validation"|"label"|"value">{
     id: string,
-    onChange: (e:React.ChangeEvent<HTMLInputElement>)=>void,
+    onChange: OnChange,
     value:string
 }
 
@@ -51,7 +53,7 @@ export const InputWrapper: React.FC<InputWrapperProps> = (props)=>{
     const isValid = value!==null && props.validation && props.validation(value)
     const isValidOrNull = value ===null || isValid;
 
-    const isFocused = focused || (value!==null && value!=="")
+    const isFocused = focused || (current!==null && current!=="")
 
     const focusHandler=()=>{
         setFocused(true)
@@ -61,32 +63,48 @@ export const InputWrapper: React.FC<InputWrapperProps> = (props)=>{
         setFocused(false)
     }
 
-    const onChangeHandler=(e: React.ChangeEvent<HTMLInputElement>)=>{
+    const onChangeHandler:OnChange=(e)=>{
         const _value = e.target.value;
         setValue(_value)
+        props.onValueChange && props.onValueChange(_value||"")
     }
 
     return(
         <div className={`${style.InputWrapper} ${props.className}`}>
-            <label htmlFor={props.name}
-                   className={`${style.InputWrapperLabel} ${isFocused ? style.InputWrapperLabelFocused : ''}`}
-            >{props.label}</label>
+            <Label {...props} isFocused={isFocused} />
             <div className="row-flex gap-sm">
-                {props.Input({
-                    name: props.name,
-                    id: props.name,
-                    className:"input",
-                    onFocus: focusHandler,
-                    onBlur: blurHandler,
-                    onChange: onChangeHandler,
-                    value: current || "",
-                    placeholder:props.placeholder || "",
-                })}
-                {!isValidOrNull && (<Warning />)}
+                <Input {...props} onFocus={focusHandler} onBlur={blurHandler} onChange={onChangeHandler} current={current}/>
+                {!isValidOrNull && (<Warning className="cursor-pointer" />)}
             </div>
-
-            <div className={`${style.InputWrapperUnderline} ${isFocused ? style.InputWrapperUnderlineFocused : ''}`}></div>
+            <Underline {...props} isFocused={isFocused} />
 
         </div>
     )
 }
+
+type _Input = InputWrapperProps & { onFocus?: () => void,
+    onBlur?: () => void,
+    onChange: OnChange,
+    current?: string|null
+}
+const Input:React.FC<_Input>=(props)=>
+    props.Input({
+        name: props.name,
+        id: props.name,
+        className:"input",
+        onFocus: props.onFocus,
+        onBlur: props.onBlur,
+        onChange: props.onChange,
+        value: props.current || "",
+        placeholder:props.placeholder || "",
+    })
+
+const Label:React.FC<InputWrapperProps & {isFocused:boolean}> = (props)=> (
+    <label htmlFor={props.name}
+           className={`${style.InputWrapperLabel} ${props.isFocused ? style.InputWrapperLabelFocused : ''}`}
+    >{props.label}</label>
+)
+
+const Underline:React.FC<InputWrapperProps & {isFocused:boolean}> = (props)=> (
+    <div className={`${style.InputWrapperUnderline} ${props.isFocused ? style.InputWrapperUnderlineFocused : ''}`}></div>
+)

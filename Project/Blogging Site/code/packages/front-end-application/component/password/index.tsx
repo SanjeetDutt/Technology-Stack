@@ -1,6 +1,8 @@
 "use client"
 import {DefaultInputProps, InputWrapper} from "../_abstract"
-import {useState} from "react";
+import React, {useState} from "react";
+import {EyeOpen, EyeCross} from "@/library/icon"
+
 interface PasswordProps extends DefaultInputProps{}
 
 export const Password:React.FC<PasswordProps> = (props)=>{
@@ -14,7 +16,7 @@ export const Password:React.FC<PasswordProps> = (props)=>{
         Input={(props)=>(
             <>
                 <input {...props} type={showPassword ? "text" : "password"}/>
-                <span onClick={showToggle}>{showPassword?'HIDE':'SHOW'}</span>
+                <span onClick={showToggle}>{showPassword?<EyeCross className="cursor-pointer" />:<EyeOpen className="cursor-pointer" />}</span>
             </>
         )}
         />
