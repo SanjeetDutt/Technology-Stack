@@ -1,19 +1,20 @@
 "use client"
 
 import {SignupLoginCard} from "../SignupLoginCard";
-import {Password, Textbox} from "@component";
+import {Form, Password, Textbox} from "@component";
 
-const emailValidator = (email: string):boolean|string => false
+const emailValidation = (email: string):boolean|string => false
+const passwordValidation = (password:string) => true
 
 export default function (props:PageProps<"/admin/login">) {
 
     return (
-        <SignupLoginCard title="Login to Account"
-                         subtitle="Please enter your email and password to continue."
-        >
-            <Textbox label="Email" name="email" validation={emailValidator} />
-            <Password label="Password" name="password"/>
-            <button>Submit</button>
+        <SignupLoginCard title="Login to Account" subtitle="Please enter your email and password to continue.">
+            <Form>
+                <Textbox label="Email" name="email" validation={emailValidation} />
+                <Password label="Password" name="password" validation={passwordValidation}/>
+                <button>Submit</button>
+            </Form>
         </SignupLoginCard>
     )
 }

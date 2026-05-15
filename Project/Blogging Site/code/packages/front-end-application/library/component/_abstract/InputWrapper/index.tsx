@@ -10,9 +10,10 @@
  */
 
 import style from "./index.module.scss"
-import React from "react";
+import React, {useEffect} from "react";
 import {useDebouncedState} from "@/library/hook";
 import {Warning} from "@/library/icon"
+import {useForm} from "@component";
 
 export interface DefaultInputProps{
     //-------------------   REQUIRED FIELDS     -------------------//
@@ -23,7 +24,6 @@ export interface DefaultInputProps{
 
 
     //-------------------   OPTIONAL FIELDS     -------------------//
-    value?: string|null
     placeholder?:string
     className?: string,
 
@@ -37,7 +37,7 @@ export interface DefaultInputProps{
 
 type OnChange = (e:React.ChangeEvent<HTMLInputElement>)=>void
 
-interface _InputChildProps extends Omit<DefaultInputProps, "onChange"|"validation"|"label"|"value">{
+interface _InputChildProps extends Omit<DefaultInputProps, "onChange"|"validation"|"label">{
     id: string,
     onChange: OnChange,
     value:string
@@ -47,8 +47,14 @@ type InputWrapperProps = DefaultInputProps & {Input:(props:_InputChildProps)=>Re
 
 export const InputWrapper: React.FC<InputWrapperProps> = (props)=>{
 
+    const form = useForm();
+    const defaultValue = form.getOrDefault(props.name, null)
     const [focused, setFocused] = React.useState<boolean>(false);
-    const [value, setValue, current] = useDebouncedState<string|null>(props.value || null)
+    const [value, setValue, current] = useDebouncedState<string|null>( defaultValue|| null)
+
+    useEffect(()=>{
+        form.register(props.name, props.validation)
+    },[])
 
     const isValid = value!==null && props.validation && props.validation(value)
     const isValidOrNull = value ===null || isValid;
@@ -67,6 +73,7 @@ export const InputWrapper: React.FC<InputWrapperProps> = (props)=>{
         const _value = e.target.value;
         setValue(_value)
         props.onValueChange && props.onValueChange(_value||"")
+        form.updateValue(props.name, _value)
     }
 
     return(
