@@ -12,6 +12,7 @@
 import style from "./index.module.scss"
 import React from "react";
 import {useDebouncedState} from "@/library/hook";
+import {Warning} from "@/library/icon"
 
 export interface DefaultInputProps{
     //-------------------   REQUIRED FIELDS     -------------------//
@@ -81,7 +82,7 @@ export const InputWrapper: React.FC<InputWrapperProps> = (props)=>{
                     value: current || "",
                     placeholder:props.placeholder || "",
                 })}
-                {!isValidOrNull && (<span>I</span>)}
+                {!isValidOrNull && (<Warning />)}
             </div>
 
             <div className={`${style.InputWrapperUnderline} ${isFocused ? style.InputWrapperUnderlineFocused : ''}`}></div>
