@@ -1,0 +1,26 @@
+.signupLoginCard {
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    :global(.card){
+        min-width: 300px;
+        width: 30vw;
+        padding: 64px;
+    }
+
+    &Title{
+        font-family: ElmsExtraBold;
+        font-size: 2rem;
+        margin: 0 auto;
+        text-align: center;
+    }
+
+    &SubTitle{
+        font-family: ElmsBold;
+        font-size: 1rem;
+        text-align: center;
+    }
+}

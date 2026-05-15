@@ -1,0 +1,34 @@
+.row-flex{
+  display: flex;
+  flex-direction: row;
+}
+
+.column-flex{
+  display: flex;
+  flex-direction: column;
+}
+
+.gap-xs{
+  gap: 2px;
+}
+
+.gap-sm{
+  gap: 4px;
+}
+
+.gap-md{
+  gap: 8px;
+}
+
+.gap-lg{
+  gap: 16px;
+}
+
+.gap-xl{
+  gap: 32px;
+}
+
+.gap-xxl{
+  gap: 64px;
+}
+

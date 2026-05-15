@@ -6,7 +6,7 @@ interface CardProps {
 }
 export const Card:FC<CardProps> = (props)=>{
     return (
-        <div className={style.card}>
+        <div className={`${style.card} card`}>
             {props.children}
         </div>
     )

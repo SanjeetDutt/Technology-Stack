@@ -1,0 +1,108 @@
+@font-face {
+    font-family: "ElmsBlack";
+    src: url("/fonts/Elms/ElmsSans-Black.ttf") format("truetype");
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: "ElmsBlackItalic";
+    src: url("/fonts/Elms/ElmsSans-BlackItalic.ttf") format("truetype");
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: "ElmsBold";
+    src: url("/fonts/Elms/ElmsSans-Bold.ttf") format("truetype");
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: "ElmsBoldItalic";
+    src: url("/fonts/Elms/ElmsSans-BoldItalic.ttf") format("truetype");
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: "ElmsExtraBold";
+    src: url("/fonts/Elms/ElmsSans-ExtraBold.ttf") format("truetype");
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: "ElmsExtraBoldItalic";
+    src: url("/fonts/Elms/ElmsSans-ExtraBoldItalic.ttf") format("truetype");
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: "ElmsExtraLight";
+    src: url("/fonts/Elms/ElmsSans-ExtraLight.ttf") format("truetype");
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: "ElmsExtraLightItalic";
+    src: url("/fonts/Elms/ElmsSans-ExtraLightItalic.ttf") format("truetype");
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: "ElmsItalic";
+    src: url("/fonts/Elms/ElmsSans-Italic.ttf") format("truetype");
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: "ElmsLight";
+    src: url("/fonts/Elms/ElmsSans-Light.ttf") format("truetype");
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: "ElmsLightItalic";
+    src: url("/fonts/Elms/ElmsSans-LightItalic.ttf") format("truetype");
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: "ElmsMedium";
+    src: url("/fonts/Elms/ElmsSans-Medium.ttf") format("truetype");
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: "ElmsMediumItalic";
+    src: url("/fonts/Elms/ElmsSans-MediumItalic.ttf") format("truetype");
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: "ElmsRegular";
+    src: url("/fonts/Elms/ElmsSans-Regular.ttf") format("truetype");
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: "ElmsSemiBold";
+    src: url("/fonts/Elms/ElmsSans-SemiBold.ttf") format("truetype");
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: "ElmsSemiBoldItalic";
+    src: url("/fonts/Elms/ElmsSans-SemiBoldItalic.ttf") format("truetype");
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: "ElmsThin";
+    src: url("/fonts/Elms/ElmsSans-Thin.ttf") format("truetype");
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: "ElmsThinItalic";
+    src: url("/fonts/Elms/ElmsSans-ThinItalic.ttf") format("truetype");
+    font-weight: normal;
+    font-style: normal;
+}
