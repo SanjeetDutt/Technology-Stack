@@ -2,7 +2,7 @@
 
 import {ThemeProvider, useTheme} from "@store"
 import "@/public/fonts/Elms/style.css"
-import "../style/index.scss"
+import "../library/style/index.scss"
 
 export default function RootLayout(props: LayoutProps<"/">) {
   return (

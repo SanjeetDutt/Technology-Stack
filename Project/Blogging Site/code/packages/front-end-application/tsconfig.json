@@ -21,8 +21,8 @@
     "paths": {
       "@/*": ["./*"],
       "@store": ["./library/store"],
-      "@style/*": ["./style/*"],
-      "@component": ["./component"]
+      "@style": ["./library/style"],
+      "@component": ["./library/component"]
     }
   },
   "include": [

@@ -1,7 +1,7 @@
 "use client"
 
 import React from "react";
-import {DefaultInputProps, InputWrapper} from "@/component/_abstract";
+import {DefaultInputProps, InputWrapper} from "../_abstract";
 
 interface TextboxProps extends DefaultInputProps{}
 
