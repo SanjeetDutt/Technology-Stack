@@ -11,7 +11,7 @@ export const SignupLoginCard:React.FC<SignupLoginCardProps> = (props)=>{
     return (
         <div className={style.signupLoginCard}>
             <Card>
-                <div className={`column-flex gap-xl`}>
+                <div className={`column-flex gap-lg`}>
                     <div className="column-flex gap-sm">
                         <h1 className={style.signupLoginCardTitle}>{props.title}</h1>
                         <p className={style.signupLoginCardSubTitle}>{props.subtitle}</p>

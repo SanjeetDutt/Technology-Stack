@@ -3,7 +3,7 @@
 import {SignupLoginCard} from "../SignupLoginCard";
 import {Password, Textbox} from "@component";
 
-const emailValidator = (email: string) => false
+const emailValidator = (email: string):boolean|string => false
 
 export default function (props:PageProps<"/admin/login">) {
 
