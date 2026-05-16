@@ -22,7 +22,8 @@
       "@/*": ["./*"],
       "@store": ["./library/store"],
       "@style": ["./library/style"],
-      "@component": ["./library/component"]
+      "@component": ["./library/component"],
+      "@image": ["./library/image"]
     }
   },
   "include": [

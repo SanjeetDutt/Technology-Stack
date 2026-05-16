@@ -8,6 +8,21 @@
   flex-direction: column;
 }
 
+.justify-left{
+  display: flex;
+  justify-content: left;
+}
+
+.justify-right{
+  display: flex;
+  justify-content: right;
+}
+
+.justify-center{
+  display: flex;
+  justify-content: center;
+}
+
 .gap-xs{
   gap: 4px;
 }
