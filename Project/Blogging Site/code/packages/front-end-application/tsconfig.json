@@ -23,7 +23,7 @@
       "@store": ["./library/store"],
       "@style": ["./library/style"],
       "@component": ["./library/component"],
-      "@image": ["./library/image"]
+      "@backend": ["./library/backend"]
     }
   },
   "include": [

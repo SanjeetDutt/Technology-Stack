@@ -2,17 +2,14 @@
 
 import {SignupLoginCard} from "../SignupLoginCard";
 import {Form, Password, Textbox, SubmitButton} from "@component";
-
-const emailValidation = (email: string):boolean|string => false
-const passwordValidation = (password:string) => true
+import {validateEmail, validatePassword8Length} from "@backend"
 
 export default function (props:PageProps<"/admin/login">) {
-
     return (
         <SignupLoginCard title="Login to Account" subtitle="Please enter your email and password to continue.">
             <Form>
-                <Textbox label="Email" name="email" validation={emailValidation} />
-                <Password label="Password" name="password" validation={passwordValidation}/>
+                <Textbox label="Email" name="email" validation={validateEmail} />
+                <Password label="Password" name="password" validation={validatePassword8Length}/>
                 <div className="row-flex justify-right">
                     <SubmitButton>Login</SubmitButton>
                 </div>

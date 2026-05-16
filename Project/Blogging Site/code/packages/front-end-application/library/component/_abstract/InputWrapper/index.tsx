@@ -56,7 +56,7 @@ export const InputWrapper: React.FC<InputWrapperProps> = (props)=>{
         form.register(props.name, props.validation)
     },[])
 
-    const isValid = value!==null && props.validation && props.validation(value)
+    const isValid = current!==null && props.validation && props.validation(current)===true
     const isValidOrNull = value ===null || isValid;
 
     const isFocused = focused || (current!==null && current!=="")
