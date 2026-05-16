@@ -13,7 +13,7 @@ import style from "./index.module.scss"
 import React, {useEffect} from "react";
 import {useDebouncedState} from "@/library/hook";
 import {Warning} from "@/library/icon"
-import {useForm} from "@component";
+import {FormType, useForm} from "@component";
 
 export interface DefaultInputProps{
     //-------------------   REQUIRED FIELDS     -------------------//
@@ -26,10 +26,12 @@ export interface DefaultInputProps{
     //-------------------   OPTIONAL FIELDS     -------------------//
     placeholder?:string
     className?: string,
+    isRequired?: boolean
+    defaultValue?: string
 
     //-------------------   OPTIONAL HANDLER    -------------------//
     onValueChange?:(value:string) => void;
-    validation?: (value:string)=>string|boolean
+    validation?: FormType.Validity
     onFocus?: () => void,
     onBlur?: () => void,
 
@@ -37,10 +39,15 @@ export interface DefaultInputProps{
 
 type OnChange = (e:React.ChangeEvent<HTMLInputElement>)=>void
 
-interface _InputChildProps extends Omit<DefaultInputProps, "onChange"|"validation"|"label">{
+interface _InputChildProps{
+    name:string;
     id: string,
     onChange: OnChange,
     value:string
+    placeholder?:string
+    className?: string,
+    onFocus?: () => void,
+    onBlur?: () => void,
 }
 
 type InputWrapperProps = DefaultInputProps & {Input:(props:_InputChildProps)=>React.ReactElement}
@@ -48,12 +55,10 @@ type InputWrapperProps = DefaultInputProps & {Input:(props:_InputChildProps)=>Re
 export const InputWrapper: React.FC<InputWrapperProps> = (props)=>{
 
     const form = useForm();
-    const defaultValue = form.getOrDefault(props.name, null)
     const [focused, setFocused] = React.useState<boolean>(false);
-    const [value, setValue, current] = useDebouncedState<string|null>( defaultValue|| null)
-
+    const [value, setValue, current] = useDebouncedState<string|null>( props.defaultValue|| null)
     useEffect(()=>{
-        form.register(props.name, props.validation)
+        form?.register<string>(props.name, props.defaultValue, props.validation, !props.isRequired)
     },[])
 
     const isValid = current!==null && props.validation && props.validation(current)===true
@@ -73,7 +78,7 @@ export const InputWrapper: React.FC<InputWrapperProps> = (props)=>{
         const _value = e.target.value;
         setValue(_value)
         props.onValueChange && props.onValueChange(_value||"")
-        form.updateValue(props.name, _value)
+        form?.update<string>(props.name, _value)
     }
 
     return(
