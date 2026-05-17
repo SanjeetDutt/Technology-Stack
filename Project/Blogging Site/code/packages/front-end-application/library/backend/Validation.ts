@@ -16,5 +16,5 @@ const validate = <T = any>( validationFn:(val:T)=>boolean, failMessage:string):F
 const emailRegex =
     /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
 
-export const validateEmail = validate<string>(e=>!!e.trim().toLowerCase().match(emailRegex), "Invalid email address")
+export const validateEmail = validate<string|null>(e=>!!e?.trim().toLowerCase().match(emailRegex), "Invalid email address")
 export const validatePassword8Length = validate<string>(e=>!!e && e.length>8,"Password must be 8 character long")

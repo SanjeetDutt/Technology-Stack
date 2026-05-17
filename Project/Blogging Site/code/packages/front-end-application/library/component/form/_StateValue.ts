@@ -15,17 +15,13 @@ export class _StateValue<T = any> {
         this.isOptional = props.isOptional !== false
     }
 
-    validate(){
+    validate(value:T){
         if(this.isOptional || !this.validation){
             return true
         }
-        if(!this.value){
+        if(!value){
             return "Please enter value in " + this.name
         }
-        return this.validation(this.value)
-    }
-
-    set(value:T){
-        this.value = value
+        return this.validation(value)
     }
 }

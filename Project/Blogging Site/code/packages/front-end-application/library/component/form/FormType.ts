@@ -9,6 +9,7 @@ export namespace FormType{
         children: ReactNode,
         onSubmit: (value: T)=>void
         onError: (errorMessage: string[])=>void
+        className?: string
     }
 
     export type Validity = <T=any>(value:T)=>true|string

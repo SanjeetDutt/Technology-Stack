@@ -56,13 +56,14 @@ export const InputWrapper: React.FC<InputWrapperProps> = (props)=>{
 
     const form = useForm();
     const [focused, setFocused] = React.useState<boolean>(false);
-    const [value, setValue, current] = useDebouncedState<string|null>( props.defaultValue|| null)
+    const [value, setValue] = useDebouncedState<string|null>( props.defaultValue|| null)
+    const current = form?.value[props.name]
     useEffect(()=>{
         form?.register<string>(props.name, props.defaultValue, props.validation, !props.isRequired)
     },[])
 
     const isValid = current!==null && props.validation && props.validation(current)===true
-    const isValidOrNull = value ===null || isValid;
+    const isValidOrNull = current === null || isValid;
 
     const isFocused = focused || (current!==null && current!=="")
 

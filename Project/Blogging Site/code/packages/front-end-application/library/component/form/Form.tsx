@@ -1,4 +1,4 @@
-import {createContext, FC, useContext, useState} from "react";
+import React, {createContext, FC, useContext, useState} from "react";
 import {_StateValue} from "@/library/component/form/_StateValue";
 import {FormType} from "./FormType"
 import {_Form} from "./_FormType"
@@ -7,37 +7,42 @@ const FormContext = createContext<FormType.Context|null>(null)
 
 export const Form:FC<FormType.Props> = (props)=>{
 
-    const [value, setValue] = useState<_Form.State>({})
+    const [definition, setDefinition] = useState<_Form.State>({})
+
+    const [value, setValue] = useState<{ [key: string]: any }>({})
 
     // Function to register a variable in the Form store
     const register:FormType.Register = <T = any>(name:string, defaultValue?:T, validity?:FormType.Validity, isOptional?: boolean)=>{
-        const stateValue = new _StateValue<T>({name, defaultValue, validation:validity, isOptional})
-
         setValue((previous)=>({
             ...previous,
-            [name]: stateValue
+            [name]: defaultValue === undefined ? null : defaultValue
+        }))
+        setDefinition(def=>({
+            ...def,
+            [name]: new _StateValue<T>({name, defaultValue, validation:validity, isOptional})
         }))
     }
 
     const update:FormType.Update = <T=any>(name:string, value:T)=>{
         setValue((previous)=>{
-            const state = previous[name]
-            const newState = new _StateValue({name: state.name, defaultValue: state.defaultValue, isOptional:state.isOptional, validation:state.validation})
-            newState.set(value)
             return {
                 ...previous,
-                [name]: newState
+                [name]: value
             }
         })
     }
 
     const submit:FormType.Submit = ()=>{
         const errorMessages:string[] = []
-        Object.values(value).forEach(val=>{
-            const validation = val.validate()
+        Object.entries(value).forEach(([name, val])=>{
+            const def = definition[name]
+            if(def?.isOptional){
+                return
+            }
+            const validation = def.validate(val)
             if(validation !== true){
-                if(val.value===null){
-                    update(val.name, "")
+                if(val === null){
+                    update(name, "")
                 }
                 errorMessages.push(validation)
             }
@@ -45,8 +50,8 @@ export const Form:FC<FormType.Props> = (props)=>{
 
         if(errorMessages.length === 0){
             const result:{[key: string]: any} = {}
-            Object.values(value).forEach(val=>{
-                result[val.name] = val.value
+            Object.entries(value).forEach(([name, val])=>{
+                result[name] = val
             })
             props.onSubmit(result)
         } else{
@@ -54,15 +59,23 @@ export const Form:FC<FormType.Props> = (props)=>{
         }
     }
 
-
-
     const get:FormType.Get = (name, defaultValue)=>{
         return value[name]?.value || defaultValue
     }
 
+    const keyDownHandler = (key:string, isCtrl:boolean)=>{
+
+        // Submit form is entre presses without ctrl key
+        if(key === "Enter" && !isCtrl){
+            submit()
+        }
+    }
+
     return(
         <FormContext value={{value, update, submit, register, get }}>
-            {props.children}
+            <div className={props.className} onKeyDown={(e)=>keyDownHandler(e.key, e.ctrlKey)}>
+                {props.children}
+            </div>
         </FormContext>
     )
 }
