@@ -2,14 +2,15 @@
 
 import {SignupLoginCard} from "../SignupLoginCard";
 import {Form, Password, Textbox, SubmitButton} from "@component";
-import {validateEmail, validatePassword8Length, LoginRequest} from "@backend"
+import {validateEmail, validatePassword8Length} from "@backend"
+import {userLogin} from "@/library/backend/API";
 
 export default function (props:PageProps<"/admin/login">) {
-    const submitHandler = (e:{[key:string]:string})=>{
-        const request:LoginRequest = {
-            email: e.email,
-            password: e.password
-        }
+
+    const submitHandler = async (e:{[key:string]:string})=>{
+        const response = await userLogin(e.email, e.password)
+        console.log(response)
+
     }
 
     const errorHandler = (e:string[])=>{
