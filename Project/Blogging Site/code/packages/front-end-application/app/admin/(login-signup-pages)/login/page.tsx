@@ -6,7 +6,6 @@ import {validateEmail, validatePassword8Length, LoginRequest} from "@backend"
 
 export default function (props:PageProps<"/admin/login">) {
     const submitHandler = (e:{[key:string]:string})=>{
-        console.log("SUBMIT")
         const request:LoginRequest = {
             email: e.email,
             password: e.password
