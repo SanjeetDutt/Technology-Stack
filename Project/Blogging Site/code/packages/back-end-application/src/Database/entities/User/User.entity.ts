@@ -1,6 +1,6 @@
 import {Column, Entity, JoinTable, ManyToMany, OneToMany, PrimaryGeneratedColumn} from "typeorm";
-import {PasswordEntity,RoleEntity} from ".";
-import {_BaseEntity} from "./_Base.entity";
+import {PasswordEntity,RoleEntity} from "../index";
+import {_BaseEntity} from "../_Base.entity";
 
 @Entity("user")
 export class UserEntity extends _BaseEntity{
@@ -18,7 +18,11 @@ export class UserEntity extends _BaseEntity{
 	passwords?: PasswordEntity[]
 
 	@ManyToMany(()=>RoleEntity, role=>role.users)
-	@JoinTable({name:"user_role",joinColumn:{name:"user_id",referencedColumnName:"id"},inverseJoinColumn:{name:"role_id", referencedColumnName:"id"}})
+	@JoinTable({
+		name:"user_role",
+		joinColumn:{name:"user_id",referencedColumnName:"id"},
+		inverseJoinColumn:{name:"role_id", referencedColumnName:"id"}
+	})
 	roles?: RoleEntity[]
 
 	addPassword(password:PasswordEntity){

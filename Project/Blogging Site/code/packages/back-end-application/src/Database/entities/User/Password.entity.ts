@@ -1,6 +1,6 @@
 import {Entity, ManyToOne, PrimaryColumn, JoinColumn} from "typeorm";
-import {UserEntity} from ".";
-import {_BaseEntity} from "./_Base.entity";
+import {UserEntity} from "../index";
+import {_BaseEntity} from "../_Base.entity";
 
 @Entity("password")
 export class PasswordEntity extends _BaseEntity{

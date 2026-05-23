@@ -1,6 +1,6 @@
 import {Column, Entity, JoinTable, ManyToMany, PrimaryGeneratedColumn} from "typeorm";
-import { UserEntity,PermissionEntity} from ".";
-import {_BaseEntity} from "./_Base.entity";
+import { UserEntity,PermissionEntity} from "../index";
+import {_BaseEntity} from "../_Base.entity";
 
 @Entity("role")
 export class RoleEntity extends _BaseEntity {
