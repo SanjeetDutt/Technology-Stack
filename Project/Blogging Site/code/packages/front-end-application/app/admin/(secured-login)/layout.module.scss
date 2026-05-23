@@ -1,0 +1,27 @@
+$TopNavHeight: 70px;
+$LeftNavWidth: 240px;
+$NavBG:var(--WHITE-800);
+$shadow: rgba(0, 0, 0, 0.15) 10px 10px 10px;
+.layout{
+
+  &LeftNav{
+    width: $LeftNavWidth;
+    background-color: $NavBG;
+    box-shadow: $shadow;
+  }
+
+  &TopNav{
+    height: $TopNavHeight;
+    background-color: $NavBG;
+    width: calc(100vw - $LeftNavWidth);
+    box-shadow: $shadow;
+    padding: 20px;
+  }
+
+  &Content{
+    width: calc(100vw - $LeftNavWidth);
+    height: calc(100vh - $TopNavHeight);
+    overflow: auto;
+    padding: 30px 30px 120px 30px;
+  }
+}

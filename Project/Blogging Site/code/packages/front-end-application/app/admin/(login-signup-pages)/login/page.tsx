@@ -2,15 +2,18 @@
 
 import {SignupLoginCard} from "../SignupLoginCard";
 import {Form, Password, Textbox, SubmitButton} from "@component";
-import {validateEmail, validatePassword8Length} from "@backend"
-import {userLogin} from "@/library/backend/API";
-
+import {validateEmail, validatePassword8Length, API} from "@backend"
+import {useAuth} from "@store";
+import {useRouter} from "next/navigation"
 export default function (props:PageProps<"/admin/login">) {
-
+    const {setToken, token} = useAuth()!
+    const router = useRouter()
     const submitHandler = async (e:{[key:string]:string})=>{
-        const response = await userLogin(e.email, e.password)
-        console.log(response)
-
+        const response = await API.user.login(e.email, e.password)
+        if(response && response.token){
+            setToken(response.token)
+            router.push("/admin/dashboard")
+        }
     }
 
     const errorHandler = (e:string[])=>{

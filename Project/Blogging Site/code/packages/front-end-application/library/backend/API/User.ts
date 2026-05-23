@@ -1,6 +1,6 @@
-import {API} from "./_API";
 import {LoginRequest, LoginResponse} from "back-end-application/src"
+import {useAPI} from "@/library/hook";
 
-export const userLogin = async (email:string, password:string)=>{
-    return await API.post<LoginRequest,LoginResponse>("/user/login",{email, password})
+export const login = async (email:string, password:string)=>{
+    return await useAPI().post<LoginRequest,LoginResponse>("/user/login",{email, password})
 }
