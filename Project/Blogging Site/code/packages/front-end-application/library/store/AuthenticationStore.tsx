@@ -18,7 +18,9 @@ const store = createGlobalStore<AuthState, AuthFunction>((set)=>({
             token: token
         }))
     }
-}))
+}),{
+    name:"Authentication"
+})
 
 export const AuthProvider = store.Provider
 export const useAuth = store.useStore
