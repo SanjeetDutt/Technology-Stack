@@ -1,0 +1,40 @@
+.DashboardNavigation{
+  &Logo{
+    &Container{
+      padding: 8px;
+
+      svg{
+        height: 70px;
+        width: 100%;
+
+      }
+    }
+  }
+
+  &Nav{
+    flex: 1;
+    padding: 16px;
+    cursor: pointer;
+
+    &Link{
+
+      &Active{
+        position: relative;
+        :before{
+          content: "";
+          position: absolute;
+          height: 64px;
+          width: 8px;
+          background: var(--BLUE-400);
+          left: -16px;
+          top: -16px;
+
+        }
+      }
+      svg{
+        height: 32px;
+      }
+      &Text{}
+    }
+  }
+}

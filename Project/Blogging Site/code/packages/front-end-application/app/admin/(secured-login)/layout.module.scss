@@ -1,27 +1,52 @@
 $TopNavHeight: 70px;
-$LeftNavWidth: 240px;
+$LeftNavWidthOpen: 240px;
+$LeftNavWidthClose: 70px;
 $NavBG:var(--WHITE-800);
 $shadow: rgba(0, 0, 0, 0.15) 10px 10px 10px;
 .layout{
 
   &LeftNav{
-    width: $LeftNavWidth;
     background-color: $NavBG;
     box-shadow: $shadow;
+    transition: all ease 100ms;
+
+    &Open{
+      width: $LeftNavWidthOpen;
+    }
+
+    &Close{
+      width: $LeftNavWidthClose;
+    }
   }
 
   &TopNav{
     height: $TopNavHeight;
     background-color: $NavBG;
-    width: calc(100vw - $LeftNavWidth);
+    transition: all ease 100ms;
     box-shadow: $shadow;
     padding: 20px;
+
+    &Open{
+      width: calc(100vw - $LeftNavWidthOpen);
+    }
+
+    &Close{
+      width: calc(100vw - $LeftNavWidthClose);
+    }
   }
 
   &Content{
-    width: calc(100vw - $LeftNavWidth);
+    transition: all ease 100ms;
     height: calc(100vh - $TopNavHeight);
     overflow: auto;
     padding: 30px 30px 120px 30px;
+
+    &Open{
+      width: calc(100vw - $LeftNavWidthOpen);
+    }
+
+    &Close{
+      width: calc(100vw - $LeftNavWidthClose);
+    }
   }
 }

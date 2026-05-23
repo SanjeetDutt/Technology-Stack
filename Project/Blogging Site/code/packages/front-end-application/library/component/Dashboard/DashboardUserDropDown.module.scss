@@ -1,0 +1,28 @@
+.dropdown{
+
+  &Container{
+    transition: height ease 100ms;
+    position: absolute;
+    top: 70px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+
+  }
+
+  &Option{
+    padding: 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    background-color: var(--WHITE-900);
+  }
+
+  &Open{
+    display: inherit;
+  }
+
+  &Close{
+    display: none;
+  }
+}

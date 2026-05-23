@@ -1,3 +1,4 @@
+"use client"
 import {AuthenticationError as AuthenticationErrorDTO} from "@/library/DTO";
 import {ErrorView} from "./_ErrorView";
 import {Button} from "@component";

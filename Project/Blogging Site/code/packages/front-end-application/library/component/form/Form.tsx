@@ -1,3 +1,4 @@
+"use client"
 import React, {createContext, FC, useContext, useState} from "react";
 import {_StateValue} from "@/library/component/form/_StateValue";
 import {FormType} from "./FormType"
