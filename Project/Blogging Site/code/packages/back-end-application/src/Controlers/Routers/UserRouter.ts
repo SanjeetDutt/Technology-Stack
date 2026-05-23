@@ -1,9 +1,9 @@
 import {Permissions, Router} from "../Middlewares";
-import {LoginRequest, LoginResponse, SignupRequest, SignupResponse} from "../DTO";
+import {User} from "../DTO";
 import {userService} from "../../Services";
 
 export const userRouter = Router("/user")
 
-userRouter.post<SignupRequest, SignupResponse>("/signup",[],userService.signup)
-userRouter.post<LoginRequest, LoginResponse>("/login", [],userService.login)
+userRouter.post<User.Signup.Request, User.Signup.Response>("/signup",[],userService.signup)
+userRouter.post<User.Login.Request, User.Login.Response>("/login", [],userService.login)
 userRouter.post<{}, {status:boolean}>("/validate-admin",[Permissions.ADMIN],userService.validateToken)

@@ -1,9 +1,6 @@
 import {
 	AuthenticationError,
-	LoginRequest,
-	LoginResponse,
-	SignupRequest,
-	SignupResponse,
+	User,
 	ValidationError,
 	notEmpty, notNull, validEmail, validPassword8Length, hash,generateJWTToken
 } from "../Controlers";
@@ -11,19 +8,19 @@ import {ServiceFunction} from "./type";
 import {getAllUserByEmail, signupNewUser} from "../Database";
 
 interface IUserService {
-	signup: ServiceFunction<SignupRequest, SignupResponse>;
-	login: ServiceFunction<LoginRequest, LoginResponse>;
+	signup: ServiceFunction<User.Signup.Request, User.Signup.Response>;
+	login: ServiceFunction<User.Login.Request, User.Login.Response>;
 	validateToken: ServiceFunction<{}, {status:boolean}>;
 }
 
-function validateSignupRequest ({name, email, password}:SignupRequest) {
+function validateSignupRequest ({name, email, password}:User.Signup.Request) {
 	notNull({name, email, password});
 	notEmpty({name, email, password});
 	validEmail({email})
 	validPassword8Length({password})
 }
 
-function validateLoginRequest ({email, password}:LoginRequest) {
+function validateLoginRequest ({email, password}:User.Login.Request) {
 	notNull({email, password});
 	notEmpty({email, password});
 	validEmail({email})

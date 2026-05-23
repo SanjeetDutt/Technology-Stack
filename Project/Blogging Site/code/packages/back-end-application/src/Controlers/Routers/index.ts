@@ -2,10 +2,12 @@ import {Router} from "express"
 import {ApplicationRouter} from "../Middlewares"
 
 import {userRouter} from "./UserRouter";
+import {blogRouter} from "./BlogRouter";
 
 // Register you routes here
 const routers: ApplicationRouter[] = [
-	userRouter
+	userRouter,
+	blogRouter
 ]
 
 
