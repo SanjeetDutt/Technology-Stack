@@ -4,8 +4,8 @@
   "main": "index.js",
   "scripts": {
     "dev": "nodemon",
-    "migrate:up": "typeorm-ts-node-commonjs migration:run -d src/configuration/datasource.ts",
-    "migrate:down": "typeorm-ts-node-commonjs migration:revert -d src/configuration/datasource.ts",
+    "migrate:up": "typeorm-ts-node-commonjs migration:run -d src/Database/datasource.ts",
+    "migrate:down": "typeorm-ts-node-commonjs migration:revert -d src/Database/datasource.ts",
     "build": "tsc"
   },
   "keywords": [],
