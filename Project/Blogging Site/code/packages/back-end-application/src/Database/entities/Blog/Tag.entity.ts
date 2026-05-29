@@ -7,19 +7,18 @@ export class TagEntity extends _BaseEntity{
     @PrimaryGeneratedColumn("uuid",{name:"id"})
     id?: string
 
-    @Column("slug")
+    @Column("varchar",{name:"slug",length:45})
     slug: string
 
-    @Column("title")
+    @Column("varchar",{name:"title",length:45})
     title: string
 
     @ManyToMany(()=>BlogEntity, blog=>blog.tags)
-    blogs: BlogEntity[]
+    blogs?: BlogEntity[]
 
     constructor(title: string, slug: string) {
         super();
         this.title = title
         this.slug = slug
-        this.blogs = []
     }
 }

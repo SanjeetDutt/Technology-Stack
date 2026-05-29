@@ -5,13 +5,6 @@ export const blogRouter = Router("/blog")
 
 const defaultBlogPermission = [Permissions.AUTHOR, Permissions.REVIEWER]
 
-// Get list of all blogs without content
-blogRouter.get("/",[], blogService.getAllBlogs)
-// Get complete blog details with content
-blogRouter.get("/:slug",[], blogService.getBlog)
-// Update blog content and details
-blogRouter.put("/:slug", defaultBlogPermission, blogService.updateBlog)
-
 // Get list of all categories
 blogRouter.get("/category",[], categoryService.getCategories)
 // Create a new category
@@ -25,3 +18,10 @@ blogRouter.get("/tag",[], tagService.getTags)
 blogRouter.post("/tag",defaultBlogPermission, tagService.addTag)
 // Update tag details
 blogRouter.put("/tag/:slug",defaultBlogPermission, tagService.updateTag)
+
+// Get list of all blogs without content
+blogRouter.get("/",[], blogService.getAllBlogs)
+// Get complete blog details with content
+blogRouter.get("/:slug",[], blogService.getBlog)
+// Update blog content and details
+blogRouter.put("/:slug", defaultBlogPermission, blogService.updateBlog)

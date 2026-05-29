@@ -45,6 +45,5 @@ export class BlogEntity extends _BaseEntity{
         this.description = description
         this.user = user
         this.category = category
-        this.tags = []
     }
 }

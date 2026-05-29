@@ -1,5 +1,5 @@
 import {ServiceFunction} from "../type";
-import {AuthenticationError, Blog, RequestProps, ValidationError} from "../../Controlers";
+import {AuthenticationError, Blog, notNull, RequestProps, ValidationError} from "../../Controlers";
 import {
 	createNewBlog,
 	getAllBlogs,
@@ -97,7 +97,6 @@ const getBlogRelatedEntityFromRequest = async (request: Blog.Blog.Request): Prom
 }
 
 const validateBlogRequest = (req: Blog.Blog.Request)=>{
-
 }
 const validateUniqueBlogSlug = async (slug: string, except?: BlogEntity)=>{
 	const blog = await getBlogBySlug(slug)

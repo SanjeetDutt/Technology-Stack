@@ -19,7 +19,7 @@ export const tagService:TagService = {
 			slug: tag.slug,
 		}
 	},
-	async getTags(request: RequestProps<{}, {}>): Promise<Blog.Tag.Response[]> {
+	async getTags(): Promise<Blog.Tag.Response[]> {
 		const tags = await getAllTag()
 		return tags.map(t=>({title: t.title, slug: t.slug}))
 	},

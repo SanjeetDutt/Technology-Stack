@@ -6,7 +6,7 @@ export class AlterBlog1779523735929 implements MigrationInterface {
 
         await queryRunner.query(`
                             alter table blog
-                                add if not exists constraint blog_category_id_fk
+                                add constraint blog_category_id_fk
                                                         foreign key (category_id) references category (id);
                         `)
 
