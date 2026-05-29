@@ -1,5 +1,7 @@
 import {Router as ExpressRouter, Request, Response} from "express"
 import {authenticateUserRequest, Permissions} from "./Authentication";
+import {InternalServerError} from "../Error";
+import {ServiceFunction} from "../../../Services/type";
 
 type Path = `/${string}`
 type Access = Permissions[]
@@ -9,7 +11,7 @@ export interface RequestProps<Req, Params extends P> {
 	body:Req,
 	request: Request
 }
-type RouterFn<Req, Res, Params extends P = {}> = (r:RequestProps<Req, Params>)=>Promise<Res>
+type SFn = ServiceFunction<any, any, any>
 
 export class ApplicationRouter {
 
@@ -33,14 +35,18 @@ export class ApplicationRouter {
 		return this.path;
 	}
 
-	private authenticate(access:Access){
-		return authenticateUserRequest(access)
+	private authenticate(access?:Access){
+		return authenticateUserRequest(access || [])
 	}
 
-	private executeRouterFn<Req, Res, Params extends P>(fn:RouterFn<Req, Res, Params>){
+	private executeRouterFn(fn?:SFn){
 		return async (req:Request,res:Response)=>{
-			const request = req.body as Req
-			const params = req.params as Params
+			const request = req.body
+			const params = req.params
+
+			if(!fn){
+				return this.defaultRouterFn()
+			}
 
 			const result = await fn({params:params, body:request, request: req})
 
@@ -48,23 +54,27 @@ export class ApplicationRouter {
 		}
 	}
 
-	public post<Req, Res, Params extends P = {}>(path:Path, access:Access, fn:RouterFn<Req, Res, Params>){
+	private defaultRouterFn (){
+		throw new InternalServerError("Method not implemented.");
+	}
+
+	public post(path:Path, access?:Access, fn?:SFn){
 		this.router.post(path,this.authenticate(access), this.executeRouterFn(fn))
 	}
 
-	public get<Req, Res, Params extends P = {}>(path:Path, access:Access, fn:RouterFn<Req, Res, Params>){
+	public get(path:Path, access?:Access, fn?:SFn){
 		this.router.get(path,this.authenticate(access), this.executeRouterFn(fn))
 	}
 
-	public put<Req, Res, Params extends P = {}>(path:Path, access:Access, fn:RouterFn<Req, Res, Params>){
+	public put(path:Path, access?:Access, fn?:SFn){
 		this.router.put(path,this.authenticate(access), this.executeRouterFn(fn))
 	}
 
-	public patch<Req, Res, Params extends P = {}>(path:Path, access:Access, fn:RouterFn<Req, Res, Params>){
+	public patch(path:Path, access?:Access, fn?:SFn){
 		this.router.patch(path,this.authenticate(access), this.executeRouterFn(fn))
 	}
 
-	public delete<Req, Res, Params extends P = {}>(path:Path, access:Access, fn:RouterFn<Req, Res, Params>){
+	public delete(path:Path, access?:Access, fn?:SFn){
 		this.router.delete(path,this.authenticate(access), this.executeRouterFn(fn))
 	}
 }

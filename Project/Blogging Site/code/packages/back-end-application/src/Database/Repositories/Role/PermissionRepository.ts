@@ -1,5 +1,5 @@
-import {datasource} from "../datasource";
-import {PermissionEntity} from "../entities";
+import {datasource} from "../../datasource";
+import {PermissionEntity} from "../../entities";
 
 export const getAllPermissions = async () => {
 	return await datasource.getRepository(PermissionEntity).find()

@@ -1,5 +1,5 @@
-import {datasource} from "../datasource";
-import {UserEntity,PasswordEntity} from "../entities";
+import {datasource} from "../../datasource";
+import {UserEntity,PasswordEntity} from "../../entities";
 
 
 export const getAllUserByEmail = async (email: string) => {

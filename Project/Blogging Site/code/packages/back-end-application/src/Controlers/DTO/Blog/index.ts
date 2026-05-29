@@ -1,3 +1,3 @@
-export * as CreateBlog from "./CreateBlog"
-export * as CreateCategory from "./CreateCategory"
-export * as CreateTag from "./CreateTag"
+export * as Blog from "./Blog"
+export * as Category from "./Category"
+export * as Tag from "./Tag"
