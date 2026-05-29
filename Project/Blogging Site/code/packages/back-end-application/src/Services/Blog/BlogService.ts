@@ -37,6 +37,7 @@ export const blogService:BlogService = {
 		if(!blog){
 			throw new ValidationError("Blog not found with provided slug "+ request.params.slug)
 		}
+		await validateUniqueBlogSlug(request.body.slug, blog)
 
 		const {category, user, tags} = await getBlogRelatedEntityFromRequest(request.body)
 
@@ -54,6 +55,7 @@ export const blogService:BlogService = {
 
 	async createBlog(request: RequestProps<Blog.Blog.Request, {}>):Promise<Blog.Blog.Response> {
 		validateBlogRequest(request.body)
+		await validateUniqueBlogSlug(request.body.slug)
 		const {category, tags, user} = await getBlogRelatedEntityFromRequest(request.body)
 		const {slug, title, description} = request.body
 		const newBlog = await createNewBlog(slug, title, description, user, category, tags)
@@ -97,7 +99,15 @@ const getBlogRelatedEntityFromRequest = async (request: Blog.Blog.Request): Prom
 const validateBlogRequest = (req: Blog.Blog.Request)=>{
 
 }
-
+const validateUniqueBlogSlug = async (slug: string, except?: BlogEntity)=>{
+	const blog = await getBlogBySlug(slug)
+	if(blog){
+		if(except && except.id === blog.id){
+			return
+		}
+		throw new ValidationError(`Blog with Slug ${slug} already exists`)
+	}
+}
 const blogEntityToResponse = (b: BlogEntity):Blog.Blog.Response=>({
 	slug: b.slug,
 	title: b.title,
