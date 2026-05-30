@@ -50,7 +50,7 @@ const validateTagRequest = (req: Blog.Tag.Request)=>{
 }
 
 const validateTagSlug = async (slug: string, except?: TagEntity)=>{
-	const tag = await getCategoryBySlug(slug)
+	const tag = await getTagBySlug(slug)
 	if(tag){
 		if(except && tag.id === except.id){
 			return

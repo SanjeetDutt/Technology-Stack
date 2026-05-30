@@ -25,3 +25,5 @@ blogRouter.get("/",[], blogService.getAllBlogs)
 blogRouter.get("/:slug",[], blogService.getBlog)
 // Update blog content and details
 blogRouter.put("/:slug", defaultBlogPermission, blogService.updateBlog)
+//create new blog
+blogRouter.post("/", defaultBlogPermission, blogService.createBlog)

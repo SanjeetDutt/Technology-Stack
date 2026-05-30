@@ -15,8 +15,9 @@ export const updateBlog = async (blog: BlogEntity) => {
 	return await Blogs.save(blog)
 }
 
-export const createNewBlog = async (slug: string, title: string, description: string, user: UserEntity, category: CategoryEntity, tags: TagEntity[])=>{
+export const createNewBlog = async (slug: string, title: string, description: string, filename: string, user: UserEntity, category: CategoryEntity, tags: TagEntity[])=>{
 	const blog = new BlogEntity(title, slug, description, user, category)
 	blog.tags = tags
+	blog.file = filename
 	return await Blogs.save(blog)
 }

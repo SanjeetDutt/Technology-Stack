@@ -1,13 +1,12 @@
 import {ServiceFunction} from "../type";
-import {AuthenticationError, Blog, notNull, RequestProps, ValidationError} from "../../Controlers";
-import {
-	createNewBlog,
+import {AuthenticationError, Blog, InternalServerError, RequestProps, ValidationError} from "../../Controlers";
+import {BlogEntity, CategoryEntity, getAllUserByEmail, TagEntity, UserEntity,createNewBlog,
 	getAllBlogs,
 	getBlogBySlug,
 	getCategoryBySlug, getTagBySlug,
-	updateBlog
-} from "../../Database/Repositories/Blog";
-import {BlogEntity, CategoryEntity, getAllUserByEmail, TagEntity, UserEntity} from "../../Database";
+	updateBlog} from "../../Database";
+import {createFile, generateUniqueText} from "../../Utility"
+import fs from "fs/promises";
 
 interface BlogService {
 	getAllBlogs: ServiceFunction<{},Blog.Blog.Response[]>;
@@ -58,7 +57,9 @@ export const blogService:BlogService = {
 		await validateUniqueBlogSlug(request.body.slug)
 		const {category, tags, user} = await getBlogRelatedEntityFromRequest(request.body)
 		const {slug, title, description} = request.body
-		const newBlog = await createNewBlog(slug, title, description, user, category, tags)
+		const fileName = `${generateUniqueText()}.md`
+		await createFile(`/${fileName}`)
+		const newBlog = await createNewBlog(slug, title, description,fileName, user, category, tags)
 		return blogEntityToResponse(newBlog)
 	}
 }
