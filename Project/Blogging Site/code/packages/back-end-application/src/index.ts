@@ -1,2 +1,1 @@
-export * from "./Controlers/DTO/Request"
-export * from "./Controlers/DTO/Response"
+export * from "./Controlers/DTO"

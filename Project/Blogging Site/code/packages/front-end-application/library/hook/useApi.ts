@@ -26,7 +26,7 @@ const Fetch = async <Response=any>(url:API.URL, inits:RequestInit):Promise<Respo
 }
 
 const GetOrHead = async <Response = any>(url: API.URL, method:API.GET_HEAD, headers?: API.Headers)=>{
-    const {token, type} = useAuth({token:"", type:null})!
+    const {token, type} = useAuth()
     const tokenFromStore = token === null ? "" : `${type} ${token}`
     return await Fetch<Response>(url, {
         method,

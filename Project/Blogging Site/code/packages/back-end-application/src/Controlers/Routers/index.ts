@@ -18,4 +18,3 @@ export const AppRouter = Router();
 routers.forEach(router =>
 	AppRouter.use(router.getPath(), router.getRouter())
 )
-

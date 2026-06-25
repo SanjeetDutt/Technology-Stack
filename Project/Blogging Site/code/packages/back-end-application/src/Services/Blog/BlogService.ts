@@ -1,12 +1,11 @@
 import {ServiceFunction} from "../type";
-import {AuthenticationError, Blog, InternalServerError, RequestProps, ValidationError} from "../../Controlers";
+import {AuthenticationError, Blog, RequestProps, ValidationError} from "../../Controlers";
 import {BlogEntity, CategoryEntity, getAllUserByEmail, TagEntity, UserEntity,createNewBlog,
 	getAllBlogs,
 	getBlogBySlug,
 	getCategoryBySlug, getTagBySlug,
 	updateBlog} from "../../Database";
 import {createFile, generateUniqueText} from "../../Utility"
-import fs from "fs/promises";
 
 interface BlogService {
 	getAllBlogs: ServiceFunction<{},Blog.Blog.Response[]>;

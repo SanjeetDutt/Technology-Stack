@@ -4,7 +4,13 @@ import {BlogEntity, CategoryEntity, TagEntity, UserEntity} from "../../entities"
 const Blogs = datasource.getRepository(BlogEntity)
 
 export const getAllBlogs = async () => {
-	return await Blogs.find()
+	return await Blogs.find({
+		relations:{
+			user: true,
+			category: true,
+			tags:true
+		}
+	})
 }
 
 export const getBlogBySlug = async (slug: string) => {

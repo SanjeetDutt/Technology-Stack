@@ -51,7 +51,7 @@ const Link:React.FC<LinkProps> = (props)=>{
         <div className={`${style.DashboardNavigationNavLink} ${isLinkActive ? style.DashboardNavigationNavLinkActive :''}`} onClick={clickHandler}>
             <div className="row-flex gap-md align-center">
                 {props.children}
-                {props.isDrawerOpen && (<h1 className={style.DashboardNavigationNavLinkText}>{props.text}</h1>)}
+                {props.isDrawerOpen && (<h4 className={style.DashboardNavigationNavLinkText}>{props.text}</h4>)}
             </div>
         </div>
     )

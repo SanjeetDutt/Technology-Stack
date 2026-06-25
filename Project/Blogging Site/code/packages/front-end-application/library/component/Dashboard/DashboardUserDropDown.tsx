@@ -21,8 +21,8 @@ export const DashboardUserDropDown:React.FC<DashboardUserDropDownProps> = (props
                 <User />
             </div>
             <div className="column-flex gap-sm">
-                <h1>{props.name}</h1>
-                <h5>{props.subText}</h5>
+                <h5>{props.name}</h5>
+                <p>{props.subText}</p>
             </div>
             <div>
                 <Down />
