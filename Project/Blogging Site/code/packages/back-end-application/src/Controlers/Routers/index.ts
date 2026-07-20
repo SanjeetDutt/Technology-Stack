@@ -1,5 +1,5 @@
 import {Router} from "express"
-import {ApplicationRouter} from "../Middlewares"
+import {APIRoute, ApplicationRouter} from "../Middlewares"
 
 import {userRouter} from "./UserRouter";
 import {blogRouter} from "./BlogRouter";
@@ -18,3 +18,6 @@ export const AppRouter = Router();
 routers.forEach(router =>
 	AppRouter.use(router.getPath(), router.getRouter())
 )
+
+export const apiRouter = new APIRoute(routers);
+console.log(apiRouter.getRoutes().keys());

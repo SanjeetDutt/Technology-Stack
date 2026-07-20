@@ -1,5 +1,6 @@
 import {Permissions, Router} from "../Middlewares";
 import {blogService, categoryService, tagService} from "../../Services";
+import {Controller, GET, Router as CBE_Router} from "common-back-end"
 
 export const blogRouter = Router("/blog")
 

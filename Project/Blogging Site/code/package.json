@@ -5,7 +5,20 @@
     "packages/*"
   ],
   "devDependencies": {
-    "lerna": "^9.0.4"
+    "lerna": "^9.0.4",
+    "@types/cors": "^2.8.19",
+    "@types/express": "^5.0.6",
+    "@types/node": "^25.6.0",
+    "nodemon": "^3.1.14",
+    "ts-node": "^10.9.2",
+    "typescript": "^6.0.3",
+    "@svgr/webpack": "^8.1.0",
+    "@types/js-cookie": "^3.0.6",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "eslint": "^9",
+    "eslint-config-next": "16.2.6",
+    "sass": "^1.99.0"
   },
   "scripts": {
     "dev": "lerna run dev --scope=back-end-application --scope=front-end-application",
@@ -14,6 +27,16 @@
     "migrate:down": "lerna run migrate:down --scope=back-end-application"
   },
   "dependencies": {
-    "dotenv": "^17.3.1"
+    "dotenv": "^17.3.1",
+    "cors": "^2.8.6",
+    "express": "^5.2.1",
+    "mysql2": "^3.22.3",
+    "reflect-metadata": "^0.2.2",
+    "typeorm": "^0.3.28",
+    "js-cookie": "^3.0.7",
+    "next": "16.2.6",
+    "react": "19.2.4",
+    "react-dom": "19.2.4",
+    "zustand": "^5.0.13"
   }
 }

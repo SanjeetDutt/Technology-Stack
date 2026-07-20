@@ -3,9 +3,10 @@ import {authenticateUserRequest, Permissions} from "./Authentication";
 import {InternalServerError} from "../Error";
 import {ServiceFunction} from "../../../Services/type";
 
-type Path = `/${string}`
-type Access = Permissions[]
+export type Path = `/${string}`
+export type Access = Permissions[]
 type P = Record<string, any>
+export type Method = "GET" | "POST" | "PUT" | "DELETE" | "PATCH"
 export interface RequestProps<Req, Params extends P> {
 	params:Params,
 	body:Req,
@@ -17,10 +18,12 @@ export class ApplicationRouter {
 
 	private readonly router:ExpressRouter
 	private readonly path:Path
+	private routes:{path:Path, method:Method, access:Access}[]
 
 	constructor(path:Path) {
 		this.router = ExpressRouter()
 		this.path = path
+		this.routes = []
 	}
 
 	static Router(path:Path){
@@ -33,6 +36,10 @@ export class ApplicationRouter {
 
 	public getPath(){
 		return this.path;
+	}
+
+	public getRoutes(){
+		return this.routes
 	}
 
 	private authenticate(access?:Access){
@@ -58,23 +65,34 @@ export class ApplicationRouter {
 		throw new InternalServerError("Method not implemented.");
 	}
 
+	private addRouting(method: Method, path:Path, access?:Access){
+		this.routes.push({path:path, method:method, access:access||[]})
+	}
+
+
+
 	public post(path:Path, access?:Access, fn?:SFn){
+		this.addRouting("POST",path, access)
 		this.router.post(path,this.authenticate(access), this.executeRouterFn(fn))
 	}
 
 	public get(path:Path, access?:Access, fn?:SFn){
+		this.addRouting("GET",path, access)
 		this.router.get(path,this.authenticate(access), this.executeRouterFn(fn))
 	}
 
 	public put(path:Path, access?:Access, fn?:SFn){
+		this.addRouting("PUT",path, access)
 		this.router.put(path,this.authenticate(access), this.executeRouterFn(fn))
 	}
 
 	public patch(path:Path, access?:Access, fn?:SFn){
+		this.addRouting("PATCH",path, access)
 		this.router.patch(path,this.authenticate(access), this.executeRouterFn(fn))
 	}
 
 	public delete(path:Path, access?:Access, fn?:SFn){
+		this.addRouting("DELETE",path, access)
 		this.router.delete(path,this.authenticate(access), this.executeRouterFn(fn))
 	}
 }

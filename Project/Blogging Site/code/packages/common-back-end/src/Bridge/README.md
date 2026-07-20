@@ -1,0 +1,11 @@
+# Routing feature
+- Common code which help Front end and Back end
+- Front-end
+	- Help FE to call API without declaring API string
+	- Easy to configure
+	- easy to declare params
+	- easy to declare request payload
+	- easy to handle error
+- Backend
+	- Putting UI in sync
+	- 
