@@ -1,1 +1,1 @@
-export * as Blog from "./Blog"
+export * as Blog from "./Blog.route"
