@@ -2,6 +2,7 @@ import {Router as ExpressRouter, ErrorRequestHandler} from "express"
 export namespace Bridge{
     export type Path = `/${string}`
     export type Method = "GET" | "POST" | "PUT" | "PATCH" | "DELETE" | "QUERY"
+
     export type Params<P extends Path> = Router.RouteParameters<P>
 
     export type Response = Object
@@ -10,18 +11,17 @@ export namespace Bridge{
     export type Auth = Object
 
     export type ServiceFn<
+        PATH extends Path,
         RES extends Response,
-        PAR extends Params = {},
         PLD extends Payload = {},
-        QUE extends Query = {},
-        AUTH extends Auth = {}
+        // AUTH extends Auth = {}
     > = (props:{
-        parameter: PAR,
+        parameter: {},
         payload: PLD,
-        query: QUE,
+        query: {},
         method: Method,
-        path: Path
-        auth: AUTH
+        path: PATH
+        // auth: AUTH
     })=>Promise<RES>
 
     export interface ICollection{
@@ -58,7 +58,9 @@ export namespace Bridge{
 }
 
 namespace Router{
-    export type Params = {[key: string]: string}
+    type Params = {[key: string]: string}
+    type Query = {[key: string]: string}
+
     //P = Prefix, S = Suffix, W=Whole Word
     type RemoveSuffix<W extends string, S extends string> =
         W extends `${infer P}${S}`? P : W
@@ -79,6 +81,15 @@ namespace Router{
                 ? RouteParameters<`/${Other}`>
                 : unknown
             )
+            :{}
+
+    type ExtractQueryObjectFromQueryString<Str extends string>=
+        Str extends `${string}&${infer Rest}`
+            ?
+            :
+    export type QueryParameters<Route extends Bridge.Path> =
+        Route extends `${string}?${infer queryString}`
+            ?
             :{}
 }
 
