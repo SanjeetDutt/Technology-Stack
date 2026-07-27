@@ -1,5 +1,5 @@
-import {Permissions} from "../Controlers";
-import {PermissionEntity,getAllPermissions, insertPermission, updatePermission} from "../Database";
+import {Permissions} from "../src/Controlers";
+import {PermissionEntity,getAllPermissions, insertPermission, updatePermission} from "../src/Database";
 
 interface IPermissionService {
 	syncDB:()=>Promise<void>;

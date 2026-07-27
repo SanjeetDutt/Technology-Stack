@@ -1,5 +1,5 @@
-import {RoleEntity,UserEntity,getAllRolesAndPermissionByUser} from "../Database";
-import {Permissions} from "../Controlers";
+import {RoleEntity,UserEntity,getAllRolesAndPermissionByUser} from "../src/Database";
+import {Permissions} from "../src/Controlers";
 
 interface IRoleService {
 	getRoleAndPermissionByUser:(user:UserEntity)=>Promise<{roles:string[], permissions:Permissions[]}>;
