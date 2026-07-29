@@ -19,4 +19,6 @@ export class Collection{
     public add(collectable:Bridge.ICollectable){
         this.collection.push(collectable)
     }
+
+    public express(){}
 }
