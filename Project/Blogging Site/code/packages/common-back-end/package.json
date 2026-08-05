@@ -1,15 +1,6 @@
 {
   "name": "common-back-end",
   "version": "0.0.0",
-  "description": "> TODO: description",
-  "homepage": "https://github.com/SanjeetDutt/Technology-Stack#readme",
-  "bugs": {
-    "url": "https://github.com/SanjeetDutt/Technology-Stack/issues"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/SanjeetDutt/Technology-Stack.git"
-  },
   "license": "ISC",
   "author": "Sanjeet Dutt <sanjeetdutt@gmail.com>",
   "main": "src/index.ts",

@@ -1,0 +1,20 @@
+0 silly argv {
+0 silly argv   _: [ 'run' ],
+0 silly argv   scope: 'back-end-application',
+0 silly argv   lernaVersion: '9.0.5',
+0 silly argv   '$0': '/Users/sanjeetdutt/Documents/PERSONAL/Technology-Stack/Technology-Stack/Project/Blogging Site/code/node_modules/.bin/lerna',
+0 silly argv   script: 'dev'
+0 silly argv }
+1 notice cli v9.0.5
+2 verbose packageConfigs Resolving packages based on package.json "workspaces" configuration.
+3 verbose rootPath /Users/sanjeetdutt/Documents/PERSONAL/Technology-Stack/Technology-Stack/Project/Blogging Site/code
+4 error ReferenceError: structuredClone is not defined
+4 error     at deepClone (/Users/sanjeetdutt/Documents/PERSONAL/Technology-Stack/Technology-Stack/Project/Blogging Site/code/node_modules/nx/src/project-graph/utils/project-configuration-utils.js:617:5)
+4 error     at normalizeTargets (/Users/sanjeetdutt/Documents/PERSONAL/Technology-Stack/Technology-Stack/Project/Blogging Site/code/node_modules/nx/src/project-graph/utils/project-configuration-utils.js:556:32)
+4 error     at validateAndNormalizeProjectRootMap (/Users/sanjeetdutt/Documents/PERSONAL/Technology-Stack/Technology-Stack/Project/Blogging Site/code/node_modules/nx/src/project-graph/utils/project-configuration-utils.js:520:13)
+4 error     at mergeCreateNodesResults (/Users/sanjeetdutt/Documents/PERSONAL/Technology-Stack/Technology-Stack/Project/Blogging Site/code/node_modules/nx/src/project-graph/utils/project-configuration-utils.js:355:9)
+4 error     at /Users/sanjeetdutt/Documents/PERSONAL/Technology-Stack/Technology-Stack/Project/Blogging Site/code/node_modules/nx/src/project-graph/utils/project-configuration-utils.js:299:85
+4 error     at async buildProjectGraphAndSourceMapsWithoutDaemon (/Users/sanjeetdutt/Documents/PERSONAL/Technology-Stack/Technology-Stack/Project/Blogging Site/code/node_modules/nx/src/project-graph/project-graph.js:90:31)
+4 error     at async createProjectGraphAndSourceMapsAsync (/Users/sanjeetdutt/Documents/PERSONAL/Technology-Stack/Technology-Stack/Project/Blogging Site/code/node_modules/nx/src/project-graph/project-graph.js:274:25)
+4 error     at async createProjectGraphAsync (/Users/sanjeetdutt/Documents/PERSONAL/Technology-Stack/Technology-Stack/Project/Blogging Site/code/node_modules/nx/src/project-graph/project-graph.js:222:39)
+4 error     at async detectProjects (/Users/sanjeetdutt/Documents/PERSONAL/Technology-Stack/Technology-Stack/Project/Blogging Site/code/node_modules/lerna/dist/index.js:3290:25)
