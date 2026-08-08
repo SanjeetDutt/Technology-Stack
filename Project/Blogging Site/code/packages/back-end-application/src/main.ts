@@ -1,3 +1,7 @@
-import {LoadRoutes}  from "common-back-end"
-LoadRoutes("./src/Routes")
+import {Server}  from "common-back-end"
 
+Server()
+    .listen(3000)
+    .fileRouting("./src/App")
+    .logs("./src/Logs")
+    .start()

@@ -1,6 +1,6 @@
 import fs from "fs"
-import path from "path"
-import { Method, Router } from "./Router";
+import { Router } from "./Router";
+import {FileRouter} from "./FileRouter.d"
 import { importFile, nameStartsAndEndWith } from "./utility";
 
 function getFolderContent(dir: string){
@@ -22,7 +22,9 @@ export async function DirectoryScan(routDir: string, router: Router):Promise<voi
         } else {
             switch(content.name){
                 case "AUTH.ts": await addAuth(content, router); break;
+                case "VALIDATION.ts": await addValidation(content, router); break;
                 case "ERROR.ts": await addError(content, router); break;
+                
                 case "POST.ts": await addMethod(content, "POST", router); break;
                 case "PUT.ts": await addMethod(content, "PUT", router); break;
                 case "PATCH": await addMethod(content, "PATCH", router); break;
@@ -50,9 +52,7 @@ async function LoadDir(content: fs.Dirent<string>, router: Router):Promise<void>
 }
 
 async function addAuth(content: fs.Dirent<string>, router: Router){
-
     const module = await importFile(content)
-
     if(!module.default){
         throw new Error(`No default method found for Auth file ${content.parentPath}/${content.name}`)
     }
@@ -64,21 +64,27 @@ async function addError(content: fs.Dirent<string>, router: Router){
     if(!module.default){
         throw new Error(`No default method found for Error file ${content.parentPath}/${content.name}`)
     }
-
     router.addError(module.default)
 }
 
-async function addMethod(content: fs.Dirent<string>, method: Method, router:Router){
+async function addValidation(content: fs.Dirent<string>, router: Router){
+    const module = await importFile(content)
+    if(!module.default){
+        throw new Error(`No default method found for Auth file ${content.parentPath}/${content.name}`)
+    }
+    router.addValidation(module.default)
+}
+
+async function addMethod(content: fs.Dirent<string>, method: FileRouter.Method, router:Router){
     const module = await importFile(content)
     if(!module.default){
         throw new Error(`No default method found for route ${content.parentPath}/${content.name}`)
     }
-    router.addMethod(method, module.default)
-    if(module.AUTH){
-        router.addAuth(module.AUTH)
-    } 
-
-    if(module.ERROR){
-        router.addError(module.ERROR)
-    }
+    router.addMethod(
+        method, 
+        module.default, 
+        module.AUTH ? module.AUTH : undefined,
+        module.ERROR ? module.ERROR : undefined,
+        module.VALIDATION ? module.VALIDATION : undefined
+    )
 }
