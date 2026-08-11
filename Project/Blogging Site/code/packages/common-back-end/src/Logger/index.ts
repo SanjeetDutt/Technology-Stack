@@ -48,10 +48,23 @@ export class Logger{
     }
 
     async flush(){
-        this.writeToFile(
+        await this.writeToFile(
             `${this.logPath}/corelations/${this.request.corelationId}.txt`, 
             JSON.stringify(this.logStack, null, 4)
         )
+        this.LogInDifferentFile("ERROR","error")
+        this.LogInDifferentFile("WARNING","warning")
+    }
+
+    private async LogInDifferentFile(logLevel: LogLevel, filename: string){
+        const logStacks = this.logStack.filter(log=>log.level === logLevel)
+
+        for(const logStack of logStacks){
+            await this.appendToFile(
+                `${this.logPath}/${filename}.txt`,
+                `${this.request.timestamp.toISOString()} | ${this.request.corelationId} | ${logStack.title}`
+            )
+        }
     }
 
     private async writeToFile(addr: string, content: string){
@@ -65,6 +78,14 @@ export class Logger{
             })
         } catch(error){
             console.error("ERROR",error)
+        }
+    }
+
+    private async appendToFile(addr:string, content: string){
+        try{
+            await fs.appendFile(addr, content)
+        } catch(e){
+            console.error("Error while appending to the file ", e)
         }
     }
 }

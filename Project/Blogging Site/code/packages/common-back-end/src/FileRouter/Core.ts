@@ -101,7 +101,9 @@ async function ScanFile(file: Dirent<string>, router: Router){
 }
 
 function isSame(fileName: string, enumVal: string){
-    return fileName.trim().toUpperCase().startsWith(enumVal.trim().toUpperCase()) 
+    const keyword = enumVal.trim().toUpperCase()
+    const regex = new RegExp(`${keyword}\\.(js|ts)$`,"i")
+    return regex.test(fileName.trim().toUpperCase())
 }
 
 async function addAutheication(file: Dirent<string>, router: Router){
