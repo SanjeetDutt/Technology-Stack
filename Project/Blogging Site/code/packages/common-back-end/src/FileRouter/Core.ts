@@ -1,90 +1,166 @@
-import fs from "fs"
+import fs,{ Dirent } from "fs";
 import { Router } from "./Router";
-import {FileRouter} from "./FileRouter.d"
-import { importFile, nameStartsAndEndWith } from "./utility";
+import { FileRouter } from "./types";
+import path from "path";
+import { LOG } from "./utility";
 
-function getFolderContent(dir: string){
-    return fs.readdirSync(dir, {withFileTypes: true})
-}
-
-export async function DirectoryScan(routDir: string, router: Router):Promise<void>{
-    const contents = getFolderContent(routDir)
-    
-    for (const content of contents){
+export async function ScanDrive(dir: string, router: Router):Promise<void>{
+    LOG("[.  Scanning Drive ]", dir)
+    const contents = getFolderContent(dir)
+    for(const content of contents){
         if(content.isDirectory()){
-            if(nameStartsAndEndWith(content.name, "(", ")")){
-                await LoadGroupDir(content, router)
-            } else if(nameStartsAndEndWith(content.name, "[","]")){
-                await LoadVariableDir(content, router)
-            } else {
-                await LoadDir(content, router)
-            }
+            await ScanDirectory(content, router)
         } else {
-            switch(content.name){
-                case "AUTH.ts": await addAuth(content, router); break;
-                case "VALIDATION.ts": await addValidation(content, router); break;
-                case "ERROR.ts": await addError(content, router); break;
-                
-                case "POST.ts": await addMethod(content, "POST", router); break;
-                case "PUT.ts": await addMethod(content, "PUT", router); break;
-                case "PATCH": await addMethod(content, "PATCH", router); break;
-                case "DELETE.ts": await addMethod(content, "DELETE", router); break;
-                case "GET.ts": await addMethod(content, "GET", router); break;
-            }
+            await ScanFile(content, router)
         }
     }
 }
 
-async function LoadGroupDir(content: fs.Dirent<string>, router: Router): Promise<void>{
-    const subRoute = router.addPath("/")
-    await DirectoryScan(`${content.parentPath}/${content.name}`, subRoute)
+function getFolderContent(dir: string){
+    return fs.readdirSync(dir, {
+        withFileTypes: true
+    })
 }
 
-async function LoadVariableDir(content: fs.Dirent<string>, router: Router): Promise<void>{
-    const varName = `:${content.name.slice(1,-1)}`
-    const subRoute = router.addPath(`/${varName}`)
-    await DirectoryScan(`${content.parentPath}/${content.name}`, subRoute)
-}
-
-async function LoadDir(content: fs.Dirent<string>, router: Router):Promise<void>{
-    const subRoute = router.addPath(`/${content.name}`)
-    await DirectoryScan(`${content.parentPath}/${content.name}`, subRoute)
-}
-
-async function addAuth(content: fs.Dirent<string>, router: Router){
-    const module = await importFile(content)
-    if(!module.default){
-        throw new Error(`No default method found for Auth file ${content.parentPath}/${content.name}`)
+// Directory Scanning Area
+async function ScanDirectory(directory: Dirent<string>, router: Router){
+    // If directory name start with "(" and ends with ")"
+    // Means it is a group directory
+    // Group directry will group the router without adding path in the URL
+    // Useful for adding auth, validation and error boundry for a group of routes
+    if(stringStartsAndEndWith(directory.name, "(",")")){
+        await LoadGroupDirectory(directory, router)
     }
-    router.addAuth(module.default)
+
+    // If directory name start with "[" and ends with "]"
+    // Means it is a variable directory
+    // Variable directry will group the router with adding a varaible path in the URL
+    // Useful for adding params value
+    else if(stringStartsAndEndWith(directory.name,"[","]")){
+        await LoadVariableDirectory(directory, router)
+    }
+
+    // Else it means it is a simple directory
+    // Will added the string (name of the directory) to the path
+    else {
+        await LoadDirectory(directory, router)
+    }
 }
 
-async function addError(content: fs.Dirent<string>, router: Router){
-    const module = await importFile(content)
-    if(!module.default){
-        throw new Error(`No default method found for Error file ${content.parentPath}/${content.name}`)
-    }
-    router.addError(module.default)
+function stringStartsAndEndWith(str: string, start: string, end: string):boolean{
+    return str.startsWith(start)
+        && str.endsWith(end)
 }
 
-async function addValidation(content: fs.Dirent<string>, router: Router){
-    const module = await importFile(content)
-    if(!module.default){
-        throw new Error(`No default method found for Auth file ${content.parentPath}/${content.name}`)
-    }
-    router.addValidation(module.default)
+async function LoadGroupDirectory(directory: Dirent<string>, router: Router): Promise<void>{
+    const subRouter = new Router("/")
+    router.addRouter(subRouter)
+    await ScanDrive(`${directory.parentPath}/${directory.name}`, subRouter)
 }
 
-async function addMethod(content: fs.Dirent<string>, method: FileRouter.Method, router:Router){
-    const module = await importFile(content)
-    if(!module.default){
-        throw new Error(`No default method found for route ${content.parentPath}/${content.name}`)
+async function LoadVariableDirectory(directory: Dirent<string>, router: Router): Promise<void>{
+    const varName = `:${directory.name.slice(1,-1)}`
+    const subRouter = new Router(`/${varName}`)
+    router.addRouter(subRouter)
+    await ScanDrive(`${directory.parentPath}/${directory.name}`, subRouter)
+}
+
+async function LoadDirectory(directory: Dirent<string>, router: Router): Promise<void>{
+    const subRouter = new Router(`/${directory.name}`)
+    router.addRouter(subRouter)
+    await ScanDrive(`${directory.parentPath}/${directory.name}`, subRouter)
+}
+
+//File Scanning Area
+async function ScanFile(file: Dirent<string>, router: Router){
+    if(isSame(file.name, FileRouter.FileName.AUTH)){
+        await addAutheication(file, router)
+    } 
+    else if (isSame(file.name, FileRouter.FileName.VALIDATION)){
+        await addValidation(file, router)
     }
-    router.addMethod(
-        method, 
-        module.default, 
-        module.AUTH ? module.AUTH : undefined,
-        module.ERROR ? module.ERROR : undefined,
-        module.VALIDATION ? module.VALIDATION : undefined
-    )
+    else if(isSame(file.name, FileRouter.FileName.ERROR)){
+        await addErrorBoundry(file, router)
+    }
+
+    else if(isSame(file.name, FileRouter.FileName.GET)){
+        await addMethod("GET",file, router)
+    }
+    else if(isSame(file.name, FileRouter.FileName.POST)){
+        await addMethod("POST",file, router)
+    }
+    else if(isSame(file.name, FileRouter.FileName.PATH)){
+        await addMethod("PATCH",file, router)
+    }
+    else if(isSame(file.name, FileRouter.FileName.PUT)){
+        await addMethod("PUT",file, router)
+    }
+    else if(isSame(file.name, FileRouter.FileName.DELETE)){
+        await addMethod("DELETE",file, router)
+    }
+}
+
+function isSame(fileName: string, enumVal: string){
+    return fileName.trim().toUpperCase().startsWith(enumVal.trim().toUpperCase()) 
+}
+
+async function addAutheication(file: Dirent<string>, router: Router){
+    LOG("ADDING AUTH")
+    const module = await importFile(file)
+    if(classHasProperty(module, "authentication")){
+        router.addAuthentication(new module())
+    }
+}
+
+async function addValidation(file: Dirent<string>, router: Router){
+    LOG("ADDING VALIDATION")
+    const module = await importFile(file)
+    if(classHasProperty(module, "validation")){
+        router.addValidation(new module())
+    }
+}
+
+async function addErrorBoundry(file: Dirent<string>, router: Router){
+    LOG("ADDING ERROR")
+    const module = await importFile(file)
+    if(classHasProperty(module, "errorBoundry")){
+        router.addErrorBoundry(new module())
+    }
+}
+
+async function addMethod(method: FileRouter.Method ,file: Dirent<string>, router: Router){
+    LOG("ADDING METHOD")
+    const module = await importFile(file)
+    if(classHasProperty(module, "call")){
+        LOG("VALID METHOD")
+        const endpoint = new module(method, router.getPath())
+        router.addEndpoint(endpoint)
+    }
+}
+
+async function importFile(file: Dirent<string>){
+    const {parentPath, name} = file
+    const absPath = path.resolve(parentPath, name)
+
+    try{
+        const module = (await import(absPath)) as any
+        if(!module.default){
+            console.error(`No default exports found for ${file.parentPath}/${file.name}`)
+            return
+        }
+        return module.default
+    } catch(error){
+        console.error("IMPORT FAILED : ", error)
+        throw error
+    }
+}
+
+function classHasProperty(_class: any, propertyName: string):boolean{
+    const check = !!Object.getOwnPropertyNames(_class.prototype).find(e=>e===propertyName)
+
+    if(!check){
+        throw new Error(`Class ${_class} doesnot have property ${propertyName}`)
+    }
+
+    return check
 }

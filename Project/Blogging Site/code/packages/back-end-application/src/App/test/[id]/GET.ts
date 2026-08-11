@@ -1,23 +1,6 @@
-import { defineRoute, defineAuth, Name, defineValidation } from "common-back-end";
+import {Endpoint, Request, Response, Authentication} from "common-back-end"
+export default class TestRoute3 extends Endpoint implements Authentication{
+    call(request:Request, response:Response){}
 
-interface Payload{}
-interface Body{
-    status: string,
-    message: string
+    authentication(request:Request, response:Response){}
 }
-
-
-export default defineRoute<Payload, Body>((request, response)=>{
-    response.addBody({
-        status:"OK",
-        message:"HELLO WORLD"
-    })
-})
-
-export const AUTH = defineAuth<Payload, Body>((request, response)=>{
-    console.log("EXECUTING AUTH FROM GET CALL")
-})
-
-export const VALIDATION = defineValidation((req)=>{
-    console.log("FILE VALIDATION")
-})

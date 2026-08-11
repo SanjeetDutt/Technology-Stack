@@ -1,114 +1,153 @@
-import { Endpoint } from "./Endpoint";
-import {FileRouter} from "./FileRouter.d"
+/**
+ * Router class
+ * - define as a node of the tree
+ * - Meta-data = path
+ * - Children = Router / Endpoint
+ */
 
-//Follows tree structure
-// SubNode stored in subRoutes
-// Each node has its own authentication, error 
-// Will add validation in each node
-export class Router {
-    private readonly path: FileRouter.Path;
-    private readonly subRoutes: Router[]
-    private authentication?: FileRouter.MethodHandler
-    private validation?: FileRouter.MethodHandler
-    private error?: FileRouter.ErrorHandler
-    private endpoints:{[key in FileRouter.Method]?: Method}
+import e from "cors";
+import { Endpoint, Authentication, Validation, ErrorBoundry } from "./Endpoint";
+import { FileRouter } from "./types";
+
+export class Router{
+    private readonly path: FileRouter.Path
+    private authentication: Authentication|undefined
+    private validation: Validation|undefined
+    private errorBoundry: ErrorBoundry | undefined
+    private parrentRouter: Router | undefined
+
+    private readonly endpoints:  Endpoint[]
+    private readonly childRoute : Router[]
 
     constructor(path: FileRouter.Path){
         this.path = path
-        this.subRoutes = []
-        this.endpoints = {}
+        this.endpoints = []
+        this.childRoute = []
     }
 
-    public addPath(path: FileRouter.Path){
-        const subRoute = new Router(path)
-        this.subRoutes.push(subRoute)
-        return subRoute
+    addAuthentication(authentication:Authentication){
+        this.authentication = authentication
     }
 
-    public addAuth(fn: any){
-        this.authentication = fn
+    addValidation(validation: Validation){
+        this.validation = validation
     }
 
-    public addValidation(fn:any){
-        this.validation = fn
+    addErrorBoundry(errorBoundry: ErrorBoundry){
+        this.errorBoundry = errorBoundry
     }
 
-    public addMethod(
-        method: FileRouter.Method, 
-        fn: FileRouter.MethodHandler, 
-        auth?: FileRouter.MethodHandler, 
-        error?: FileRouter.ErrorHandler,
-        validation?: FileRouter.MethodHandler
-    ){
-        this.endpoints[method] = new Method(fn, auth, error, validation)
+    addEndpoint(endpoint: Endpoint){
+        endpoint.addParentRoute(this)
+        this.endpoints.push(endpoint)
     }
 
-    public addError(fn: any){
-        this.error = fn
+    addRouter(router:Router){
+        this.childRoute.push(router)
+        router.addParent(this)
     }
 
-    public getEndpoints(parentPath?: FileRouter.Path, parentAuth?: any[], parentError?: any, parentValidation?: any[]){
-        const url:FileRouter.Path = parentPath && parentPath!=="/" ? `${parentPath}${this.path}` : this.path
-        const authArray: any[] = [...parentAuth||[], this.authentication]
-        const validationArray: any[] = [...parentValidation || [], this.validation]
-        const error:any = this.error || parentError
+    addParent(parentRouter: Router){
+        this.parrentRouter = parentRouter
+    }
 
-        let endpoints:Endpoint[] = []
+    getPath():FileRouter.Path{
+        let parentRouter = this.parrentRouter?.getPath()
+        if(!parentRouter){
+            return this.path
+        }
 
-        for(const [methodType, method] of Object.entries(this.endpoints)){
+        if(parentRouter.endsWith("/")){
+            return `${parentRouter}${this.path.slice(1)}`
+        }
 
-            const auth:FileRouter.MethodHandler[] = [
-                ...(authArray ? authArray.filter(a=>!!a) : []),
-                ...(method.auth ? [method.auth] : [])
-            ]
-
-            const validation: FileRouter.MethodHandler[] = [
-                ...(validationArray ? validationArray.filter(v=>!!v) : []),
-                ...(method.validation ? [method.validation]:[])
-            ]
+        return `${parentRouter}${this.path}`
         
-            endpoints.push(new Endpoint({
-                handler: method.handler,
-                method: methodType as FileRouter.Method, 
-                url, 
-                auth, 
-                error: method.error || error,
-                validation
-            })
-        )}
+    }
 
-        if(this.subRoutes){
-            this.subRoutes.forEach(r=>{
-                endpoints = [
-                    ...endpoints,
-                    ...r.getEndpoints(
-                        url,
-                        authArray,
-                        error,
-                        validationArray
-                    )
-                ]
+    getValidationStack():Validation[]{
+        const stack: Validation[]=[]
+        if(this.validation){
+            stack.push(this.validation)
+        }
+        if(this.parrentRouter){
+            stack.push(...this.parrentRouter.getValidationStack())
+        }
+        return stack
+    }
+
+    getAuthenticationStack():Authentication[]{
+        const stack:Authentication[] =[]
+        if(this.authentication){
+            stack.push(this.authentication)
+        }
+        if(this.parrentRouter){
+            stack.push(...this.parrentRouter.getAuthenticationStack())
+        }
+        return stack
+    }
+
+    getErrorBoundary():ErrorBoundry|undefined{
+        if(this.errorBoundry){
+            return this.errorBoundry
+        }
+        return this.parrentRouter?.getErrorBoundary()
+    }
+
+    // Return a list of all endpoints
+    getAllEndpoints():FileRouter.EndpointExport[]{
+        const endpoints: FileRouter.EndpointExport[] = [
+            ...this.endpoints.map(e=>{
+                const validationStack: Validation[] = []
+                const authenticationStack: Authentication[]=[]
+                if(e.getParrent()){
+                    validationStack.push(...e.getParrent()!.getValidationStack())
+                    authenticationStack.push(...e.getParrent()!.getAuthenticationStack())
+                }
+
+                if(isAuthentication(e)){
+                    authenticationStack.push(e)
+                }
+
+                if(isValidation(e)){
+                    validationStack.push(e)
+                }
+
+                return {
+                    path: e.getPath(),
+                    method: e.getMethod(),
+                    validation:validationStack,
+                    authentication:authenticationStack,
+                    errorBoundary: isError(e) ? e : e.getParrent()?.getErrorBoundary(),
+                    endpoint: e
+                }
             })
+        ]
+        for(const childRoute of this.childRoute){
+            endpoints.push(...childRoute.getAllEndpoints())
         }
         return endpoints
     }
+
 }
 
-class Method{
-    public readonly handler: FileRouter.MethodHandler
-    public readonly auth: FileRouter.MethodHandler | undefined
-    public readonly error: FileRouter.ErrorHandler | undefined
-    public readonly validation: FileRouter.MethodHandler | undefined
+function isAuthentication(obj:any):obj is Authentication{
+    return(
+        obj &&
+        obj.authentication
+    )
+}
 
-    constructor(
-        handler: FileRouter.MethodHandler, 
-        auth?: FileRouter.MethodHandler, 
-        error?: FileRouter.ErrorHandler,
-        validation?: FileRouter.MethodHandler
-    ){
-        this.handler = handler
-        this.auth = auth
-        this.error = error
-        this.validation = validation
-    }
+function isValidation(obj:any):obj is Validation{
+    return(
+        obj &&
+        obj.validation
+    )
+}
+
+function isError(obj:any):obj is ErrorBoundry{
+    return(
+        obj &&
+        obj.errorBoundary
+    )
 }

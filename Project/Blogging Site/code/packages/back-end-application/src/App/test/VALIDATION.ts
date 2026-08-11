@@ -1,5 +1,7 @@
-import { defineValidation } from "common-back-end";
+import {Validation, Request} from "common-back-end"
+export default class TestValidation implements Validation{
+    validation(request: Request): void {
+        throw new Error("Method not implemented.");
+    }
 
-export default defineValidation((req)=>{
-    console.log("VALIDATION in TEST")
-})
+}

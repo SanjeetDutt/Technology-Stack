@@ -1,4 +1,5 @@
-import { LoadRoutes } from "../FileRouter";
+
+import { LoadRouter } from "../FileRouter";
 import {Server as _Server} from "./Server"
 class ServerBuilder{
     private port: number | undefined
@@ -19,6 +20,7 @@ class ServerBuilder{
         this.logPath = path
         return this
     }
+
     public async start():Promise<void>{
 
         if(!this.port){
@@ -31,7 +33,7 @@ class ServerBuilder{
 
         const server = new _Server({
             port: this.port,
-            router: await LoadRoutes(this.routePath),
+            endpoints: await LoadRouter(this.routePath),
             logPath: this.logPath
         })
 
