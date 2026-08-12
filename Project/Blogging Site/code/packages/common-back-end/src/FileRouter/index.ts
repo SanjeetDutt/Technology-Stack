@@ -1,11 +1,12 @@
 import { ScanDrive } from "./Core";
+import { IEndpoint } from "./Endpoint";
 import { Router } from "./Router";
 import { FileRouter } from "./types";
 
-export async function LoadRouter(directory: string){
+export async function LoadRouter(directory: string):Promise<IEndpoint[]>{
     const root = new Router("/")
     await ScanDrive(directory, root)
-    const endpoints = root.getAllEndpoints()
+    const endpoints = root.getEndpoint()
     checkForDuplicateEndpoints(endpoints)
     return endpoints
 }
@@ -14,7 +15,7 @@ export * from "./Endpoint"
 export * from "./Request"
 export * from "./Response"
 
-function checkForDuplicateEndpoints(endpoints: FileRouter.EndpointExport[]){
+function checkForDuplicateEndpoints(endpoints: IEndpoint[]){
     const endpointSet:{
         path: FileRouter.Path,
         method: FileRouter.Method
@@ -22,16 +23,16 @@ function checkForDuplicateEndpoints(endpoints: FileRouter.EndpointExport[]){
 
     for(const endpoint of endpoints){
         const hasEndpointInSet = !!endpointSet.find(e=>(
-            e.method === endpoint.method &&
-            e.path === endpoint.path
+            e.method === endpoint.getMethod() &&
+            e.path === endpoint.getPath()
         ))
         if(hasEndpointInSet){
-            throw new Error(`Duplicate endpoint found Method:${endpoint.method} Path:${endpoint.path}`)
+            throw new Error(`Duplicate endpoint found Method:${endpoint.getMethod()} Path:${endpoint.getPath()}`)
         }
 
         endpointSet.push({
-            method: endpoint.method,
-            path: endpoint.path
+            method: endpoint.getMethod(),
+            path: endpoint.getPath()
         })
     }
 }

@@ -6,15 +6,10 @@ export namespace FileRouter{
     export type Method = "POST" | "PATCH" | "DELETE" | "PUT" | "GET"
 
     export enum FileName {
-        AUTH="AUTH",
-        VALIDATION = "VALIDATION",
-        ERROR = "ERROR",
-
-        POST = "POST",
-        PUT = "PUT",
-        PATH = "PATCH",
-        DELETE = "DELETE",
-        GET = "GET"
+        AUTH="_AUTH",
+        VALIDATION = "_VALIDATION",
+        ERROR = "_ERROR",
+        ROUTE = "ROUTE",
     }
 
     export interface EndpointExport{

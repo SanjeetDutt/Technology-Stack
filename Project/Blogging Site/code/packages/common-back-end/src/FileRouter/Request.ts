@@ -1,4 +1,5 @@
 import { Logger } from "../Logger";
+import Express from "express"
 
 export class Request{
     public readonly corelationId: string
@@ -7,6 +8,7 @@ export class Request{
 
     constructor(params:{
         logPath: string | undefined
+        request: Express.Request
     }){
         this.corelationId = crypto.randomUUID()
         this.timestamp = new Date()
