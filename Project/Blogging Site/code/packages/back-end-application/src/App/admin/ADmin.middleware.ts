@@ -1,6 +1,6 @@
-import {IAuthentication, Request} from "common-back-end"
+import {IAuthentication, Request, Response} from "common-back-end"
 export default class AdminGuard 
 implements IAuthentication
 {
-    authentication(request: Request){}
+    async authentication(request: Request, response: Response){}
 }

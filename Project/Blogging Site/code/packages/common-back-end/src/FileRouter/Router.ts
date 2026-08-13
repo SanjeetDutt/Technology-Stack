@@ -11,6 +11,7 @@ import { FileRouter } from "./types";
 export interface IRouter{
     addChild(route: IRouter): IRouter
     getPath(): FileRouter.Path
+    getRoot():IRouter
 
     addEndpoint(endpoint: IEndpoint): IRouter
 
@@ -55,6 +56,14 @@ export class Router implements IRouter{
         this.authentication = [...parent?.getAuthentication() || []]
         this.validation = [...parent?.getValidation() || []]
         this.errorBoundry = parent?.getErrorBoundary()
+    }
+
+    getRoot():IRouter{
+        if(this.parrent){
+            return this.parrent.getRoot()
+        }
+
+        return this
     }
 
     private extractPath(path: FileRouter.Path, parent?: IRouter):FileRouter.Path{
