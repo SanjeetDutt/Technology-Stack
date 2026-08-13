@@ -10,11 +10,11 @@ interface structure{
 }
 
 export class Logger{
-    private readonly request: Request
+    private readonly request: Request<any, any, any>
     private readonly logPath: string | undefined
     private readonly logStack: structure[]
 
-    constructor(request: Request, logPath: string|undefined){
+    constructor(request: Request<any, any, any>, logPath: string|undefined){
         this.request = request
         this.logPath = logPath
         this.logStack = [{

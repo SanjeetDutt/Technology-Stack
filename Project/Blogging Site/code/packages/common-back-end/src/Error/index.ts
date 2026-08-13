@@ -1,3 +1,5 @@
 export * from "./InternalServerError"
 export * from "./UnauthorisedError"
 export * from "./ServerError"
+export * from "./IServerError"
+export * from "./NotFoundError"

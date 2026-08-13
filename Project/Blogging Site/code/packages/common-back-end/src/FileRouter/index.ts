@@ -1,9 +1,14 @@
 import { ScanDrive } from "./Core";
 import { IEndpoint } from "./Endpoint";
-import { Router } from "./Router";
-import { FileRouter } from "./types";
+import { Router } from "./Router/Router";
+import { Path, Method } from "./types";
 
-export async function LoadRouter(directory: string):Promise<IEndpoint[]>{
+export * from "./Endpoint"
+export * from "./Request"
+export * from "./Response"
+export * from "./Router"
+
+export async function LoadRouter(directory: string):Promise<IEndpoint<any,any,any,any>[]>{
     const root = new Router("/")
     await ScanDrive(directory, root)
     const endpoints = root.getEndpoint()
@@ -11,14 +16,10 @@ export async function LoadRouter(directory: string):Promise<IEndpoint[]>{
     return endpoints
 }
 
-export * from "./Endpoint"
-export * from "./Request"
-export * from "./Response"
-
-function checkForDuplicateEndpoints(endpoints: IEndpoint[]){
+function checkForDuplicateEndpoints(endpoints: IEndpoint<any,any,any,any>[]){
     const endpointSet:{
-        path: FileRouter.Path,
-        method: FileRouter.Method
+        path: Path,
+        method: Method
     }[] = []
 
     for(const endpoint of endpoints){

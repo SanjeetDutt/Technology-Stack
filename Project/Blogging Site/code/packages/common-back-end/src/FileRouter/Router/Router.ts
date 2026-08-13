@@ -5,30 +5,15 @@
  * - Children = Router / Endpoint
  */
 
-import { IAuthentication, IValidation, IErrorBoundry, IEndpoint } from "./Endpoint";
-import { FileRouter } from "./types";
+import { IAuthentication, IValidation, IErrorBoundary, IEndpoint } from "../Endpoint";
+import { Path } from "../types";
+import { IRouter } from "./IRouter";
 
-export interface IRouter{
-    addChild(route: IRouter): IRouter
-    getPath(): FileRouter.Path
-    getRoot():IRouter
 
-    addEndpoint(endpoint: IEndpoint): IRouter
-
-    getEndpoint(): IEndpoint[]
-    
-    addValidation(validation: IValidation):void
-    addAuthentication(authentication:IAuthentication):void
-    addErrorBoundary(errorBoundary: IErrorBoundry | undefined): void
-
-    getValidation(): IValidation[]
-    getAuthentication(): IAuthentication[]
-    getErrorBoundary(): IErrorBoundry | undefined
-}
 
 export class Router implements IRouter{
     //Meta data
-    private readonly path: FileRouter.Path
+    private readonly path: Path
 
     // If parent is undefined them the router node is master node
     private readonly parrent: IRouter | undefined
@@ -37,13 +22,13 @@ export class Router implements IRouter{
     // GUARDS
     private readonly authentication: IAuthentication[]
     private readonly validation: IValidation[]
-    private errorBoundry: IErrorBoundry | undefined
+    private errorBoundry: IErrorBoundary | undefined
 
     // Enpoints
-    private readonly endpoints:  IEndpoint[]
+    private readonly endpoints:  IEndpoint<any, any, any, any>[]
     
 
-    constructor(path: FileRouter.Path, parent?: IRouter){
+    constructor(path: Path, parent?: IRouter){
         this.path = this.extractPath(path, parent)
         this.parrent = parent
         this.endpoints = []
@@ -66,7 +51,7 @@ export class Router implements IRouter{
         return this
     }
 
-    private extractPath(path: FileRouter.Path, parent?: IRouter):FileRouter.Path{
+    private extractPath(path: Path, parent?: IRouter):Path{
         if(!parent){
             return path
         }
@@ -89,12 +74,12 @@ export class Router implements IRouter{
         return this
     }
 
-    addEndpoint(endpoint: IEndpoint):IRouter{
+    addEndpoint(endpoint: IEndpoint<any, any, any, any>):IRouter{
         this.endpoints.push(endpoint)
         return this
     }
 
-    getPath():FileRouter.Path{
+    getPath():Path{
         return this.path
     }
 
@@ -106,7 +91,7 @@ export class Router implements IRouter{
         this.authentication.push(authentication)
     }
 
-    addErrorBoundary(eb: IErrorBoundry | undefined){
+    addErrorBoundary(eb: IErrorBoundary | undefined){
         this.errorBoundry = eb
     }
 

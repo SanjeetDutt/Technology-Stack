@@ -1,4 +1,5 @@
 import {IErrorBoundry, Request, Response, ServerError} from "common-back-end"
+
 export default class DefaultMiddleware 
 implements IErrorBoundry
 {

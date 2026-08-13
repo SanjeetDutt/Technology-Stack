@@ -1,8 +1,8 @@
 import fs,{ Dirent } from "fs";
 import { IRouter, Router } from "./Router";
-import { FileRouter } from "./types";
+import { Path } from "./types";
 import path from "path";
-import { IAuthentication, IErrorBoundry, IEndpoint, IValidation } from "./Endpoint";
+import { IAuthentication, IErrorBoundary, IEndpoint, IValidation } from "./Endpoint";
 
 export async function ScanDrive(dir: string, router: IRouter):Promise<void>{
     const contents = fs.readdirSync(dir, {withFileTypes: true})
@@ -22,7 +22,7 @@ async function ScanDirectory(directory: Dirent<string>, router: IRouter){
             && str.endsWith(end)
     }
 
-    async function LoadSubRouteDirectory(dir: Dirent<string>, parentRoute:IRouter, childPath: FileRouter.Path){
+    async function LoadSubRouteDirectory(dir: Dirent<string>, parentRoute:IRouter, childPath: Path){
         const subRouter = new Router(childPath, parentRoute)
         await ScanDrive(`${dir.parentPath}/${dir.name}`, subRouter)
     }
@@ -61,8 +61,8 @@ async function ScanFile(file: Dirent<string>, router: IRouter){
     // If file ends with Route.ts or Route.js then it is a route endpoint file
     if(endsWith(file.name, "ROUTE")){
         const module = await importFile(file, router)
-        if(isTypeOf<IEndpoint>(module,["call","getMethod","getPath","getRouter"])){
-            router.addEndpoint(module as IEndpoint)
+        if(isTypeOf<IEndpoint<any,any,any,any>>(module,["call","getMethod","getPath","getRouter"])){
+            router.addEndpoint(module as IEndpoint<any,any,any,any>)
         }
     }
 
@@ -77,8 +77,8 @@ async function ScanFile(file: Dirent<string>, router: IRouter){
             router.addAuthentication(module as IAuthentication)
         }
 
-        if(isTypeOf<IErrorBoundry>(module,["errorBoundry"])) {
-            router.addErrorBoundary(module as IErrorBoundry)
+        if(isTypeOf<IErrorBoundary>(module,["errorBoundry"])) {
+            router.addErrorBoundary(module as IErrorBoundary)
         }
 
     }

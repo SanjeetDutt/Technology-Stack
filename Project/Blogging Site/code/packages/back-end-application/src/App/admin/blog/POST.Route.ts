@@ -1,9 +1,13 @@
-import {PostRoute} from "common-back-end"
+import {PostRoute, Request, Response} from "common-back-end"
 
+interface Boby {}
+interface Res{}
 export default class CreateNewBlog
-extends PostRoute
+extends PostRoute<Boby, Res>
 {
-    call(){
+    
+    async call() {
         
     }
+    
 }

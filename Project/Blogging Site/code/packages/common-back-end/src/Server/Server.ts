@@ -1,16 +1,15 @@
 import Express from "express"
 import { IEndpoint, Request, Response } from "../FileRouter";
-import { ServerError } from "../Error";
-import { NotFoundError } from "../Error/NotFoundError";
+import { NotFoundError } from "../Error";
 
 export class Server{
 
     private readonly port: number
-    private readonly endpoints: IEndpoint[]
+    private readonly endpoints: IEndpoint<any, any, any, any>[]
     private readonly logPath: string|undefined
     private readonly expressApplication: Express.Express
 
-    constructor(p:{port: number, endpoints: IEndpoint[], logPath: string|undefined}){
+    constructor(p:{port: number, endpoints: IEndpoint<any, any, any, any>[], logPath: string|undefined}){
         this.port = p.port
         this.endpoints = p.endpoints
         this.logPath = p.logPath
@@ -36,7 +35,7 @@ export class Server{
                 const request = Request.ErrorRequest(this, req, res, next)
                 const response = Response.ErrorResponse(this, request, req, res, next)
                 const serverError = new NotFoundError(``)
-                await rootErrorBoundary.errorBoundry(request, response, serverError)
+                await rootErrorBoundary.errorBoundry()
                 request.logger.flush()
             } else{
                 next()
