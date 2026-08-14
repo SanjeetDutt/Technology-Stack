@@ -6,8 +6,9 @@ import {Endpoint, IEndpoint} from "./IEndpoint"
 import {IAuthentication} from "./IAuthentication"
 import { IValidation } from "./IValidation";
 import { IErrorBoundary } from "./IErrorBoundary";
-import { CreateContext, Request, Response } from "../Context";
+import { Request, Response, ResponseBuilder } from "../Context";
 import { ServerError } from "../../Error";
+import { RequestBuilder } from "../Context";
 
 /**
  * Endpoint
@@ -65,12 +66,17 @@ export abstract class AbstractEndpoint<
             throw new Error("Server not setup.")
         }
         return async (Erequest:Express.Request<P,B,Q>, Eresponse:Express.Response, next: Express.NextFunction)=>{
-            const [request, response] = CreateContext<B,P,Q,R>(this, Erequest, Eresponse, next)
+            const request = RequestBuilder<B,P,Q>()
+                .endpoint(this)
+                .express(Erequest)
+                .server(this.server!)
+                .build()
             
-            request.logger.log(
-                "Path : " + this.getPath(), 
-                "Original Path : " + Erequest.originalUrl
-            )
+            const response = ResponseBuilder<R>()
+                .express(Eresponse)
+                .request(request)
+                .build()
+            
             const execute = async (fn: (request?:Request<B,P,Q>, response?:Response<R>)=>Promise<any>|any, startMsg?:string, endMsg?: string)=>{
                 const executeMsg = (msg?:string)=> msg && request.logger.log(msg.replaceAll("$name", fn.constructor.name))
                 executeMsg(startMsg)

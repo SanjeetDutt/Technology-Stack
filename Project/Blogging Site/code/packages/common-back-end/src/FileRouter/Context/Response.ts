@@ -10,14 +10,14 @@ export class Response<R extends Endpoint.RESPONSE = {}>{
     private readonly corelationId:string
     private readonly ExpressResponse: Express.Response
 
-    constructor(params:{
+    constructor(
         request: Request<any>,
         response: Express.Response
-    }){
-        this.corelationId = params.request.corelationId
-        this.ExpressResponse = params.response
-        this.request = params.request
-        params.response.setHeader("Corelation-Id", params.request.corelationId)
+    ){
+        this.corelationId = request.corelationId
+        this.ExpressResponse = response
+        this.request = request
+        response.setHeader("Corelation-Id", request.corelationId)
     }
 
     add(res:R){

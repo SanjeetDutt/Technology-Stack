@@ -1,9 +1,9 @@
 import {PostRoute, Request, Response} from "common-back-end"
 
-interface Boby {}
+interface Body {}
 interface Res{}
 export default class CreateNewBlog
-extends PostRoute<Boby, Res>
+extends PostRoute<Body, Res>
 {
     
     call(req:Request<Body>, res: Response<Res>){

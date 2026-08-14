@@ -1,5 +1,5 @@
 import Express from "express"
-import { CreateContext, CreateContextFromServer, IEndpoint, Request, Response } from "../FileRouter";
+import { IEndpoint, RequestBuilder, ResponseBuilder } from "../FileRouter";
 import { NotFoundError } from "../Error";
 
 export class Server{
@@ -32,7 +32,16 @@ export class Server{
         this.expressApplication.use(async (req: Express.Request, res: Express.Response, next: Express.NextFunction)=>{
             const rootErrorBoundary = this.endpoints[0]?.getRootErrorBoundary()
             if(rootErrorBoundary){
-                const [request, response] = CreateContextFromServer<any,any,any,any>(this,req,res,next)
+                const request = RequestBuilder<any, any, any>()
+                    .server(this)
+                    .express(req)
+                    .build()
+                
+                const response = ResponseBuilder()
+                    .express(res)
+                    .request(request)
+                    .build()
+                
                 request.logger.error("Route not found for " + req.path)
                 const serverError = new NotFoundError(``)
                 await rootErrorBoundary.errorBoundary(serverError,request, response)
