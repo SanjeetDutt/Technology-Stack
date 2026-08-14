@@ -1,7 +1,12 @@
 import {PostRoute} from "common-back-end"
-export default class TestRoute extends PostRoute{
+import {Request, Response} from "common-back-end"
+interface Body{}
+interface Res extends String{
 
-    async call(){
-        console.log("CALL")
+}
+export default class TestRoute extends PostRoute<Body,Res>{
+
+    call(request: Request<Body>, response: Response<Res>): Promise<void> | void {
+        response.submit("HELLO WORLD")
     }
 }

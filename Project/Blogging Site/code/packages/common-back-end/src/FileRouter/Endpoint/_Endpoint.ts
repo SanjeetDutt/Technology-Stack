@@ -1,7 +1,4 @@
-import { ServerError } from "../../Error";
 import { Server } from "../../Server/Server";
-import { Request } from "../Request";
-import { Response } from "../Response";
 import { IRouter } from "../Router";
 import { Method } from "../types";
 import Express from "express"
@@ -9,6 +6,8 @@ import {Endpoint, IEndpoint} from "./IEndpoint"
 import {IAuthentication} from "./IAuthentication"
 import { IValidation } from "./IValidation";
 import { IErrorBoundary } from "./IErrorBoundary";
+import { CreateContext, Request, Response } from "../Context";
+import { ServerError } from "../../Error";
 
 /**
  * Endpoint
@@ -24,19 +23,20 @@ export abstract class AbstractEndpoint<
 {
     protected readonly method: Method
     protected readonly router: IRouter
+    protected server: Server|undefined
     
     constructor(method: Method, router: IRouter){
         this.method = method
         this.router = router
     }
-    getAuthentication(): IAuthentication[] {
+    getAuthentication(): IAuthentication<B,R,P,Q>[] {
         //TODO: add route auth
         return this.router.getAuthentication()
     }
-    getValidation(): IValidation[] {
+    getValidation(): IValidation<B,R,P,Q>[] {
         return this.router.getValidation()
     }
-    getErrorBoundary(): IErrorBoundary|undefined {
+    getErrorBoundary(): IErrorBoundary<B,R>|undefined {
         return this.router.getErrorBoundary()
     }
 
@@ -56,44 +56,62 @@ export abstract class AbstractEndpoint<
         return this.getRouter().getRoot().getErrorBoundary()
     }
 
-    protected handleApplicationRequest(server: Server){
-        return async (Erequest:Express.Request, Eresponse:Express.Response, next: Express.NextFunction)=>{
-            const request = Request.Create<B, P, Q, R>(server, this, {request: Erequest, response: Eresponse, next})
-            const response = Response.Create<B, P, Q, R>(server, this, request, {request: Erequest, response: Eresponse, next})
+    getServer(){
+        return this.server!
+    }
 
+    protected handleApplicationRequest(){
+        if(!this.server){
+            throw new Error("Server not setup.")
+        }
+        return async (Erequest:Express.Request<P,B,Q>, Eresponse:Express.Response, next: Express.NextFunction)=>{
+            const [request, response] = CreateContext<B,P,Q,R>(this, Erequest, Eresponse, next)
+            
+            request.logger.log(
+                "Path : " + this.getPath(), 
+                "Original Path : " + Erequest.originalUrl
+            )
+            const execute = async (fn: (request?:Request<B,P,Q>, response?:Response<R>)=>Promise<any>|any, startMsg?:string, endMsg?: string)=>{
+                const executeMsg = (msg?:string)=> msg && request.logger.log(msg.replaceAll("$name", fn.constructor.name))
+                executeMsg(startMsg)
+                await fn(request,response)
+                executeMsg(endMsg)
+            }
             try{
                 for(const auth of this.getAuthentication()){
-                    request.logger.log(`Authenticating the request from ${auth.constructor.name}`)
-                    await auth.authentication()
-                    request.logger.log(`Request authenticated from ${auth.constructor.name}`)
+                    await execute(auth.authentication, "Authenticating the request from $name", "Authentication Complete from $name")
                 }
-
                 for(const validation of this.getValidation()){
-                    request.logger.log(`Validating the request from ${validation.constructor.name}`)
-                    await validation.validation()
-                    request.logger.log(`Request validated from ${validation.constructor.name}`)
+                    await execute(validation.validation, "Validating request from $name", "Validate successfull from $name")
                 }
-
-                request.logger.log(`Calling the call function of ${this.constructor.name}`)
-                this.call()
-                request.logger.log(`Call successful from ${this.constructor.name}`)
-                
+                await execute(this.call,"Executing $name call function", "Executed $name call function")
             } catch(e){
-                request.logger.error("Encounter an error " + e)
+                request.logger.error("Encounter an error while processing request" + e)
                 const errorBoundary = this.getErrorBoundary()
                 if(errorBoundary){
-                    request.logger.log("Error catch by error boundary " + errorBoundary.constructor.name)
-                    errorBoundary.errorBoundry()
+                    request.logger.log(`Executing error boundary ${errorBoundary.constructor.name}`)
+                    await errorBoundary.errorBoundary(
+                        e as ServerError,
+                        request, 
+                        response
+                    )
+                    request.logger.log(`Executed error boundary ${errorBoundary.constructor.name}`)
                 }
             } finally{
+                response.submitIfNot()
                 request.logger.flush()
             }
         }
     }
 
-    abstract register(server:Server):void
+    register(server:Server):void{
+        this.server = server
+        this.registerEndpoint(server)
+    }
+
+    abstract registerEndpoint(server: Server):void
     
-    abstract call():void
+    abstract call(request?: Request<B,P,Q>, response?:Response<R>):void | Promise<void>
 }
 
 

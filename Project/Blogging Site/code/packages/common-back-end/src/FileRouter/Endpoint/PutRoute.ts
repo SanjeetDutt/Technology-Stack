@@ -14,9 +14,7 @@ export abstract class PutRoute<
         super("PUT", router)
     }
 
-    register(server:Server){
-        server.getExpress().put(this.getPath(), this.handleApplicationRequest(server))
+    registerEndpoint(server:Server){
+        server.getExpress().put(this.getPath(), this.handleApplicationRequest())
     }
-
-    abstract call():void
 }

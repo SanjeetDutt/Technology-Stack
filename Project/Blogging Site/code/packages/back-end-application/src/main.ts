@@ -1,6 +1,6 @@
-import {Server}  from "common-back-end"
+import {ServerBuilder}  from "common-back-end"
 
-Server()
+ServerBuilder()
     .listen(3000)
     .fileRouting("./src/App")
     .logs("./src/Logs")

@@ -69,16 +69,16 @@ async function ScanFile(file: Dirent<string>, router: IRouter){
     // If file ends with Gurad.ts or Guard.js then it is a middleware file
     if(endsWith(file.name, "MIDDLEWARE")){
         const module = await importFile(file, router)
-        if(isTypeOf<IValidation>(module,["validation"])) {
-            router.addValidation(module as IValidation)
+        if(isTypeOf<IValidation<any, any, any, any>>(module,["validation"])) {
+            router.addValidation(module as IValidation<any, any, any, any>)
         }
 
-        if(isTypeOf<IAuthentication>(module,["authentication"])) {
-            router.addAuthentication(module as IAuthentication)
+        if(isTypeOf<IAuthentication<any, any, any, any>>(module,["authentication"])) {
+            router.addAuthentication(module as IAuthentication<any, any, any, any>)
         }
 
-        if(isTypeOf<IErrorBoundary>(module,["errorBoundry"])) {
-            router.addErrorBoundary(module as IErrorBoundary)
+        if(isTypeOf<IErrorBoundary<any, any, any, any>>(module,["errorBoundary"])) {
+            router.addErrorBoundary(module as IErrorBoundary<any, any, any, any>)
         }
 
     }

@@ -2,7 +2,7 @@ import {GetRoute} from "common-back-end"
 
 
 export default class GetUsersRoute 
-extends GetRoute
+extends GetRoute<{},{}>
 {
     call(){}
 }

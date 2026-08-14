@@ -1,9 +1,13 @@
-import {IErrorBoundry, Request, Response, ServerError} from "common-back-end"
+import {IErrorBoundary, Request, Response, ServerError} from "common-back-end"
 
 export default class DefaultMiddleware 
-implements IErrorBoundry
+implements IErrorBoundary<{},{}>
 {
-    async errorBoundry(request:Request, response: Response, error:ServerError){
-        console.log("HANDLING THE ERROR BOUNDARY ON ROOT")
+    async errorBoundary(error: ServerError, request: Request<{}, {}, {}>, response: Response<{}> ) {
+        console.log("ERROR HANDLERS DefaultMiddleware")
+        response?.submit({
+            message:"This is root error handler",
+        }, 400)
     }
+    
 }

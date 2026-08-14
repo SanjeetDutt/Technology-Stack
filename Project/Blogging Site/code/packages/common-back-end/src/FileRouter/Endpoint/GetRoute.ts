@@ -12,7 +12,7 @@ export abstract class GetRoute<
         super("GET",router)
     }
 
-    register(server:Server){
-        server.getExpress().get(this.getPath(), this.handleApplicationRequest(server))
+    registerEndpoint(server:Server){
+        server.getExpress().get(this.getPath(), this.handleApplicationRequest())
     }
 }

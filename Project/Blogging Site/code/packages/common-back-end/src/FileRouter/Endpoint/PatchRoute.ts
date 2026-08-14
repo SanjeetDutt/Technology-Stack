@@ -14,9 +14,7 @@ export abstract class PatchRoute<
         super("PATCH", router)
     }
 
-    register(server:Server){
-        server.getExpress().patch(this.getPath(), this.handleApplicationRequest(server))
+    registerEndpoint(server:Server){
+        server.getExpress().patch(this.getPath(), this.handleApplicationRequest())
     }
-
-    abstract call():void
 }

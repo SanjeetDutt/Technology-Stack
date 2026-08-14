@@ -17,10 +17,7 @@ export class Logger{
     constructor(request: Request<any, any, any>, logPath: string|undefined){
         this.request = request
         this.logPath = logPath
-        this.logStack = [{
-            level:"LOG",
-            title:"A new request is initiated with corelation id : " + request.corelationId
-        }]
+        this.logStack = []
     }
 
     private addLog(level: LogLevel, title: string, description?: string[]){
@@ -62,7 +59,7 @@ export class Logger{
         for(const logStack of logStacks){
             await this.appendToFile(
                 `${this.logPath}/${filename}.txt`,
-                `${this.request.timestamp.toISOString()} | ${this.request.corelationId} | ${logStack.title}`
+                `\n${this.request.timestamp.toISOString()} | ${this.request.corelationId} | ${logStack.title}`
             )
         }
     }

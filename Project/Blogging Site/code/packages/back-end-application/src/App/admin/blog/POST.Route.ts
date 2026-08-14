@@ -6,8 +6,8 @@ export default class CreateNewBlog
 extends PostRoute<Boby, Res>
 {
     
-    async call() {
-        
+    call(req:Request<Body>, res: Response<Res>){
+
     }
     
 }

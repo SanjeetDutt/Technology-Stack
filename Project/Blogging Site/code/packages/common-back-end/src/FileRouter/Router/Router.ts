@@ -20,9 +20,9 @@ export class Router implements IRouter{
     private readonly child : IRouter[]
 
     // GUARDS
-    private readonly authentication: IAuthentication[]
-    private readonly validation: IValidation[]
-    private errorBoundry: IErrorBoundary | undefined
+    private readonly authentication: IAuthentication<any, any, any, any>[]
+    private readonly validation: IValidation<any, any, any, any>[]
+    private errorBoundry: IErrorBoundary<any, any, any, any> | undefined
 
     // Enpoints
     private readonly endpoints:  IEndpoint<any, any, any, any>[]
@@ -83,15 +83,15 @@ export class Router implements IRouter{
         return this.path
     }
 
-    addValidation(validation: IValidation){
+    addValidation(validation: IValidation<any, any, any, any>){
         this.validation.push(validation)
     }
 
-    addAuthentication(authentication:IAuthentication){
+    addAuthentication(authentication:IAuthentication<any, any, any, any>){
         this.authentication.push(authentication)
     }
 
-    addErrorBoundary(eb: IErrorBoundary | undefined){
+    addErrorBoundary(eb: IErrorBoundary<any, any, any, any> | undefined){
         this.errorBoundry = eb
     }
 

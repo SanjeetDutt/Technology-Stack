@@ -1,4 +1,5 @@
 import { Server } from "../../Server";
+import { Request, Response } from "../Context";
 import { IRouter } from "../Router";
 import { Method, Path } from "../types";
 import { IAuthentication } from "./IAuthentication";
@@ -21,10 +22,11 @@ export interface IEndpoint<
     getRouter(): IRouter
     getPath(): Path
     getMethod(): Method
-    getAuthentication(): IAuthentication[]
-    getValidation(): IValidation[]
-    getErrorBoundary():IErrorBoundary|undefined
+    getAuthentication(): IAuthentication<B,R,P,Q>[]
+    getValidation(): IValidation<B,R,P,Q>[]
+    getErrorBoundary():IErrorBoundary<B,R,P,Q>|undefined
     register(server:Server):void
-    call():void
-    getRootErrorBoundary():IErrorBoundary|undefined
+    call(request?: Request<B,P,Q>, response?:Response<R>):void | Promise<void>
+    getRootErrorBoundary():IErrorBoundary<B,R,P,Q>|undefined
+    getServer():Server
 }

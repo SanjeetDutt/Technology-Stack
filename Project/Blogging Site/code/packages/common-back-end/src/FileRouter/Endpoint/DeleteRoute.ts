@@ -14,7 +14,7 @@ export abstract class DeleteRoute<
         super("DELETE", router)
     }
 
-    register(server:Server){
-        server.getExpress().delete(this.getPath(), this.handleApplicationRequest(server))
+    registerEndpoint(server:Server){
+        server.getExpress().delete(this.getPath(), this.handleApplicationRequest())
     }
 }

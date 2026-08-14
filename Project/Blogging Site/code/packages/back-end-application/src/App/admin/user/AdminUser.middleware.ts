@@ -1,6 +1,6 @@
 import {IAuthentication, Request} from "common-back-end"
 export default class AdminUserMiddleware 
-implements IAuthentication
+implements IAuthentication<{},{}>
 {
     async authentication(request: Request){}
 }
