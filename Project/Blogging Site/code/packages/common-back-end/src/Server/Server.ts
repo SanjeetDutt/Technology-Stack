@@ -25,10 +25,14 @@ export class Server{
     }
 
     public start(){
+        //Add json and html form url encoddere
+        this.expressApplication.use(Express.json())
+        this.expressApplication.use(Express.urlencoded({extended: true}))
+
         //Add endpoints
         this.endpoints.forEach(e=>e.register(this))
 
-        //Ading root error boundary for 404
+        // Ading root error boundary for 404
         this.expressApplication.use(async (req: Express.Request, res: Express.Response, next: Express.NextFunction)=>{
             const rootErrorBoundary = this.endpoints[0]?.getRootErrorBoundary()
             if(rootErrorBoundary){
@@ -43,7 +47,7 @@ export class Server{
                     .build()
                 
                 request.logger.error("Route not found for " + req.path)
-                const serverError = new NotFoundError(``)
+                const serverError = new NotFoundError(`Endpoint not found`)
                 await rootErrorBoundary.errorBoundary(serverError,request, response)
                 request.logger.flush()
             } else{

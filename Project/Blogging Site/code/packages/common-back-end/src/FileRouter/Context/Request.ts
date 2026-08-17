@@ -2,6 +2,8 @@ import { Logger } from "../../Logger";
 import Express from "express"
 import { Server } from "../../Server";
 import { IEndpoint, Endpoint } from "../Endpoint";
+import { Params } from "./Params";
+import { Query } from "./Query";
 
 export class Request<
     B extends Endpoint.BODY = {},
@@ -16,10 +18,9 @@ export class Request<
     public readonly logger: Logger
     public readonly timestamp: Date
     
-
     public readonly body?: B
-    // public readonly params: P
-    // public readonly query: Partial<Q>
+    public readonly params: Params<P>
+    public readonly query: Query<Q>
 
     constructor(
         server: Server,
@@ -34,9 +35,9 @@ export class Request<
         this.timestamp = new Date()
         this.logger = new Logger(this, server.getLogPath())
 
-        // this.body = request.body
-        // this.params = request.params as P
-        // this.query = request.query as Partial<Q>
+        this.body = request.body as unknown as B
+        this.params = new Params<P>(request.params)
+        this.query = new Query<Q>(request.query as Q)
 
         this.logger.log(
             "A new request is created with Corelation-Id : " + this.corelationId,
