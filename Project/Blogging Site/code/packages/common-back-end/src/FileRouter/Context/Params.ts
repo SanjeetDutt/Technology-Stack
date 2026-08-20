@@ -1,10 +1,10 @@
-import { Endpoint } from "../Endpoint";
+import { PARAM } from "../Endpoint";
+import { _Properties, PropertyObject } from "./_Properties";
+import Express from "express"
 
-export class Params<P extends Endpoint.PARAMS>{
-    
-    private readonly params:P
+export class Param<P extends PARAM | undefined = {}> extends _Properties<P>{
 
-    constructor(params:P){
-        this.params = params
+    protected getObjectFromRequest(request: Express.Request):PropertyObject<P>{
+        return Object(request.params) as PropertyObject<P>
     }
 }

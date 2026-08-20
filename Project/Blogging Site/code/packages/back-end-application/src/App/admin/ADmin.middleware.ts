@@ -1,6 +1,7 @@
-import {IAuthentication, Request, Response} from "common-back-end"
-export default class AdminGuard 
-implements IAuthentication<{},{}>
-{
-    async authentication(request: Request, response: Response){}
+import {Authentication} from "common-back-end"
+export class AdminGuard extends Authentication<{
+    payload:{},
+    response:{}
+}>{
+    async authenticate(){}
 }

@@ -1,14 +1,14 @@
-import { Server } from "../../Server/Server";
-import { IRouter } from "../Router";
-import { Method } from "../types";
+import { Server } from "../../../Server/Server";
+import { IRouter } from "../../Router";
+import { Method } from "../../types";
 import Express from "express"
-import {Endpoint, IEndpoint} from "./IEndpoint"
-import {IAuthentication} from "./IAuthentication"
-import { IValidation } from "./IValidation";
-import { IErrorBoundary } from "./IErrorBoundary";
-import { Request, Response, ResponseBuilder } from "../Context";
-import { ServerError } from "../../Error";
-import { RequestBuilder } from "../Context";
+import {Endpoint, IEndpoint} from ".../dump/dump/IEndpoint"
+import {IAuthentication} from ".../dump/dump/IAuthentication"
+import { IValidation } from ".../dump/dump/IValidation";
+import { IErrorBoundary } from ".../dump/dump/IErrorBoundary";
+import { Request, Response, ResponseBuilder } from "../../Context";
+import { ServerError } from "../../../Error";
+import { RequestBuilder } from "../../Context";
 
 /**
  * Endpoint
@@ -37,8 +37,10 @@ export abstract class AbstractEndpoint<
     getValidation(): IValidation<B,R,P,Q>[] {
         return this.router.getValidation()
     }
+    //@ts-ignore
     getErrorBoundary(): IErrorBoundary<B,R>|undefined {
-        return this.router.getErrorBoundary()
+        return undefined
+        // return this.router.getErrorBoundary()
     }
 
     getRouter(){
@@ -67,7 +69,7 @@ export abstract class AbstractEndpoint<
         }
         return async (Erequest:Express.Request<P,B,Q>, Eresponse:Express.Response, next: Express.NextFunction)=>{
             const request = RequestBuilder<B,P,Q>()
-                .endpoint(this)
+                // .endpoint(this)
                 .express(Erequest)
                 .server(this.server!)
                 .build()
@@ -96,11 +98,11 @@ export abstract class AbstractEndpoint<
                 const errorBoundary = this.getErrorBoundary()
                 if(errorBoundary){
                     request.logger.log(`Executing error boundary ${errorBoundary.constructor.name}`)
-                    await errorBoundary.errorBoundary(
-                        e as ServerError,
-                        request, 
-                        response
-                    )
+                    // await errorBoundary.errorBoundary(
+                    //     e as ServerError,
+                    //     // request, 
+                    //     response
+                    // )
                     request.logger.log(`Executed error boundary ${errorBoundary.constructor.name}`)
                 }
             } finally{

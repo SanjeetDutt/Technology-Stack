@@ -1,18 +1,19 @@
 import Express from "express"
-import { IEndpoint, RequestBuilder, ResponseBuilder } from "../FileRouter";
+import { Router } from "../FileRouter";
 import { NotFoundError } from "../Error";
+import { Config } from "./config";
+import { DefaultConfig } from "./defaultConfig";
+import { LoadRouter } from "./LoadRouter";
 
 export class Server{
 
-    private readonly port: number
-    private readonly endpoints: IEndpoint<any, any, any, any>[]
-    private readonly logPath: string|undefined
+    private readonly _config: Config
+    private readonly router: Router
     private readonly expressApplication: Express.Express
 
-    constructor(p:{port: number, endpoints: IEndpoint<any, any, any, any>[], logPath: string|undefined}){
-        this.port = p.port
-        this.endpoints = p.endpoints
-        this.logPath = p.logPath
+    constructor(p:{config: Config, router: Router}){
+        this._config = p.config
+        this.router = p.router
         this.expressApplication = Express()
     }
 
@@ -21,7 +22,11 @@ export class Server{
     }
 
     getLogPath(){
-        return this.logPath
+        return this._config.loggigPath
+    }
+
+    static Builder(){
+        return new _ServerBuilder()
     }
 
     public start(){
@@ -30,34 +35,68 @@ export class Server{
         this.expressApplication.use(Express.urlencoded({extended: true}))
 
         //Add endpoints
-        this.endpoints.forEach(e=>e.register(this))
+        const endpoints = this.router.getEndpoint()
+        endpoints.forEach(e=>e.register(this))
 
         // Ading root error boundary for 404
-        this.expressApplication.use(async (req: Express.Request, res: Express.Response, next: Express.NextFunction)=>{
-            const rootErrorBoundary = this.endpoints[0]?.getRootErrorBoundary()
-            if(rootErrorBoundary){
-                const request = RequestBuilder<any, any, any>()
-                    .server(this)
-                    .express(req)
-                    .build()
+        // this.expressApplication.use(async (req: Express.Request, res: Express.Response, next: Express.NextFunction)=>{
+        //     const rootErrorBoundary = this.endpoints[0]?.getRootErrorBoundary()
+        //     if(rootErrorBoundary){
+        //         const request = RequestBuilder<any, any, any>()
+        //             .server(this)
+        //             .express(req)
+        //             .build()
                 
-                const response = ResponseBuilder()
-                    .express(res)
-                    .request(request)
-                    .build()
+        //         const response = ResponseBuilder()
+        //             .express(res)
+        //             .request(request)
+        //             .build()
                 
-                request.logger.error("Route not found for " + req.path)
-                const serverError = new NotFoundError(`Endpoint not found`)
-                await rootErrorBoundary.errorBoundary(serverError,request, response)
-                request.logger.flush()
-            } else{
-                next()
-            }
-        })
+        //         request.logger.error("Route not found for " + req.path)
+        //         const serverError = new NotFoundError(`Endpoint not found`)
+        //         await rootErrorBoundary.errorBoundary(serverError,request, response)
+        //         request.logger.flush()
+        //     } else{
+        //         next()
+        //     }
+        // })
 
         //listen to a post
-        this.expressApplication.listen(this.port,()=>{
-            console.log("SERVER IS STARTED ON PORT : " + this.port)
+        this.expressApplication.listen(this._config!.port,()=>{
+            console.log("SERVER IS STARTED ON PORT : " + this._config.port)
         })
+    }
+}
+
+class _ServerBuilder{
+    
+    private routePath?: string
+    private _config?: Config
+
+    public router(path:string){
+        this.routePath = path
+        return this
+    }
+
+    public config(config: Config){
+        this._config = config
+        return this
+    }
+
+    public async server():Promise<void>{
+
+        if(!this.routePath){
+            throw new Error("No file routing path is defined")
+        }
+
+        const server = new Server({
+            config: {
+                ...DefaultConfig,
+                ...this._config
+            },
+            router: await LoadRouter(this.routePath)
+        })
+
+        server.start()
     }
 }

@@ -1,12 +1,20 @@
-import {PostRoute} from "common-back-end"
-import {Request, Response} from "common-back-end"
-interface Body{}
-interface Res extends String{
+import {Authentication, POST} from "common-back-end"
 
-}
-export default class TestRoute extends PostRoute<Body,Res>{
+export class TestRoute extends POST<{
+    payload:{},
+    response:{}
+}>{
 
-    call(request: Request<Body>, response: Response<Res>): Promise<void> | void {
-        response.submit("HELLO WORLD")
+    async execute(){
+        // this
     }
+}
+
+export class AuthenticateTestRoute extends Authentication<{
+    payload:{},
+    response:{}
+}>{
+    authenticate(){
+    }
+    
 }

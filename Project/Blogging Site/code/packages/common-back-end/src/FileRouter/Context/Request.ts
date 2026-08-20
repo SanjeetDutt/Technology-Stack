@@ -1,50 +1,90 @@
-import { Logger } from "../../Logger";
 import Express from "express"
-import { Server } from "../../Server";
-import { IEndpoint, Endpoint } from "../Endpoint";
-import { Params } from "./Params";
+import { Param } from "./Params";
 import { Query } from "./Query";
+import {Headers} from "./Headers"
+import { Endpoint, HEADER, PARAM, QUERY } from "../Endpoint";
+import { IRouter } from "../Router";
+import { Method } from "../types";
+import { _Properties } from "./_Properties";
+import { Logger } from "../../Logger";
 
 export class Request<
-    B extends Endpoint.BODY = {},
-    P extends Endpoint.PARAMS = {},
-    Q extends Endpoint.QUERY = {}
->{
-    private readonly expressRequest: Express.Request<P,B,Q>
-    private readonly server: Server
-    private readonly endpoint?: IEndpoint<B,P,Q,any>|undefined
+    H extends HEADER | undefined = {},
+    P extends PARAM | undefined = {},
+    Q extends QUERY | undefined = {},
+    B extends any = {}
+> {
 
+    static Builder(){
+        return new _RequestBuilder()
+    }
+
+    private readonly endpoint:Endpoint
+    private readonly router:IRouter
+    private readonly method: Method
+
+    public readonly header: _Properties<H>
+    public readonly param: _Properties<P>
+    public readonly query: _Properties<Q>
+    public readonly payload: B
+
+
+    private readonly expressRequest: Express.Request
     public readonly corelationId: string
-    public readonly logger: Logger
     public readonly timestamp: Date
-    
-    public readonly body?: B
-    public readonly params: Params<P>
-    public readonly query: Query<Q>
 
     constructor(
-        server: Server,
-        request: Express.Request<P,B,Q>,
-        endpoint?: IEndpoint<B,P,Q,any>
+        endpoint: Endpoint,
+        router: IRouter,
+        method: Method,
+        expressRequest: Express.Request
     ){
-        this.expressRequest = request
-        this.server = server
+        this.header = new Headers<H>(expressRequest)
+        this.param = new Param<P>(expressRequest)
+        this.query = new Query<Q>(expressRequest)
+        this.payload = expressRequest.body as B
+
         this.endpoint = endpoint
+        this.router = router
+        this.method = method
 
         this.corelationId = crypto.randomUUID()
         this.timestamp = new Date()
-        this.logger = new Logger(this, server.getLogPath())
+        this.expressRequest = expressRequest
+    }
+}
 
-        this.body = request.body as unknown as B
-        this.params = new Params<P>(request.params)
-        this.query = new Query<Q>(request.query as Q)
+class _RequestBuilder{
+    private _endpoint?:Endpoint
+    private _router?:IRouter
+    private _method?: Method
+    private _expressRequest?: Express.Request
 
-        this.logger.log(
-            "A new request is created with Corelation-Id : " + this.corelationId,
-            "URL Called : " + request.originalUrl,
-            "Method : " + request.method,
-            "Endpoint called : " + endpoint?.constructor.name || "NO endpoint found"
+    build(){
+        if(!this._endpoint || !this._router || !this._method || !this._expressRequest){
+            throw new Error(`Error while creating the request`)
+        }
+        return new Request(
+            this._endpoint,
+            this._router,
+            this._method,
+            this._expressRequest
         )
-
+    }
+    endpoint(e:Endpoint){
+        this._endpoint = e
+        return this
+    }
+    router(r:IRouter){
+        this._router = r
+        return this
+    }
+    method(m:Method){
+        this._method = m
+        return this
+    }
+    expressRequest(e:Express.Request){
+        this._expressRequest = e
+        return this
     }
 }

@@ -1,9 +1,11 @@
-import { Endpoint } from "../Endpoint";
+import { QUERY } from "../Endpoint";
+import { _Properties, PropertyObject } from "./_Properties";
+import Express from "express"
 
-export class Query<Q extends Partial<Endpoint.QUERY>>{
-    private readonly query: Q
+export class Query<Q extends QUERY | undefined = {}> extends _Properties<Q>{
 
-    constructor(query:Q){
-        this.query = query
+    protected getObjectFromRequest(request: Express.Request):PropertyObject<Q>{
+
+        return Object(request.query) as PropertyObject<Q>
     }
 }

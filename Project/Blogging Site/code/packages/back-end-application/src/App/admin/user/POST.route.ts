@@ -1,7 +1,12 @@
-import {PostRoute} from "common-back-end"
+import {POST} from "common-back-end"
 
-export default class CraeteNewUserRoute 
-extends PostRoute<{},{}>
+export class CraeteNewUserRoute 
+extends POST<{
+    payload:{},
+    response:{}
+}>
 {
-    call(){}
+    async execute(){
+        // this
+    }
 }

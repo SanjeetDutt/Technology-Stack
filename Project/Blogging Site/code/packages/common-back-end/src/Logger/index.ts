@@ -1,4 +1,3 @@
-import { Request } from "../FileRouter";
 import fs from "fs/promises"
 import path from "path"
 
@@ -10,13 +9,18 @@ interface structure{
 }
 
 export class Logger{
-    private readonly request: Request<any, any, any>
-    private readonly logPath: string | undefined
+    static Builder(){
+        return new LoggerBuilder()
+    }
+    private readonly logPath: string
     private readonly logStack: structure[]
+    private readonly corelationId: string
+    private readonly timestamp: Date
 
-    constructor(request: Request<any, any, any>, logPath: string|undefined){
-        this.request = request
+    constructor(logPath: string, corelationId: string, timestamp: Date){
         this.logPath = logPath
+        this.corelationId = corelationId
+        this.timestamp = timestamp
         this.logStack = []
     }
 
@@ -25,6 +29,7 @@ export class Logger{
     }
 
     log(title: string, ...description: string[]){
+        console.log(this)
         this.addLog("LOG", title, description)
     }
 
@@ -46,7 +51,7 @@ export class Logger{
 
     async flush(){
         await this.writeToFile(
-            `${this.logPath}/corelations/${this.request.corelationId}.txt`, 
+            `${this.logPath}/corelations/${this.corelationId}.txt`, 
             JSON.stringify(this.logStack, null, 4)
         )
         this.LogInDifferentFile("ERROR","error")
@@ -59,7 +64,7 @@ export class Logger{
         for(const logStack of logStacks){
             await this.appendToFile(
                 `${this.logPath}/${filename}.txt`,
-                `\n${this.request.timestamp.toISOString()} | ${this.request.corelationId} | ${logStack.title}`
+                `\n${this.timestamp.toISOString()} | ${this.corelationId} | ${logStack.title}`
             )
         }
     }
@@ -84,5 +89,40 @@ export class Logger{
         } catch(e){
             console.error("Error while appending to the file ", e)
         }
+    }
+}
+
+class LoggerBuilder{
+    private location?: string
+    private corelationId?: string
+    private timestamp?: Date 
+
+    setPath(location?: string){
+        if(!location){
+            return this
+        }
+        this.location = location
+        return this
+    }
+
+    setCorelationId(id: string){
+        this.corelationId = id
+        return this
+    }
+
+    setTimestamp(date: Date){
+        this.timestamp = date
+        return this
+    }
+
+    build(){
+        if(!this.location){
+            return
+        }
+        return new Logger(
+            this.location, 
+            this.corelationId || crypto.randomUUID(), 
+            this.timestamp||new Date()
+        )
     }
 }

@@ -1,6 +1,8 @@
-import {IAuthentication, Request} from "common-back-end"
-export default class AdminBlogMiddleware 
-implements IAuthentication<{},{}>
+import {Authentication} from "common-back-end"
+export class AdminBlogMiddleware extends Authentication<{
+    payload:{},
+    response:{}
+}>
 {
-    async authentication(request: Request){}
+    async authenticate(){}
 }

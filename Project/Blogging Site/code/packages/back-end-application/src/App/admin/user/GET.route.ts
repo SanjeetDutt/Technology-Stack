@@ -1,8 +1,11 @@
-import {GetRoute} from "common-back-end"
+import {GET} from "common-back-end"
 
 
-export default class GetUsersRoute 
-extends GetRoute<{},{}>
+export class GetUsersRoute extends GET<{
+    response:{}
+}>
 {
-    call(){}
+    async execute(){
+        // this
+    }
 }

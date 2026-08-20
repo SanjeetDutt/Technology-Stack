@@ -1,8 +1,10 @@
 import fs,{ Dirent } from "fs";
 import { IRouter, Router } from "./Router";
-import { Path } from "./types";
+import { Path, SubClass } from "./types";
 import path from "path";
-import { IAuthentication, IErrorBoundary, IEndpoint, IValidation } from "./Endpoint";
+import {Authentication, ErrorBoundary, Validation, POST, PATCH, PUT, DELETE, GET, Endpoint} from "./Endpoint"
+import {_Action} from "./Endpoint/_Action"
+import { _MethodAction } from "./Endpoint/Actions/_MethodAction";
 
 export async function ScanDrive(dir: string, router: IRouter):Promise<void>{
     const contents = fs.readdirSync(dir, {withFileTypes: true})
@@ -52,58 +54,63 @@ async function ScanDirectory(directory: Dirent<string>, router: IRouter){
 
 //File Scanning Area
 async function ScanFile(file: Dirent<string>, router: IRouter){
-    function endsWith(fileName: string, enumVal: string){
+
+    interface DefaultActionConfiguration {
+        payload:{}
+        response:{}
+    }
+    
+    // If file ends with ROUTE.ts|.js then it is a route endpoint file
+    if(_endsWith(file.name, "ROUTE") || _endsWith(file.name, "MIDDLEWARE")){
+        const module = await _import(file)
+        for(const [key, value] of Object.entries(module)){
+            switch(Object.getPrototypeOf(value).name){
+                case Authentication.name:
+                    router.addAuthentication(value as SubClass<Authentication<DefaultActionConfiguration>>)
+                    break;
+                case ErrorBoundary.name:
+                    router.addErrorBoundary(value as SubClass<ErrorBoundary<DefaultActionConfiguration>>)
+                    break;
+                case Validation.name:
+                    router.addValidation(value as SubClass<Validation<DefaultActionConfiguration>>)
+                    break;
+                case POST.name:
+                    router.addEndpoint(new Endpoint("POST", value as SubClass<_MethodAction<DefaultActionConfiguration>>))
+                    break;
+                case PUT.name:
+                    router.addEndpoint(new Endpoint("PUT", value as SubClass<_MethodAction<DefaultActionConfiguration>>))
+                    break;
+                case PATCH.name:
+                    router.addEndpoint(new Endpoint("PATCH", value as SubClass<_MethodAction<DefaultActionConfiguration>>))
+                    break;
+                case GET.name:
+                    router.addEndpoint(new Endpoint("GET", value as SubClass<_MethodAction<DefaultActionConfiguration>>))
+                    break;
+                case DELETE.name:
+                    router.addEndpoint(new Endpoint("DELETE", value as SubClass<_MethodAction<DefaultActionConfiguration>>))
+                    break;
+                default:
+                    console.error(`Method is not defined for ${key}, in file ${file.parentPath}/${file.name}`)
+            }
+            
+        }
+    }
+
+    function _endsWith(fileName: string, enumVal: string){
         const keyword = enumVal.trim().toUpperCase()
         const regex = new RegExp(`${keyword}\\.(js|ts)$`,"i")
         return regex.test(fileName.trim().toUpperCase())
     }
 
-    // If file ends with Route.ts or Route.js then it is a route endpoint file
-    if(endsWith(file.name, "ROUTE")){
-        const module = await importFile(file, router)
-        if(isTypeOf<IEndpoint<any,any,any,any>>(module,["call","getMethod","getPath","getRouter"])){
-            router.addEndpoint(module as IEndpoint<any,any,any,any>)
-        }
-    }
+    async function _import(file: Dirent<string>):Promise<any>{
+        const _path = path.resolve(file.parentPath, file.name)
 
-    // If file ends with Gurad.ts or Guard.js then it is a middleware file
-    if(endsWith(file.name, "MIDDLEWARE")){
-        const module = await importFile(file, router)
-        if(isTypeOf<IValidation<any, any, any, any>>(module,["validation"])) {
-            router.addValidation(module as IValidation<any, any, any, any>)
+        try{
+            return await import(_path) as any
+        } catch(e){
+            console.error("IMPORT FAILED : ", e)
+            throw e
         }
-
-        if(isTypeOf<IAuthentication<any, any, any, any>>(module,["authentication"])) {
-            router.addAuthentication(module as IAuthentication<any, any, any, any>)
-        }
-
-        if(isTypeOf<IErrorBoundary<any, any, any, any>>(module,["errorBoundary"])) {
-            router.addErrorBoundary(module as IErrorBoundary<any, any, any, any>)
-        }
-
     }
 }
 
-async function importFile(file: Dirent<string>,router: IRouter):Promise<any>{
-    const {parentPath, name} = file
-    const absPath = path.resolve(parentPath, name)
-
-    try{
-        const module = (await import(absPath)) as any
-        if(!module.default){
-            throw new Error(`No default exports found for ${file.parentPath}/${file.name}`)
-        }
-        const _module = module.default
-        return new _module(router) as any
-    } catch(error){
-        console.error("IMPORT FAILED : ", error)
-        throw error
-    }
-}
-
-function isTypeOf<I extends Object>(instance: any, keys: (keyof I)[]):boolean{
-    if(!instance || typeof instance !== "object"){
-        return false
-    }
-    return keys.every(key=>key in instance)
-}

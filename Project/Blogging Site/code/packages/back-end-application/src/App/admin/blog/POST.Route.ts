@@ -1,13 +1,15 @@
-import {PostRoute, Request, Response} from "common-back-end"
+import {POST} from "common-back-end"
 
-interface Body {}
-interface Res{}
-export default class CreateNewBlog
-extends PostRoute<Body, Res>
+
+export class CreateNewBlog extends POST<{
+    payload:{},
+    response:{}
+}>
 {
-    
-    call(req:Request<Body>, res: Response<Res>){
-
+    async execute(){
+        // this
     }
+    
+   
     
 }

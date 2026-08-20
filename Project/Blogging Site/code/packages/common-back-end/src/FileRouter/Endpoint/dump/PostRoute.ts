@@ -1,7 +1,7 @@
 import { Server } from "../../Server";
 import { IRouter } from "../Router";
 import { AbstractEndpoint } from "./_Endpoint";
-import { Endpoint, IEndpoint } from "./IEndpoint";
+import { Endpoint } from "./IEndpoint";
 import {Request, Response} from "../Context"
 
 export abstract class PostRoute<
@@ -11,7 +11,6 @@ export abstract class PostRoute<
     Q extends Endpoint.QUERY = {},
 > 
 extends AbstractEndpoint<B,P,Q,R>
-implements IEndpoint<B,P,Q,R>
 {
     constructor(router: IRouter){
         super("POST", router)

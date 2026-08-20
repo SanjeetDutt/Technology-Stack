@@ -1,12 +1,11 @@
-import {IErrorBoundary, Request, Response, ServerError} from "common-back-end"
+import {ErrorBoundary} from "common-back-end"
 
-export default class DefaultMiddleware 
-implements IErrorBoundary<{},{}>
+export class DefaultMiddleware extends ErrorBoundary<{
+    payload:{},
+    response:{}
+}>
 {
-    async errorBoundary(error: ServerError, request: Request<{}, {}, {}>, response: Response<{}> ) {
-        response.submit({
-            message:error.message,
-        }, error.getCode())
+    errorBoundary(): void | Promise<void> {
+        throw new Error("Method not implemented.");
     }
-    
 }

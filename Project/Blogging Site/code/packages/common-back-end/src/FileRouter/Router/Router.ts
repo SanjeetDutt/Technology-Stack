@@ -5,11 +5,16 @@
  * - Children = Router / Endpoint
  */
 
-import { IAuthentication, IValidation, IErrorBoundary, IEndpoint } from "../Endpoint";
-import { Path } from "../types";
+// import { IAuthentication, IValidation, IErrorBoundary, IEndpoint } from "../Endpoint";
+import { Path, SubClass } from "../types";
 import { IRouter } from "./IRouter";
+import {Authentication, Endpoint, ErrorBoundary, Validation} from "../Endpoint"
+import {_Action} from "../Endpoint/_Action"
 
-
+interface DefaultActionConfiguration{
+    payload: {}
+    response:{}
+}
 
 export class Router implements IRouter{
     //Meta data
@@ -19,13 +24,13 @@ export class Router implements IRouter{
     private readonly parrent: IRouter | undefined
     private readonly child : IRouter[]
 
-    // GUARDS
-    private readonly authentication: IAuthentication<any, any, any, any>[]
-    private readonly validation: IValidation<any, any, any, any>[]
-    private errorBoundry: IErrorBoundary<any, any, any, any> | undefined
+    // // GUARDS
+    private readonly authentication: SubClass<Authentication<DefaultActionConfiguration>>[]
+    private readonly validation: SubClass<Validation<DefaultActionConfiguration>>[]
+    private errorBoundry: SubClass<ErrorBoundary<DefaultActionConfiguration>> | undefined
 
-    // Enpoints
-    private readonly endpoints:  IEndpoint<any, any, any, any>[]
+    // // Enpoints
+    private readonly endpoints: Endpoint[]
     
 
     constructor(path: Path, parent?: IRouter){
@@ -41,6 +46,7 @@ export class Router implements IRouter{
         this.authentication = [...parent?.getAuthentication() || []]
         this.validation = [...parent?.getValidation() || []]
         this.errorBoundry = parent?.getErrorBoundary()
+        
     }
 
     getRoot():IRouter{
@@ -74,24 +80,24 @@ export class Router implements IRouter{
         return this
     }
 
-    addEndpoint(endpoint: IEndpoint<any, any, any, any>):IRouter{
+    addEndpoint(endpoint: Endpoint):void{
         this.endpoints.push(endpoint)
-        return this
+        endpoint.addRouter(this)
     }
 
     getPath():Path{
         return this.path
     }
 
-    addValidation(validation: IValidation<any, any, any, any>){
+    addValidation(validation:SubClass<Validation<DefaultActionConfiguration>>){
         this.validation.push(validation)
     }
 
-    addAuthentication(authentication:IAuthentication<any, any, any, any>){
+    addAuthentication(authentication:SubClass<Authentication<DefaultActionConfiguration>>){
         this.authentication.push(authentication)
     }
 
-    addErrorBoundary(eb: IErrorBoundary<any, any, any, any> | undefined){
+    addErrorBoundary(eb:SubClass<ErrorBoundary<DefaultActionConfiguration>>){
         this.errorBoundry = eb
     }
 
@@ -107,7 +113,7 @@ export class Router implements IRouter{
         return this.validation
     }
 
-    getEndpoint(){
+    getEndpoint():Endpoint[]{
         return[
             ... this.endpoints,
             ... this.child.map(c=>c.getEndpoint()).flat()
