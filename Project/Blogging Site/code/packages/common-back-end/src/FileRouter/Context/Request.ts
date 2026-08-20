@@ -6,7 +6,6 @@ import { Endpoint, HEADER, PARAM, QUERY } from "../Endpoint";
 import { IRouter } from "../Router";
 import { Method } from "../types";
 import { _Properties } from "./_Properties";
-import { Logger } from "../../Logger";
 
 export class Request<
     H extends HEADER | undefined = {},

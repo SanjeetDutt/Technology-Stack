@@ -4,7 +4,9 @@ type Configuration = EndpointConfig<{
     payload:{
         message: string
     },
-    response:{},
+    response:{
+        message: string
+    },
     param:{
         id: string
     },
@@ -30,6 +32,10 @@ export class CreateNewBlog extends POST<Configuration>
         const user = this.request.header.get("userAuth")
         const id = this.request.param.get("id")
         const offset = this.request.query.get("offset")
+
+        this.response.status(200).body({
+            message:"HEY I AM THE RESPONSE FROM APP."
+        })
     }
 }
 

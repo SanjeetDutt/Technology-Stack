@@ -1,15 +1,14 @@
-// import { Server } from "../../Server";
-// import { Endpoint, IEndpoint } from "../Endpoint";
-import { Logger } from "../../Logger";
 import { Request } from "./Request";
-// import Express from "express"
+import Express from "express"
 
-export class Response{
+export class Response<
+    B extends any = {}
+>{
     static Builder(){
         return new ResponseBuilder()
     }
-    private status: number = 200
-    // private response: R|null = null
+    private _status: number = 200
+    private _body: B = {} as any
     private request: Request
     private readonly corelationId:string
     private readonly ExpressResponse: Express.Response
@@ -21,32 +20,31 @@ export class Response{
         this.corelationId = request.corelationId
         this.ExpressResponse = response
         this.request = request
+        this.ExpressResponse.setHeader("Corelation-Id", this.corelationId)
     }
 
-//     add(res:R){
-//         this.request.logger.log("Adding response " + JSON.stringify(res,null,4))
-//         this.response = res
-//     }
+    body(body:B){
+        this._body = body
+        return this
+    }
 
-//     submit(res: R|null = this.response, status:number = this.status){
-//         if(this.ExpressResponse.headersSent){
-//             this.request.logger.error("Trying the set response after response send to client.")
-//             return
-//         }
-//         this.request.logger.log("Sending response to client " + JSON.stringify({
-//             status: status, response: res
-//         },null, 4) )
-//         this.ExpressResponse
-//             .status(status)
-//             .send(res)
-//     }
+    status(status:number){
+        this._status = status
+        return this
+    }
 
-//     submitIfNot(res: R|null = this.response, status:number = this.status){
-//         if(this.ExpressResponse.headersSent){
-//             return
-//         }
-//         this.submit(res, status)
-//     }
+    submit(){
+        if(this.ExpressResponse.headersSent){
+            return
+        }
+        this.ExpressResponse
+            .status(this._status)
+            .send(this._body)
+    }
+
+    getBody(){
+        return this._body
+    }
 }
 
 class ResponseBuilder{

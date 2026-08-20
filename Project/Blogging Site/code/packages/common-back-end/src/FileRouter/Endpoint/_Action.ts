@@ -13,7 +13,7 @@ export interface _ActionConfiguration {
 export abstract class _Action<Config extends _ActionConfiguration>
 {
     protected readonly request:Request<Config["header"], Config["param"], Config["query"], Config["payload"]>
-    protected readonly response:Response
+    protected readonly response:Response<Config["response"]>
     protected readonly log:Logger
 
     constructor(request: Request, response:Response, logger:Logger){
