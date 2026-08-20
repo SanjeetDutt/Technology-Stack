@@ -22,6 +22,10 @@ export class Endpoint{
         this.action = action
     }
 
+    getURL(){
+        return `[${this.method}] ${this.router?.getPath()}`
+    }
+
     addRouter(router:IRouter){
         this.router = router
     }
@@ -79,6 +83,8 @@ export class Endpoint{
             .setPath(this.server?.getLogPath())
             .setTimestamp(request.timestamp)
             .build()
+        
+        this.server?.getServerLogger()?.log(`Request received by server and corelation ${request.corelationId} is created`)
         
         logger?.log("A new request made to server", `Endpoint: ${erequest.originalUrl}`)
         logger?.log(`Corelation ${request.corelationId} is created`)

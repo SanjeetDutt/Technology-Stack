@@ -13,7 +13,7 @@ export class Logger{
         return new LoggerBuilder()
     }
     private readonly logPath: string
-    private readonly logStack: structure[]
+    private logStack: structure[]
     private readonly corelationId: string
     private readonly timestamp: Date
 
@@ -55,6 +55,23 @@ export class Logger{
         )
         this.LogInDifferentFile("ERROR","error")
         this.LogInDifferentFile("WARNING","warning")
+    }
+
+    clearLogs(){
+        this.logStack = []
+    }
+
+    async appendLogs(filename: string){
+        if(this.logStack.length === 0){
+            return
+        }
+
+        for(const log of this.logStack){
+            await this.appendToFile(
+                `${this.logPath}/${filename}.txt`,
+                `${JSON.stringify(log, null, 4)}\n`
+            )
+        }
     }
 
     private async LogInDifferentFile(logLevel: LogLevel, filename: string){
