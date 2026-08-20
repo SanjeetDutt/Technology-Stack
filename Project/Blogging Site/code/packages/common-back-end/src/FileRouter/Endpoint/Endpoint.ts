@@ -78,10 +78,16 @@ export class Endpoint{
             .setPath(this.server?.getLogPath())
             .setTimestamp(request.timestamp)
             .build()
+        
+        logger?.log("A new request made to server", `Endpoint: ${erequest.originalUrl}`)
+        logger?.log(`Corelation ${request.corelationId} is created`)
+        logger?.log("Params is parsed : " , JSON.stringify(erequest.params))
+        logger?.log("Queries is parsed : " , JSON.stringify(erequest.query))
+        logger?.log("Headers is parsed : " , JSON.stringify(erequest.headers))
+        logger?.log("Payload is parsed : " , JSON.stringify(request.payload))
 
         const getName = (obj:any): string=>{
-            console.log(obj)
-            return ""
+            return obj.name
         }
 
         for(const auth of this.router.getAuthentication()){
@@ -103,7 +109,7 @@ export class Endpoint{
         action.execute()
         logger?.log(`Method action is executed for ${getName(this.action)}`)
 
-        // logger?.flush()
+        logger?.flush()
 
         eresponse.json({
             message:"ALL GOOD FOR NOW"

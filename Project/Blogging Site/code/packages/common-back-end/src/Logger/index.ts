@@ -29,7 +29,6 @@ export class Logger{
     }
 
     log(title: string, ...description: string[]){
-        console.log(this)
         this.addLog("LOG", title, description)
     }
 
