@@ -1,6 +1,7 @@
 import {POST, Authentication, Validation, EndpointConfig} from "common-back-end"
+import { AdminBlogConfig } from "../AdminBlog.middleware";
 
-type Configuration = EndpointConfig<{
+export type Configuration = EndpointConfig<{
     payload:{
         message: string
     },
@@ -15,15 +16,7 @@ type Configuration = EndpointConfig<{
         limit: number,
         sort: string
     },
-    header:{
-        authorization: string,
-        userAuth: {
-            name: string,
-            email: string,
-            id: string
-        }
-    }
-}>
+}> & AdminBlogConfig
 
 export class CreateNewBlog extends POST<Configuration> 
 {

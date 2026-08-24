@@ -1,6 +1,6 @@
 import fs,{ Dirent } from "fs";
 import { IRouter, Router } from "./Router";
-import { Path, SubClass } from "./types";
+import { Method, Path, SubClass } from "./types";
 import path from "path";
 import {Authentication, ErrorBoundary, Validation, POST, PATCH, PUT, DELETE, GET, Endpoint} from "./Endpoint"
 import {_Action} from "./Endpoint/_Action"
@@ -63,6 +63,13 @@ async function ScanFile(file: Dirent<string>, router: IRouter){
     // If file ends with ROUTE.ts|.js then it is a route endpoint file
     if(_endsWith(file.name, "ROUTE") || _endsWith(file.name, "MIDDLEWARE")){
         const module = await _import(file)
+        const endpoint = (method: Method, action: any)=>{
+            return new Endpoint(
+                method, 
+                action as SubClass<_MethodAction<DefaultActionConfiguration>>,
+                path.resolve(file.parentPath, file.name)
+            )
+        }
         for(const [key, value] of Object.entries(module)){
             switch(Object.getPrototypeOf(value).name){
                 case Authentication.name:
@@ -75,19 +82,19 @@ async function ScanFile(file: Dirent<string>, router: IRouter){
                     router.addValidation(value as SubClass<Validation<DefaultActionConfiguration>>)
                     break;
                 case POST.name:
-                    router.addEndpoint(new Endpoint("POST", value as SubClass<_MethodAction<DefaultActionConfiguration>>))
+                    router.addEndpoint(endpoint("POST", value))
                     break;
                 case PUT.name:
-                    router.addEndpoint(new Endpoint("PUT", value as SubClass<_MethodAction<DefaultActionConfiguration>>))
+                    router.addEndpoint(endpoint("PUT", value))
                     break;
                 case PATCH.name:
-                    router.addEndpoint(new Endpoint("PATCH", value as SubClass<_MethodAction<DefaultActionConfiguration>>))
+                    router.addEndpoint(endpoint("PATCH", value))
                     break;
                 case GET.name:
-                    router.addEndpoint(new Endpoint("GET", value as SubClass<_MethodAction<DefaultActionConfiguration>>))
+                    router.addEndpoint(endpoint("GET", value))
                     break;
                 case DELETE.name:
-                    router.addEndpoint(new Endpoint("DELETE", value as SubClass<_MethodAction<DefaultActionConfiguration>>))
+                    router.addEndpoint(endpoint("DELETE", value))
                     break;
                 default:
                     console.error(`Method is not defined for ${key}, in file ${file.parentPath}/${file.name}`)

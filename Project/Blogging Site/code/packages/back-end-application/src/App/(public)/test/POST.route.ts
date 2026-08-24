@@ -1,19 +1,21 @@
-import {Authentication, POST} from "common-back-end"
+import {Authentication, POST, EndpointConfig} from "common-back-end"
+import { DefaultMiddlewareConfig } from "../../Middleware";
 
-export class TestRoute extends POST<{
+type CONFIG = EndpointConfig<{
     payload:{},
-    response:{}
-}>{
+    response:{},
+    param:{},
+    query:{}
+}> & DefaultMiddlewareConfig
+
+export class TestRoute extends POST<CONFIG>{
 
     async execute(){
         // this
     }
 }
 
-export class AuthenticateTestRoute extends Authentication<{
-    payload:{},
-    response:{}
-}>{
+export class AuthenticateTestRoute extends Authentication<CONFIG>{
     authenticate(){
     }
     

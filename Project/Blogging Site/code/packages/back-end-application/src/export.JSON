@@ -1,0 +1,22 @@
+[
+    {
+        "method": "POST",
+        "url": "/test"
+    },
+    {
+        "method": "POST",
+        "url": "/admin/blog"
+    },
+    {
+        "method": "POST",
+        "url": "/admin/blog/:id"
+    },
+    {
+        "method": "GET",
+        "url": "/admin/user"
+    },
+    {
+        "method": "POST",
+        "url": "/admin/user"
+    }
+]

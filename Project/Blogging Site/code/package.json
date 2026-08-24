@@ -25,7 +25,8 @@
     "dev": "lerna run dev --scope=back-end-application --scope=front-end-application",
     "dev-BE": "lerna run dev --scope=back-end-application",
     "migrate": "lerna run migrate:up --scope=back-end-application",
-    "migrate:down": "lerna run migrate:down --scope=back-end-application"
+    "migrate:down": "lerna run migrate:down --scope=back-end-application",
+    "export-BE":"lerna run export --scope=back-end-application"
   },
   "dependencies": {
     "cors": "^2.8.6",

@@ -5,6 +5,7 @@ import { Config } from "./config";
 import { DefaultConfig } from "./defaultConfig";
 import { LoadRouter } from "./LoadRouter";
 import { Logger } from "../Logger";
+import { exportRouterForFE } from "./export";
 
 export class Server{
 
@@ -122,5 +123,14 @@ class _ServerBuilder{
         })
 
         server.start()
+    }
+
+    public async export(path: string){
+        if(!this.routePath){
+            throw new Error("No file routing path is defined")
+        }
+        const router = await LoadRouter(this.routePath)
+        exportRouterForFE(router, path)
+
     }
 }

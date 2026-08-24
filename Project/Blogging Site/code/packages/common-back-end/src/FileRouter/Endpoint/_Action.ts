@@ -21,5 +21,9 @@ export abstract class _Action<Config extends _ActionConfiguration>
         this.response = response
         this.log = logger
     }
+
+    getPayloadType(){
+        
+    }
     
 }

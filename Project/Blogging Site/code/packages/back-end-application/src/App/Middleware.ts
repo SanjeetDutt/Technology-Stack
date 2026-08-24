@@ -1,9 +1,13 @@
-import {ErrorBoundary} from "common-back-end"
+import {ErrorBoundary, EndpointConfig} from "common-back-end"
 
-export class DefaultMiddleware extends ErrorBoundary<{
-    payload:{},
+export type DefaultMiddlewareConfig = EndpointConfig<{
+    payload: {
+        msg: string
+    },
     response:{}
 }>
+
+export class DefaultMiddleware extends ErrorBoundary<DefaultMiddlewareConfig>
 {
     errorBoundary(): void | Promise<void> {
         throw new Error("Method not implemented.");

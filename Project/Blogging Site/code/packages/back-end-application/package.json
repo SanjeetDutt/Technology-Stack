@@ -6,7 +6,8 @@
     "dev": "nodemon",
     "migrate:up": "typeorm-ts-node-commonjs migration:run -d src/Database/datasource.ts",
     "migrate:down": "typeorm-ts-node-commonjs migration:revert -d src/Database/datasource.ts",
-    "build": "tsc"
+    "build": "tsc",
+    "export":"ts-node ./src/export.ts"
   },
   "keywords": [],
   "author": "",

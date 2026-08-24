@@ -6,6 +6,7 @@ import { _Action } from "./_Action";
 import Express from "express"
 import { _MethodAction } from "./Actions/_MethodAction";
 import { Logger } from "../../Logger";
+import { exportEndpoint } from "./export";
 
 interface DefaultActionConfig {
     payload:{}
@@ -14,16 +15,22 @@ interface DefaultActionConfig {
 export class Endpoint{
     private readonly method: Method
     private readonly action: SubClass<_MethodAction<DefaultActionConfig>>
+    private readonly location: string
     private router?: IRouter
     private server?: Server
 
-    constructor(method:Method, action: SubClass<_MethodAction<DefaultActionConfig>>){
+    constructor(method:Method, action: SubClass<_MethodAction<DefaultActionConfig>>, location:string){
         this.method = method
         this.action = action
+        this.location = location
     }
 
     getURL(){
         return `[${this.method}] ${this.router?.getPath()}`
+    }
+
+    export(){
+        return exportEndpoint(this.method, this.action, this.router!, this.location)
     }
 
     addRouter(router:IRouter){
