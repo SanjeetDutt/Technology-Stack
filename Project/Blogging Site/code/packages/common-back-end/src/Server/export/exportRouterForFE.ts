@@ -2,81 +2,128 @@ import { Router } from "../../FileRouter";
 import {mkdir, writeFile, readFile} from "fs/promises"
 import {dirname} from "path"
 import * as ts from "typescript"
-import {execute} from "./test"
-
-const scriptTarget = ts.ScriptTarget.ES2022
-const compilerOption = {target: scriptTarget}
-const defaultHost: ts.CompilerHost = {
-            ...ts.createCompilerHost(compilerOption),
-        }
 
 export async function exportRouterForFE (router: Router, location:string){
-//     execute()
-// }
-
-// async function original(router: Router, location:string){
-    for(const endpoint of router.getEndpoint()){
-        const {action, method, url, location} = endpoint.export()
-        // const rawCode = await readFile(location, "utf-8")
-        // const tempFileName = `${method}_${url}.ts`
-        // const code = ts.createSourceFile(tempFileName,rawCode,scriptTarget,true)
-        // const host:ts.CompilerHost = {
-        //     ...defaultHost,
-        //     getSourceFile:(name)=> {
-        //         if(name === tempFileName){
-        //             return code
-        //         }
-        //         console.log(name)
-
-        //         return undefined
-        //     },
-        // }
-        // const programe = ts.createProgram([tempFileName], compilerOption, host)
-        // const checker = programe.getTypeChecker()
-
-        const data = getFullyMergedGenericProperties(location, action.name)
-
-        console.log(data)
-    }
-
-    saveContentToFile(location, JSON.stringify("", null, 4))
+    const data = router.getEndpoint().map(endpoint=>{
+        const {action, location, url} = endpoint.export()
+        const properties = getPropertiesFromActionClass(location, action.name)
+        return {
+            url: url,
+            ...properties.properties
+        }
+    })
+    await saveContentToFile(location, JSON.stringify(data, null, 2))
+    console.log("EXPORT COMPLETE")
 }
 
-function getFullyMergedGenericProperties(entryFilePath: string, targetClassName: string) {
-  // 1. Create a Program reading from the physical file system
-  // We use NodeJs module resolution so it correctly follows imports across files
-  const program = ts.createProgram([entryFilePath], {
-    target: ts.ScriptTarget.Latest,
-    moduleResolution: ts.ModuleResolutionKind.NodeJs,
-    esModuleInterop: true,
-  });
-
-  const checker = program.getTypeChecker();
+function getPropertiesFromActionClass(entryFilePath: string, targetClassName: string) {
   
-  // 2. Fetch the AST for the entry point file
-  const sourceFile = program.getSourceFile(entryFilePath);
-  if (!sourceFile) {
-    throw new Error(`Could not find or parse file: ${entryFilePath}`);
-  }
+    const program = createProgram(entryFilePath);
+    const checker = program.getTypeChecker();
+    const sourceFile = fetchSourceFile(entryFilePath, program)
 
-  let resultData = { 
+    let resultData = { 
     targetClass: targetClassName, 
     parentClass: "", 
     genericType: "", 
     properties: {} as Record<string, any>
   };
 
-  // 3. Recursive helper to map a resolved TypeScript Type to JSON
-  function resolveTypeToJSON(type: ts.Type): any {
+    function visit(node: ts.Node) {
+        if (ts.isClassDeclaration(node) && node.name?.text === targetClassName) {
+            if (node.heritageClauses) {
+                for (const clause of node.heritageClauses) {
+                    if (clause.token === ts.SyntaxKind.ExtendsKeyword) {
+                        const typeExpr = clause.types[0]!;
+                        resultData.parentClass = typeExpr.expression.getText(sourceFile!);
+
+                        if (typeExpr.typeArguments && typeExpr.typeArguments.length > 0) {
+                            const genericNode = typeExpr.typeArguments[0]!;
+                            resultData.genericType = genericNode.getText(sourceFile!);
+
+                            // Get the fully resolved semantic type (merges natively across physical files)
+                            const tsType = checker.getTypeFromTypeNode(genericNode);
+                            resultData.properties = resolveTypeToJSON(tsType, checker);
+                        }
+                    }
+                }
+            }
+        }
+        ts.forEachChild(node, visit);
+    }
+
+  visit(sourceFile);
+  return resultData;
+}
+
+function createProgram (path: string){
+    return ts.createProgram(
+        [path],{
+            target: ts.ScriptTarget.Latest,
+            moduleResolution: ts.ModuleResolutionKind.Bundler,
+            esModuleInterop: true,
+        }
+    )
+}
+
+function fetchSourceFile (path: string, program: ts.Program){
+    const sourceFile = program.getSourceFile(path);
+    if (!sourceFile) {
+        throw new Error(`Could not find or parse file: ${path}`);
+    }
+    return sourceFile
+}
+
+function extractJSDoc(checker: ts.TypeChecker, symbol?: ts.Symbol) {
+    if (!symbol) return { description: "", tags: {} };
+
+    // Get the main JSDoc description
+    const description = ts.displayPartsToString(symbol.getDocumentationComment(checker)).trim();
+    
+    // Get JSDoc tags (like @default, @deprecated, etc.)
+    const tags: Record<string, string> = {};
+    for (const tag of symbol.getJsDocTags(checker)) {
+      tags[tag.name] = ts.displayPartsToString(tag.text).trim();
+    }
+
+    return { description, tags };
+}
+
+function resolveTypeToJSON(type: ts.Type, checker:ts.TypeChecker, symbol?: ts.Symbol): any {
     const typeStr = checker.typeToString(type);
+    const {description, tags} = extractJSDoc(checker, symbol)
+
+    const getDescription = (value: string)=> value === "" ? undefined : value
+    const getTags = (value: object) => Object.keys(value).length === 0 ? undefined : value
+
+    if(Object.keys(tags).includes("private")){
+        return null
+    }
 
     // Stop recursion for primitives, unions, or arrays
-    if (["string", "number", "boolean", "any"].includes(typeStr) || typeStr.includes("[]") || type.isUnion()) {
-      return typeStr;
+    if (["string", "number", "boolean", "any"].includes(typeStr)) {
+        return {
+            type:typeStr, 
+            description: getDescription(description),
+            tags: getTags(tags)
+        };
+    }
+
+    if(typeStr.includes("[]") || type.isUnion()){
+        console.log(typeStr)
+        return {
+            type:typeStr, 
+            description: getDescription(description),
+            tags: getTags(tags)
+        };
     }
 
     const props = type.getProperties();
-    if (props.length === 0) return typeStr;
+    if (props.length === 0) return {
+        type:"Object", 
+        description: getDescription(description),
+        tags: getTags(tags)
+    };
 
     // Recursively parse nested object properties
     const result: Record<string, any> = {};
@@ -84,47 +131,27 @@ function getFullyMergedGenericProperties(entryFilePath: string, targetClassName:
       const propDecl = prop.valueDeclaration || prop.declarations?.[0];
       if (propDecl) {
         const propType = checker.getTypeOfSymbolAtLocation(prop, propDecl);
-        result[prop.getName()] = resolveTypeToJSON(propType);
-      }
-    }
-    return result;
-  }
-
-  // 4. Traverse AST to find the class and extract the merged type
-  function visit(node: ts.Node) {
-    if (ts.isClassDeclaration(node) && node.name?.text === targetClassName) {
-      if (node.heritageClauses) {
-        for (const clause of node.heritageClauses) {
-          if (clause.token === ts.SyntaxKind.ExtendsKeyword) {
-            const typeExpr = clause.types[0]!;
-            resultData.parentClass = typeExpr.expression.getText(sourceFile!);
-
-            if (typeExpr.typeArguments && typeExpr.typeArguments.length > 0) {
-              const genericNode = typeExpr.typeArguments[0]!;
-              resultData.genericType = genericNode.getText(sourceFile!);
-
-              // Get the fully resolved semantic type (merges natively across physical files)
-              const tsType = checker.getTypeFromTypeNode(genericNode);
-              resultData.properties = resolveTypeToJSON(tsType);
-            }
-          }
+        const value = resolveTypeToJSON(propType,checker, prop);
+        if(value){
+            result[prop.getName()] = value
         }
+        
       }
     }
-    ts.forEachChild(node, visit);
-  }
-
-  visit(sourceFile);
-  return resultData;
+    return {
+        type: "Object",
+        description: getDescription(description), 
+        tags: getTags(tags),
+        ...result
+    };
 }
 
 
 async function saveContentToFile (path: string, content: string){
     try{
-        // console.log(path, content)
-        // const dir = dirname(path)
-        // await mkdir(dir,{recursive: true})
-        // await writeFile(path, content, "utf-8")
+        const dir = dirname(path)
+        await mkdir(dir,{recursive: true})
+        await writeFile(path, content, "utf-8")
     } catch(e){
         console.error("Error occured while writing a content to file", e)
     }

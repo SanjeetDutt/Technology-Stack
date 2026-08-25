@@ -2,7 +2,22 @@ import {Authentication, POST, EndpointConfig} from "common-back-end"
 import { DefaultMiddlewareConfig } from "../../Middleware";
 
 type CONFIG = EndpointConfig<{
-    payload:{},
+    payload:{
+        message: string[],
+        nestedObj: {
+            name: string,
+            emai: `${string}@${string}.${string}`,
+            address:{
+                street: string,
+                city: string,
+                pin: number,
+            }[],
+            phone?:{
+                phone: number,
+                type:"TEL"|"Mobile"|"HOME"|"OFFICE"
+            }[]
+        }[]
+    },
     response:{},
     param:{},
     query:{}
