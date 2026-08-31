@@ -2,6 +2,7 @@ import { Router } from "../../FileRouter";
 import {mkdir, writeFile, readFile} from "fs/promises"
 import {dirname} from "path"
 import * as ts from "typescript"
+import { resolveTypeToJSON } from "./resolveTypeToJson";
 
 export async function exportRouterForFE (router: Router, location:string){
     const data = router.getEndpoint().map(endpoint=>{
@@ -43,7 +44,7 @@ function getPropertiesFromActionClass(entryFilePath: string, targetClassName: st
 
                             // Get the fully resolved semantic type (merges natively across physical files)
                             const tsType = checker.getTypeFromTypeNode(genericNode);
-                            resultData.properties = resolveTypeToJSON(tsType, checker);
+                            resultData.properties = resolveTypeToJSON(tsType,0, checker);
                         }
                     }
                 }
@@ -74,77 +75,64 @@ function fetchSourceFile (path: string, program: ts.Program){
     return sourceFile
 }
 
-function extractJSDoc(checker: ts.TypeChecker, symbol?: ts.Symbol) {
-    if (!symbol) return { description: "", tags: {} };
 
-    // Get the main JSDoc description
-    const description = ts.displayPartsToString(symbol.getDocumentationComment(checker)).trim();
-    
-    // Get JSDoc tags (like @default, @deprecated, etc.)
-    const tags: Record<string, string> = {};
-    for (const tag of symbol.getJsDocTags(checker)) {
-      tags[tag.name] = ts.displayPartsToString(tag.text).trim();
-    }
 
-    return { description, tags };
-}
+// function resolveTypeToJSON(type: ts.Type, checker:ts.TypeChecker, symbol?: ts.Symbol): any {
+//     const typeStr = checker.typeToString(type);
+//     const {description, tags} = extractJSDoc(checker, symbol)
 
-function resolveTypeToJSON(type: ts.Type, checker:ts.TypeChecker, symbol?: ts.Symbol): any {
-    const typeStr = checker.typeToString(type);
-    const {description, tags} = extractJSDoc(checker, symbol)
+//     const getDescription = (value: string)=> value === "" ? undefined : value
+//     const getTags = (value: object) => Object.keys(value).length === 0 ? undefined : value
 
-    const getDescription = (value: string)=> value === "" ? undefined : value
-    const getTags = (value: object) => Object.keys(value).length === 0 ? undefined : value
+//     if(Object.keys(tags).includes("private")){
+//         return null
+//     }
 
-    if(Object.keys(tags).includes("private")){
-        return null
-    }
+//     // Stop recursion for primitives, unions, or arrays
+//     if (["string", "number", "boolean", "any"].includes(typeStr)) {
+//         return {
+//             type:typeStr, 
+//             description: getDescription(description),
+//             tags: getTags(tags)
+//         };
+//     }
 
-    // Stop recursion for primitives, unions, or arrays
-    if (["string", "number", "boolean", "any"].includes(typeStr)) {
-        return {
-            type:typeStr, 
-            description: getDescription(description),
-            tags: getTags(tags)
-        };
-    }
+//     if(typeStr.includes("[]") || type.isUnion()){
+//         console.log(typeStr)
+//         return {
+//             type:typeStr, 
+//             description: getDescription(description),
+//             tags: getTags(tags)
+//         };
+//     }
 
-    if(typeStr.includes("[]") || type.isUnion()){
-        console.log(typeStr)
-        return {
-            type:typeStr, 
-            description: getDescription(description),
-            tags: getTags(tags)
-        };
-    }
+//     const props = type.getProperties();
+//     if (props.length === 0) return {
+//         type:"Object", 
+//         description: getDescription(description),
+//         tags: getTags(tags)
+//     };
 
-    const props = type.getProperties();
-    if (props.length === 0) return {
-        type:"Object", 
-        description: getDescription(description),
-        tags: getTags(tags)
-    };
-
-    // Recursively parse nested object properties
-    const result: Record<string, any> = {};
-    for (const prop of props) {
-      const propDecl = prop.valueDeclaration || prop.declarations?.[0];
-      if (propDecl) {
-        const propType = checker.getTypeOfSymbolAtLocation(prop, propDecl);
-        const value = resolveTypeToJSON(propType,checker, prop);
-        if(value){
-            result[prop.getName()] = value
-        }
+//     // Recursively parse nested object properties
+//     const result: Record<string, any> = {};
+//     for (const prop of props) {
+//       const propDecl = prop.valueDeclaration || prop.declarations?.[0];
+//       if (propDecl) {
+//         const propType = checker.getTypeOfSymbolAtLocation(prop, propDecl);
+//         const value = resolveTypeToJSON(propType,checker, prop);
+//         if(value){
+//             result[prop.getName()] = value
+//         }
         
-      }
-    }
-    return {
-        type: "Object",
-        description: getDescription(description), 
-        tags: getTags(tags),
-        ...result
-    };
-}
+//       }
+//     }
+//     return {
+//         type: "Object",
+//         description: getDescription(description), 
+//         tags: getTags(tags),
+//         ...result
+//     };
+// }
 
 
 async function saveContentToFile (path: string, content: string){

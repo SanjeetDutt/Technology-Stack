@@ -4,11 +4,11 @@ import { DefaultMiddlewareConfig } from "../../Middleware";
 type CONFIG = EndpointConfig<{
     payload:{
         message: string[],
-        nestedObj: {
+        metaData: {
             name: string,
             emai: `${string}@${string}.${string}`,
             address:{
-                street: string,
+                street: string | number,
                 city: string,
                 pin: number,
             }[],
