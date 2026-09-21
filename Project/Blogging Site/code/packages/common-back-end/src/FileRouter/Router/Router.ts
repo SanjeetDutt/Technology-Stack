@@ -7,7 +7,7 @@
 
 // import { IAuthentication, IValidation, IErrorBoundary, IEndpoint } from "../Endpoint";
 import { Path, SubClass } from "../types";
-import { IRouter } from "./IRouter";
+import { IRouter, RouterExport } from "./IRouter";
 import {Authentication, Endpoint, ErrorBoundary, Validation} from "../Endpoint"
 import {_Action} from "../Endpoint/_Action"
 
@@ -118,6 +118,24 @@ export class Router implements IRouter{
             ... this.endpoints,
             ... this.child.map(c=>c.getEndpoint()).flat()
         ]
+    }
+
+    export():RouterExport{
+
+        const childEntires:[Path, any][] = []
+        this.child.forEach(c => {
+            const entry = Object.entries(c.export())[0]
+            if (entry) {
+                const [path, value] = entry
+                childEntires.push([path as Path, value])
+            }
+        })
+
+        return {
+            [this.path] : {
+                ...Object.fromEntries(childEntires)
+            }
+        }
     }
 
 }

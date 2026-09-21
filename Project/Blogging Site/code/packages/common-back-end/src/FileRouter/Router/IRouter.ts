@@ -7,6 +7,10 @@ interface DefaultActionConfiguration{
     response:{}
 }
 
+export type RouterExport = {
+    [key: Path]:Object
+}
+
 export interface IRouter{
     addChild(route: IRouter): IRouter
     getPath(): Path
@@ -22,4 +26,6 @@ export interface IRouter{
     getValidation(): SubClass<Validation<DefaultActionConfiguration>>[]
     getAuthentication(): SubClass<Authentication<DefaultActionConfiguration>>[]
     getErrorBoundary(): SubClass<ErrorBoundary<DefaultActionConfiguration>> | undefined
+
+    export():RouterExport
 }

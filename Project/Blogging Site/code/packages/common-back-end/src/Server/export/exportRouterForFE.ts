@@ -5,16 +5,19 @@ import * as ts from "typescript"
 import { resolveTypeToJSON } from "./resolveTypeToJson";
 
 export async function exportRouterForFE (router: Router, location:string){
-    const data = router.getEndpoint().map(endpoint=>{
-        const {action, location, url} = endpoint.export()
-        const properties = getPropertiesFromActionClass(location, action.name)
-        return {
-            url: url,
-            ...properties.properties
-        }
-    })
-    await saveContentToFile(location, JSON.stringify(data, null, 2))
-    console.log("EXPORT COMPLETE")
+    // const data = router.getEndpoint().map(endpoint=>{
+    //     const {action, location, url} = endpoint.export()
+    //     const properties = getPropertiesFromActionClass(location, action.name)
+    //     return {
+    //         url: url,
+    //         ...properties.properties
+    //     }
+    // })
+    // await saveContentToFile(location, JSON.stringify(data, null, 2))
+    // console.log("EXPORT COMPLETE")
+    // router.export()
+
+    console.log(JSON.stringify(router.export(), null, 2))
 }
 
 function getPropertiesFromActionClass(entryFilePath: string, targetClassName: string) {
@@ -24,11 +27,11 @@ function getPropertiesFromActionClass(entryFilePath: string, targetClassName: st
     const sourceFile = fetchSourceFile(entryFilePath, program)
 
     let resultData = { 
-    targetClass: targetClassName, 
-    parentClass: "", 
-    genericType: "", 
-    properties: {} as Record<string, any>
-  };
+        targetClass: targetClassName, 
+        parentClass: "", 
+        genericType: "", 
+        properties: {} as Record<string, any>
+    };
 
     function visit(node: ts.Node) {
         if (ts.isClassDeclaration(node) && node.name?.text === targetClassName) {
@@ -53,8 +56,8 @@ function getPropertiesFromActionClass(entryFilePath: string, targetClassName: st
         ts.forEachChild(node, visit);
     }
 
-  visit(sourceFile);
-  return resultData;
+    visit(sourceFile);
+    return resultData;
 }
 
 function createProgram (path: string){
