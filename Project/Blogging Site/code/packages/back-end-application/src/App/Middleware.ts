@@ -1,10 +1,8 @@
-import {ErrorBoundary, EndpointConfig} from "common-back-end"
+import {ErrorBoundary, RouteConfig} from "common-back-end"
 
-export type DefaultMiddlewareConfig = EndpointConfig<{
-    payload: {
-        msg: string
-    },
-    response:{}
+export type DefaultMiddlewareConfig = RouteConfig<{
+    PAYLOAD:{},
+    RESPONSE:{}
 }>
 
 export class DefaultMiddleware extends ErrorBoundary<DefaultMiddlewareConfig>

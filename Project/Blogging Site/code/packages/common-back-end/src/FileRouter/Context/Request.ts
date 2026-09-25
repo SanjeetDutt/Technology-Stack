@@ -6,13 +6,9 @@ import { Endpoint, HEADER, PARAM, QUERY } from "../Endpoint";
 import { IRouter } from "../Router";
 import { Method } from "../types";
 import { _Properties } from "./_Properties";
+import { ActionConfig } from "../Endpoint/_Action";
 
-export class Request<
-    H extends HEADER | undefined = {},
-    P extends PARAM | undefined = {},
-    Q extends QUERY | undefined = {},
-    B extends any = {}
-> {
+export class Request<AC extends ActionConfig> {
 
     static Builder(){
         return new _RequestBuilder()
@@ -22,7 +18,7 @@ export class Request<
     private readonly router:IRouter
     private readonly method: Method
 
-    public readonly header: _Properties<H>
+    public readonly header: _Properties<AC["header"]>
     public readonly param: _Properties<P>
     public readonly query: _Properties<Q>
     public readonly payload: B

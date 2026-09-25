@@ -1,16 +1,6 @@
 import { Method, Path, SubClass } from "../types";
 import {Authentication, Endpoint, ErrorBoundary, Validation} from "../Endpoint"
-import {_Action} from "../Endpoint/_Action"
-
-interface DefaultActionConfiguration{
-    payload:{}
-    response:{}
-}
-
-export type RouterExport = {
-    [key: Path]:Object
-}
-
+import { DefaultActionConfig } from "../Endpoint/_Action";
 export interface IRouter{
     addChild(route: IRouter): IRouter
     getPath(): Path
@@ -19,13 +9,11 @@ export interface IRouter{
     addEndpoint(e: (Endpoint)): void
     getEndpoint(): (Endpoint)[]
     
-    addValidation(validation: SubClass<Validation<DefaultActionConfiguration>>):void
-    addAuthentication(authentication: SubClass<Authentication<DefaultActionConfiguration>>):void
-    addErrorBoundary(errorBoundary: SubClass<ErrorBoundary<DefaultActionConfiguration>>): void
+    addValidation(validation: SubClass<Validation<DefaultActionConfig>>):void
+    addAuthentication(authentication: SubClass<Authentication<DefaultActionConfig>>):void
+    addErrorBoundary(errorBoundary: SubClass<ErrorBoundary<DefaultActionConfig>>): void
 
-    getValidation(): SubClass<Validation<DefaultActionConfiguration>>[]
-    getAuthentication(): SubClass<Authentication<DefaultActionConfiguration>>[]
-    getErrorBoundary(): SubClass<ErrorBoundary<DefaultActionConfiguration>> | undefined
-
-    export():RouterExport
+    getValidation(): SubClass<Validation<DefaultActionConfig>>[]
+    getAuthentication(): SubClass<Authentication<DefaultActionConfig>>[]
+    getErrorBoundary(): SubClass<ErrorBoundary<DefaultActionConfig>> | undefined
 }

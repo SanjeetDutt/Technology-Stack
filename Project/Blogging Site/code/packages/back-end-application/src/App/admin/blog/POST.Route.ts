@@ -2,8 +2,8 @@ import {POST} from "common-back-end"
 
 
 export class CreateNewBlog extends POST<{
-    payload:{},
-    response:{}
+    PAYLOAD:{},
+    RESPONSE:{}
 }>
 {
     async execute(){

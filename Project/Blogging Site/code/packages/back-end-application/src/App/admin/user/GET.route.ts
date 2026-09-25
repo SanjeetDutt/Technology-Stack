@@ -1,9 +1,9 @@
-import {GET, EndpointConfig} from "common-back-end"
+import {GET, RouteConfig} from "common-back-end"
 import { AdminUserConfig } from "./AdminUser.middleware";
 
-export type GetUserConfig = EndpointConfig<{
-    payload:{},
-    response:{}
+export type GetUserConfig = RouteConfig<{
+    PAYLOAD:{},
+    RESPONSE:{}
 }> & AdminUserConfig
 
 export class GetUsersRoute extends GET<GetUserConfig>{

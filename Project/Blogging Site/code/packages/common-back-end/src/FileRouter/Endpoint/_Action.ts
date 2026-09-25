@@ -1,29 +1,30 @@
 import { Logger } from "../../Logger";
 import { Request, Response } from "../Context";
+import { Catelog } from "../Router";
 import { HEADER, PARAM, PAYLOAD, QUERY, RESPONSE } from "./types";
 
-export interface _ActionConfiguration {
-    payload: PAYLOAD,
-    response: RESPONSE,
-    param?: PARAM,
-    query?: QUERY,
-    header?: HEADER
+export interface ActionConfig {
+    PAYLOAD: PAYLOAD,
+    RESPONSE: RESPONSE,
+    PARAM?: PARAM,
+    QUERY?: QUERY,
+    HEADER?: HEADER
 }
 
-export abstract class _Action<Config extends _ActionConfiguration>
+export interface DefaultActionConfig extends ActionConfig{
+    PAYLOAD:{}
+    RESPONSE:{}
+}
+
+export abstract class _Action<Config extends ActionConfig>
 {
-    protected readonly request:Request<Config["header"], Config["param"], Config["query"], Config["payload"]>
-    protected readonly response:Response<Config["response"]>
+    protected readonly request:Request<Config>
+    protected readonly response:Response<Config>
     protected readonly log:Logger
 
-    constructor(request: Request, response:Response, logger:Logger){
+    constructor(request: Request<Config>, response:Response<Config>, logger:Logger){
         this.request = request
         this.response = response
         this.log = logger
     }
-
-    getPayloadType(){
-        
-    }
-    
 }

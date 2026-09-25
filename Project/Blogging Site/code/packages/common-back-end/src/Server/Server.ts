@@ -130,7 +130,5 @@ class _ServerBuilder{
             throw new Error("No file routing path is defined")
         }
         const router = await LoadRouter(this.routePath)
-        exportRouterForFE(router, path)
-
     }
 }

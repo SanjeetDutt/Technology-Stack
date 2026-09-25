@@ -1,17 +1,17 @@
-import {POST, Authentication, Validation, EndpointConfig} from "common-back-end"
+import {POST, Authentication, Validation, RouteConfig} from "common-back-end"
 import { AdminBlogConfig } from "../AdminBlog.middleware";
 
-export type Configuration = EndpointConfig<{
-    payload:{
+export type Configuration = RouteConfig<{
+    PAYLOAD:{
         message: string
     },
-    response:{
+    RESPONSE:{
         message: string
     },
-    param:{
+    PARAM:{
         id: string
     },
-    query:{
+    QUERY:{
         offset:number,
         limit: number,
         sort: string

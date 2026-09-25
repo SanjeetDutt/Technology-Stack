@@ -1,9 +1,9 @@
-import {Authentication, EndpointConfig} from "common-back-end"
+import {Authentication, RouteConfig} from "common-back-end"
 import { AdminMiddlewareConfig } from "../Admin.middleware";
 
-export type AdminBlogConfig = EndpointConfig<{
-    payload:{},
-    response:{}
+export type AdminBlogConfig = RouteConfig<{
+    PAYLOAD:{},
+    RESPONSE:{}
 }> & AdminMiddlewareConfig
 
 export class AdminBlogMiddleware extends Authentication<AdminBlogConfig>

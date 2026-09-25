@@ -1,17 +1,13 @@
 import { Server } from "../../Server";
 import { Request,Response } from "../Context";
-import { IRouter } from "../Router";
+import { Catelog, IRouter } from "../Router";
 import { Method, SubClass } from "../types";
-import { _Action } from "./_Action";
+import { DefaultActionConfig } from "./_Action";
 import Express from "express"
 import { _MethodAction } from "./Actions/_MethodAction";
 import { Logger } from "../../Logger";
 import { exportEndpoint } from "./export";
 
-interface DefaultActionConfig {
-    payload:{}
-    response:{}
-}
 export class Endpoint{
     private readonly method: Method
     private readonly action: SubClass<_MethodAction<DefaultActionConfig>>
@@ -73,14 +69,14 @@ export class Endpoint{
             throw new Error("Router not added to endpoint")
         }
 
-        const request:Request = Request.Builder()
+        const request:Request<DefaultActionConfig> = Request.Builder()
             .endpoint(this)
             .method(this.method)
             .router(this.router)
             .expressRequest(erequest)
             .build()
         
-        const response: Response = Response.Builder()
+        const response: Response<DefaultActionConfig> = Response.Builder()
             .request(request)
             .expressResponse(eresponse)
             .build()
@@ -142,6 +138,16 @@ export class Endpoint{
     private processTime(end:number, start:number):string{
         const diff = end - start
         return `${diff.toFixed(2)}ms`
+    }
+
+    registerInCategoryNode(rootNode: Catelog.Node){
+        if(!this.router){
+            return
+        }
+        const node = rootNode.getNode(this.router.getPath())
+        console.log(this.action)
+        //@ts-ignore
+        node.addMethod(this.method,this.action.getCategoryData())
     }
 
 }

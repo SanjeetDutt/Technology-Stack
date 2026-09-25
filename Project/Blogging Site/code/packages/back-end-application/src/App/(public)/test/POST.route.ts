@@ -1,8 +1,8 @@
-import {Authentication, POST, EndpointConfig} from "common-back-end"
+import {Authentication, POST, RouteConfig} from "common-back-end"
 import { DefaultMiddlewareConfig } from "../../Middleware";
 
-type CONFIG = EndpointConfig<{
-    payload:{
+type CONFIG = RouteConfig<{
+    PAYLOAD:{
         message: string[],
         metaData: {
             name: string,
@@ -18,9 +18,9 @@ type CONFIG = EndpointConfig<{
             }[]
         }[]
     },
-    response:{},
-    param:{},
-    query:{}
+    RESPONSE:{},
+    PARAM:{},
+    QUERY:{}
 }> & DefaultMiddlewareConfig
 
 export class TestRoute extends POST<CONFIG>{

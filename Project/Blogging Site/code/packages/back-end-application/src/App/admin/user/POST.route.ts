@@ -1,9 +1,9 @@
-import {POST, EndpointConfig} from "common-back-end"
+import {POST, RouteConfig} from "common-back-end"
 import { AdminUserConfig } from "./AdminUser.middleware";
 
-type PostUserConfig = EndpointConfig<{
-    payload:{},
-    response:{}
+type PostUserConfig = RouteConfig<{
+    PAYLOAD:{},
+    RESPONSE:{}
 }> & AdminUserConfig
 
 export class CraeteNewUserRoute extends POST<PostUserConfig>{

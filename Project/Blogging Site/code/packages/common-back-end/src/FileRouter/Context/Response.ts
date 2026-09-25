@@ -1,20 +1,19 @@
+import { ActionConfig } from "../Endpoint/_Action";
 import { Request } from "./Request";
 import Express from "express"
 
-export class Response<
-    B extends any = {}
->{
+export class Response<AC extends ActionConfig>{
     static Builder(){
         return new ResponseBuilder()
     }
     private _status: number = 200
-    private _body: B = {} as any
-    private request: Request
+    private _body: AC.RESPONSE = {}
+    private request: Request<AC>
     private readonly corelationId:string
     private readonly ExpressResponse: Express.Response
 
     constructor(
-        request: Request,
+        request: Request<AC>,
         response: Express.Response
     ){
         this.corelationId = request.corelationId

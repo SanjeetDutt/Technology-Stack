@@ -1,8 +1,8 @@
-import { Server } from "../../Server";
-import { IRouter } from "../Router";
+import { Server } from "../../../Server";
+import { Request, Response } from "../../Context";
+import { IRouter } from "../../Router";
 import { AbstractEndpoint } from "./_Endpoint";
 import { Endpoint } from "./IEndpoint";
-import {Request, Response} from "../Context"
 
 export abstract class PostRoute<
     B extends Endpoint.BODY,

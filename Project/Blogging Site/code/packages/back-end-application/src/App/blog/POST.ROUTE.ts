@@ -1,13 +1,13 @@
 /**Create new blog */
 
-import { POST, EndpointConfig } from "common-back-end";
+import { POST, RouteConfig } from "common-back-end";
 
-type CreateNewBlogConfig = EndpointConfig<{
-    payload:{
+type CreateNewBlogConfig = RouteConfig<{
+    PAYLOAD:{
         content:string,
         title: string,
     },
-    response:{}
+    RESPONSE:{}
 }>
 
 export class CreateBlog extends POST<CreateNewBlogConfig>{

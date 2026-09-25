@@ -7,14 +7,9 @@
 
 // import { IAuthentication, IValidation, IErrorBoundary, IEndpoint } from "../Endpoint";
 import { Path, SubClass } from "../types";
-import { IRouter, RouterExport } from "./IRouter";
+import { IRouter } from "./IRouter";
 import {Authentication, Endpoint, ErrorBoundary, Validation} from "../Endpoint"
-import {_Action} from "../Endpoint/_Action"
-
-interface DefaultActionConfiguration{
-    payload: {}
-    response:{}
-}
+import { DefaultActionConfig } from "../Endpoint/_Action";
 
 export class Router implements IRouter{
     //Meta data
@@ -25,9 +20,9 @@ export class Router implements IRouter{
     private readonly child : IRouter[]
 
     // // GUARDS
-    private readonly authentication: SubClass<Authentication<DefaultActionConfiguration>>[]
-    private readonly validation: SubClass<Validation<DefaultActionConfiguration>>[]
-    private errorBoundry: SubClass<ErrorBoundary<DefaultActionConfiguration>> | undefined
+    private readonly authentication: SubClass<Authentication<DefaultActionConfig>>[]
+    private readonly validation: SubClass<Validation<DefaultActionConfig>>[]
+    private errorBoundry: SubClass<ErrorBoundary<DefaultActionConfig>> | undefined
 
     // // Enpoints
     private readonly endpoints: Endpoint[]
@@ -89,15 +84,15 @@ export class Router implements IRouter{
         return this.path
     }
 
-    addValidation(validation:SubClass<Validation<DefaultActionConfiguration>>){
+    addValidation(validation:SubClass<Validation<DefaultActionConfig>>){
         this.validation.push(validation)
     }
 
-    addAuthentication(authentication:SubClass<Authentication<DefaultActionConfiguration>>){
+    addAuthentication(authentication:SubClass<Authentication<DefaultActionConfig>>){
         this.authentication.push(authentication)
     }
 
-    addErrorBoundary(eb:SubClass<ErrorBoundary<DefaultActionConfiguration>>){
+    addErrorBoundary(eb:SubClass<ErrorBoundary<DefaultActionConfig>>){
         this.errorBoundry = eb
     }
 
@@ -119,23 +114,4 @@ export class Router implements IRouter{
             ... this.child.map(c=>c.getEndpoint()).flat()
         ]
     }
-
-    export():RouterExport{
-
-        const childEntires:[Path, any][] = []
-        this.child.forEach(c => {
-            const entry = Object.entries(c.export())[0]
-            if (entry) {
-                const [path, value] = entry
-                childEntires.push([path as Path, value])
-            }
-        })
-
-        return {
-            [this.path] : {
-                ...Object.fromEntries(childEntires)
-            }
-        }
-    }
-
 }

@@ -3,7 +3,7 @@ import { IRouter, Router } from "./Router";
 import { Method, Path, SubClass } from "./types";
 import path from "path";
 import {Authentication, ErrorBoundary, Validation, POST, PATCH, PUT, DELETE, GET, Endpoint} from "./Endpoint"
-import {_Action} from "./Endpoint/_Action"
+import {ActionConfig, DefaultActionConfig} from "./Endpoint/_Action"
 import { _MethodAction } from "./Endpoint/Actions/_MethodAction";
 
 export async function ScanDrive(dir: string, router: IRouter):Promise<void>{
@@ -54,11 +54,6 @@ async function ScanDirectory(directory: Dirent<string>, router: IRouter){
 
 //File Scanning Area
 async function ScanFile(file: Dirent<string>, router: IRouter){
-
-    interface DefaultActionConfiguration {
-        payload:{}
-        response:{}
-    }
     
     // If file ends with ROUTE.ts|.js then it is a route endpoint file
     if(_endsWith(file.name, "ROUTE") || _endsWith(file.name, "MIDDLEWARE")){
@@ -66,20 +61,20 @@ async function ScanFile(file: Dirent<string>, router: IRouter){
         const endpoint = (method: Method, action: any)=>{
             return new Endpoint(
                 method, 
-                action as SubClass<_MethodAction<DefaultActionConfiguration>>,
+                action as SubClass<_MethodAction<DefaultActionConfig>>,
                 path.resolve(file.parentPath, file.name)
             )
         }
         for(const [key, value] of Object.entries(module)){
             switch(Object.getPrototypeOf(value).name){
                 case Authentication.name:
-                    router.addAuthentication(value as SubClass<Authentication<DefaultActionConfiguration>>)
+                    router.addAuthentication(value as SubClass<Authentication<DefaultActionConfig>>)
                     break;
                 case ErrorBoundary.name:
-                    router.addErrorBoundary(value as SubClass<ErrorBoundary<DefaultActionConfiguration>>)
+                    router.addErrorBoundary(value as SubClass<ErrorBoundary<DefaultActionConfig>>)
                     break;
                 case Validation.name:
-                    router.addValidation(value as SubClass<Validation<DefaultActionConfiguration>>)
+                    router.addValidation(value as SubClass<Validation<DefaultActionConfig>>)
                     break;
                 case POST.name:
                     router.addEndpoint(endpoint("POST", value))

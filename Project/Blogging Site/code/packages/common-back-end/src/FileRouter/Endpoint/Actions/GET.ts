@@ -1,8 +1,8 @@
-import { _ActionConfiguration } from "../_Action";
+import { ActionConfig } from "../_Action";
 import { _MethodAction } from "./_MethodAction";
 
 export abstract class GET<
-    AC extends Omit<_ActionConfiguration,"payload">
-> extends _MethodAction<AC&{payload:{}}>{
+    AC extends Omit<ActionConfig,"PAYLOAD">
+> extends _MethodAction<AC&{PAYLOAD:{}}>{
     abstract execute():void | Promise<void>
 }

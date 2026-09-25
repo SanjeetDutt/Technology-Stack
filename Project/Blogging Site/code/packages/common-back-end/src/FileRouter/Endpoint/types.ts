@@ -1,4 +1,4 @@
-import { _ActionConfiguration } from "./_Action";
+import { ActionConfig } from "./_Action";
 
 export type PAYLOAD = any
 export type RESPONSE = any
@@ -8,4 +8,4 @@ export type PARAM = _StringNumberObject
 export type QUERY = _StringNumberObject
 export type HEADER = {[key: string]: any}
 
-export type EndpointConfig<C extends _ActionConfiguration> = C
+export type RouteConfig<C extends ActionConfig> = C

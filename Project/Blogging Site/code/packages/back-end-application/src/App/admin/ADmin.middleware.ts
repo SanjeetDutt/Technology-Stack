@@ -1,8 +1,8 @@
-import {Authentication,EndpointConfig} from "common-back-end"
+import {Authentication,RouteConfig} from "common-back-end"
 
-export type AdminMiddlewareConfig = EndpointConfig<{
-    payload:{},
-    response:{},
+export type AdminMiddlewareConfig = RouteConfig<{
+    PAYLOAD:{},
+    RESPONSE:{},
     header:{
         /**
          * FE to pass Bearer token
