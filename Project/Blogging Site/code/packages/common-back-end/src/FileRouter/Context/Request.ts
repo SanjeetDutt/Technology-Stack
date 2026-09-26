@@ -18,10 +18,10 @@ export class Request<AC extends ActionConfig> {
     private readonly router:IRouter
     private readonly method: Method
 
-    public readonly header: _Properties<AC["header"]>
-    public readonly param: _Properties<P>
-    public readonly query: _Properties<Q>
-    public readonly payload: B
+    public readonly header: _Properties<AC["HEADER"]>
+    public readonly param: _Properties<AC["PARAM"]>
+    public readonly query: _Properties<AC["QUERY"]>
+    public readonly payload: AC["PAYLOAD"]
 
 
     private readonly expressRequest: Express.Request
@@ -34,10 +34,10 @@ export class Request<AC extends ActionConfig> {
         method: Method,
         expressRequest: Express.Request
     ){
-        this.header = new Headers<H>(expressRequest)
-        this.param = new Param<P>(expressRequest)
-        this.query = new Query<Q>(expressRequest)
-        this.payload = expressRequest.body as B
+        this.header = new Headers<AC["HEADER"]>(expressRequest)
+        this.param = new Param<AC["PARAM"]>(expressRequest)
+        this.query = new Query<AC["QUERY"]>(expressRequest)
+        this.payload = expressRequest.body
 
         this.endpoint = endpoint
         this.router = router

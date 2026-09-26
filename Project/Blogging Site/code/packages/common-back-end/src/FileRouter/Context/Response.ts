@@ -7,7 +7,7 @@ export class Response<AC extends ActionConfig>{
         return new ResponseBuilder()
     }
     private _status: number = 200
-    private _body: AC.RESPONSE = {}
+    private _body: AC["RESPONSE"] = {}
     private request: Request<AC>
     private readonly corelationId:string
     private readonly ExpressResponse: Express.Response
@@ -22,7 +22,7 @@ export class Response<AC extends ActionConfig>{
         this.ExpressResponse.setHeader("Corelation-Id", this.corelationId)
     }
 
-    body(body:B){
+    body(body:AC["RESPONSE"]){
         this._body = body
         return this
     }
@@ -46,8 +46,8 @@ export class Response<AC extends ActionConfig>{
     }
 }
 
-class ResponseBuilder{
-    private _request?: Request
+class ResponseBuilder<AC extends ActionConfig>{
+    private _request?: Request<AC>
     private _expressResponse?: Express.Response
 
     build(){
@@ -60,7 +60,7 @@ class ResponseBuilder{
         )
     }
 
-    request(r:Request){
+    request(r:Request<AC>){
         this._request = r
         return this
     }

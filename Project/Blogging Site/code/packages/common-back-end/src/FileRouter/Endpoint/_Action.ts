@@ -1,6 +1,5 @@
 import { Logger } from "../../Logger";
 import { Request, Response } from "../Context";
-import { Catelog } from "../Router";
 import { HEADER, PARAM, PAYLOAD, QUERY, RESPONSE } from "./types";
 
 export interface ActionConfig {

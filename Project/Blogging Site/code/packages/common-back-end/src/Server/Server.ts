@@ -6,6 +6,7 @@ import { DefaultConfig } from "./defaultConfig";
 import { LoadRouter } from "./LoadRouter";
 import { Logger } from "../Logger";
 import { exportRouterForFE } from "./export";
+import { Gateway } from "../FileRouter/Gateway";
 
 export class Server{
 
@@ -130,5 +131,9 @@ class _ServerBuilder{
             throw new Error("No file routing path is defined")
         }
         const router = await LoadRouter(this.routePath)
+        const endpoints = router.getEndpoint()
+        const gateway = Gateway.Register(endpoints)
+        const exportedJson = Gateway.Export.JSON(gateway)
+        console.log(exportedJson)
     }
 }

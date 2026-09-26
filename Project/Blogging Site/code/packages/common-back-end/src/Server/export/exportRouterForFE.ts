@@ -17,7 +17,7 @@ export async function exportRouterForFE (router: Router, location:string){
     // console.log("EXPORT COMPLETE")
     // router.export()
 
-    console.log(JSON.stringify(router.export(), null, 2))
+    // console.log(JSON.stringify(router.export(), null, 2))
 }
 
 function getPropertiesFromActionClass(entryFilePath: string, targetClassName: string) {

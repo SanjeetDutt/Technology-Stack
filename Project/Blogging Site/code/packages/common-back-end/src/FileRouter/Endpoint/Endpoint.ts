@@ -1,12 +1,11 @@
 import { Server } from "../../Server";
 import { Request,Response } from "../Context";
-import { Catelog, IRouter } from "../Router";
+import { IRouter } from "../Router";
 import { Method, SubClass } from "../types";
 import { DefaultActionConfig } from "./_Action";
 import Express from "express"
 import { _MethodAction } from "./Actions/_MethodAction";
 import { Logger } from "../../Logger";
-import { exportEndpoint } from "./export";
 
 export class Endpoint{
     private readonly method: Method
@@ -25,8 +24,13 @@ export class Endpoint{
         return `[${this.method}] ${this.router?.getPath()}`
     }
 
-    export(){
-        return exportEndpoint(this.method, this.action, this.router!, this.location)
+    getMetadata(){
+        return {
+            method: this.method,
+            url: this.router!.getPath(),
+            location: this.location,
+            actionName: this.action.name
+        }
     }
 
     addRouter(router:IRouter){
@@ -138,16 +142,6 @@ export class Endpoint{
     private processTime(end:number, start:number):string{
         const diff = end - start
         return `${diff.toFixed(2)}ms`
-    }
-
-    registerInCategoryNode(rootNode: Catelog.Node){
-        if(!this.router){
-            return
-        }
-        const node = rootNode.getNode(this.router.getPath())
-        console.log(this.action)
-        //@ts-ignore
-        node.addMethod(this.method,this.action.getCategoryData())
     }
 
 }
