@@ -4,7 +4,7 @@ import { Method } from "../types";
 import { fetchProperties } from "./loadTS";
 
 class GatewayChildNode{
-    private children: {[key: string]:GatewayChildNode} = {}
+    protected children: {[key: string]:GatewayChildNode} = {}
     private method: {[key in Method]?:ActionConfig|undefined} = {}
 
     getChild(name:string):GatewayChildNode{
@@ -29,6 +29,10 @@ export class GatewayNode extends GatewayChildNode{
             return previous.getChild(current)
         },this)
         childNode.addMethod(method,location, actionName)
+    }
+
+    getObject(){
+        return this.children
     }
 }
 

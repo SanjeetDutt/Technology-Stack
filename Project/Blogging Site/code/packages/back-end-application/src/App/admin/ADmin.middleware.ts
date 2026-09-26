@@ -3,7 +3,7 @@ import {Authentication,RouteConfig} from "common-back-end"
 export type AdminMiddlewareConfig = RouteConfig<{
     PAYLOAD:{},
     RESPONSE:{},
-    header:{
+    HEADER:{
         /**
          * FE to pass Bearer token
          */
