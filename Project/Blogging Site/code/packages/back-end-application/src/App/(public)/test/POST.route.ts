@@ -3,20 +3,20 @@ import { DefaultMiddlewareConfig } from "../../Middleware";
 
 type CONFIG = RouteConfig<{
     PAYLOAD:{
-        message: string[],
-        metaData: {
-            name: string,
-            emai: `${string}@${string}.${string}`,
-            address:{
-                street: string | number,
-                city: string,
-                pin: number,
-            }[],
-            phone?:{
-                phone: number,
-                type:"TEL"|"Mobile"|"HOME"|"OFFICE"
-            }[]
-        }[]
+        // message: string,
+        // metaData: {
+        //     name: string,
+        //     emai: `${string}@${string}.${string}`,
+        //     address:{
+        //         street: string | number,
+        //         city: string,
+        //         pin: number,
+        //     },
+        //     phone?:{
+        //         phone: number,
+        //         type:"TEL"|"Mobile"|"HOME"|"OFFICE"
+        //     }
+        // }
     },
     RESPONSE:{},
     PARAM:{},

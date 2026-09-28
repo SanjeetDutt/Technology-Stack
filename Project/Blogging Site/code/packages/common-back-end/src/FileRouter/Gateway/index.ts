@@ -11,8 +11,8 @@ export const Gateway = {
     },
     Export:{
         JSON:(node:GatewayNode):string=>{
-            const children = node.getObject()
-            return  JSON.stringify(children, null, 4)
+            const result = node.buildToExport()
+            return  JSON.stringify(result, null, 2)
         }
     }
 }
