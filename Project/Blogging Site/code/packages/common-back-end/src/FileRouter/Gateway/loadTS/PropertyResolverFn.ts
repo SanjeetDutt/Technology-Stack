@@ -102,7 +102,29 @@ export const UnionResolver: PropertyResolverFn<ResolveRetun.UNION> = ({type, typ
     }
 }
 
-export const ObjectResolve:PropertyResolverFn<ResolveRetun.OBJECT>=({type, flag, checker})=>{ 
+const ArrayResolver:PropertyResolverFn = ({type, checker})=>{
+    const arrayNumberType = type.getNumberIndexType()
+    if(!!arrayNumberType){
+        return {
+            "_ARRAY": resolveTS(arrayNumberType, checker)
+        }
+    } else {
+        const args = (type as ts.TypeReference).typeArguments
+        if(args && args[0]){
+            return {
+                "_ARRAY": resolveTS(args[0], checker)
+            }
+        }
+
+    }
+}
+
+export const ObjectResolve:PropertyResolverFn<ResolveRetun.OBJECT>=({type, flag, checker, typeString})=>{ 
+    const symbol = type.getSymbol()
+    const isArray = !!type.getNumberIndexType() || (symbol && symbol.getName() === "Array")
+    if(isArray){
+        return ArrayResolver({type, typeString, checker, flag})
+    }
     const props = type.getProperties()
     if(props.length ==0) return
     const result:Record<string,any> = {}

@@ -22,13 +22,6 @@ export function resolveTS (type: ts.Type, checker:ts.TypeChecker){
 
     return typeStr
 }
-
-const find:(name:string)=>PropertyResolverFn = (name)=>{
-    return ()=>({
-        "NOT_FOUND_RESOLVER":name
-    })
-}
-
 const decodeBitMask = (flag: number):ts.TypeFlags[]=>
     Object.entries(ts.TypeFlags)
         .filter(([, value])=>
