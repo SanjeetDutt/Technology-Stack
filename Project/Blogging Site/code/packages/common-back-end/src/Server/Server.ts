@@ -5,8 +5,9 @@ import { Config } from "./config";
 import { DefaultConfig } from "./defaultConfig";
 import { LoadRouter } from "./LoadRouter";
 import { Logger } from "../Logger";
-import { exportRouterForFE } from "./export";
 import { Gateway } from "../FileRouter/Gateway";
+import { dirname } from "node:path";
+import { mkdir, writeFile } from "node:fs/promises";
 
 export class Server{
 
@@ -134,6 +135,16 @@ class _ServerBuilder{
         const endpoints = router.getEndpoint()
         const gateway = Gateway.Register(endpoints)
         const exportedJson = Gateway.Export.JSON(gateway)
-        console.log(exportedJson)
+        await this.saveContentToFile(path, exportedJson)
     }
+
+    private async saveContentToFile (path: string, content: string){
+    try{
+        const dir = dirname(path)
+        await mkdir(dir,{recursive: true})
+        await writeFile(path, content, "utf-8")
+    } catch(e){
+        console.error("Error occured while writing a content to file", e)
+    }
+}
 }

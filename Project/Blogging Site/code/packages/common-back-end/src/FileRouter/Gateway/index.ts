@@ -12,7 +12,7 @@ export const Gateway = {
     Export:{
         JSON:(node:GatewayNode):string=>{
             const result = node.buildToExport()
-            return  JSON.stringify(result, null, 2)
+            return JSON.stringify(result, null, 2)
         }
     }
 }

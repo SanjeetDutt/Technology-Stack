@@ -7,11 +7,3 @@ Server
         port:3000,
     })
     .export("./src/export.JSON")
-    
-
-/*
-PENDING
-- ERROR while using string[] as type
-- ADD JSDocs
-
-*/
