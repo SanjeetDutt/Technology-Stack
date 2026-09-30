@@ -1,21 +1,70 @@
 import ts from "typescript";
 import { PropertyResolverFn } from "./PropertyResolverFn";
 import * as PR from "./PropertyResolverFn"
+function getJSDoc(checker: ts.TypeChecker, symbol?: ts.Symbol){
+    if(!symbol){
+        return {}
+    }
+    const description = ts.displayPartsToString(symbol.getDocumentationComment(checker)).trim()
+    const tags:Record<string, string> = {}
+    for(const tag of symbol.getJsDocTags(checker)){
+        tags[tag.name] = ts.displayPartsToString(tag.text).trim()
+    }
+    return {
+        description, tags
+    }
+}
 
-export function resolveTS (type: ts.Type, checker:ts.TypeChecker){
+export function resolveTS (type: ts.Type, checker:ts.TypeChecker, symbol?: ts.Symbol){
     const typeStr = checker.typeToString(type)
     const flag = type.getFlags()
+    const {description, tags} = getJSDoc(checker, symbol)
+    const executeResolverFn = (fn: PropertyResolverFn)=>{
+        const result = fn({type, typeString:typeStr, checker, flag}) as unknown as Record<string, any>
+        const isOptional = ()=>{
+            if(type.isUnion()){
+                if(type.types.some(t=>(t.getFlags() & ts.TypeFlags.Undefined)!==0)){
+                    return true
+                }
+            } else{
+                if((type.getFlags() & ts.TypeFlags.Undefined) !== 0){
+                    return true
+                }
+            }
+
+            return false
+        }
+        if(result){
+            if(isOptional()){
+                result["optional"]= true
+            }
+            if(description){
+                result["description"] = description
+            }
+
+            if(tags && Object.keys(tags).length>0){
+                result["tags"]= tags
+            }
+        }
+        
+        return result
+    }
+
+    if(tags && tags["private"]){
+        return undefined
+    }
+
     const resolverFn = propertyResolver[flag]
 
     if(resolverFn){
-        return resolverFn!({type, typeString:typeStr, checker, flag})
+        return executeResolverFn(resolverFn)
     }
 
     // Might be a bitmask values, decode it and use it
     const decodedFlags = decodeBitMask(flag)
     if(decodedFlags.length > 0){
         const resolverFn = propertyResolver[decodedFlags[0]!]
-        return resolverFn!({type, typeString:typeStr, checker, flag})
+        return executeResolverFn(resolverFn!)
     }
 
     console.error("RESOLVE NOT FOUND", flag)

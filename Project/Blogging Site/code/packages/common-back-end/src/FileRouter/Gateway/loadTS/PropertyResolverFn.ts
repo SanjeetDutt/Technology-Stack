@@ -136,8 +136,9 @@ export const ObjectResolve:PropertyResolverFn<ResolveRetun.OBJECT>=({type, flag,
             ? checker.getTypeOfSymbolAtLocation(prop, propDeclaration)
             : checker.getTypeOfSymbol(prop)
         result[prop.getName()] = propType
-            ? resolveTS(propType, checker)
+            ? resolveTS(propType, checker, prop)
             : "unknown"
+
     }
     return result
 }
