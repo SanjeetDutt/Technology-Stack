@@ -26,7 +26,12 @@
     "dev-BE": "lerna run dev --scope=back-end-application",
     "migrate": "lerna run migrate:up --scope=back-end-application",
     "migrate:down": "lerna run migrate:down --scope=back-end-application",
-    "export-BE":"lerna run export --scope=back-end-application"
+    
+    "export:backend": "lerna run export --scope=back-end-application",
+    "move:gateway": "node -e \"const fs = require('fs'); fs.renameSync('packages/back-end-application/src/export.json', 'packages/front-end-application/library/Gateway/Gateway.json');\"",
+    "generate:frontend": "lerna run generate-schema --scope=front-end-application",
+    "sync-gateway": "npm run export:backend && npm run move:gateway && npm run generate:frontend"
+
   },
   "dependencies": {
     "cors": "^2.8.6",
