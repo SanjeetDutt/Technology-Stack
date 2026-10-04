@@ -1,5 +1,5 @@
 import {POST, Authentication, Validation, RouteConfig} from "common-back-end"
-import { AdminBlogConfig } from "../AdminBlog.middleware";
+import { AdminBlogConfig } from "../BlogAdmin.middleware";
 
 export type Configuration = RouteConfig<{
     PAYLOAD:{

@@ -1,7 +1,7 @@
 import ts from "typescript";
 import { PropertyResolverFn } from "./PropertyResolverFn";
 import * as PR from "./PropertyResolverFn"
-function getJSDoc(checker: ts.TypeChecker, symbol?: ts.Symbol){
+export function getJSDoc(checker: ts.TypeChecker, symbol?: ts.Symbol){
     if(!symbol){
         return {}
     }

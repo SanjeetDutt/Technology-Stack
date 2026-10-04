@@ -6,4 +6,4 @@ Server
     .config({
         port:3000,
     })
-    .export("./src/export.JSON")
+    .export("./src/export.json")

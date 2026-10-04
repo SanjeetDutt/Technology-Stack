@@ -1,0 +1,101 @@
+{
+  "test": {
+    "_URL": "/test",
+    "_METHOD": {
+      "POST": {}
+    }
+  },
+  "admin": {
+    "blog": {
+      "_URL": "/admin/blog",
+      "_METHOD": {
+        "POST": {
+          "HEADER": {
+            "authorization": {
+              "_PRIMITIVE": "string",
+              "description": "FE to pass Bearer token"
+            }
+          }
+        }
+      },
+      ":id": {
+        "_URL": "/admin/blog/:id",
+        "_METHOD": {
+          "POST": {
+            "PAYLOAD": {
+              "message": {
+                "_PRIMITIVE": "string"
+              }
+            },
+            "RESPONSE": {
+              "message": {
+                "_PRIMITIVE": "string"
+              }
+            },
+            "PARAM": {
+              "id": {
+                "_PRIMITIVE": "string"
+              }
+            },
+            "QUERY": {
+              "offset": {
+                "_PRIMITIVE": "number"
+              },
+              "limit": {
+                "_PRIMITIVE": "number"
+              },
+              "sort": {
+                "_PRIMITIVE": "string"
+              }
+            },
+            "HEADER": {
+              "authorization": {
+                "_PRIMITIVE": "string",
+                "description": "FE to pass Bearer token"
+              }
+            }
+          }
+        }
+      }
+    },
+    "user": {
+      "_URL": "/admin/user",
+      "_METHOD": {
+        "GET": {
+          "HEADER": {
+            "authorization": {
+              "_PRIMITIVE": "string",
+              "description": "FE to pass Bearer token"
+            }
+          }
+        },
+        "POST": {
+          "HEADER": {
+            "authorization": {
+              "_PRIMITIVE": "string",
+              "description": "FE to pass Bearer token"
+            }
+          }
+        }
+      }
+    }
+  },
+  "blog": {
+    "_URL": "/blog",
+    "_METHOD": {
+      "POST": {
+        "PAYLOAD": {
+          "content": {
+            "_PRIMITIVE": "string",
+            "description": "Content for blog"
+          },
+          "title": {
+            "_PRIMITIVE": "string",
+            "description": "Title of the blog"
+          }
+        },
+        "description": "Create a new blog without any permission"
+      }
+    }
+  }
+}

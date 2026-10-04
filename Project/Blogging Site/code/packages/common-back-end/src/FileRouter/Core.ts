@@ -3,7 +3,7 @@ import { IRouter, Router } from "./Router";
 import { Method, Path, SubClass } from "./types";
 import path from "path";
 import {Authentication, ErrorBoundary, Validation, POST, PATCH, PUT, DELETE, GET, Endpoint} from "./Endpoint"
-import {ActionConfig, DefaultActionConfig} from "./Endpoint/_Action"
+import {DefaultActionConfig} from "./Endpoint/_Action"
 import { _MethodAction } from "./Endpoint/Actions/_MethodAction";
 
 export async function ScanDrive(dir: string, router: IRouter):Promise<void>{

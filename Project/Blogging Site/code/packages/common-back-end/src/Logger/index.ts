@@ -101,6 +101,8 @@ export class Logger{
 
     private async appendToFile(addr:string, content: string){
         try{
+            const dir = path.dirname(addr)
+            await fs.mkdir(dir, {recursive:true})
             await fs.appendFile(addr, content)
         } catch(e){
             console.error("Error while appending to the file ", e)

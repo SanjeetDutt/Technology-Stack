@@ -11,7 +11,7 @@ type AddMethodProps = {
 
 class GatewayChildNode{
     private children: {[key: string]:GatewayChildNode} = {}
-    private method: {[key in Method]?:ActionConfig|undefined} = {}
+    private method: {[key in Method]?:Record<string, any>|undefined} = {}
     private readonly URL: string
 
     constructor(URL: string){

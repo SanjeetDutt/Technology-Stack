@@ -1,5 +1,5 @@
 import {Authentication, RouteConfig} from "common-back-end"
-import { AdminMiddlewareConfig } from "../Admin.middleware";
+import { AdminMiddlewareConfig } from "../AdminRoot.middleware";
 
 export type AdminUserConfig = RouteConfig<{
     RESPONSE:{},
