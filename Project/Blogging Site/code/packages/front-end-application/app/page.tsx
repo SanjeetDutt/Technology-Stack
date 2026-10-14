@@ -1,4 +1,4 @@
-import {gateway} from "@/library/Gateway/index"
+import {gateway} from "@/library/Gateway/generate"
 
 export default async function Page(props:PageProps<"/">) {
 	// console.log()

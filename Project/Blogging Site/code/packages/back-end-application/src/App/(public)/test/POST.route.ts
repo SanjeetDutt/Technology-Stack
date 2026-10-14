@@ -1,23 +1,9 @@
 import {Authentication, POST, RouteConfig} from "common-back-end"
 import { DefaultMiddlewareConfig } from "../../Middleware";
+import { AllFlags } from "../../typetest";
 
 type CONFIG = RouteConfig<{
-    PAYLOAD:{
-        // message: string,
-        // metaData: {
-        //     name: string,
-        //     emai: `${string}@${string}.${string}`,
-        //     address:{
-        //         street: string | number,
-        //         city: string,
-        //         pin: number,
-        //     },
-        //     phone?:{
-        //         phone: number,
-        //         type:"TEL"|"Mobile"|"HOME"|"OFFICE"
-        //     }
-        // }
-    },
+    PAYLOAD: AllFlags,
     RESPONSE:{},
     PARAM:{},
     QUERY:{}

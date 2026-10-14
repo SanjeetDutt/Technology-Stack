@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "generate-schema": "tsx ./library/Gateway/index.ts",
+    "generate-schema": "tsx ./library/Gateway/generate.ts",
     "dev": "next dev",
     "build": "next build",
     "start": "next start",

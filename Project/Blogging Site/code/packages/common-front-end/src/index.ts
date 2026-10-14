@@ -1,1 +1,1 @@
-export * from "./GatewayToTs"
+export * from "./gateway"
