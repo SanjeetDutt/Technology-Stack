@@ -1,5 +1,6 @@
 import {useAuth} from "@store";
 import {createGateway} from "../Gateway"
+import { AdminBlogByIdPostPayload, AdminBlogByIdPostQuery } from "../Gateway/Gateway.schema";
 
 namespace API {
     export interface Headers{
@@ -16,21 +17,18 @@ namespace API {
 
 const host = "http://localhost:3001" //TODO: Update it to env variable
 
-const Fetch = async <Response=any>(url:API.URL, inits:RequestInit):Promise<Response | null>=>{
+const Fetch = async (url:API.URL, inits:RequestInit):Promise<any>=>{
     try {
         const api = createGateway()
-        const response = await api.admin.blog[":id"](45).POST({
-            payload:{
-                message:""
-            },
-            query:{
-                offset:0,
-                limit:0,
-                sort:""
-            }
-        })
-        const rawData = await fetch(`${host}${url}`, inits)
-        return (await rawData.json()) as Response
+        const payload:AdminBlogByIdPostPayload = {
+            message:""
+        }
+        const query:AdminBlogByIdPostQuery = {
+            offset:0,
+            limit:0
+        }
+        const response = await api.admin.blog(45).POST({payload,query})
+        return response
     } catch (e){
         console.error("GOT ERROR", e)
         return null

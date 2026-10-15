@@ -17,8 +17,18 @@ interface CallArgs {
   query?: object;
 }
 
-const isChildKey = (key: string) => !key.startsWith('_');
+type ConfigArgs = { header: Record<string, string | undefined> };
+
 const isParamKey = (key: string) => key.startsWith(':');
+const isChildKey = (key: string) => !key.startsWith('_') && !isParamKey(key);
+
+/**
+ * defineProperty (instead of assignment) so a child key such as "name" or
+ * "length" can shadow the built-in, read-only properties of a function.
+ */
+function define(target: object, key: string, value: unknown): void {
+  Object.defineProperty(target, key, { value, enumerable: true, writable: true, configurable: true });
+}
 
 function createEndpointFn(
   method: string,
@@ -37,44 +47,45 @@ function createEndpointFn(
     });
 }
 
-function createParamFn(key: string, child: SchemaNode, ctx: BuildContext) {
+/** `api.blog(45)` -> node of "/blog/:id" with { id: "45" } bound. */
+function createParamCaller(key: string, child: SchemaNode, ctx: BuildContext) {
   const paramName = key.slice(1);
-  // Shared by every value of this param: api.blog[":id"].config(...)
-  const paramScope = createHeaderScope(ctx.scope);
 
-  const fn = (value: PathParamValue) => {
-    if (typeof value === 'number' ? !Number.isFinite(value) : typeof value !== 'string' || value === '') {
+  return (value: PathParamValue): object => {
+    const valid = typeof value === 'number' ? Number.isFinite(value) : typeof value === 'string' && value !== '';
+    if (!valid) {
       throw new TypeError(`Path param "${paramName}" must be a non-empty string or a finite number`);
     }
     return buildNode(child, {
       http: ctx.http,
-      scope: createHeaderScope(paramScope),
+      scope: createHeaderScope(ctx.scope),
       params: { ...ctx.params, [paramName]: String(value) },
     });
   };
-
-  return Object.assign(fn, {
-    config: ({ header }: { header: Record<string, string | undefined> }) => paramScope.set(header),
-  });
 }
 
-function buildNode(node: SchemaNode, ctx: BuildContext): Record<string, unknown> {
-  const result: Record<string, unknown> = {
-    config: ({ header }: { header: Record<string, string | undefined> }) => ctx.scope.set(header),
-  };
+function buildNode(node: SchemaNode, ctx: BuildContext): object {
+  const paramKeys = Object.keys(node).filter(isParamKey);
+  if (paramKeys.length > 1) {
+    throw new Error(`Ambiguous path params under "${node._URL ?? ''}": ${paramKeys.join(', ')}`);
+  }
+
+  const [paramKey] = paramKeys;
+  const target: object =
+    paramKey === undefined ? {} : createParamCaller(paramKey, node[paramKey] as SchemaNode, ctx);
+
+  define(target, 'config', ({ header }: ConfigArgs) => ctx.scope.set(header));
 
   for (const [method, endpoint] of Object.entries(node._METHOD ?? {})) {
-    result[method] = createEndpointFn(method, endpoint, node, ctx);
+    define(target, method, createEndpointFn(method, endpoint, node, ctx));
   }
 
   for (const [key, child] of Object.entries(node)) {
     if (!isChildKey(key)) continue;
-    result[key] = isParamKey(key)
-      ? createParamFn(key, child as SchemaNode, ctx)
-      : buildNode(child as SchemaNode, { ...ctx, scope: createHeaderScope(ctx.scope) });
+    define(target, key, buildNode(child as SchemaNode, { ...ctx, scope: createHeaderScope(ctx.scope) }));
   }
 
-  return result;
+  return target;
 }
 
 /**
@@ -83,7 +94,7 @@ function buildNode(node: SchemaNode, ctx: BuildContext): Record<string, unknown>
  * @example
  * const api = createGateway(gatewaySchema, { baseUrl: 'https://api.example.com' });
  * api.admin.config({ header: { authorization: `Bearer ${token}` } });
- * await api.admin.blog[':id'](42).POST({ payload: { message: 'hi' }, query: { limit: 10 } });
+ * await api.admin.blog(42).POST({ payload: { message: 'hi' }, query: { limit: 10 } });
  */
 export function createGateway<const S extends SchemaNode>(
   schema: S,

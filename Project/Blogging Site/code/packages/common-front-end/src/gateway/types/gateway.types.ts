@@ -2,16 +2,14 @@ import type {
   ParseSchema,
   Simplify,
   UnionToIntersection,
-} from './schema-parser';
+} from './index';
 
 export type HttpMethod =
   | 'GET'
   | 'POST'
   | 'PUT'
   | 'PATCH'
-  | 'DELETE'
-  | 'HEAD'
-  | 'OPTIONS';
+  | 'DELETE';
 
 /** Raw (untyped) shape of one node of the exported JSON. */
 export interface SchemaNode {
@@ -39,13 +37,18 @@ type Section<K extends string, E, S extends string> = S extends keyof E
   ? OptionalIfEmpty<K, ParseSchema<E[S]>>
   : unknown;
 
+/** Every query parameter is optional. */
+type QuerySection<E> = 'QUERY' extends keyof E
+  ? { query?: Partial<ParseSchema<E['QUERY']>> }
+  : unknown;
+
 /** Headers are always optional per call: they may come from `config()`. */
 type HeaderSection<E> = 'HEADER' extends keyof E
   ? { header?: Partial<ParseSchema<E['HEADER']>> }
   : unknown;
 
 export type EndpointArgs<E> = Simplify<
-  HeaderSection<E> & Section<'payload', E, 'PAYLOAD'> & Section<'query', E, 'QUERY'>
+  HeaderSection<E> & Section<'payload', E, 'PAYLOAD'> & QuerySection<E>
 >;
 
 export type EndpointResponse<E> = 'RESPONSE' extends keyof E
@@ -90,11 +93,19 @@ export type PathParamValue = string | number;
 
 type ParamKey = `:${string}`;
 
-export type ParamFn<T> = ((value: PathParamValue) => GatewayNode<T>) &
-  Configurable<T>;
+type NamedChildKeys<T> = Exclude<ChildKeys<T>, ParamKey>;
+type ParamKeys<T> = Extract<ChildKeys<T>, ParamKey>;
+
+/**
+ * A node with a ":param" child is itself callable: `api.blog(45)` returns the
+ * node of "/blog/:id". Nodes without a ":param" child are not callable.
+ */
+export type ParamCall<T> = [ParamKeys<T>] extends [never]
+  ? unknown
+  : (value: PathParamValue) => GatewayNode<T[ParamKeys<T> & keyof T]>;
 
 export type GatewayNode<T> = Configurable<T> & {
   [M in keyof MethodsOf<T> & HttpMethod]: EndpointFn<MethodsOf<T>[M]>;
 } & {
-  [K in ChildKeys<T>]: K extends ParamKey ? ParamFn<T[K]> : GatewayNode<T[K]>;
-};
+  [K in NamedChildKeys<T>]: GatewayNode<T[K]>;
+} & ParamCall<T>;
